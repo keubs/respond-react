@@ -3,29 +3,30 @@
 var angular = require('angular');
 var bulk = require('bulk-require');
 
-module.exports = angular.module('app.services', [
-    ]);
+module.exports = angular.module('app.services', []);
 
 bulk(__dirname, ['./**/!(*_index|*.spec).js']);
 
 /**
  * @ngInject
  */
-module.exports.service('TopicService', ['$resource', '$q',
-    function($resource, $q) {
-        var TopicService = {};
-        var Topics = $resource('http://127.0.0.1:8000/api/topics/', {}, {});
+ function TopicService($q, $http) {
 
-        TopicService.get = function get() {
-            var d = $q.defer();
+  var service = {};
 
-            Topics.get({}, function(node){
-                d.resolve(node);
-            });
+  service.get = function() {
+    var deferred = $q.defer();
 
-            return d.promise;
-        }
+    $http.get('http://127.0.0.1:8000/api/topics/').success(function(data) {
+        deferred.resolve(data);
+    }).error(function(err, status) {
+        deferred.reject(err, status);
+    });
 
-        return TopicService;
-    }
-])
+    return deferred.promise;
+  };
+
+  return service;
+}
+
+module.exports.service('TopicService', TopicService);
