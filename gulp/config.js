@@ -16,6 +16,10 @@ module.exports = {
     'dest': 'build/js',
   },
 
+  'docs': {
+    'dest': 'build/docs',
+  },
+
   'images': {
     'src' : 'app/images/**/*',
     'dest': 'build/images',

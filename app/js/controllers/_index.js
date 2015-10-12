@@ -9,7 +9,6 @@ bulk(__dirname, ['./**/!(*_index|*.spec).js']);
 
 var controllersModule = require('./_index');
 
-
 /**
  * @ngInject
  */

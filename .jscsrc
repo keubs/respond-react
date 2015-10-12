@@ -3,6 +3,17 @@
   "fileExtensions": [".js", "jscs"],
   "excludeFiles": [],
 
+  "plugins": [
+    "jscs-jsdoc"
+  ],
+  "jsDoc": {
+    checkAnnotations": {
+      "extra": {
+        "ngInject": false
+      }
+    }
+  },
+
   "validateIndentation": 2,
   "disallowTrailingWhitespace": true,
   "requireTrailingComma": {
