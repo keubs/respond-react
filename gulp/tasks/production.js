@@ -1,7 +1,7 @@
 'use strict';
 
-var gulp        = require('gulp');
-var runSequence = require('run-sequence');
+const gulp        = require('gulp');
+const runSequence = require('run-sequence');
 
 gulp.task('prod', ['clean'], function(cb) {
 

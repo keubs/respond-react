@@ -1,8 +1,8 @@
 'use strict';
 
-var config         = require('../config');
-var gulp           = require('gulp');
-var templateCache  = require('gulp-angular-templatecache');
+const config         = require('../config');
+const gulp           = require('gulp');
+const templateCache  = require('gulp-angular-templatecache');
 
 // Views task
 gulp.task('views', function() {

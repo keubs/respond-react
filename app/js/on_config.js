@@ -12,7 +12,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
     url: '/',
     controller: 'FuzzyCtrl',
     templateUrl: 'home.html',
-    title: 'Home'
+    title: 'Home',
   });
 
   $urlRouterProvider.otherwise('/');

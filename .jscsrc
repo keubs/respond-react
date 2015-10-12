@@ -1,0 +1,22 @@
+{
+  "preset": "google",
+  "fileExtensions": [".js", "jscs"],
+  "excludeFiles": [],
+
+  "validateIndentation": 2,
+  "disallowTrailingWhitespace": true,
+  "requireTrailingComma": {
+    "ignoreSingleLine": true
+  },
+  "requireLineFeedAtFileEnd": true,
+  "disallowMultipleLineBreaks": true,
+  "disallowSpaceBeforeSemicolon": true,
+  "requireSpaceAfterLineComment": true,
+  "maximumLineLength": 120,
+  "disallowSpaceAfterObjectKeys": {
+    "allExcept": ["multiline"]
+  },
+  "requireKeywordsOnNewLine": ["else"],
+  "disallowKeywordsOnNewLine": [],
+  "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+}

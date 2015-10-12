@@ -10,7 +10,7 @@ bulk(__dirname, ['./**/!(*_index|*.spec).js']);
 /**
  * @ngInject
  */
- function TopicService($q, $http) {
+function TopicService($q, $http) {
 
   var service = {};
 
@@ -18,9 +18,9 @@ bulk(__dirname, ['./**/!(*_index|*.spec).js']);
     var deferred = $q.defer();
 
     $http.get('http://127.0.0.1:8000/api/topics/').success(function(data) {
-        deferred.resolve(data);
+      deferred.resolve(data);
     }).error(function(err, status) {
-        deferred.reject(err, status);
+      deferred.reject(err, status);
     });
 
     return deferred.promise;

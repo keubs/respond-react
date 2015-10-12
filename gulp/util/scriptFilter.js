@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+const path = require('path');
 
 // Filters out non .js files. Prevents
 // accidental inclusion of possible hidden files

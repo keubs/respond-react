@@ -8,52 +8,52 @@ module.exports = {
 
   'styles': {
     'src' : 'app/styles/**/*.scss',
-    'dest': 'build/css'
+    'dest': 'build/css',
   },
 
   'scripts': {
     'src' : 'app/js/**/*.js',
-    'dest': 'build/js'
+    'dest': 'build/js',
   },
 
   'images': {
     'src' : 'app/images/**/*',
-    'dest': 'build/images'
+    'dest': 'build/images',
   },
 
   'fonts': {
     'src' : ['app/fonts/**/*'],
-    'dest': 'build/fonts'
+    'dest': 'build/fonts',
   },
 
   'views': {
     'watch': [
       'app/index.html',
-      'app/views/**/*.html'
+      'app/views/**/*.html',
     ],
     'src': 'app/views/**/*.html',
-    'dest': 'app/js'
+    'dest': 'app/js',
   },
 
   'gzip': {
     'src': 'build/**/*.{html,xml,json,css,js,js.map}',
     'dest': 'build/',
-    'options': {}
+    'options': {},
   },
 
   'dist': {
-    'root'  : 'build'
+    'root'  : 'build',
   },
 
   'browserify': {
     'entries'   : ['./app/js/main.js'],
     'bundleName': 'main.js',
-    'sourcemap' : true
+    'sourcemap' : true,
   },
 
   'test': {
     'karma': 'test/karma.conf.js',
-    'protractor': 'test/protractor.conf.js'
-  }
+    'protractor': 'test/protractor.conf.js',
+  },
 
 };

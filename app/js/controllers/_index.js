@@ -13,11 +13,12 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-controllersModule.controller('FuzzyCtrl', ['$scope', 'TopicService', function($scope, TopicService){
+controllersModule.controller('FuzzyCtrl', ['$scope', 'TopicService', function($scope, TopicService) {
     $scope.title = 'HELLO!';
 
     $scope.topics = [];
-    TopicService.get().then(function(data){
-        $scope.topics = data;
+    TopicService.get().then(function(data) {
+      $scope.topics = data;
     });
-}]);
+  },
+]);

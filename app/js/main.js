@@ -18,7 +18,7 @@ angular.element(document).ready(function() {
     'templates',
     'app.controllers',
     'app.services',
-    'app.directives'
+    'app.directives',
   ];
 
   // mount on window for testing
@@ -33,11 +33,11 @@ angular.element(document).ready(function() {
   angular.bootstrap(document, ['app']);
 
   angular.module('app').config(function($httpProvider) {
-        //Enable cross domain calls
-        $httpProvider.defaults.useXDomain = true;
-        
-        //Remove the header used to identify ajax call  that would prevent CORS from working
-        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    // Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+
+    // Remove the header used to identify ajax call  that would prevent CORS from working
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });
 
 });

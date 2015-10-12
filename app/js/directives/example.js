@@ -13,7 +13,7 @@ function exampleDirective() {
       element.on('click', function() {
         console.log('element clicked');
       });
-    }
+    },
   };
 
 }

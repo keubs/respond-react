@@ -1,8 +1,8 @@
 'use strict';
 
-var gulp   = require('gulp');
-var karma  = require('gulp-karma');
-var config = require('../config');
+const gulp   = require('gulp');
+const karma  = require('gulp-karma');
+const config = require('../config');
 
 gulp.task('unit', ['views'], function() {
 

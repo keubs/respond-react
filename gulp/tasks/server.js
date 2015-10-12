@@ -1,15 +1,15 @@
 'use strict';
 
-var config  = require('../config');
-var http    = require('http');
-var express = require('express');
-var gulp    = require('gulp');
-var gutil   = require('gulp-util');
-var morgan  = require('morgan');
+const config  = require('../config');
+const http    = require('http');
+const express = require('express');
+const gulp    = require('gulp');
+const gutil   = require('gulp-util');
+const morgan  = require('morgan');
 
 gulp.task('server', function() {
 
-  var server = express();
+  const server = express();
 
   // log all requests to the console
   server.use(morgan('dev'));
@@ -21,7 +21,7 @@ gulp.task('server', function() {
   });
 
   // Start webserver if not already running
-  var s = http.createServer(server);
+  const s = http.createServer(server);
   s.on('error', function(err){
     if(err.code === 'EADDRINUSE'){
       gutil.log('Development server is already started at port ' + config.serverport);
