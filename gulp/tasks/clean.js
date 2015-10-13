@@ -2,10 +2,10 @@
 
 const config = require('../config');
 const gulp   = require('gulp');
-const del    = require('del');
+const rimraf    = require('gulp-rimraf');
 
-gulp.task('clean', function(cb) {
-
-  del([config.dist.root], cb);
+gulp.task('clean', function() {
+  return gulp.src([config.dist.root], {read: false})
+    .pipe(rimraf());
 
 });
