@@ -1,18 +1,16 @@
 'use strict';
 
-var servicesModule = require('./_index.js');
-
 /**
  * @ngInject
  */
-function ExampleService($q, $http) {
+function TopicService($q, $http) {
 
   var service = {};
 
   service.get = function() {
     var deferred = $q.defer();
 
-    $http.get('apiPath').success(function(data) {
+    $http.get('http://127.0.0.1:8000/api/topics/').success(function(data) {
       deferred.resolve(data);
     }).error(function(err, status) {
       deferred.reject(err, status);
@@ -22,7 +20,6 @@ function ExampleService($q, $http) {
   };
 
   return service;
-
 }
 
-servicesModule.service('ExampleService', ExampleService);
+module.exports = TopicService;

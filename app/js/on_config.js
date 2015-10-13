@@ -8,12 +8,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
   $locationProvider.html5Mode(true);
 
   $stateProvider
-  .state('Home', {
-    url: '/',
-    controller: 'FuzzyCtrl',
-    templateUrl: 'home.html',
-    title: 'Home',
-  });
+    .state('Home', {
+      url: '/',
+      controller: 'TopicsCtrl',
+      templateUrl: 'home.html',
+    });
 
   $urlRouterProvider.otherwise('/');
 
