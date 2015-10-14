@@ -1,7 +1,19 @@
+<div ng-include="'header.html'"></div>
+
+<div ng-include="'nav.html'"></div>
+
 <h1 class="heading-large">{{ title }}</h1>
 
 <h3 class="heading-medium">Here is a fancy number served up courtesy of Angular: <span class="number-example">{{ home.number }}</span></h3>
 
-<div ng-repeat="topic in topics">
+<ol>
+  <li ng-repeat="topic in topics">
+    <button>Up</button>
+    {{topic.score}}
+    <button>Down</button>
     <a href="{{topic.article_link}}">{{topic.title}}</a>
-</div>
+    <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.created_by}}</a> on {{topic.created_on}}</aside>
+  </li>
+</ol>
+
+<div ng-include="'footer.html'"></div>

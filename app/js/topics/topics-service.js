@@ -19,6 +19,42 @@ function TopicService($q, $http) {
     return deferred.promise;
   };
 
+  service.find = function(topicId) {
+
+  };
+
+  service.delete = function(topicId) {
+
+  };
+
+  service.addComment = function(topicId, comment) {
+
+  };
+
+  service.deleteComment = function(topicId, comment) {
+
+  };
+
+  service.upVote = function(topicId) {
+
+  };
+
+  service.downVote = function(topicId) {
+
+  };
+
+  service.clearVote = function(topicId) {
+
+  };
+
+  service.isUpVoted = function(topicId) {
+
+  };
+
+  service.isDownVoted = function(topicId) {
+
+  };
+
   return service;
 }
 
