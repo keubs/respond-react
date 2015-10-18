@@ -8,9 +8,9 @@
 
 <ol>
   <li ng-repeat="topic in topics">
-    <button>Up</button>
+    <button ng-click="upVoteTopic(topic.id)">Up</button>
     {{topic.score}}
-    <button>Down</button>
+    <button ng-click="downVoteTopic(topic.id)">Down</button>
     <a href="{{topic.article_link}}">{{topic.title}}</a>
     <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.created_by}}</a> on {{topic.created_on}}</aside>
   </li>
