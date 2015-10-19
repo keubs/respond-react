@@ -1,19 +1,13 @@
-<div ng-include="'header.html'"></div>
-
-<div ng-include="'nav.html'"></div>
-
 <h1 class="heading-large">{{ title }}</h1>
 
-<h3 class="heading-medium">Here is a fancy number served up courtesy of Angular: <span class="number-example">{{ home.number }}</span></h3>
+<a href="/submit">Submit a topic</a>
 
 <ol>
   <li ng-repeat="topic in topics">
-    <button ng-click="upVoteTopic(topic.id)">Up</button>
+    <button ng-click="upVoteTopic(topic.id)" ng-class="{upvoted: isUpVoted()}">Up</button>
     {{topic.score}}
-    <button ng-click="downVoteTopic(topic.id)">Down</button>
+    <button ng-click="downVoteTopic(topic.id)" ng-class="{downvoted: isDownVoted()}">Down</button>
     <a href="{{topic.article_link}}">{{topic.title}}</a>
     <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.created_by}}</a> on {{topic.created_on}}</aside>
   </li>
 </ol>
-
-<div ng-include="'footer.html'"></div>

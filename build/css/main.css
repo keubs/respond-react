@@ -32,4 +32,12 @@ body {
   background-color: #eee;
   padding: 20px; }
 
+/* line 12, stdin */
+.upvoted {
+  color: orange; }
+
+/* line 16, stdin */
+.downvoted {
+  color: blue; }
+
 /*# sourceMappingURL=sass */

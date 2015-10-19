@@ -1,20 +1,29 @@
 'use strict';
 
-module.exports = function($scope, $location, TopicService) {
+const errorStringify = require('../helpers/error-stringify');
+
+module.exports = function($scope, $location, TopicService, AuthService) {
   $scope.title = 'HELLO!';
+  $scope.errors = {};
 
   $scope.topics = [];
 
   TopicService.get().then(function(data) {
     $scope.topics = data;
-    console.log(data);
   });
 
-  // if ($location.path() === '/') {
-  //   $scope.topics = TopicService.all;
-  // }
+  $scope.newTopic = function() {
+    TopicService.new($scope.topic)
+      .then(function (data) {
+        $location.path('/topic/' + data.id);
+      }, function (error) {
+        $scope.errors = {};
 
-  $scope.topic = {url: 'http://', title: ''};
+        $scope.errors.general = errorStringify(error.non_field_errors);
+        $scope.errors.title = errorStringify(error.title);
+        $scope.errors.article_link = errorStringify(error.article_link);
+      });
+  };
 
   $scope.deleteTopic = function(topicId) {
     TopicService.delete(topicId);
@@ -37,10 +46,10 @@ module.exports = function($scope, $location, TopicService) {
   };
 
   $scope.isUpVoted = function(topicId) {
-    return TopicService.isUpVoted(topicId);
+    return AuthService.isLoggedIn() && TopicService.isUpVoted(topicId);
   };
 
   $scope.isDownVoted = function(topicId) {
-    return TopicService.isDownVoted(topicId);
+    return AuthService.isLoggedIn() && TopicService.isDownVoted(topicId);
   };
 };

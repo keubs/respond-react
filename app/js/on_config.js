@@ -12,6 +12,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '/',
       controller: 'TopicsCtrl',
       templateUrl: 'home.html',
+    })
+    .state('Submit Topic', {
+      url: '/submit',
+      controller: 'TopicsCtrl',
+      templateUrl: 'submit.html',
     });
 
   $urlRouterProvider.otherwise('/');

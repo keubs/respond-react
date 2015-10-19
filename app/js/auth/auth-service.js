@@ -36,6 +36,7 @@ module.exports = function($q, $http, $window) {
   };
 
   service.isLoggedIn = function() {
+    $http.defaults.headers.common.Authorization = 'JWT ' + $window.sessionStorage.token;
     return $window.sessionStorage.user ? $window.sessionStorage.user : false;
   };
 

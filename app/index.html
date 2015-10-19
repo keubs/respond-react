@@ -11,8 +11,13 @@
       <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+      <div ng-include="'header.html'"></div>
+
+      <div ng-include="'nav.html'"></div>
 
       <div ui-view></div>
+
+      <div ng-include="'footer.html'"></div>
 
       <script src="js/main.js"></script>
   </body>
