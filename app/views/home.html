@@ -4,9 +4,13 @@
 
 <ol>
   <li ng-repeat="topic in topics">
-    <button ng-click="upVoteTopic(topic.id)" ng-class="{upvoted: isUpVoted()}">Up</button>
+    <button ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}">
+      Up
+    </button>
     {{topic.score}}
-    <button ng-click="downVoteTopic(topic.id)" ng-class="{downvoted: isDownVoted()}">Down</button>
+    <button ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}">
+      Down
+    </button>
     <a href="{{topic.article_link}}">{{topic.title}}</a>
     <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.created_by}}</a> on {{topic.created_on}}</aside>
   </li>

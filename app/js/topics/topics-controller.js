@@ -25,31 +25,55 @@ module.exports = function($scope, $location, TopicService, AuthService) {
       });
   };
 
-  $scope.deleteTopic = function(topicId) {
-    TopicService.delete(topicId);
+  $scope.deleteTopic = function($topicIndex) {
+    let topic = $scope.topics[$topicIndex];
+
+    TopicService.delete(topic.id);
   };
 
-  $scope.upVoteTopic = function(topicId, isUpVoted) {
-    if (isUpVoted) {
-      TopicService.clearVote(topicId, isUpVoted);
+  $scope.upVoteTopic = function($topicIndex) {
+    let topic = $scope.topics[$topicIndex];
+
+    if (topic.isUpVoted) {
+      TopicService.clearVote(topic.id, topic.isUpVoted);
+      topic.isUpVoted = false;
+      topic.isDownVoted = false;
+      topic.score--;
     } else {
-      TopicService.upVote(topicId);
+      TopicService.upVote(topic.id);
+      topic.isUpVoted = true;
+      topic.isDownVoted = false;
+      topic.score++;
     }
   };
 
-  $scope.downVoteTopic = function(topicId, isDownVoted) {
-    if (isDownVoted) {
-      TopicService.clearVote(topicId, !isDownVoted);
+  $scope.downVoteTopic = function($topicIndex) {
+    let topic = $scope.topics[$topicIndex];
+
+    if (topic.isDownVoted) {
+      TopicService.clearVote(topic.id, !topic.isDownVoted);
+      topic.isDownVoted = false;
+      topic.isUpVoted = false;
+      topic.score++;
     } else {
-      TopicService.downVote(topicId);
+      TopicService.downVote(topic.id);
+      topic.isDownVoted = true;
+      topic.isUpVoted = false;
+      topic.score--;
     }
   };
 
-  $scope.isUpVoted = function(topicId) {
-    return AuthService.isLoggedIn() && TopicService.isUpVoted(topicId);
+  $scope.isUpVoted = function($topicIndex) {
+    let topic = $scope.topics[$topicIndex];
+
+    return AuthService.isLoggedIn() && topic.isUpVoted;
+    // return AuthService.isLoggedIn() && TopicService.isUpVoted(topic.id);
   };
 
-  $scope.isDownVoted = function(topicId) {
-    return AuthService.isLoggedIn() && TopicService.isDownVoted(topicId);
+  $scope.isDownVoted = function($topicIndex) {
+    let topic = $scope.topics[$topicIndex];
+
+    return AuthService.isLoggedIn() && topic.isDownVoted;
+    // return AuthService.isLoggedIn() && TopicService.isDownVoted(topic.id);
   };
 };
