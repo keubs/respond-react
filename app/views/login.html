@@ -1,0 +1,33 @@
+<div ng-controller="AuthCtrl">
+
+  <ul ng-show="isLoggedIn()">
+    <li>
+      <a href="#/users/{{ user.username }}">
+        {{ user.username }}
+      </a>
+    </li>
+    <li>
+      <a href="#" ng-click="logout()">Logout</a>
+    </li>
+  </ul>
+
+  <form ng-submit="login()" ng-hide="isLoggedIn()">
+    <h2>Log In</h2>
+    <p ng-show="errors.general">{{ errors.general }}</p>
+    <label for="username">Username</label>
+    <input id="username" type="text" ng-model="user.username" placeholder="Username">
+    <p ng-show="errors.username">{{ errors.username }}</p>
+
+    <br>
+
+    <label for="password">Password</label>
+    <input id="password" type="password" ng-model="user.password" placeholder="Password">
+    <p ng-show="errors.password">{{ errors.password }}</p>
+
+    <br>
+
+    <input type="submit" value="Log in" />
+    <a href="#/register">Register</a>
+  </form>
+
+</div>

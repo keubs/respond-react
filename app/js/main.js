@@ -6,6 +6,7 @@ var angular = require('angular');
 require('angular-ui-router');
 require('./templates');
 require('./topics/_index');
+require('./auth/_index');
 require('ng-resource');
 
 // create and bootstrap application
@@ -15,6 +16,7 @@ angular.element(document).ready(function() {
     'ui.router',
     'templates',
     'topics',
+    'auth',
   ];
 
   // mount on window for testing
