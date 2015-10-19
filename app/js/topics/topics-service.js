@@ -72,7 +72,7 @@ function TopicService($q, $http) {
 
     var deferred = $q.defer();
 
-    $http.post('http://localhost:8000/api/topics/' + topicId + 'rate/-1')
+    $http.post('http://localhost:8000/api/topics/' + topicId + '/rate/-1')
       .success(function(data) {
         deferred.resolve(data);
       })

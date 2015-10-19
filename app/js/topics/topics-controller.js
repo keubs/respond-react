@@ -14,9 +14,9 @@ module.exports = function($scope, $location, TopicService, AuthService) {
 
   $scope.newTopic = function() {
     TopicService.new($scope.topic)
-      .then(function (data) {
+      .then(function(data) {
         $location.path('/topic/' + data.id);
-      }, function (error) {
+      }, function(error) {
         $scope.errors = {};
 
         $scope.errors.general = errorStringify(error.non_field_errors);
@@ -35,15 +35,19 @@ module.exports = function($scope, $location, TopicService, AuthService) {
     let topic = $scope.topics[$topicIndex];
 
     if (topic.isUpVoted) {
-      TopicService.clearVote(topic.id, topic.isUpVoted);
-      topic.isUpVoted = false;
-      topic.isDownVoted = false;
-      topic.score--;
+      TopicService.clearVote(topic.id, topic.isUpVoted)
+        .then(function() {
+          topic.isUpVoted = false;
+          topic.isDownVoted = false;
+          topic.score--;
+        });
     } else {
-      TopicService.upVote(topic.id);
-      topic.isUpVoted = true;
-      topic.isDownVoted = false;
-      topic.score++;
+      TopicService.upVote(topic.id)
+        .then(function() {
+          topic.isUpVoted = true;
+          topic.isDownVoted = false;
+          topic.score++;
+        });
     }
   };
 
@@ -51,15 +55,19 @@ module.exports = function($scope, $location, TopicService, AuthService) {
     let topic = $scope.topics[$topicIndex];
 
     if (topic.isDownVoted) {
-      TopicService.clearVote(topic.id, !topic.isDownVoted);
-      topic.isDownVoted = false;
-      topic.isUpVoted = false;
-      topic.score++;
+      TopicService.clearVote(topic.id, !topic.isDownVoted)
+        .then(function() {
+          topic.isDownVoted = false;
+          topic.isUpVoted = false;
+          topic.score++;
+        });
     } else {
-      TopicService.downVote(topic.id);
-      topic.isDownVoted = true;
-      topic.isUpVoted = false;
-      topic.score--;
+      TopicService.downVote(topic.id)
+        .then(function() {
+          topic.isDownVoted = true;
+          topic.isUpVoted = false;
+          topic.score--;
+        });
     }
   };
 
