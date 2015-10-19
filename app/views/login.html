@@ -11,23 +11,47 @@
     </li>
   </ul>
 
-  <form ng-submit="login()" ng-hide="isLoggedIn()">
-    <h2>Log In</h2>
-    <p ng-show="errors.general">{{ errors.general }}</p>
-    <label for="username">Username</label>
-    <input id="username" type="text" ng-model="user.username" placeholder="Username">
-    <p ng-show="errors.username">{{ errors.username }}</p>
+  <div ng-hide="isLoggedIn()">
+    <form ng-submit="login()" ng-hide="isRegister()">
+      <h2>Log In</h2>
+      <p ng-show="errors.general">{{ errors.general }}</p>
+      <label for="username">Username</label>
+      <input id="username" type="text" ng-model="user.username" aria-describedby="usernameError" placeholder="Username">
+      <p ng-show="errors.username" id="usernameError">{{ errors.username }}</p>
 
-    <br>
+      <br>
 
-    <label for="password">Password</label>
-    <input id="password" type="password" ng-model="user.password" placeholder="Password">
-    <p ng-show="errors.password">{{ errors.password }}</p>
+      <label for="password">Password</label>
+      <input id="password" type="password" ng-model="user.password" aria-describedby="passwordError" placeholder="Password">
+      <p ng-show="errors.password" id="passwordError">{{ errors.password }}</p>
 
-    <br>
+      <br>
 
-    <input type="submit" value="Log in" />
-    <a href="#/register">Register</a>
-  </form>
+      <input type="submit" value="Log in" />
+      <br>
+      <button type="button" ng-click="toggleRegister()">Register?</button>
+    </form>
+
+    <form ng-submit="register()" ng-show="isRegister()">
+      <h2>Register</h2>
+      <p ng-show="errors.general">{{ errors.general }}</p>
+      <label for="username">Username</label>
+      <input id="username" type="text" ng-model="user.username" placeholder="Username">
+      <p ng-show="errors.username">{{ errors.username }}</p>
+
+      <br>
+
+      <label for="password">Password</label>
+      <input id="password" type="password" ng-model="user.password" placeholder="Password">
+      <p ng-show="errors.password">{{ errors.password }}</p>
+
+      <br>
+
+      <input type="submit" value="Register" />
+      <br>
+      <button type="button" ng-click="toggleRegister()">Log In?</button>
+    </form>
+
+  </div>
 
 </div>
