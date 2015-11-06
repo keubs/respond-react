@@ -1,20 +1,22 @@
-<form ng-controller="TopicsCtrl" ng-submit="newTopic()">
+<form ng-controller="TopicSubmitCtrl" ng-submit="submit()">
   <h1>Submit a topic</h1>
 
   <p ng-show="errors.general">{{ errors.general }}</p>
   <label for="title">Title</label>
-  <input id="title" type="text" ng-model="topic.title" placeholder="Title">
+  <input id="title" type="text" ng-model="topic.title" placeholder="Title" required>
   <p ng-show="errors.title" id="">{{ errors.title }}</p>
 
   <br>
 
   <label for="article_link">Article Link</label>
-  <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link">
+  <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" required>
   <p ng-show="errors.article_link">{{ errors.article_link }}</p>
 
   <br>
 
   <input type="hidden" ng-model="topic.created_by" value="1"/>
+
+  <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
 
   <input type="submit" value="Submit" />
 </form>

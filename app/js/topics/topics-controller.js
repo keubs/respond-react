@@ -1,7 +1,5 @@
 'use strict';
 
-const errorStringify = require('../helpers/error-stringify');
-
 module.exports = function($scope, $location, TopicService, AuthService) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
@@ -11,19 +9,6 @@ module.exports = function($scope, $location, TopicService, AuthService) {
   TopicService.get().then(function(data) {
     $scope.topics = data;
   });
-
-  $scope.newTopic = function() {
-    TopicService.new($scope.topic)
-      .then(function(data) {
-        $location.path('/topic/' + data.id);
-      }, function(error) {
-        $scope.errors = {};
-
-        $scope.errors.general = errorStringify(error.non_field_errors);
-        $scope.errors.title = errorStringify(error.title);
-        $scope.errors.article_link = errorStringify(error.article_link);
-      });
-  };
 
   $scope.deleteTopic = function($topicIndex) {
     let topic = $scope.topics[$topicIndex];
@@ -40,6 +25,9 @@ module.exports = function($scope, $location, TopicService, AuthService) {
           topic.isUpVoted = false;
           topic.isDownVoted = false;
           topic.score--;
+        },
+        function(error) {
+          $scope.voteFailed($topicIndex, error);
         });
     } else {
       TopicService.upVote(topic.id)
@@ -47,6 +35,9 @@ module.exports = function($scope, $location, TopicService, AuthService) {
           topic.isUpVoted = true;
           topic.isDownVoted = false;
           topic.score++;
+        },
+        function(error) {
+          $scope.voteFailed($topicIndex, error);
         });
     }
   };
@@ -60,6 +51,9 @@ module.exports = function($scope, $location, TopicService, AuthService) {
           topic.isDownVoted = false;
           topic.isUpVoted = false;
           topic.score++;
+        },
+        function(error) {
+          $scope.voteFailed($topicIndex, error);
         });
     } else {
       TopicService.downVote(topic.id)
@@ -67,6 +61,9 @@ module.exports = function($scope, $location, TopicService, AuthService) {
           topic.isDownVoted = true;
           topic.isUpVoted = false;
           topic.score--;
+        },
+        function(error) {
+          $scope.voteFailed($topicIndex, error);
         });
     }
   };
@@ -83,5 +80,17 @@ module.exports = function($scope, $location, TopicService, AuthService) {
 
     return AuthService.isLoggedIn() && topic.isDownVoted;
     // return AuthService.isLoggedIn() && TopicService.isDownVoted(topic.id);
+  };
+
+  $scope.voteFailed = function($topicIndex, error) {
+    let topic = $scope.topics[$topicIndex];
+
+    switch (error.status) {
+      case 401:
+        topic.error = 'You must be logged in to do that.';
+        break;
+      default:
+        topic.error = 'Something bad happened. 😭😭😭';
+    }
   };
 };

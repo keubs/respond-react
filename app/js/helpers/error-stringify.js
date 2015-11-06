@@ -3,8 +3,7 @@
 module.exports = function(errorArray) {
   if (errorArray) {
     return errorArray.join('<br/>');
-  }
-  else {
+  } else {
     return ('');
   }
 };

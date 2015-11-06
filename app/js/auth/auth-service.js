@@ -8,7 +8,7 @@ module.exports = function($q, $http, $window) {
   var service = {};
 
   service.register = function(user) {
-
+    console.log(user);
   };
 
   service.login = function(user) {

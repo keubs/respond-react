@@ -1,26 +1,26 @@
-/* line 1, /Users/Kevin/python/untitled/front/app/styles/_typography.scss */
+/* line 1, /Users/cshaver/Personal/untitled/front/app/styles/_typography.scss */
 p {
   margin-bottom: 1em; }
 
-/* line 5, /Users/Kevin/python/untitled/front/app/styles/_typography.scss */
+/* line 5, /Users/cshaver/Personal/untitled/front/app/styles/_typography.scss */
 .heading {
   margin-bottom: 0.618em; }
-  /* line 8, /Users/Kevin/python/untitled/front/app/styles/_typography.scss */
+  /* line 8, /Users/cshaver/Personal/untitled/front/app/styles/_typography.scss */
   .heading.-large, h1 {
     font-size: 24px;
     font-weight: bold;
     line-height: 30px; }
-  /* line 14, /Users/Kevin/python/untitled/front/app/styles/_typography.scss */
+  /* line 14, /Users/cshaver/Personal/untitled/front/app/styles/_typography.scss */
   .heading.-medium, h2 {
     font-size: 16px;
     font-weight: normal;
     line-height: 20px; }
-  /* line 20, /Users/Kevin/python/untitled/front/app/styles/_typography.scss */
+  /* line 20, /Users/cshaver/Personal/untitled/front/app/styles/_typography.scss */
   .heading.-small, h3 {
     font-size: 12px;
     font-weight: bold;
     line-height: 13.33333px; }
-  /* line 26, /Users/Kevin/python/untitled/front/app/styles/_typography.scss */
+  /* line 26, /Users/cshaver/Personal/untitled/front/app/styles/_typography.scss */
   .heading.-smallest {
     font-size: 10px;
     font-weight: bold; }

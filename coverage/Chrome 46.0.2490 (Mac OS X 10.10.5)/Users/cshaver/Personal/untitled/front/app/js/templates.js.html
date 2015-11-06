@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Users/cshaver/Personal/untitled/front/app/js/templates.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">Users/cshaver/Personal/untitled/front/app/js/templates.js</span></h1>
+    <h2>
+        Statements: <span class="metric">14.29% <small>(1 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../../index.html">All files</a> &#187; <a href="index.html">Users/cshaver/Personal/untitled/front/app/js/</a> &#187; templates.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module("templates", []).run(["$t<span class="fstat-no" title="function not covered" >emplateCache", function($t<span class="cstat-no" title="statement not covered" ></span>emplateCache) {$templateCache.put("footer.html","&lt;footer&gt;\n  hello i\'m a footer</span>\n&lt;/footer&gt;");
+<span class="cstat-no" title="statement not covered" >$templateCache.put("header.html","&lt;header&gt;\n  hello this is header\n\n  &lt;div ng-include=\"\'login.html\'\"&gt;&lt;/div&gt;\n\n&lt;/header&gt;\n");</span>
+<span class="cstat-no" title="statement not covered" >$templateCache.put("home.html","&lt;h1 class=\"heading-large\"&gt;{{ title }}&lt;/h1&gt;\n\n&lt;a href=\"/submit\"&gt;Submit a topic&lt;/a&gt;\n\n&lt;ol&gt;\n  &lt;li ng-repeat=\"topic in topics\"&gt;\n    &lt;button ng-click=\"upVoteTopic($index)\" ng-class=\"{upvoted: isUpVoted($index)}\"&gt;\n      Up\n    &lt;/button&gt;\n    {{topic.score}}\n    &lt;button ng-click=\"downVoteTopic($index)\" ng-class=\"{downvoted: isDownVoted($index)}\"&gt;\n      Down\n    &lt;/button&gt;\n    &lt;a href=\"{{topic.article_link}}\"&gt;{{topic.title}}&lt;/a&gt;\n    &lt;aside&gt;Submitted by &lt;a href=\"#/user/{{topic.created_by}}\"&gt;{{topic.created_by}}&lt;/a&gt; on {{topic.created_on}}&lt;/aside&gt;\n  &lt;/li&gt;\n&lt;/ol&gt;\n");</span>
+<span class="cstat-no" title="statement not covered" >$templateCache.put("login.html","&lt;div ng-controller=\"AuthCtrl\"&gt;\n\n  &lt;ul ng-show=\"isLoggedIn()\"&gt;\n    &lt;li&gt;\n      &lt;a href=\"#/users/{{ user.username }}\"&gt;\n        {{ user.username }}\n      &lt;/a&gt;\n    &lt;/li&gt;\n    &lt;li&gt;\n      &lt;a href=\"#\" ng-click=\"logout()\"&gt;Logout&lt;/a&gt;\n    &lt;/li&gt;\n  &lt;/ul&gt;\n\n  &lt;div ng-hide=\"isLoggedIn()\"&gt;\n    &lt;form ng-submit=\"login()\" ng-hide=\"isRegister()\"&gt;\n      &lt;h2&gt;Log In&lt;/h2&gt;\n      &lt;p ng-show=\"errors.general\"&gt;{{ errors.general }}&lt;/p&gt;\n      &lt;label for=\"username\"&gt;Username&lt;/label&gt;\n      &lt;input id=\"username\" type=\"text\" ng-model=\"user.username\" aria-describedby=\"usernameError\" placeholder=\"Username\"&gt;\n      &lt;p ng-show=\"errors.username\" id=\"usernameError\"&gt;{{ errors.username }}&lt;/p&gt;\n\n      &lt;br&gt;\n\n      &lt;label for=\"password\"&gt;Password&lt;/label&gt;\n      &lt;input id=\"password\" type=\"password\" ng-model=\"user.password\" aria-describedby=\"passwordError\" placeholder=\"Password\"&gt;\n      &lt;p ng-show=\"errors.password\" id=\"passwordError\"&gt;{{ errors.password }}&lt;/p&gt;\n\n      &lt;br&gt;\n\n      &lt;input type=\"submit\" value=\"Log in\" /&gt;\n      &lt;br&gt;\n      &lt;button type=\"button\" ng-click=\"toggleRegister()\"&gt;Register?&lt;/button&gt;\n    &lt;/form&gt;\n\n    &lt;form ng-submit=\"register()\" ng-show=\"isRegister()\"&gt;\n      &lt;h2&gt;Register&lt;/h2&gt;\n      &lt;p ng-show=\"errors.general\"&gt;{{ errors.general }}&lt;/p&gt;\n      &lt;label for=\"username\"&gt;Username&lt;/label&gt;\n      &lt;input id=\"username\" type=\"text\" ng-model=\"user.username\" placeholder=\"Username\"&gt;\n      &lt;p ng-show=\"errors.username\"&gt;{{ errors.username }}&lt;/p&gt;\n\n      &lt;br&gt;\n\n      &lt;label for=\"password\"&gt;Password&lt;/label&gt;\n      &lt;input id=\"password\" type=\"password\" ng-model=\"user.password\" placeholder=\"Password\"&gt;\n      &lt;p ng-show=\"errors.password\"&gt;{{ errors.password }}&lt;/p&gt;\n\n      &lt;br&gt;\n\n      &lt;input type=\"submit\" value=\"Register\" /&gt;\n      &lt;br&gt;\n      &lt;button type=\"button\" ng-click=\"toggleRegister()\"&gt;Log In?&lt;/button&gt;\n    &lt;/form&gt;\n\n  &lt;/div&gt;\n\n&lt;/div&gt;\n");</span>
+<span class="cstat-no" title="statement not covered" >$templateCache.put("nav.html","&lt;nav&gt;\n  imma nav\n&lt;/nav&gt;");</span>
+<span class="cstat-no" title="statement not covered" >$templateCache.put("submit.html","&lt;form ng-controller=\"TopicsCtrl\" ng-submit=\"newTopic()\"&gt;\n  &lt;h1&gt;Submit a topic&lt;/h1&gt;\n\n  &lt;p ng-show=\"errors.general\"&gt;{{ errors.general }}&lt;/p&gt;\n  &lt;label for=\"title\"&gt;Title&lt;/label&gt;\n  &lt;input id=\"title\" type=\"text\" ng-model=\"topic.title\" placeholder=\"Title\"&gt;\n  &lt;p ng-show=\"errors.title\" id=\"\"&gt;{{ errors.title }}&lt;/p&gt;\n\n  &lt;br&gt;\n\n  &lt;label for=\"article_link\"&gt;Article Link&lt;/label&gt;\n  &lt;input id=\"article_link\" type=\"url\" ng-model=\"topic.article_link\" placeholder=\"Article Link\"&gt;\n  &lt;p ng-show=\"errors.article_link\"&gt;{{ errors.article_link }}&lt;/p&gt;\n\n  &lt;br&gt;\n\n  &lt;input type=\"hidden\" ng-model=\"topic.created_by\" value=\"1\"/&gt;\n\n  &lt;input type=\"submit\" value=\"Submit\" /&gt;\n&lt;/form&gt;\n");}</span>]);</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Oct 19 2015 21:17:04 GMT-0700 (PDT)</div>
+</div>
+<script src="../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../sorter.js"></script>
+</body>
+</html>

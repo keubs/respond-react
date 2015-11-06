@@ -12,9 +12,9 @@ module.exports = function($scope, $location, AuthService) {
 
   $scope.login = function() {
     AuthService.login($scope.user)
-      .then(function () {
+      .then(function() {
         $location.path('/');
-      }, function (error) {
+      }, function(error) {
         $scope.errors = {};
 
         $scope.errors.general = errorStringify(error.non_field_errors);
@@ -34,8 +34,7 @@ module.exports = function($scope, $location, AuthService) {
       $scope.user = $scope.user || {};
       $scope.user.username = user;
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   };

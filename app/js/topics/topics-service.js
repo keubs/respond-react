@@ -15,7 +15,8 @@ function TopicService($q, $http) {
         deferred.resolve(data);
       })
       .error(function(err, status) {
-        deferred.reject(err, status);
+        console.log(err, status);
+        deferred.reject({err, status});
       });
 
     return deferred.promise;
@@ -29,26 +30,27 @@ function TopicService($q, $http) {
         deferred.resolve(data);
       })
       .error(function(err, status) {
-        deferred.reject(err, status);
+        console.log(err, status);
+        deferred.reject({err, status});
       });
 
     return deferred.promise;
   };
 
   service.find = function(topicId) {
-
+    console.log(topicId);
   };
 
   service.delete = function(topicId) {
-
+    console.log(topicId);
   };
 
   service.addComment = function(topicId, comment) {
-
+    console.log(topicId, comment);
   };
 
   service.deleteComment = function(topicId, comment) {
-
+    console.log(topicId, comment);
   };
 
   service.upVote = function(topicId) {
@@ -61,7 +63,8 @@ function TopicService($q, $http) {
         deferred.resolve(data);
       })
       .error(function(err, status) {
-        deferred.reject(err, status);
+        console.log(err, status);
+        deferred.reject({err, status});
       });
 
     return deferred.promise;
@@ -77,7 +80,8 @@ function TopicService($q, $http) {
         deferred.resolve(data);
       })
       .error(function(err, status) {
-        deferred.reject(err, status);
+        console.log(err, status);
+        deferred.reject({err, status});
       });
 
     return deferred.promise;
@@ -93,7 +97,8 @@ function TopicService($q, $http) {
         deferred.resolve(data);
       })
       .error(function(err, status) {
-        deferred.reject(err, status);
+        console.log(err, status);
+        deferred.reject({err, status});
       });
 
     return deferred.promise;

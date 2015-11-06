@@ -12,6 +12,7 @@
       Down
     </button>
     <a href="{{topic.article_link}}">{{topic.title}}</a>
+    <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
     <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.created_by}}</a> on {{topic.created_on}}</aside>
   </li>
 </ol>

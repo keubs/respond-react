@@ -28,7 +28,7 @@
   "disallowSpaceAfterObjectKeys": {
     "allExcept": ["multiline"]
   },
-  "requireKeywordsOnNewLine": ["else"],
-  "disallowKeywordsOnNewLine": [],
+  "requireKeywordsOnNewLine": [],
+  "disallowKeywordsOnNewLine": ["else"],
   "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
 }
