@@ -2,7 +2,7 @@
 
 const CONFIG = {
   appTitle: 'Example Application',
-  apiUrl: '/api/v1',
+  apiUrl: 'http://squ.ad:8100/api',
 };
 
 module.exports = CONFIG;

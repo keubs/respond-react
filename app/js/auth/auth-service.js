@@ -3,18 +3,17 @@
 /**
  * @ngInject
  */
-module.exports = function($q, $http, $window) {
+module.exports = function($q, $http, $window, AppSettings) {
 
   var service = {};
 
   service.register = function(user) {
     console.log(user);
   };
-
   service.login = function(user) {
     var deferred = $q.defer();
 
-    $http.post('http://127.0.0.1:8000/api-token-auth/', user)
+    $http.post(AppSettings.apiUrl + '/token-auth/', user)
       .success(function(data) {
         // TODO: do this the right way?
         $window.sessionStorage.token = data.token;

@@ -3,14 +3,13 @@
 /**
  * @ngInject
  */
-function TopicService($q, $http) {
-
+function TopicService($q, $http, AppSettings) {
   var service = {};
 
   service.get = function() {
     var deferred = $q.defer();
 
-    $http.get('http://127.0.0.1:8000/api/topics/')
+    $http.get(AppSettings.apiUrl + '/topics/')
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -24,8 +23,7 @@ function TopicService($q, $http) {
 
   service.new = function(topic) {
     var deferred = $q.defer();
-
-    $http.post('http://127.0.0.1:8000/api/topics/submit', topic)
+    $http.post(AppSettings.apiUrl + '/topics/' + 'submit', topic)
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -58,7 +56,7 @@ function TopicService($q, $http) {
 
     var deferred = $q.defer();
 
-    $http.post('http://localhost:8000/api/topics/' + topicId + '/rate/1')
+    $http.post(AppSettings.apiUrl + '/topics/' + topicId + '/rate/1')
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -75,7 +73,7 @@ function TopicService($q, $http) {
 
     var deferred = $q.defer();
 
-    $http.post('http://localhost:8000/api/topics/' + topicId + '/rate/-1')
+    $http.post(AppSettings.apiUrl + '/topics/' + topicId + '/rate/-1')
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -92,7 +90,7 @@ function TopicService($q, $http) {
 
     var deferred = $q.defer();
 
-    $http.post('http://localhost:8000/api/topics/' + topicId + '/rate/0')
+    $http.post(AppSettings.apiUrl + '/topics/' + topicId + '/rate/0')
       .success(function(data) {
         deferred.resolve(data);
       })
