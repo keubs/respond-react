@@ -18,6 +18,7 @@ module.exports = function($q, $http, $window, AppSettings) {
         // TODO: do this the right way?
         $window.sessionStorage.token = data.token;
         $window.sessionStorage.user = user.username;
+        $window.sessionStorage.id = data.user.id;
         $http.defaults.headers.common.Authorization = 'JWT ' + data.token;
         deferred.resolve();
       })
