@@ -51,6 +51,21 @@ function TopicService($q, $http, AppSettings) {
     console.log(topicId, comment);
   };
 
+  service.image = function(url) {
+    var deferred = $q.defer();
+    console.log(url);
+    $http.post(AppSettings.apiUrl + '/getimage/', {url:url})
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err, status) {
+        console.log(err, status);
+        deferred.reject({err, status});
+      });
+
+      return deferred.promise;
+  };
+
   service.upVote = function(topicId) {
     console.log('upVote', topicId);
 
