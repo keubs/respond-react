@@ -53,7 +53,7 @@ function TopicService($q, $http, AppSettings) {
 
   service.og = function(url) {
     var deferred = $q.defer();
-    $http.post(AppSettings.apiUrl + '/getimage/', {url:url})
+    $http.post(AppSettings.apiUrl + '/getopengraph/', {url:url})
       .success(function(data){
         console.log(data);
         deferred.resolve(data);
