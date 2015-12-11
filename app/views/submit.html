@@ -10,7 +10,8 @@
 
   <label for="article_link">Article Link</label>
   <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" ng-blur="linkEntered()" required>
-  <input id="tags" type="text" ng-model="topic.tags" placeholder="Tags">
+  <tags-input ng-model="topic.tags"></tags-input>
+
   <br /><img src="{{ topic.image_preview.src }}" style="width: 500px; height: 350px;" ng-show="topic.image_preview.visible"/>
   <input id="image_url" type="hidden" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
   <p ng-show="errors.article_link">{{ errors.article_link }}</p>

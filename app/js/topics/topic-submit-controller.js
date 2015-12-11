@@ -9,8 +9,7 @@ module.exports = function($scope, $location, TopicService, $window) {
   $scope.topics = [];
   $scope.topics.created_by = $window.sessionStorage.id;
   $scope.submit = function() {
-    console.log($scope.topic);
-    $scope.topic.tags = JSON.stringify($scope.topic.tags.split(','));
+    $scope.topic.tags = JSON.stringify($scope.topic.tags.split(',')).replace(/, /g , ',');
     $scope.topic.image_preview = undefined;
     TopicService.new($scope.topic)
       .then(function(data) {
@@ -27,18 +26,22 @@ module.exports = function($scope, $location, TopicService, $window) {
   };
 
   $scope.linkEntered = function() {
-    TopicService.image($scope.topic.article_link)
+    TopicService.og($scope.topic.article_link)
       .then(function(data){
+        console.log(data);
         $scope.topic.image_preview = {};
         $scope.topic.image_preview.visible = true;
         $scope.topic.image_url = data.image;
         $scope.topic.image_preview.src = data.image;
+        $scope.topic.title = data.title;
+      }, function(error){
+        console.log(error);
       });
   };
 
   $scope.jsonfied = function(names) {
     names: names.replace( /,$/, "" ).split(",").map(function(name) {
         return {name: name};
-    })
-};
+    });
+  };
 };

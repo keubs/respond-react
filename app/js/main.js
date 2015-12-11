@@ -8,6 +8,7 @@ require('./templates');
 require('./topics/_index');
 require('./auth/_index');
 require('ng-resource');
+require('ng-tags-input');
 
 // create and bootstrap application
 angular.element(document).ready(function() {
@@ -17,6 +18,7 @@ angular.element(document).ready(function() {
     'templates',
     'topics',
     'auth',
+    'ngTagsInput',
   ];
 
   // mount on window for testing
