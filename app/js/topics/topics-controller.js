@@ -1,11 +1,12 @@
 'use strict';
 
-module.exports = function($scope, $location, TopicService, AuthService) {
+module.exports = function($scope, $location, TopicService, AuthService, AppSettings) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
 
   $scope.topics = [];
 
+  $scope.backendUrl = AppSettings.backendUrl;
   TopicService.get().then(function(data) {
     $scope.topics = data;
   });

@@ -21,6 +21,21 @@ function TopicService($q, $http, AppSettings) {
     return deferred.promise;
   };
 
+  service.topic = function(id) {
+    var deferred = $q.defer();
+    
+    $http.get(AppSettings.apiUrl + '/topics/' + id)
+      .success(function(data) {
+        deferred.resolve(data);
+      })
+      .error(function(err, status) {
+        console.log(err, status);
+        deferred.reject({err, status});
+      });
+
+    return deferred.promise;
+  };
+
   service.new = function(topic) {
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/topics/' + 'submit', topic)
@@ -115,6 +130,8 @@ function TopicService($q, $http, AppSettings) {
 
     return deferred.promise;
   };
+
+
 
   return service;
 }
