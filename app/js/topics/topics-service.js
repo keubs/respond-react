@@ -23,7 +23,7 @@ function TopicService($q, $http, AppSettings) {
 
   service.topic = function(id) {
     var deferred = $q.defer();
-    
+
     $http.get(AppSettings.apiUrl + '/topics/' + id)
       .success(function(data) {
         deferred.resolve(data);
@@ -68,8 +68,8 @@ function TopicService($q, $http, AppSettings) {
 
   service.og = function(url) {
     var deferred = $q.defer();
-    $http.post(AppSettings.apiUrl + '/getopengraph/', {url:url})
-      .success(function(data){
+    $http.post(AppSettings.apiUrl + '/getopengraph/', {url: url})
+      .success(function(data) {
         console.log(data);
         deferred.resolve(data);
       })
@@ -77,7 +77,7 @@ function TopicService($q, $http, AppSettings) {
         deferred.reject({err, status});
       });
 
-      return deferred.promise;
+    return deferred.promise;
   };
 
   service.upVote = function(topicId) {
@@ -130,8 +130,6 @@ function TopicService($q, $http, AppSettings) {
 
     return deferred.promise;
   };
-
-
 
   return service;
 }

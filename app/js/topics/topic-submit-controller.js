@@ -27,26 +27,26 @@ module.exports = function($scope, $location, TopicService, $window) {
 
   $scope.linkEntered = function() {
     TopicService.og($scope.topic.article_link)
-      .then(function(data){ 
+      .then(function(data) {
         console.log(data);
         $scope.topic.image_preview = {};
         $scope.topic.image_preview.visible = true;
         $scope.topic.image_url = data.image;
         $scope.topic.image_preview.src = data.image;
         $scope.topic.title = data.title;
-      }, function(error){
+      }, function(error) {
         console.log(error);
       });
   };
 
   // @todo not the cleanest method but it needs a string representation of a json array  ¯\_(ツ)_/¯
   $scope.jsonfied = function(array) {
-      var str = '[';
-      for(var i = 0; i < array.length; i++){
-        str+='"'+array[i].text + '",';
-      }
-      str = str.slice(0, -1);
-      str+=']';
-      return str;
+    var str = '[';
+    for (var i = 0; i < array.length; i++) {
+      str += '"' + array[i].text + '",';
+    }
+    str = str.slice(0, -1);
+    str += ']';
+    return str;
   };
 };
