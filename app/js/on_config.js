@@ -22,7 +22,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '/topic/:topic',
       controller: 'TopicCtrl',
       templateUrl: 'topic.html',
-    })
+    });
 
   $urlRouterProvider.otherwise('/');
 
