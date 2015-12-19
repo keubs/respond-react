@@ -2,19 +2,19 @@
 
 const errorStringify = require('../helpers/error-stringify');
 
-module.exports = function($scope, $location, TopicService, $window) {
+module.exports = function($scope, $location, actionService, $window) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
 
-  $scope.topics = [];
-  $scope.topics.created_by = $window.sessionStorage.id;
+  $scope.actions = [];
+  $scope.actions.created_by = $window.sessionStorage.id;
   $scope.submit = function() {
-    $scope.topic.tags = $scope.jsonfied($scope.topic.tags);
-    $scope.topic.image_preview = undefined;
-    TopicService.new($scope.topic)
+    $scope.action.tags = $scope.jsonfied($scope.action.tags);
+    $scope.action.image_preview = undefined;
+    actionService.new($scope.action)
       .then(function(data) {
 
-        $location.path('/topic/' + data.id);
+        $location.path('/action/' + data.id);
       }, function(error) {
         $scope.errors = {};
         $scope.errors.general = errorStringify(error.non_field_errors);
@@ -26,13 +26,13 @@ module.exports = function($scope, $location, TopicService, $window) {
   };
 
   $scope.linkEntered = function() {
-    TopicService.og($scope.topic.article_link)
+    actionService.og($scope.action.article_link)
       .then(function(data) {
-        $scope.topic.image_preview = {};
-        $scope.topic.image_preview.visible = true;
-        $scope.topic.image_url = data.image;
-        $scope.topic.image_preview.src = data.image;
-        $scope.topic.title = data.title;
+        $scope.action.image_preview = {};
+        $scope.action.image_preview.visible = true;
+        $scope.action.image_url = data.image;
+        $scope.action.image_preview.src = data.image;
+        $scope.action.title = data.title;
       }, function(error) {
         console.log(error);
       });
