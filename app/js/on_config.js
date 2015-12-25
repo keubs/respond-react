@@ -18,6 +18,11 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       controller: 'TopicSubmitCtrl',
       templateUrl: 'submit.html',
     })
+    .state('Submit Action', {
+      url: '/topic/:topic/action/submit',
+      controller: 'ActionCtrl',
+      templateUrl: 'submit_action.html',
+    })
     .state('Topic', {
       url: '/topic/:topic',
       controller: 'TopicCtrl',

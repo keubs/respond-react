@@ -8,8 +8,8 @@
   <input id="title" type="text" ng-model="topic.title" placeholder="Title" required>
   <p ng-show="errors.title" id="">{{ errors.title }}</p>
   <br>
-  <tags-input ng-model="topic.tags"></tags-input>
-
+  <label for="tags">Tags</label>
+  <tags-input id="tags" ng-model="topic.tags"></tags-input>
   <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
   <input id="image_url" type="hidden" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
   <p ng-show="errors.article_link">{{ errors.article_link }}</p>
