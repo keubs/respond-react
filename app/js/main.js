@@ -6,7 +6,6 @@ var angular = require('angular');
 require('angular-ui-router');
 require('./templates');
 require('./topics/_index');
-require('./actions/_index');
 require('./auth/_index');
 require('ng-resource');
 require('ng-tags-input');
@@ -18,7 +17,6 @@ angular.element(document).ready(function() {
     'ui.router',
     'templates',
     'topics',
-    'actions',
     'auth',
     'ngTagsInput',
   ];
