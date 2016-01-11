@@ -16,7 +16,6 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 	$scope.linkEntered = function() {
 	  TopicService.og($scope.action.article_link)
 	    .then(function(data) {
-	      console.log(data);
 	      $scope.action.image_preview = {};
 	      $scope.action.image_preview.visible = true;
 	      $scope.action.image_url = data.image;
