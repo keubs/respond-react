@@ -1,0 +1,46 @@
+<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
+<img style="height:400px" src="{{ backendUrl }}/{{ topic.image }}" />
+<hr />
+<div style="width: 100%">
+	<div ng-repeat="action in topic.actions" style="width:100%">
+	  <div style="display: inline-block">
+	    <button ng-click="" ng-class="">
+	      Up
+	    </button>
+	    {{action.score}}
+	    <button ng-click="" ng-class="">
+	      Down
+	    </button><br />
+	  </div>
+	  <div style="display: inline-block;">
+
+	    <img src="{{backendUrl}}/{{action.image}}" style="height: 100px" />
+	  </div>
+	  <div style="display: inline-block">
+	    {{action.title}}
+	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
+	    <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{action.created_by}}</a> on {{action.created_on}}</aside>
+	  </div>
+	</div>
+</div>
+<div style="width: 50%">
+	<form ng-controller="ActionCtrl" ng-submit="submit()">
+		<h1>Submit an action for this topic</h1>
+		<label for="article_link">Link:</label>
+		<input id="article_link" type="text" ng-model="action.article_link" placeholder="Article Link" ng-blur="linkEntered()" required>
+		<br />
+		<label for="action_title">Title:</label>
+		<input id="action_title" type="text" ng-model="action.title" placeholder="Title" required>
+		<br />
+		<label for="action_description">Description:</label>
+		<textarea id="action_description" ng-model="action.description" placeholder="Description" style="width:100%; height: 50px;" required></textarea>
+		<br />
+		<label for="action_tags">Tags</label>
+		<tags-input id="action_tags" ng-model="action.tags"></tags-input>
+		<br />
+		<img src="{{ action.image_preview.src }}" style="height: 350px;" ng-show="action.image_preview.visible"/>
+		<input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
+		<br />
+		<input type="submit" value="Submit" />
+	</form>
+</div>
