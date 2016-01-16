@@ -4,12 +4,13 @@
  **/
 module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window) {
 	$scope.action = {};
-	$scope.submit = function() {
-		$scope.action.tags = $scope.jsonfied($scope.action.tags);
-		$scope.action.topic = $stateParams.topic;
+        console.log($stateParams.topic);
+    $scope.submit = function() {
+        $scope.action.tags = $scope.jsonfied($scope.action.tags);
+        $scope.action.topic = $stateParams.topic;
 		ActionService.new($scope.action)
 			.then(function(data){
-
+                $location.path('/topic/' + $stateParams.topic);
 			});
 	};
 
@@ -25,6 +26,35 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 	      console.log(error);
 	    });
 	};
+
+
+    $scope.upVote = function($actionId) {
+        if (action.isUpVoted) {
+          ActionService.clearVote(action.id, action.isUpVoted)
+            .then(function() {
+              action.isUpVoted = false;
+              action.isDownVoted = false;
+              action.score--;
+            },
+            function(error) {
+              $scope.voteFailed($actionIndex, error);
+            });
+        } else {
+          ActionService.upVote(action.id)
+            .then(function() {
+              action.isUpVoted = true;
+              action.isDownVoted = false;
+              action.score++;
+            },
+            function(error) {
+              $scope.voteFailed($actionIndex, error);
+            });
+        }
+    };
+
+    $scope.downVote = function($actionId) {
+
+    };
 
   // @todo not the cleanest method but it needs a string representation of a json array  ¯\_(ツ)_/¯
   $scope.jsonfied = function(array) {

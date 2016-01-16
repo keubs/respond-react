@@ -36,6 +36,19 @@ function actionService($q, $http, AppSettings) {
     return deferred.promise;
   };
 
+  service.actionsByTopic = function(id) {
+    var deferred = $q.defer();
+
+    $http.get(AppSettings.apiUrl + '/topics/' + id + '/actions/')
+      .success(function(data) {
+        deferred.resolve(data);
+      })
+      .error(function(err, status) {
+        console.log(err, status);
+        deferred.reject({err, status});
+      });
+  };
+
   service.new = function(action) {
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
