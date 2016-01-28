@@ -8,7 +8,7 @@ function TopicService($q, $http, AppSettings) {
 
   service.get = function() {
     var deferred = $q.defer();
-
+    console.log($http.defaults.headers);
     $http.get(AppSettings.apiUrl + '/topics/')
       .success(function(data) {
         deferred.resolve(data);

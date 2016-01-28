@@ -3,8 +3,12 @@
 module.exports = function($scope, $location, TopicService, AuthService, AppSettings) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
-
+  $scope.isLoggedIn = AuthService.isLoggedIn();
   $scope.topics = [];
+  $scope.alerts = [
+    { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
+    { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
+  ];
 
   $scope.backendUrl = AppSettings.backendUrl;
   TopicService.get().then(function(data) {
@@ -72,14 +76,13 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   $scope.isUpVoted = function($topicIndex) {
     let topic = $scope.topics[$topicIndex];
 
-    return AuthService.isLoggedIn() && topic.isUpVoted;
+    return $scope.isLoggedIn && topic.isUpVoted;
     // return AuthService.isLoggedIn() && TopicService.isUpVoted(topic.id);
   };
 
   $scope.isDownVoted = function($topicIndex) {
     let topic = $scope.topics[$topicIndex];
-
-    return AuthService.isLoggedIn() && topic.isDownVoted;
+    return $scope.isLoggedIn && topic.isDownVoted;
     // return AuthService.isLoggedIn() && TopicService.isDownVoted(topic.id);
   };
 

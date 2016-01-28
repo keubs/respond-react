@@ -1,21 +1,28 @@
-<h1 class="heading-large">{{ title }}</h1>
-
-<a href="/submit">Submit a topic</a>
-<div>
-  <div ng-repeat="topic in topics" style="width:100%">
-    <div style="display: inline-block">
+<div class="container-fluid" style="text-align: center;">
+  <div class="row" style="text-align: center;">
+    <div class="col-lg-4 col-md-4">
+      <a href="/submit" class="btn btn-primary btn-lg btn-block">Submit a topic</a>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container-fluid">
+  <div ng-repeat="topic in topics" class="row">
+    <div class="col-lg-1 col-md-1" style="text-align: center;">
       <button ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}">
         Up
       </button>
-      {{topic.score}}
+      <br />
+      <h3>{{topic.score}}</h3>
+      <br />
       <button ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}">
         Down
       </button><br />
     </div>
-    <div style="display: inline-block;">
-      <a href="topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="height: 100px" /></a>
+    <div class="col-lg-4 col-md-4">
+      <a href="http://squ.ad:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
     </div>
-    <div style="display: inline-block">
+    <div class="col-lg-6 col-md-6">
       <a href="topic/{{topic.id}}">{{topic.title}}</a>
       <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
       <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.created_by}}</a> on {{topic.created_on}}</aside>

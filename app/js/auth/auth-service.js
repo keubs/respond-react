@@ -8,11 +8,18 @@ module.exports = function($q, $http, $window, AppSettings) {
   var service = {};
 
   service.register = function(user) {
-    console.log(user);
+    var deferred = $q.defer();
+    $http.post(AppSettings.apiUrl + '/user/register/', user)
+      .success(function(data){
+        console.log(data);
+        deferred.resolve();
+      })
+      .error(function(error){
+        deferred.reject(error);
+      });
   };
   service.login = function(user) {
     var deferred = $q.defer();
-
     $http.post(AppSettings.apiUrl + '/token-auth/', user)
       .success(function(data) {
         // TODO: do this the right way?
@@ -36,8 +43,12 @@ module.exports = function($q, $http, $window, AppSettings) {
   };
 
   service.isLoggedIn = function() {
-    $http.defaults.headers.common.Authorization = 'JWT ' + $window.sessionStorage.token;
-    return $window.sessionStorage.user ? $window.sessionStorage.user : false;
+    if($window.sessionStorage.token) {
+      $http.defaults.headers.common.Authorization = 'JWT ' + $window.sessionStorage.token;
+      return $window.sessionStorage.user ? $window.sessionStorage.user : false;
+    } else {
+      return false;
+    }
   };
 
   return service;

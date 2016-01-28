@@ -6,6 +6,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 	$scope.action = {};
         console.log($stateParams.topic);
     $scope.submit = function() {
+        console.log($scope.action.tags);
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
 		ActionService.new($scope.action)

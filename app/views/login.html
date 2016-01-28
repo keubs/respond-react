@@ -34,6 +34,11 @@
 
     <form ng-submit="register()" ng-show="isRegister()">
       <h2>Register</h2>
+      <label for="email">email</label>
+      <input id="email" type="email" ng-model="user.email" placeholder="email">
+      <p ng-show="errors.email">{{ errors.email }}</p>
+
+      <br>
       <p ng-show="errors.general">{{ errors.general }}</p>
       <label for="username">Username</label>
       <input id="username" type="text" ng-model="user.username" placeholder="Username">
