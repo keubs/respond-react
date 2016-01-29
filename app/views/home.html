@@ -7,15 +7,11 @@
 <div class="container-fluid">
   <div ng-repeat="topic in topics" class="row">
     <div class="col-lg-1 col-md-1" style="text-align: center;">
-      <button ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}">
-        Up
-      </button>
-      <br />
-      <h3>{{topic.score}}</h3>
-      <br />
-      <button ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}">
-        Down
-      </button><br />
+      <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">
+      </span>
+      <h3 style="margin: .5em 0">{{topic.score}}</h3>
+      <span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote">
+      </span>
     </div>
     <div class="col-lg-4 col-md-4">
       <a href="http://squ.ad:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>

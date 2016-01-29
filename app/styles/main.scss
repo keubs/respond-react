@@ -1,6 +1,7 @@
 @import 'vars';
 @import 'typography';
 @import 'bootstrap';
+@import 'ng-tags-input';
 body {
   font-family: Helvetica, sans-serif;
   color: $font-color--dark;
@@ -15,4 +16,22 @@ body {
 
 .downvoted {
   color: blue;
+}
+
+.upvote,
+.downvote {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.upvote {
+    &:hover {
+        color: #F3902A;
+    }
+}
+
+.downvote {
+    &:hover {
+        color: #920832;
+    }
 }
