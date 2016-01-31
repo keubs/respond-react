@@ -42,7 +42,7 @@ module.exports = function($scope, $location, TopicService, $window) {
   $scope.jsonfied = function(array) {
     var str = '[';
     for (var i = 0; i < array.length; i++) {
-      str += '"' + array[i].text + '",';
+      str += '"' + array[i].text.toLowerCase() + '",';
     }
     str = str.slice(0, -1);
     str += ']';
