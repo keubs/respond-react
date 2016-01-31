@@ -3,19 +3,18 @@
  * @ngInject
  **/
 module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window) {
-	$scope.action = {};
-        console.log($stateParams.topic);
+    $scope.action = {};
     $scope.submit = function() {
-        console.log($scope.action.tags);
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
 		ActionService.new($scope.action)
 			.then(function(data){
-                $location.path('/topic/' + $stateParams.topic);
+        $location.path('/topic/' + $stateParams.topic);
 			});
 	};
 
 	$scope.linkEntered = function() {
+    $scope.formLoading = true;
 	  TopicService.og($scope.action.article_link)
 	    .then(function(data) {
 	      $scope.action.image_preview = {};
@@ -23,8 +22,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 	      $scope.action.image_url = data.image;
 	      $scope.action.image_preview.src = data.image;
 	      $scope.action.title = data.title;
+        $scope.formLoading = false;
 	    }, function(error) {
 	      console.log(error);
+        $scope.formLoading = false;
 	    });
 	};
 
