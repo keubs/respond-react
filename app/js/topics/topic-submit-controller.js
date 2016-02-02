@@ -13,27 +13,28 @@ module.exports = function($scope, $location, TopicService, $window) {
     $scope.topic.image_preview = undefined;
     TopicService.new($scope.topic)
       .then(function(data) {
-
         $location.path('/topic/' + data.id);
       }, function(error) {
         $scope.errors = {};
         $scope.errors.general = errorStringify(error.non_field_errors);
         $scope.errors.title = errorStringify(error.title);
         $scope.errors.article_link = errorStringify(error.article_link);
-
         $scope.errors.auth = error.status === 401 ? 'You must be logged in to do that' : '';
       });
   };
 
   $scope.linkEntered = function() {
+    $scope.formLoading = true;
     TopicService.og($scope.topic.article_link)
       .then(function(data) {
+        $scope.formLoading = false;
         $scope.topic.image_preview = {};
         $scope.topic.image_preview.visible = true;
         $scope.topic.image_url = data.image;
         $scope.topic.image_preview.src = data.image;
         $scope.topic.title = data.title;
       }, function(error) {
+        $scope.formLoading = false;
         console.log(error);
       });
   };

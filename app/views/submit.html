@@ -1,24 +1,27 @@
-<form ng-controller="TopicSubmitCtrl" ng-submit="submit()">
-  <h1>Submit a topic</h1>
-  <p ng-show="errors.general">{{ errors.general }}</p>
-  <label for="article_link">Article Link</label>
-  <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required>
-  <br />
-  <label for="title">Title</label>
-  <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
-  <p ng-show="errors.title" id="">{{ errors.title }}</p>
-  <br>
-  <tags-input ng-model="topic.tags"></tags-input>
+<div class="col-md-8 submit-wrapper">
+  <form ng-controller="TopicSubmitCtrl" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
+    <h1>Submit a topic</h1>
+    <p ng-show="errors.general">{{ errors.general }}</p>
+    <label for="article_link">Article Link</label>
+    <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required>
+    <br />
+    <label for="title">Title</label>
+    <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
+    <p ng-show="errors.title" id="">{{ errors.title }}</p>
+    <br>
+    <tags-input ng-model="topic.tags"></tags-input>
 
-  <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
-  <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
-  <p ng-show="errors.article_link">{{ errors.article_link }}</p>
+    <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
+    <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
+    <p ng-show="errors.article_link">{{ errors.article_link }}</p>
 
-  <br>
+    <br>
 
-  <input type="hidden" ng-model="topic.created_by" value="1"/>
+    <input type="hidden" ng-model="topic.created_by" value="1"/>
 
-  <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
-  <br />
-  <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
-</form>
+    <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
+    <br />
+    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+  </form>
+  <div class="loader" ng-class="{loading: formLoading}"></div>
+</div>

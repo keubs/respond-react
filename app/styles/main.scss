@@ -53,19 +53,19 @@ body {
 
 
 .submit-wrapper {
-  .form-submit-action {
+  .form-submit-action,
+  .form-submit-topic {
     position: relative;
     &.loading {
       opacity: .2;
     }
-
   }
   .loader {
-    position: absolute; 
-    top: 40%; 
-    left: 40%; 
-    background-image: url(../images/ajax-loader.gif); 
-    width: 32px; 
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    background-image: url(../images/ajax-loader.gif);
+    width: 32px;
     height: 32px;
     display: none;
 
