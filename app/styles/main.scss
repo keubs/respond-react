@@ -2,6 +2,7 @@
 @import 'typography';
 @import 'bootstrap';
 @import 'ng-tags-input';
+@import 'ng-tags-input-bootstrap';
 body {
   font-family: Helvetica, sans-serif;
   color: $font-color--dark;
@@ -22,6 +23,10 @@ body {
 .downvote {
     font-size: 25px;
     cursor: pointer;
+
+    &.action {
+        font-size: 15px;
+    }
 }
 
 .upvote {
