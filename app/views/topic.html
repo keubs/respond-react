@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
-	<ul>
-		<li ng-repeat="tag in topic.tags"><a href="/tag/{{tag}}">{{tag}}</li>
+	<ul class="tags">
+		<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag}}">{{tag}}</li>
 	</ul>
 	<img style="height:400px" src="{{ backendUrl }}/{{ topic.image }}" />
 	<hr />
@@ -11,7 +11,7 @@
 	  <div class="col-md-2" style="text-align: center;">
 	    <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action">
 	    </span>
-	    <h3 style="margin: .1em 0">{{action.score}}</h3>
+	    <h3 class="score">{{action.score}}</h3>
 	    <span ng-click="downVoteAction(action.id, $index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote action">
 	    </span>
 	  </div>

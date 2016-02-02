@@ -5,6 +5,8 @@
 </div>
 <br />
 <div class="container-fluid">
+  <h1 ng-show="tag">Tag: {{tag}}</h1>
+  <br />
   <div ng-repeat="topic in topics" class="row">
     <div class="col-lg-1 col-md-1" style="text-align: center;">
       <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">

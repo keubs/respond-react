@@ -1,17 +1,15 @@
 'use strict';
 
-module.exports = function($scope, $location, TopicService, AuthService, AppSettings) {
+module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.isLoggedIn = AuthService.isLoggedIn();
   $scope.topics = [];
-  $scope.alerts = [
-    { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-    { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
-  ];
 
+
+  console.log($stateParams.tag);
   $scope.backendUrl = AppSettings.backendUrl;
-  $scope.tag = getParameterByName('tag') || null;
+  $scope.tag = $stateParams.tag || null;
   TopicService.get($scope.tag).then(function(data) {
     $scope.topics = data;
   });
