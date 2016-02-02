@@ -6,10 +6,16 @@
 function TopicService($q, $http, AppSettings) {
   var service = {};
 
-  service.get = function() {
+  service.get = function(tag) {
+
     var deferred = $q.defer();
-    console.log($http.defaults.headers);
-    $http.get(AppSettings.apiUrl + '/topics/')
+    var url = '';
+    if(tag) {
+      url = AppSettings.apiUrl + '/topics/tag/' + tag + '/';
+    } else {
+      url = AppSettings.apiUrl + '/topics/?order_by=score';
+    }
+    $http.get(url)
       .success(function(data) {
         deferred.resolve(data);
       })

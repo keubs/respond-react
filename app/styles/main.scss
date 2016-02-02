@@ -40,3 +40,36 @@ body {
         color: #920832;
     }
 }
+
+
+.btn-submit-topic {
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
+
+
+.submit-wrapper {
+  .form-submit-action {
+    position: relative;
+    &.loading {
+      opacity: .2;
+    }
+
+  }
+  .loader {
+    position: absolute; 
+    top: 40%; 
+    left: 40%; 
+    background-image: url(../images/ajax-loader.gif); 
+    width: 32px; 
+    height: 32px;
+    display: none;
+
+    &.loading {
+      display: block;
+    }
+  }
+}

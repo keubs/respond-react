@@ -11,7 +11,8 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   ];
 
   $scope.backendUrl = AppSettings.backendUrl;
-  TopicService.get().then(function(data) {
+  $scope.tag = getParameterByName('tag') || null;
+  TopicService.get($scope.tag).then(function(data) {
     $scope.topics = data;
   });
 
@@ -97,4 +98,11 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
         topic.error = 'Something bad happened. 😭😭😭';
     }
   };
+
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
 };
