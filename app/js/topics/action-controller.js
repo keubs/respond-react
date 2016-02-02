@@ -22,6 +22,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 	      $scope.action.image_url = data.image;
 	      $scope.action.image_preview.src = data.image;
 	      $scope.action.title = data.title;
+        $scope.action.description = data.description;
         $scope.formLoading = false;
 	    }, function(error) {
 	      console.log(error);
