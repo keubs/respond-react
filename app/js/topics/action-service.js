@@ -83,7 +83,6 @@ function actionService($q, $http, AppSettings) {
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/getopengraph/', {url: url})
       .success(function(data) {
-        console.log(data);
         deferred.resolve(data);
       })
       .error(function(err, status) {

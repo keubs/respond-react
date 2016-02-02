@@ -3,10 +3,10 @@
 module.exports = function($scope, $location, $stateParams, TopicService, ActionService, AuthService, AppSettings) {
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
-  console.log('start');
+
+
   TopicService.topic($stateParams.topic)
     .then(function(data) {
-      console.log('partial loaded');
       for (var attr in data) {
         $scope.topic[attr] = data[attr];
       }
