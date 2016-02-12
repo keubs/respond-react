@@ -16,11 +16,10 @@
 	    </span>
 	  </div>
 	  <div class="col-md-2">
-
 	    <img src="{{backendUrl}}/{{action.image}}" style="height: 100px" />
 	  </div>
 	  <div class="col-md-6">
-	    {{action.title}}
+	    <a href="{{action.article_link}}">{{action.title}}</a>
 	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
 	    <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{action.created_by}}</a> on {{action.created_on}}</aside>
 	  </div>

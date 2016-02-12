@@ -79,6 +79,7 @@
     "pretty-hrtime": "^1.0.1",
     "protractor": "^2.5.1",
     "run-sequence": "^1.1.4",
+    "satellizer": "^0.13.4",
     "tiny-lr": "0.2.1",
     "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",

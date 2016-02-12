@@ -11,7 +11,6 @@ module.exports = function($q, $http, $window, AppSettings) {
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/user/register/', user)
       .success(function(data){
-        console.log(data);
         deferred.resolve();
       })
       .error(function(error){
@@ -34,6 +33,13 @@ module.exports = function($q, $http, $window, AppSettings) {
       });
 
     return deferred.promise;
+  };
+
+  service.socialLogin = function(user) {
+    $window.sessionStorage.token = user.token;
+    $window.sessionStorage.user = user.username;
+    $window.sessionStorage.id = user.id;
+    $http.defaults.headers.common.Authorization = 'JWT ' + user.token;
   };
 
   service.logout = function() {
