@@ -44,7 +44,7 @@ angular.element(document).ready(function() {
       $httpProvider.defaults.xsrfCookieName = 'csrftoken';
       $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
       // Remove the header used to identify ajax call  that would prevent CORS from working
-      // delete $httpProvider.defaults.headers.common['X-Requested-With'];
+      delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     });
 
