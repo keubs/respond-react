@@ -6,8 +6,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   $scope.isLoggedIn = AuthService.isLoggedIn();
   $scope.topics = [];
 
-
-  console.log($stateParams.tag);
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.tag = $stateParams.tag || null;
   TopicService.get($scope.tag).then(function(data) {
