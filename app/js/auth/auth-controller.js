@@ -35,7 +35,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http) {
      };
      $http(req).then(function(response){
          console.log("Got user from session cookies");
-         $scope.set_user();
+         set_user();
      });
   };
 

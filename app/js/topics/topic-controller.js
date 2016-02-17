@@ -19,6 +19,7 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
         });
     }, function(error) {
       console.log(error);
+      $location.path('/');
     });
 
 

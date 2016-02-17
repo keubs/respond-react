@@ -108,6 +108,7 @@ function TopicService($q, $http, AppSettings) {
 
     $http.post(AppSettings.apiUrl + '/topics/' + topicId + '/rate/1')
       .success(function(data) {
+        console.log(data);
         deferred.resolve(data);
       })
       .error(function(err, status) {
