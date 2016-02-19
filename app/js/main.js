@@ -41,8 +41,8 @@ angular.element(document).ready(function() {
 
       $authProvider.authToken = 'JWT';
       $authProvider.tokenPrefix = 'satellizer_jwt';  // to not collide with regular token auth
-      $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-      $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+      // $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+      // $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
       // Remove the header used to identify ajax call  that would prevent CORS from working
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
