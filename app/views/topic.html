@@ -21,7 +21,7 @@
 	  <div class="col-md-6">
 	    <a href="{{action.article_link}}">{{action.title}}</a>
 	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
-	    <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{action.created_by}}</a> on {{action.created_on}}</aside>
+	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on}}</aside>
 	  </div>
 	</div>
 </div>
