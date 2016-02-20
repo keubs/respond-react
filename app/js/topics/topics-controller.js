@@ -12,6 +12,13 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
     $scope.topics = data;
   });
 
+  TopicService.nytimes()
+  .then(function(data){
+    console.log(data.response.docs[0].headline.main);
+  },
+  function(error){
+    console.log(error); 
+  });
   $scope.deleteTopic = function($topicIndex) {
     let topic = $scope.topics[$topicIndex];
 

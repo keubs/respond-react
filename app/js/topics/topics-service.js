@@ -6,6 +6,16 @@
 function TopicService($q, $http, AppSettings) {
   var service = {};
 
+  service.nytimes = function() {
+    var deferred = $q.defer();
+
+    $http.get('http://api.nytimes.com/svc/search/v2/articlesearch.json?q=donald+trump+triage&api-key=c277ad1aa3dfb2a71395b92bb3e9a80c%3A16%3A69678011')
+     .success(function(data) {
+        deferred.resolve(data);
+      });
+
+     return deferred.promise;
+  };
   service.get = function(tag) {
 
     var deferred = $q.defer();
