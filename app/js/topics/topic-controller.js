@@ -23,9 +23,8 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
     });
 
 
-    $scope.upVoteAction = function(id, index) {
+    $scope.upVoteAction = function(index) {
       let action = $scope.topic.actions[index];
-
       if (action.isUpVoted) {
         ActionService.clearVote(action.id, action.isUpVoted)
           .then(function() {
@@ -50,7 +49,7 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
 
     };
 
-    $scope.downVoteAction = function(id, index) {
+    $scope.downVoteAction = function(index) {
       let action = $scope.topic.actions[index];
 
       if (action.isDownVoted) {
@@ -74,6 +73,19 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
             $scope.voteFailed(index, error);
           });
       }
+    };
+
+
+    $scope.isUpVoted = function($actionIndex) {
+      let action = $scope.topic.actions[$actionIndex];
+      return $scope.isLoggedIn && topic.isUpVoted;
+      // return AuthService.isLoggedIn() && TopicService.isUpVoted(topic.id);
+    };
+
+    $scope.isDownVoted = function($actionIndex) {
+      let action = $scope.topic.actions[$actionIndex];
+      return $scope.isLoggedIn && action.isDownVoted;
+      // return AuthService.isLoggedIn() && TopicService.isDownVoted(topic.id);
     };
 
     $scope.voteFailed = function(index, error) {
