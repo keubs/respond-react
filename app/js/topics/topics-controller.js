@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
+module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams, Facebook) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.isLoggedIn = AuthService.isLoggedIn();
