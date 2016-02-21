@@ -8,4 +8,5 @@ exports = angular.module('topics', [])
             .controller('TopicCtrl', require('./topic-controller')) // Singular
             .controller('ActionCtrl', require('./action-controller'))
             .service('ActionService', require('./action-service'))
-            .service('TopicService', require('./topics-service'));
+            .service('TopicService', require('./topics-service'))
+            .service('LinkService', require('./link-service'));

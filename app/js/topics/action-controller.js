@@ -2,7 +2,7 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook) {
+module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkService) {
     $scope.action = {};
     $scope.submit = function() {
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
@@ -16,21 +16,19 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 	$scope.linkEntered = function() {
     $scope.formLoading = true;
     if($scope.action.article_link.search(/facebook.com\/events/i) > -1) {
-      var eventId = $scope.action.article_link.replace(/https:\/\/www.facebook.com\/events/, '');
-
-      Facebook.getLoginStatus(function(response){
-        Facebook.api(eventId.replace(/\//g,'') + "?fields=cover,name,description", function(response) {
-          if(!response.error) {
-            $scope.action.image_preview = {};
-            $scope.action.title = response.name;
-            $scope.action.description = response.description;
-            $scope.action.image_url = response.cover.source;
-            $scope.action.image_preview.visible = true;
-            $scope.action.image_preview.src = response.cover.source;
-          }
+      LinkService.facebookEvent($scope.action.article_link)
+        .then(function(data){
+          $scope.action.image_preview = {};
+          $scope.action.title = data.name;
+          $scope.action.description = data.description;
+          $scope.action.image_url = data.cover.source;
+          $scope.action.image_preview.visible = true;
+          $scope.action.image_preview.src = data.cover.source;
           $scope.formLoading = false;
-        });
-      });
+        }, function(error) {
+          console.log(error);
+          $scope.formLoading = false;
+        })
     } else {
 	  TopicService.og($scope.action.article_link)
 	    .then(function(data) {
