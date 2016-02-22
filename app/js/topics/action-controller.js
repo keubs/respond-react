@@ -2,7 +2,7 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkService) {
+module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkService, LinkFactory) {
     $scope.action = {};
     $scope.submit = function() {
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
@@ -15,43 +15,24 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 
 	$scope.linkEntered = function() {
     $scope.formLoading = true;
-    if($scope.action.article_link.search(/facebook.com\/events/i) > -1) {
-      LinkService.facebookEvent($scope.action.article_link)
-        .then(function(data){
-          $scope.action.image_preview = {};
-          $scope.action.title = data.name;
-          $scope.action.description = data.description;
-          $scope.action.image_url = data.cover.source;
-          $scope.action.image_preview.visible = true;
-          $scope.action.image_preview.src = data.cover.source;
-          $scope.formLoading = false;
-        }, function(error) {
-          console.log(error);
-          $scope.formLoading = false;
-        });
-    } else if ($scope.action.article_link.search(/nytimes.com/i) > -1) {
-      LinkService.nyTimesLink($scope.action.article_link)
+    if($scope.article_link.search(/facebook.com\/events/i) > -1) {
+      LinkFactory.facebookEvent($scope)
+      .then(function(data) {
+        $scope.action = data;
+        $scope.formLoading = false;
+      }, function(error) {
+        console.log(error);
+      });
+    } else if ($scope.article_link.search(/nytimes.com/i) > -1) {
+      LinkFactory.nyTimesLink($scope)
         .then(function(data) {
-          data = data.docs[0];
-          console.log(data);
-          $scope.action.image_preview = {};
-          $scope.action.image_preview.visible = true;
-          $scope.action.image_url = "http://nytimes.com/"+data.multimedia[1].url;
-          $scope.action.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
-          console.log(data.multimedia[1].url);
-          $scope.action.title = data.headline.main;
-          $scope.action.description = data.snippet;
+          $scope.action = data;
           $scope.formLoading = false;
         });
     } else {
-	  TopicService.og($scope.action.article_link)
+	   LinkFactory.link($scope)
 	    .then(function(data) {
-	      $scope.action.image_preview = {};
-	      $scope.action.image_preview.visible = true;
-	      $scope.action.image_url = data.image;
-	      $scope.action.image_preview.src = data.image;
-	      $scope.action.title = data.title;
-        $scope.action.description = data.description;
+        $scope.action = data;
         $scope.formLoading = false;
 	    }, function(error) {
 	      console.log(error);

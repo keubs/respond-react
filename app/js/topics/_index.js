@@ -9,4 +9,5 @@ exports = angular.module('topics', [])
             .controller('ActionCtrl', require('./action-controller'))
             .service('ActionService', require('./action-service'))
             .service('TopicService', require('./topics-service'))
+            .service('LinkFactory', require('./link-factory'))
             .service('LinkService', require('./link-service'));
