@@ -36,7 +36,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
           console.log(data);
           $scope.action.image_preview = {};
           $scope.action.image_preview.visible = true;
-          $scope.action.image_url = data.image;
+          $scope.action.image_url = "http://nytimes.com/"+data.multimedia[1].url;
           $scope.action.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
           console.log(data.multimedia[1].url);
           $scope.action.title = data.headline.main;
