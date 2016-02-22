@@ -10,6 +10,7 @@
             $http.post(AppSettings.apiUrl + '/getopengraph/', {url: $scope.article_link})
               .success(function(data) {
                 var returnData = {};
+                returnData.article_link = $scope.article_link;
                 returnData.image_preview = {};
                 returnData.image_preview.visible = true;
                 returnData.image_url = data.image;
@@ -60,6 +61,7 @@
                 if(data.docs.length > 0) {
                     data = data.docs[0];
                     var returnData = {};
+                    returnData.link = $scope.article_link;
                     returnData.image_preview = {};
                     returnData.image_preview.visible = true;
                     returnData.image_url = "http://nytimes.com/"+data.multimedia[1].url;
