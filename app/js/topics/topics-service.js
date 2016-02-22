@@ -12,8 +12,11 @@ function TopicService($q, $http, AppSettings) {
     $http.get('http://api.nytimes.com/svc/search/v2/articlesearch.json?q=donald+trump+triage&api-key=c277ad1aa3dfb2a71395b92bb3e9a80c%3A16%3A69678011')
      .success(function(data) {
         deferred.resolve(data);
-      });
-
+      })
+     .error(function(err, status) {
+        console.log(err, status);
+        deferred.reject({err, status});
+     });
      return deferred.promise;
   };
   service.get = function(tag) {

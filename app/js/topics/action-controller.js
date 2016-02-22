@@ -28,7 +28,21 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
         }, function(error) {
           console.log(error);
           $scope.formLoading = false;
-        })
+        });
+    } else if ($scope.action.article_link.search(/nytimes.com/i) > -1) {
+      LinkService.nyTimesLink($scope.action.article_link)
+        .then(function(data) {
+          data = data.docs[0];
+          console.log(data);
+          $scope.action.image_preview = {};
+          $scope.action.image_preview.visible = true;
+          $scope.action.image_url = data.image;
+          $scope.action.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
+          console.log(data.multimedia[1].url);
+          $scope.action.title = data.headline.main;
+          $scope.action.description = data.snippet;
+          $scope.formLoading = false;
+        });
     } else {
 	  TopicService.og($scope.action.article_link)
 	    .then(function(data) {

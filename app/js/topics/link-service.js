@@ -41,11 +41,21 @@ function LinkService($q, $http, AppSettings, Facebook) {
 	};
 
 	service.nyTimesLink = function(link) {
-
+		var deferred = $q.defer();
+		var a = link;
+		console.log(a);
+		$http.post(AppSettings.apiUrl + '/nytimes/', {url: link})
+		 .success(function(data) {
+		    deferred.resolve(data);
+		  })
+		 .error(function(err, status) {
+		 	deferred.reject({err, status});
+		 });
+		 return deferred.promise;
 	};
 
 
 	return service;
-}	
+}
 
 module.exports = LinkService;
