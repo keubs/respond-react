@@ -2,7 +2,7 @@
 
 const errorStringify = require('../helpers/error-stringify');
 
-module.exports = function($scope, $location, TopicService, $window) {
+module.exports = function($scope, $location, TopicService, $window, LinkFactory) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
 
@@ -25,18 +25,30 @@ module.exports = function($scope, $location, TopicService, $window) {
 
   $scope.linkEntered = function() {
     $scope.formLoading = true;
-    TopicService.og($scope.topic.article_link)
+    if($scope.article_link.search(/facebook.com\/events/i) > -1) {
+      LinkFactory.facebookEvent($scope)
       .then(function(data) {
+        $scope.topic = data;
         $scope.formLoading = false;
-        $scope.topic.image_preview = {};
-        $scope.topic.image_preview.visible = true;
-        $scope.topic.image_url = data.image;
-        $scope.topic.image_preview.src = data.image;
-        $scope.topic.title = data.title;
       }, function(error) {
-        $scope.formLoading = false;
         console.log(error);
       });
+    } else if ($scope.article_link.search(/nytimes.com/i) > -1) {
+      LinkFactory.nyTimesLink($scope)
+        .then(function(data) {
+          $scope.topic = data;
+          $scope.formLoading = false;
+        });
+    } else {
+     LinkFactory.link($scope)
+      .then(function(data) {
+        $scope.topic = data;
+        $scope.formLoading = false;
+      }, function(error) {
+        console.log(error);
+        $scope.formLoading = false;
+      });
+    }
   };
 
   // @todo not the cleanest method but it needs a string representation of a json array  ¯\_(ツ)_/¯

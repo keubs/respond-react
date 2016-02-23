@@ -3,7 +3,7 @@
     <h1>Submit a topic</h1>
     <p ng-show="errors.general">{{ errors.general }}</p>
     <label for="article_link">Article Link</label>
-    <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required>
+    <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required>
     <br />
     <label for="title">Title</label>
     <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
