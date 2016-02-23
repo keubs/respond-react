@@ -6,11 +6,13 @@ var angular = require('angular');
 require('angular-ui-router');
 require('./templates');
 require('./topics/_index');
+require('./viewControllers/_index');
 require('./auth/_index');
 require('ng-resource');
 require('ng-tags-input');
 require('satellizer');
 require('angularjs-facebook');
+require('angular-ui-bootstrap');
 
 // create and bootstrap application
 angular.element(document).ready(function() {
@@ -20,9 +22,11 @@ angular.element(document).ready(function() {
     'templates',
     'topics',
     'auth',
+    'viewControllers',
     'ngTagsInput',
     'satellizer',
-    'facebook'
+    'facebook',
+    'ui.bootstrap'
   ];
 
   // mount on window for testing

@@ -2,7 +2,7 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkService, LinkFactory) {
+module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkFactory) {
     $scope.action = {};
     $scope.submit = function() {
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
