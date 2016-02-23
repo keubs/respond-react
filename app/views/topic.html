@@ -16,10 +16,10 @@
 	    </span>
 	  </div>
 	  <div class="col-md-2">
-	    <img src="{{backendUrl}}/{{action.image}}" style="height: 100px" />
+	    <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="height: 100px" /></a>
 	  </div>
 	  <div class="col-md-6">
-	    <a href="{{action.article_link}}">{{action.title}}</a>
+	    <a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
 	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
 	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on}}</aside>
 	  </div>

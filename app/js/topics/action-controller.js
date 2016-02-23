@@ -10,7 +10,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
 		ActionService.new($scope.action)
 			.then(function(data){
         $location.path('/topic/' + $stateParams.topic);
-			});
+			}, function(error) {
+        console.log(error);
+        $scope.formLoading = false;
+      });
 	};
 
 	$scope.linkEntered = function() {
