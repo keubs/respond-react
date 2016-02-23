@@ -14,7 +14,7 @@
                   Facebook.api(eventId.replace(/\//g,'') + "?fields=cover,name,description", function(response) {
                     if(!response.error) {
                       var returnData = {};
-                      returnData.link = $scope.article_link;
+                      returnData.article_link = $scope.article_link;
                       returnData.image_preview = {};
                       returnData.title = response.name;
                       returnData.description = response.description;
@@ -39,7 +39,7 @@
                     if(data.docs.length > 0) {
                         data = data.docs[0];
                         var returnData = {};
-                        returnData.link = $scope.article_link;
+                        returnData.article_link = $scope.article_link;
                         returnData.image_preview = {};
                         returnData.image_preview.visible = true;
                         returnData.image_url = "http://nytimes.com/"+data.multimedia[1].url;
@@ -68,7 +68,7 @@
                           {'text' : 'Change.org'}
                         ];
                     }
-                    returnData.link = $scope.article_link;
+                    returnData.article_link = $scope.article_link;
                     returnData.image_preview = {};
                     returnData.image_preview.visible = true;
                     returnData.image_url = data.image;
