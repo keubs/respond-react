@@ -78,7 +78,7 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
 
     $scope.isUpVoted = function($actionIndex) {
       let action = $scope.topic.actions[$actionIndex];
-      return $scope.isLoggedIn && topic.isUpVoted;
+      return $scope.isLoggedIn && action.isUpVoted;
       // return AuthService.isLoggedIn() && TopicService.isUpVoted(topic.id);
     };
 
@@ -89,7 +89,6 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
     };
 
     $scope.voteFailed = function(index, error) {
-      let topic = $scope.topic.actions[index];
 
       switch (error.status) {
         case 401:

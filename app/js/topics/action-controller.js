@@ -38,5 +38,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
     str += ']';
     return str;
   };
+
+  
 };
 

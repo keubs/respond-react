@@ -1,13 +1,17 @@
 <div class="container-fluid">
-	<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
-	<ul class="tags">
-		<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag}}">{{tag}}</a></li>
-	</ul>
-	<img style="height:400px" src="{{ backendUrl }}/{{ topic.image }}" />
-	<hr />
+	<div class="row">
+		<div class="col-md-12">
+			<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
+			<ul class="tags">
+				<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag}}">{{tag}}</a></li>
+			</ul>
+			<img style="max-height:400px; max-width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" />
+		</div>
+	</div>
 </div>
 <div class="container-fluid">
-	<div ng-repeat="action in topic.actions track by $index" class="row">
+	<h1>Actions</h1>
+	<div ng-repeat="action in topic.actions track by $index" class="row" style="margin-top: 1em">
 	  <div class="col-md-2 col-sm-2" style="text-align: center;">
 	    <span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action">
 	    </span>
@@ -16,7 +20,7 @@
 	    </span>
 	  </div>
 	  <div class="col-md-2 col-sm-2">
-	    <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="max-height: 100px; width: 100%" /></a>
+	    <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="min-height: 100px; width: 100%" /></a>
 	  </div>
 	  <div class="col-md-6 col-sm-6">
 	    <a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
