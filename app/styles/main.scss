@@ -1,93 +1,13 @@
 @import 'vars';
 @import 'typography';
+
+/*==========================================
+=            Bootstrap includes            =
+==========================================*/
 @import 'bootstrap';
 @import 'ng-tags-input';
 @import 'ng-tags-input-bootstrap';
-body {
-  font-family: Helvetica, sans-serif;
-  color: $font-color--dark;
-  background-color: $background--light;
-  padding: $half-space;
-}
 
-// temp
-.upvoted {
-  color: orange;
-}
+/*=====  End of Bootstrap includes  ======*/
 
-.downvoted {
-  color: blue;
-}
-
-.upvote,
-.downvote {
-    font-size: 25px;
-    cursor: pointer;
-    color: #222;
-
-    &.action {
-        font-size: 15px;
-    }
-}
-
-.upvote {
-    &:hover {
-        color: #F3902A;
-    }
-}
-
-.downvote {
-    &:hover {
-        color: #920832;
-    }
-}
-
-
-.btn-submit-topic {
-  display: none;
-
-  &.visible {
-    display: block;
-  }
-}
-
-
-.submit-wrapper {
-  .form-submit-action,
-  .form-submit-topic {
-    position: relative;
-    &.loading {
-      opacity: .2;
-    }
-  }
-  .loader {
-    position: absolute;
-    top: 40%;
-    left: 40%;
-    background-image: url(../images/ajax-loader.gif);
-    width: 32px;
-    height: 32px;
-    display: none;
-
-    &.loading {
-      display: block;
-    }
-  }
-}
-
-
-ul.tags {
-    margin:.5em 0;
-    padding: 0;
-
-    li {
-        display: inline;
-        margin: 0 .5em 0 0;
-    }
-}
-
-h3.score {
-    color: #222;
-    margin: .1em 0;
-}
-
+@import 'styles';
