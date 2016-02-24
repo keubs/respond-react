@@ -10,7 +10,7 @@
 	</div>
 </div>
 <div class="container-fluid">
-	<h1>Actions</h1>
+	<h1 style="display: inline-block; margin-right: 50px;">Actions</h1> <button type="button" class="btn btn-primary btn-lg" ng-click="submitAction()">Submit your own!</button>
 	<div ng-repeat="action in topic.actions track by $index" class="row" style="margin-top: 1em">
 	  <div class="col-md-2 col-sm-2" style="text-align: center;">
 	    <span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action">
@@ -27,32 +27,5 @@
 	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
 	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on}}</aside>
 	  </div>
-	</div>
-</div>
-<div ng-controller="ActionCtrl" class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-sm-8 submit-wrapper">
-			<form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action">
-				<h1>Submit an action for this topic</h1>
-				<label for="article_link">Link:</label>
-				<input id="article_link" type="text" ng-model="article_link" class="form-control" placeholder="Article Link" ng-blur="linkEntered()" required>
-				<br />
-				<label for="action_title">Title:</label>
-				<input id="action_title" type="text" ng-model="action.title" class="form-control" placeholder="Title" required>
-				<br />
-				<label for="action_description">Description:</label>
-				<textarea id="action_description" ng-model="action.description" class="form-control" placeholder="Description" style="width:100%; height: 150px;" required></textarea>
-				<br />
-				<label for="action_tags">Tags</label>
-				<tags-input id="action_tags" ng-model="action.tags"></tags-input>
-				<br />
-				<img src="{{ action.image_preview.src }}" style="height: 350px;" ng-show="action.image_preview.visible"/>
-				<input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
-				<br />
-				<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
-
-			</form>
-			<div class="loader" ng-class="{loading: formLoading}"></div>
-		</div>
 	</div>
 </div>

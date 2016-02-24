@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = function($scope, $location, $stateParams, TopicService, ActionService, AuthService, AppSettings) {
+module.exports = function($scope, $location, $stateParams, TopicService,
+                          ActionService, AuthService, AppSettings, $uibModal) {
+
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.isLoggedIn = AuthService.isLoggedIn();
@@ -98,4 +100,19 @@ module.exports = function($scope, $location, $stateParams, TopicService, ActionS
           console.log('Something bad happened. 😭😭😭');
       }
     };
+
+
+    /*===========================================
+    =            Action Submit Modal            =
+    ===========================================*/
+    $scope.submitAction = function(){
+      var modalInstance = $uibModal.open({
+        animation: true,
+        templateUrl: 'submit-action.html',
+        controller: 'ActionCtrl',
+        size: 'lg',
+      });
+    };
+    /*=====  End of Action Submit Modal  ======*/
+
 };
