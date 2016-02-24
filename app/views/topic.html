@@ -8,17 +8,17 @@
 </div>
 <div class="container-fluid">
 	<div ng-repeat="action in topic.actions track by $index" class="row">
-	  <div class="col-md-2" style="text-align: center;">
+	  <div class="col-md-2 col-sm-2" style="text-align: center;">
 	    <span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action">
 	    </span>
 	    <h3 class="score">{{action.score}}</h3>
 	    <span ng-click="downVoteAction($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote action">
 	    </span>
 	  </div>
-	  <div class="col-md-2">
-	    <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="height: 100px" /></a>
+	  <div class="col-md-2 col-sm-2">
+	    <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="max-height: 100px; width: 100%" /></a>
 	  </div>
-	  <div class="col-md-6">
+	  <div class="col-md-6 col-sm-6">
 	    <a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
 	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
 	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on}}</aside>
@@ -27,7 +27,7 @@
 </div>
 <div ng-controller="ActionCtrl" class="container-fluid">
 	<div class="row">
-		<div class="col-md-8 submit-wrapper">
+		<div class="col-md-8 col-sm-8 submit-wrapper">
 			<form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action">
 				<h1>Submit an action for this topic</h1>
 				<label for="article_link">Link:</label>

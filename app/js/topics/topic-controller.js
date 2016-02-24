@@ -3,7 +3,7 @@
 module.exports = function($scope, $location, $stateParams, TopicService, ActionService, AuthService, AppSettings) {
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
-
+  $scope.isLoggedIn = AuthService.isLoggedIn();
 
   TopicService.topic($stateParams.topic)
     .then(function(data) {

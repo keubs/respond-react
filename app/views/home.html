@@ -8,17 +8,17 @@
   <h1 ng-show="tag">Tag: {{tag}}</h1>
   <br />
   <div ng-repeat="topic in topics" class="row">
-    <div class="col-lg-1 col-md-1" style="text-align: center;">
+    <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
       <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">
       </span>
       <h3 style="margin: .5em 0">{{topic.score}}</h3>
       <span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote">
       </span>
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-md-4 col-sm-4">
       <a href="http://squ.ad:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
     </div>
-    <div class="col-lg-6 col-md-6">
+    <div class="col-lg-6 col-md-6 col-sm-6">
       <a href="topic/{{topic.id}}">{{topic.title}}</a>
       <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
       <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on}}</aside>
