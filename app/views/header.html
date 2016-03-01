@@ -1,5 +1,5 @@
-<header>
-<nav class="navbar navbar-default" role="navigation" ng-controller="NavBarCtrl">
+<header ng-controller="AuthCtrl">
+  <nav class="navbar navbar-default" role="navigation">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
 
@@ -9,47 +9,29 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="/">squ.ad</a>
       </div>
-    
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-      
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          
-          <li class="dropdown">
-            <a href="#" dropdown-toggle>Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-hide="isLoggedIn()">
+        <ul ng-show="isLoggedIn()" class="nav navbar-nav navbar-right">
+          <li>
+            <a href="#/users/{{ user.username }}">
+              {{ user.username }}
+            </a>
+          </li>
+          <li>
+            <a href="#" ng-click="logout()">Logout</a>
           </li>
         </ul>
-        <form class="navbar-form navbar-left" role="search">
+        <form ng-hide="isLoggedIn()" ng-submit="login()" ng-hide="isRegister()" class="navbar-form navbar-right">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <p ng-show="errors.general">{{ errors.general }}</p>
+            <input class="form-control"  id="username" type="text" ng-model="user.username" aria-describedby="usernameError" placeholder="Username">
+            <input class="form-control" id="password" type="password" ng-model="user.password" aria-describedby="passwordError" placeholder="Password">
+            <input class="form-control" type="submit" value="Log in" />
+            <button  class="form-control" ng-click="authenticate('facebook')">Sign in with Facebook</button>
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
         </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li dropdown>
-            <a href="#" dropdown-toggle>Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-        </ul>
       </div><!-- /.navbar-collapse -->
     </nav>
-  <div ng-include="'login.html'"></div>
 </header>

@@ -86,3 +86,15 @@ h3.score {
     margin: .1em 0;
 }
 
+
+div.tag {
+  padding: 3px 8px;
+  margin-right:10px;
+  display:inline-block;
+  background: #FB4327;
+  color: #FFF; border-radius: 5px;
+
+  a {
+    color: #FFF
+  }
+}
