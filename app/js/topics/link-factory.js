@@ -7,7 +7,10 @@
     return {
         link: function($scope) {
             var deferred = $q.defer();
-            if($scope.article_link.search(/facebook.com\/events/i) > -1) {
+            if(!$scope.article_link) {
+                deferred.reject();
+            }
+            else if($scope.article_link.search(/facebook.com\/events/i) > -1) {
                 var eventId = $scope.article_link.replace(/https:\/\/www.facebook.com\/events/, '');
 
                 Facebook.getLoginStatus(function(response){

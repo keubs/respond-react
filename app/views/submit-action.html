@@ -1,6 +1,7 @@
 <div ng-controller="ActionCtrl" class="container-fluid" style="margin:2em 0">
     <div class="row">
         <div class="col-md-12 col-sm-12 submit-wrapper">
+            <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
             <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action">
                 <h1>Submit an action for this topic</h1>
                 <label for="article_link">Link:</label>

@@ -4,15 +4,17 @@
  **/
 module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkFactory) {
     $scope.action = {};
+    $scope.alerts = [];
     $scope.submit = function() {
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
-		ActionService.new($scope.action)
-			.then(function(data){
-        $location.path('/topic/' + $stateParams.topic);
-			}, function(error) {
-        console.log(error);
-        $scope.formLoading = false;
+		    ActionService.new($scope.action)
+			   .then(function(data){
+          $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
+          $scope.formloading = false;
+			   }, function(error) {
+            console.log(error);
+            $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Please try again or <a href="#">Contact us</a>'});
       });
 	};
 
@@ -38,7 +40,5 @@ module.exports = function($scope, $location, $stateParams, ActionService, TopicS
     str += ']';
     return str;
   };
-
-  
 };
 
