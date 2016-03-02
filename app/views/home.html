@@ -23,7 +23,8 @@
       <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
       <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on}}</aside>
       <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag}}">{{tag}}</a></div></aside>
-      <aside><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
+      <br />
+      <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
     </div>
   </div>
 </div>
