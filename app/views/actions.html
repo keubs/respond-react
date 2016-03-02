@@ -1,0 +1,19 @@
+    <h1 ng-show="tag">Action Tag: {{tag}}</h1>
+    <div ng-repeat="action in actions track by $index" class="row" style="margin-top: 1em">
+      <div class="col-md-2 col-sm-2" style="text-align: center;">
+        <span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action">
+        </span>
+        <h3 class="score">{{action.score}}</h3>
+        <span ng-click="downVoteAction($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote action">
+        </span>
+      </div>
+      <div class="col-md-2 col-sm-2">
+        <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="min-height: 100px; width: 100%" /></a>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
+        <aside class="error" ng-show="topic.error">{{action.error}}</aside>
+        <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on}}</aside>
+        <div ng-repeat="tag in action.tags" class="tag"><a href="/actions/tag/{{tag}}">{{tag}}</a></div>
+      </div>
+    </div>

@@ -6,10 +6,16 @@
 function actionService($q, $http, AppSettings) {
   var service = {};
 
-  service.get = function() {
+  service.get = function(tag) {
     var deferred = $q.defer();
+    var url = '';
 
-    $http.get(AppSettings.apiUrl + '/actions/')
+    if(tag) {
+      url = AppSettings.apiUrl + '/actions/tag/' + tag + '/';
+    } else {
+      url = Appsettings.apiurl + '/actions/';
+    }
+    $http.get(url)
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -48,7 +54,6 @@ function actionService($q, $http, AppSettings) {
         deferred.reject({err, status});
       });
   };
-
   service.new = function(action) {
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)

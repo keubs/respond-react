@@ -7,6 +7,7 @@ exports = angular.module('topics', [])
             .controller('TopicSubmitCtrl', require('./topic-submit-controller'))
             .controller('TopicCtrl', require('./topic-controller')) // Singular
             .controller('ActionCtrl', require('./action-controller'))
+            .controller('ActionsCtrl', require('./actions-controller'))
             .service('ActionService', require('./action-service'))
             .service('TopicService', require('./topics-service'))
             .service('LinkFactory', require('./link-factory'))
