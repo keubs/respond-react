@@ -34,4 +34,5 @@
         </form>
       </div><!-- /.navbar-collapse -->
     </nav>
+    <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 </header>

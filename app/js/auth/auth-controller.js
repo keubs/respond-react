@@ -5,7 +5,7 @@ const errorStringify = require('../helpers/error-stringify');
 module.exports = function($scope, $location, AuthService, $auth, $http) {
   $scope._isRegister = false;
   $scope.errors = {};
-
+  $scope.alerts = [];
   set_user();
   
   $scope.register = function() {
@@ -76,6 +76,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http) {
       var source;
       if (response){
           AuthService.socialLogin(response.data);
+          $scope.alerts.push({ type : 'success', msg: 'You are now logged in. Start submitting topics and actions today!'});
       } else {
           source = {
               'username': null,
