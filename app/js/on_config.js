@@ -35,6 +35,10 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '/topic/:topic',
       controller: 'TopicCtrl',
       templateUrl: 'topic.html',
+    })
+    .state('500', {
+      url: '/500',
+      templateUrl: '500.html'
     });
 
   $urlRouterProvider.otherwise('/');

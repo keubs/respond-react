@@ -10,6 +10,8 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   $scope.tag = $stateParams.tag || null;
   TopicService.get($scope.tag).then(function(data) {
     $scope.topics = data;
+  }, function(err) {
+    $location.path('/500');
   });
 
 
