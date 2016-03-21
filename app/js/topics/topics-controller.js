@@ -11,7 +11,9 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   TopicService.get($scope.tag).then(function(data) {
     $scope.topics = data;
   }, function(err) {
-    $location.path('/500');
+    if(err.status === 500) {
+      $location.path('/500');
+    }
   });
 
 
