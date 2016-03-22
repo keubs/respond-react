@@ -9,8 +9,18 @@
     <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
     <p ng-show="errors.title" id="">{{ errors.title }}</p>
     <br>
-    <tags-input ng-model="topic.tags"></tags-input>
-
+    <label for="tags">Tags</label>
+    <tags-input id="tags" ng-model="topic.tags"></tags-input>
+    <br />
+    <label for="scope">Scope</label>
+    <select id="scope" class="form-control" ng-model="topic.scope">
+        <option value="local">Local</option>
+        <option value="national">National</option>
+        <option value="worldwide">Worldwide</option>
+    </select>
+    <br />
+    <label for="Zip">Zip</label>
+    <input id="zip" type="text" class="form-control"  ng-model="topic.zip" placeholder="Zip" required>
     <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
     <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
     <p ng-show="errors.article_link">{{ errors.article_link }}</p>

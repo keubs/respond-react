@@ -17,6 +17,16 @@
                     <label for="action_tags">Tags</label>
                     <tags-input id="action_tags" ng-model="action.tags"></tags-input>
                     <br />
+                    <label for="scope">Scope</label>
+                    <select id="scope" class="form-control" ng-model="action.scope">
+                        <option value="local">Local</option>
+                        <option value="national">National</option>
+                        <option value="worldwide">Worldwide</option>
+                    </select>
+                    <br />
+                    <label for="Zip">Zip</label>
+                    <input id="zip" type="text" class="form-control"  ng-model="action.zip" placeholder="Zip" required>
+                    <br />
                     <img src="{{ action.image_preview.src }}" style="height: 350px;" ng-show="action.image_preview.visible"/>
                     <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
                     <br />
