@@ -98,3 +98,25 @@ div.tag {
     color: #FFF
   }
 }
+
+
+
+.banner-wrapper {
+  margin-bottom: 20px;
+}
+
+.banner {
+  position: relative;
+  .banner-label {
+    position: absolute;
+    top: 30px;
+    left: 40%;
+    font-size: 30px;
+    color: #FFF;
+  }
+
+  img {
+    width: 95%;
+    margin: 0 auto;
+  }
+}

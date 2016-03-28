@@ -22,7 +22,7 @@
             <a href="#" ng-click="logout()">Logout</a>
           </li>
           <li ng-show="isLoggedIn()" style="padding: 10px 10px 0 0">
-            <img src="{{thumb}}" style="height: 32px; border: solid 1px 666; border-radius: 3px;" />
+            <ng-img src="hasThumb()" style="height: 32px; border: solid 1px 666; border-radius: 3px;" />
           </ul>
         </ul>
         <form ng-hide="isLoggedIn()" ng-submit="login()" ng-hide="isRegister()" class="navbar-form navbar-right">

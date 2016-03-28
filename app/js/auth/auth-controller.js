@@ -2,7 +2,7 @@
 
 const errorStringify = require('../helpers/error-stringify');
 
-module.exports = function($scope, $location, AuthService, $auth, $http, $window) {
+module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
   $scope._isRegister = false;
   $scope.errors = {};
   $scope.alerts = [];
@@ -58,6 +58,12 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window)
     $scope._isRegister = !$scope._isRegister;
   };
 
+  $scope.hasThumb = function() {
+    if($scope.social_thumb)
+      return $scope.social_thumb;
+    else
+      return AppSettings.apiUrl + '/static/anonymous.png';
+  };
 
   $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function(response){

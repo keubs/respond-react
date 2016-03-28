@@ -46,6 +46,7 @@ module.exports = function($q, $http, $window, AppSettings) {
   service.logout = function() {
     delete $window.sessionStorage.token;
     delete $window.sessionStorage.user;
+    delete $window.sessionStorage.id
     delete $http.defaults.headers.common.Authorization;
   };
 
