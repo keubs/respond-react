@@ -2,7 +2,11 @@ body {
   font-family: Helvetica, sans-serif;
   color: $font-color--dark;
   background-color: $background--light;
-  padding: $half-space;
+  // padding: $half-space;
+}
+
+.header {
+  margin: 20px;
 }
 
 // temp
@@ -119,4 +123,12 @@ div.tag {
     width: 95%;
     margin: 0 auto;
   }
+}
+
+
+.footer {
+  width: 100%;
+  background: #FFF;
+  padding: 1em .5em;
+  margin-top: 2em;
 }
