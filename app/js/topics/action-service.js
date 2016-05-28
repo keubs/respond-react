@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-function actionService($q, $http, AppSettings) {
+function actionService($q, $http, AppSettings, AddressService) {
   var service = {};
 
   service.get = function(tag) {
@@ -55,6 +55,23 @@ function actionService($q, $http, AppSettings) {
       });
   };
   service.new = function(action) {
+
+    console.log(action);
+    AddressService.submit(action.address)
+      .then(function(data){
+        var deferred = $q.defer();
+        action.address = data.id;
+        $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
+          .success(function(data) {
+            deferred.resolve(data);
+          })
+          .error(function(err, status) {
+            console.log(err, status);
+            deferred.reject({err, status});
+          });
+      }, function(error) {
+          console.log(error);
+      });
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
       .success(function(data) {

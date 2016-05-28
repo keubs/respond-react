@@ -2,9 +2,11 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, TopicService, $window, Facebook, LinkFactory) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory) {
     $scope.action = {};
     $scope.alerts = [];
+    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
     $scope.submit = function() {
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
         $scope.action.topic = $stateParams.topic;

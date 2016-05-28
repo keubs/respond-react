@@ -24,8 +24,8 @@
                         <option value="worldwide">Worldwide</option>
                     </select>
                     <br />
-                    <label for="Zip">Zip</label>
-                    <input id="zip" type="text" class="form-control"  ng-model="action.zip" placeholder="Zip" required>
+                    <label for="address">Address</label>
+                    <input id="address" type="text" class="form-control"  ng-model="action.address" placeholder="Address" required>
                     <br />
                     <img src="{{ action.image_preview.src }}" style="height: 350px;" ng-show="action.image_preview.visible"/>
                     <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
