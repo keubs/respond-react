@@ -14,7 +14,7 @@ require('satellizer');
 require('angularjs-facebook');
 require('angular-ui-bootstrap');
 require('angular-google-maps');
-
+require('angular-simple-logger');
 // create and bootstrap application
 angular.element(document).ready(function() {
 
@@ -28,7 +28,9 @@ angular.element(document).ready(function() {
     'satellizer',
     'facebook',
     'ui.bootstrap',
-    'uiGmapgoogle-maps'
+    'nemLogging',
+    'uiGmapgoogle-maps',
+    'GoogleMapApiProviders'
   ];
 
   // mount on window for testing
