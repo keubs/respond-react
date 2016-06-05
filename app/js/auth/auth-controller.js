@@ -10,7 +10,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   $scope.register = function() {
     AuthService.register($scope.user);
   };
-  console.log($window.sessionStorage);
+
   $scope.thumb = $window.sessionStorage.thumb;
   $scope.login = function() {
     AuthService.login($scope.user)

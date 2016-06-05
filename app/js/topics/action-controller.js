@@ -2,20 +2,43 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap) {
     $scope.action = {};
     $scope.alerts = [];
-    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    $scope.render = true;
+
+    var markers = [];
+    var vm = this;
+    if(!vm.map) {
+      NgMap.getMap('map').then(function(map) {
+        vm.map = map;
+        google.maps.event.addListener(vm.map, 'click', function(event) {
+            var lat = event.latLng.lat();
+            var lng = event.latLng.lng();
+            var geocoder = new google.maps.Geocoder;
+
+            geocodeLatLng(geocoder, map, lat, lng, function(location){
+              $scope.$apply(function(){
+                $scope.action.address = location;
+              });
+            })
+
+        });
+      }, function(error){
+        console.log(error);
+      });
+
+    }
 
     $scope.submit = function() {
         $scope.action.tags = $scope.jsonfied($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
+
 		    ActionService.new($scope.action)
 			   .then(function(data){
           $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
           $scope.formloading = false;
 			   }, function(error) {
-            console.log(error);
             $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Please try again or <a href="#">Contact us</a>'});
       });
 	};
@@ -42,5 +65,25 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     str += ']';
     return str;
   };
+
+
+  function geocodeLatLng(geocoder, map, lat, lng, fn) {
+    var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
+    var retValue;
+    geocoder.geocode({'location': latlng}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+
+          fn(results[1].formatted_address);
+
+        } else {
+          window.alert('No results found');
+        }
+      } else {
+        window.alert('Geocoder failed due to: ' + status);
+      }
+    });
+
+  }
 };
 

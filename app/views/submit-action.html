@@ -27,9 +27,12 @@
                     <label for="address">Address</label>
                     <input id="address" type="text" class="form-control"  ng-model="action.address" placeholder="Address" required>
                     <br />
-                    <img src="{{ action.image_preview.src }}" style="height: 350px;" ng-show="action.image_preview.visible"/>
-                    <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
+                    <ng-map id="map" zoom="13" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">
+                    </ng-map>
                     <br />
+                    <img src="{{ action.image_preview.src }}" style="min-height: 350px; width: 100%;" ng-show="action.image_preview.visible"/>
+                    <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
+                    <br /><br />
                     <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
 
                 </form>

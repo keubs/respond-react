@@ -13,8 +13,7 @@ require('ng-tags-input');
 require('satellizer');
 require('angularjs-facebook');
 require('angular-ui-bootstrap');
-require('angular-google-maps');
-require('angular-simple-logger');
+require('ngMap');
 // create and bootstrap application
 angular.element(document).ready(function() {
 
@@ -28,9 +27,7 @@ angular.element(document).ready(function() {
     'satellizer',
     'facebook',
     'ui.bootstrap',
-    'nemLogging',
-    'uiGmapgoogle-maps',
-    'GoogleMapApiProviders'
+    'ngMap',
   ];
 
   // mount on window for testing
@@ -41,7 +38,7 @@ angular.element(document).ready(function() {
     .constant('AppSettings', require('./constants'))
     .config(require('./on_config'))
     .run(require('./on_run'))
-    .config(function($httpProvider, $authProvider, FacebookProvider, uiGmapGoogleMapApiProvider) {
+    .config(function($httpProvider, $authProvider, FacebookProvider) {
       // Enable cross domain calls
       // $httpProvider.defaults.useXDomain = true;
       $authProvider.facebook({
@@ -57,10 +54,6 @@ angular.element(document).ready(function() {
       // $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
       // Remove the header used to identify ajax call  that would prevent CORS from working
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
-      GoogleMapApiProviders.configure({
-                 china: true
-       });
     })
 
   angular.bootstrap(document, ['app']);
