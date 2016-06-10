@@ -73,7 +73,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     geocoder.geocode({'location': latlng}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
         if (results[1]) {
-
+          console.log(results);
           fn(results[1].formatted_address);
 
         } else {
