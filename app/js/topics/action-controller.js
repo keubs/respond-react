@@ -5,6 +5,7 @@
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap) {
     $scope.action = {};
     $scope.alerts = [];
+    $scope.action.locations = [];
     $scope.render = true;
 
     var markers = [];
@@ -19,7 +20,11 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
             geocodeLatLng(geocoder, map, lat, lng, function(location){
               $scope.$apply(function(){
-                $scope.action.address = location;
+                if(location.length > 1) {
+                  $scope.action.locations = location;
+                } else {
+                  $scope.action.address = location[0].formatted_address;
+                }
               });
             })
 
@@ -66,6 +71,11 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     return str;
   };
 
+  $scope.setAddress = function(address) {
+    if(address) {
+      $scope.action.address = address;
+    }
+  };
 
   function geocodeLatLng(geocoder, map, lat, lng, fn) {
     var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
@@ -73,8 +83,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     geocoder.geocode({'location': latlng}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
         if (results[1]) {
-          console.log(results);
-          fn(results[1].formatted_address);
+          fn(results);
 
         } else {
           window.alert('No results found');

@@ -56,10 +56,9 @@ function actionService($q, $http, AppSettings, AddressService) {
   };
   service.new = function(action) {
 
-    console.log(action);
+    var deferred = $q.defer();
     AddressService.submit(action.address)
       .then(function(data){
-        var deferred = $q.defer();
         action.address = data.id;
         $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
           .success(function(data) {
@@ -72,16 +71,7 @@ function actionService($q, $http, AppSettings, AddressService) {
       }, function(error) {
           console.log(error);
       });
-    var deferred = $q.defer();
-    $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
-      .success(function(data) {
-        deferred.resolve(data);
-      })
-      .error(function(err, status) {
-        console.log(err, status);
-        deferred.reject({err, status});
-      });
-
+    
     return deferred.promise;
   };
 
