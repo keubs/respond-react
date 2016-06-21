@@ -1,6 +1,6 @@
 'use strict';
 
-const errorStringify = require('../helpers/error-stringify');
+const helpers = require('../helpers/helpers.js');
 
 module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
   $scope._isRegister = false;
@@ -19,9 +19,9 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
       }, function(error) {
         $scope.errors = {};
 
-        $scope.errors.general = errorStringify(error.non_field_errors);
-        $scope.errors.username = errorStringify(error.username);
-        $scope.errors.password = errorStringify(error.password);
+        $scope.errors.general = helpers.errorStringify(error.non_field_errors);
+        $scope.errors.username = helpers.errorStringify(error.username);
+        $scope.errors.password = helpers.errorStringify(error.password);
 
       });
   };

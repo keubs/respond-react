@@ -2,6 +2,8 @@
 /**
  * @ngInject
  **/
+
+const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap) {
     $scope.action = {};
     $scope.alerts = [];
@@ -18,10 +20,11 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
             var lng = event.latLng.lng();
             var geocoder = new google.maps.Geocoder;
 
-            geocodeLatLng(geocoder, map, lat, lng, function(location){
+            helpers.geocodeLatLng(geocoder, map, lat, lng, function(location){
               $scope.$apply(function(){
                 if(location.length > 1) {
                   $scope.action.locations = location;
+                  console.log(location);
                 } else {
                   $scope.action.address = location[0].formatted_address;
                 }
@@ -36,7 +39,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     }
 
     $scope.submit = function() {
-        $scope.action.tags = $scope.jsonfied($scope.action.tags);
+        $scope.action.tags = helpers.jsonified($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
 
 		    ActionService.new($scope.action)
@@ -60,16 +63,6 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	    });
 	};
 
-  // @todo not the cleanest method but it needs a string representation of a json array  ¯\_(ツ)_/¯
-  $scope.jsonfied = function(array) {
-    var str = '[';
-    for (var i = 0; i < array.length; i++) {
-      str += '"' + array[i].text + '",';
-    }
-    str = str.slice(0, -1);
-    str += ']';
-    return str;
-  };
 
   $scope.setAddress = function(address) {
     if(address) {
@@ -77,22 +70,5 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     }
   };
 
-  function geocodeLatLng(geocoder, map, lat, lng, fn) {
-    var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
-    var retValue;
-    geocoder.geocode({'location': latlng}, function(results, status) {
-      if (status === google.maps.GeocoderStatus.OK) {
-        if (results[1]) {
-          fn(results);
-
-        } else {
-          window.alert('No results found');
-        }
-      } else {
-        window.alert('Geocoder failed due to: ' + status);
-      }
-    });
-
-  }
 };
 
