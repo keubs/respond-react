@@ -16,17 +16,17 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       NgMap.getMap('map').then(function(map) {
         vm.map = map;
         google.maps.event.addListener(vm.map, 'click', function(event) {
-            var lat = event.latLng.lat();
-            var lng = event.latLng.lng();
+            $scope.action.address = {};
+            $scope.action.address.lat = event.latLng.lat();
+            $scope.action.address.lng = event.latLng.lng();
             var geocoder = new google.maps.Geocoder;
 
-            helpers.geocodeLatLng(geocoder, map, lat, lng, function(location){
+            helpers.geocodeLatLng(geocoder, map, $scope.action.address.lat, $scope.action.address.lng, function(location){
               $scope.$apply(function(){
                 if(location.length > 1) {
                   $scope.action.locations = location;
-                  console.log(location);
                 } else {
-                  $scope.action.address = location[0].formatted_address;
+                  $scope.action.address.formatted = location[0].formatted_address;
                 }
               });
             })
@@ -41,7 +41,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     $scope.submit = function() {
         $scope.action.tags = helpers.jsonified($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
-
+        debugger;
 		    ActionService.new($scope.action)
 			   .then(function(data){
           $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
@@ -66,7 +66,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
   $scope.setAddress = function(address) {
     if(address) {
-      $scope.action.address = address;
+      $scope.action.address.formatted = address;
     }
   };
 

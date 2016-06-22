@@ -10,7 +10,21 @@
   <br>
   <label for="tags">Tags</label>
   <tags-input id="tags" ng-model="topic.tags"></tags-input>
-  <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
+  <br />
+  <img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
+  <label for="address">Address</label>
+  <input id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" required>
+  <br />
+  <label for="map">Click anywhere on the map to select a location</label>
+  <div ng-if="topic.locations.length > 0">
+      <p>Multiple addresses detected. Select one from the list below:</p>
+      <ul>
+          <li ng-repeat="location in topic.locations"><a href="#" ng-click="setAddress(location.formatted_address)">{{location.formatted_address}}</a></li>
+      </ul>
+  </div>
+  <ng-map id="map" zoom="13" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">
+  </ng-map>
+  <br />
   <input id="image_url" type="hidden" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
   <p ng-show="errors.article_link">{{ errors.article_link }}</p>
 

@@ -11,14 +11,18 @@ function addressService($q, $http, AppSettings) {
         var url = '';
 
         url = AppSettings.apiUrl + '/address/submit/';
-        $http.post(url, {'raw': address})
-            .success(function(data) {
-                deferred.resolve(data);
-            })
-            .error(function (err, status) {
-                console.log(err, status);
-                deferred.reject({err, status});
-            });
+        $http.post(url, {
+            'raw': address.formatted, 
+            'latitude': address.lat, 
+            'longitude': address.lng
+        })
+        .success(function(data) {
+            deferred.resolve(data);
+        })
+        .error(function (err, status) {
+            console.log(err, status);
+            deferred.reject({err, status});
+        });
 
         return deferred.promise;
    };

@@ -71,6 +71,12 @@
                           {'text' : 'Change.org'}
                         ];
                     }
+                    if($scope.article_link.search(/moveon.org/i) > -1) {
+                      returnData.tags = [
+                        {'text' : 'Petition'},
+                        {'text' : 'MoveOn.org'}
+                      ];
+                    }
                     returnData.article_link = $scope.article_link;
                     returnData.image_preview = {};
                     returnData.image_preview.visible = true;
