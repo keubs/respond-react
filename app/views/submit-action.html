@@ -31,7 +31,7 @@
                     <div ng-if="action.locations.length > 0">
                         <p>Multiple addresses detected. Select one from the list below:</p>
                         <ul>
-                            <li ng-repeat="location in action.locations"><a href="#" ng-click="setAddress(location.formatted_address)">{{location.formatted_address}}</a></li>
+                            <li ng-repeat="location in action.locations" data-index="{{$index}}"><a href="#" ng-click="setAddress(location, $index)">{{location.formatted_address}}</a></li>
                         </ul>
                     </div>
                     <ng-map id="map" zoom="13" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">

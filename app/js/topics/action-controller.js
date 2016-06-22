@@ -64,9 +64,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	};
 
 
-  $scope.setAddress = function(address) {
+  $scope.setAddress = function(address, index) {
+    $scope.action.locations = $scope.action.locations.splice(index, index);
     if(address) {
-      $scope.action.address.formatted = address;
+      $scope.topic.address.formatted = address.formatted_address;
     }
   };
 

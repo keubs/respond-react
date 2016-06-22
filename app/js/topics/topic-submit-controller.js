@@ -18,7 +18,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
 
 
   $scope.submit = function() {
-    $scope.topic.tags = helpers.jsonfied($scope.topic.tags);
+    $scope.topic.tags = helpers.jsonified($scope.topic.tags);
     $scope.topic.image_preview = undefined;
     TopicService.new($scope.topic)
       .then(function(data) {
@@ -73,9 +73,10 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
 
   };
 
-  $scope.setAddress = function(address) {
+  $scope.setAddress = function(address, index) {
+    $scope.topic.locations = $scope.topic.locations.splice(index, index);
     if(address) {
-      $scope.topic.address.formatted = address;
+      $scope.topic.address.formatted = address.formatted_address;
     }
   };
 };

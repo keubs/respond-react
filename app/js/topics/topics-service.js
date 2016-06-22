@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-function TopicService($q, $http, AppSettings) {
+function TopicService($q, $http, AppSettings, AddressService) {
   var service = {};
 
   service.get = function(tag) {
@@ -29,6 +29,7 @@ function TopicService($q, $http, AppSettings) {
 
   service.topic = function(id) {
     var deferred = $q.defer();
+
 
     $http.get(AppSettings.apiUrl + '/topics/' + id)
       .success(function(data) {
@@ -59,13 +60,19 @@ function TopicService($q, $http, AppSettings) {
 
   service.new = function(topic) {
     var deferred = $q.defer();
-    $http.post(AppSettings.apiUrl + '/topics/' + 'submit', topic)
-      .success(function(data) {
-        deferred.resolve(data);
-      })
-      .error(function(err, status) {
-        console.log(err, status);
-        deferred.reject({err, status});
+    AddressService.submit(topic.address)
+      .then(function(data){
+        topic.address = data.id;
+        $http.post(AppSettings.apiUrl + '/topics/' + 'submit', topic)
+          .success(function(data) {
+            deferred.resolve(data);
+          })
+          .error(function(err, status) {
+            console.log(err, status);
+            deferred.reject({err, status});
+          });
+      }, function(error){
+        console.log(error);
       });
 
     return deferred.promise;

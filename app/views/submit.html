@@ -23,10 +23,10 @@
     <div ng-if="topic.locations.length > 0">
         <p>Multiple addresses detected. Select one from the list below:</p>
         <ul>
-            <li ng-repeat="location in topic.locations"><a href="#" ng-click="setAddress(location.formatted_address)">{{location.formatted_address}}</a></li>
+            <li ng-repeat="location in topic.locations" data-index="{{$index}}"><a href="#" ng-click="setAddress(location, $index)">{{location.formatted_address}}</a></li>
         </ul>
     </div>
-    <ng-map id="map" zoom="13" center="37.774546, -122.433523" map-type-id="">
+    <ng-map id="map" zoom="3" center="37.774546, -122.433523" map-type-id="">
     </ng-map>
     <br />
     <label for="address">Address</label>
