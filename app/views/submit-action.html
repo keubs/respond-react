@@ -24,9 +24,6 @@
                         <option value="worldwide">Worldwide</option>
                     </select>
                     <br />
-                    <label for="address">Address</label>
-                    <input id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" required>
-                    <br />
                     <label for="map">Click anywhere on the map to select a location</label>
                     <div ng-if="action.locations.length > 0">
                         <p>Multiple addresses detected. Select one from the list below:</p>
@@ -34,8 +31,11 @@
                             <li ng-repeat="location in action.locations" data-index="{{$index}}"><a href="#" ng-click="setAddress(location, $index)">{{location.formatted_address}}</a></li>
                         </ul>
                     </div>
-                    <ng-map id="map" zoom="13" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">
+                    <ng-map id="map" zoom="5" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">
                     </ng-map>
+                    <br />
+                    <label for="address">Address</label>
+                    <input id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" required disabled>
                     <br />
                     <img src="{{ action.image_preview.src }}" style="min-height: 350px; width: 100%;" ng-show="action.image_preview.visible"/>
                     <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />

@@ -5,7 +5,10 @@
 			<ul class="tags">
 				<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag}}">{{tag}}</a></li>
 			</ul>
-			<img style="max-height:400px; max-width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" />
+			<img style="max-height:600px; max-width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" />
+			<span ng-if="topic.address.latitude !== ''">
+				<img src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom=7&key={{googleApiKey}}&size=600x450" />
+			</span>
 		</div>
 	</div>
 </div>

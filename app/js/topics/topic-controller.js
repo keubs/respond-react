@@ -5,6 +5,7 @@ module.exports = function($scope, $location, $stateParams, TopicService,
 
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
+  $scope.googleApiKey = AppSettings.googleApiKey;
   $scope.isLoggedIn = AuthService.isLoggedIn();
 
   TopicService.topic($stateParams.topic)

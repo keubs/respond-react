@@ -71,7 +71,7 @@
                           {'text' : 'Change.org'}
                         ];
                     }
-                    if($scope.article_link.search(/moveon.org/i) > -1) {
+                    else if($scope.article_link.search(/moveon.org/i) > -1) {
                       returnData.tags = [
                         {'text' : 'Petition'},
                         {'text' : 'MoveOn.org'}

@@ -41,7 +41,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     $scope.submit = function() {
         $scope.action.tags = helpers.jsonified($scope.action.tags);
         $scope.action.topic = $stateParams.topic;
-        debugger;
+        getAddressComponents($scope.action.locations);
+        console.log($scope.action.address);
 		    ActionService.new($scope.action)
 			   .then(function(data){
           $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
@@ -65,11 +66,34 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
 
   $scope.setAddress = function(address, index) {
-    $scope.action.locations = $scope.action.locations.splice(index, index);
+    $scope.action.locations = $scope.action.locations[index];
     if(address) {
-      $scope.topic.address.formatted = address.formatted_address;
+      $scope.action.address.formatted = address.formatted_address;
     }
   };
+
+
+  function getAddressComponents(location) {
+    location.address_components.forEach(function(component){
+      if(component.types.indexOf('street_number') > -1) {
+       $scope.action.address.street_number = component.long_name; 
+      }
+      if(component.types.indexOf('locality') > -1) {
+        $scope.action.address.locality = component.long_name;
+      }
+      if(component.types.indexOf('administrative_area_level_1') > -1){
+        $scope.action.address.state = component.long_name;
+        $scope.action.address.state_code = component.short_name;
+      }
+      if(component.types.indexOf('country') > -1) {
+        $scope.action.address.country = component.long_name;
+        $scope.action.address.country_code = component.short_name;
+      }
+      if(component.types.indexOf('postal_code') > -1) {
+       $scope.action.address.postal_code = component.long_name; 
+      }
+    });
+  }
 
 };
 

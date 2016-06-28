@@ -11,11 +11,10 @@ function addressService($q, $http, AppSettings) {
         var url = '';
 
         url = AppSettings.apiUrl + '/address/submit/';
-        $http.post(url, {
-            'raw': address.formatted, 
-            'latitude': address.lat, 
-            'longitude': address.lng
-        })
+        address.raw = address.formatted;
+        address.latitude = address.lat;
+        address.longitude = address.lng;
+        $http.post(url, address)
         .success(function(data) {
             deferred.resolve(data);
         })

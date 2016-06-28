@@ -36,7 +36,6 @@ module.exports = function($q, $http, $window, AppSettings) {
   };
 
   service.socialLogin = function(user) {
-    debugger;
     $window.sessionStorage.token = user.token;
     $window.sessionStorage.user = user.username;
     $window.sessionStorage.id = user.id;

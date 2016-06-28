@@ -20,15 +20,17 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.submit = function() {
     $scope.topic.tags = helpers.jsonified($scope.topic.tags);
     $scope.topic.image_preview = undefined;
+    getAddressComponents($scope.topic.locations);
     TopicService.new($scope.topic)
       .then(function(data) {
         $location.path('/topic/' + data.id);
-      }, function(error) {
+      }, function(error, status) {
         $scope.errors = {};
         $scope.errors.general = helpers.errorStringify(error.non_field_errors);
         $scope.errors.title = helpers.errorStringify(error.title);
         $scope.errors.article_link = helpers.errorStringify(error.article_link);
         $scope.errors.auth = error.status === 401 ? 'You must be logged in to do that' : '';
+        console.log(error, status)
       });
   };
 
@@ -36,10 +38,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     $scope.formLoading = true;
     LinkFactory.link($scope)
     .then(function(data) {
-      $scope.topic.title = data.title;
-      $scope.topic.description = data.description;
-      $scope.topic.image_preview = data.image_preview;
-      $scope.topic.tags = data.tags;
+      $scope.topic = data;
       $scope.formLoading = false;
     }, function(error) {
       console.log(error);
@@ -74,9 +73,31 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   };
 
   $scope.setAddress = function(address, index) {
-    $scope.topic.locations = $scope.topic.locations.splice(index, index);
+    $scope.topic.locations = $scope.topic.locations[index];
     if(address) {
       $scope.topic.address.formatted = address.formatted_address;
     }
   };
+
+  function getAddressComponents(location) {
+    location.address_components.forEach(function(component){
+      if(component.types.indexOf('street_number') > -1) {
+       $scope.topic.address.street_number = component.long_name; 
+      }
+      if(component.types.indexOf('locality') > -1) {
+        $scope.topic.address.locality = component.long_name;
+      }
+      if(component.types.indexOf('administrative_area_level_1') > -1){
+        $scope.topic.address.state = component.long_name;
+        $scope.topic.address.state_code = component.short_name;
+      }
+      if(component.types.indexOf('country') > -1) {
+        $scope.topic.address.country = component.long_name;
+        $scope.topic.address.country_code = component.short_name;
+      }
+      if(component.types.indexOf('postal_code') > -1) {
+       $scope.topic.address.postal_code = component.long_name; 
+      }
+    });
+  }
 };
