@@ -6,6 +6,7 @@
  function LinkFactory($q, $http, AppSettings, Facebook) {
     return {
         link: function($scope) {
+            var type = $scope.topic === undefined ? 'action' : 'topic';
             var deferred = $q.defer();
             if(!$scope.article_link) {
                 deferred.reject();
@@ -37,7 +38,7 @@
             } else if ($scope.article_link.search(/nytimes.com/i) > -1) {
                 // Strip querystrings so nytimes API doesn't bork
                 var url = $scope.article_link.split('?')[0];
-                $http.post(AppSettings.apiUrl + '/nytimes/', {url: url})
+                $http.post(AppSettings.apiUrl + '/nytimes/', {url: url, type: type})
                  .success(function(data) {
                     if(data.docs.length > 0) {
                         data = data.docs[0];
@@ -62,7 +63,7 @@
                  });
                  return deferred.promise;
             } else {
-                $http.post(AppSettings.apiUrl + '/getopengraph/', {url: $scope.article_link})
+                $http.post(AppSettings.apiUrl + '/getopengraph/', {url: $scope.article_link, type: type})
                   .success(function(data) {
                     var returnData = {};
                     if($scope.article_link.search(/change.org/i) > -1) {
