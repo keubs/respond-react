@@ -20,11 +20,11 @@
                       var returnData = {};
                       returnData.article_link = $scope.article_link;
                       returnData.image_preview = {};
-                      returnData.title = response.name;
-                      returnData.description = response.description;
-                      returnData.image_url = response.cover.source;
+                      returnData.title = response.name || "";
+                      returnData.description = response.description || "";
+                      if(response.cover) returnData.image_url = response.cover.source || "";
                       returnData.image_preview.visible = true;
-                      returnData.image_preview.src = response.cover.source;
+                      if(response.cover) returnData.image_preview.src = response.cover.source || "";
                       returnData.tags = [
                         {'text' : 'Facebook Event'}
                       ];
@@ -46,8 +46,8 @@
                         returnData.article_link = $scope.article_link;
                         returnData.image_preview = {};
                         returnData.image_preview.visible = true;
-                        returnData.image_url = "http://nytimes.com/"+data.multimedia[1].url;
-                        returnData.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
+                        if(data.multimedia[1]) returnData.image_url = "http://nytimes.com/"+data.multimedia[1].url;
+                        if(data.multimedia[1]) returnData.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
                         returnData.title = data.headline.main;
                         returnData.description = data.snippet;
                         returnData.tags = [

@@ -67,14 +67,6 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     });
   };
 
-
-  $scope.setAddress = function(address, index) {
-    $scope.topic.locations = $scope.topic.locations[index];
-    if(address) {
-      $scope.topic.address.formatted = address.formatted_address;
-    }
-  };
-
   function getAddressComponents(location) {
     location.address_components.forEach(function(component){
       if(component.types.indexOf('street_number') > -1) {
