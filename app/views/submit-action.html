@@ -1,5 +1,5 @@
 <div ng-controller="AuthCtrl">
-    <div ng-controller="ActionCtrl" class="container-fluid" style="margin:2em 0">
+    <div ng-controller="ActionCtrl as vm" class="container-fluid" style="margin:2em 0">
         <div class="row">
             <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn()">
                 <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
@@ -7,6 +7,7 @@
                     <h1>Submit an action for this topic</h1>
                     <label for="article_link">Link:</label>
                     <input id="article_link" type="text" ng-model="article_link" class="form-control" placeholder="Article Link" ng-blur="linkEntered()" required>
+                    <aside class="error" ng-show="article_link_error">{{article_link_error}}</aside>
                     <br />
                     <label for="action_title">Title:</label>
                     <input id="action_title" type="text" ng-model="action.title" class="form-control" placeholder="Title" required>
@@ -15,7 +16,7 @@
                     <textarea id="action_description" ng-model="action.description" class="form-control" placeholder="Description" style="width:100%; height: 150px;" required></textarea>
                     <br />
                     <label for="action_tags">Tags</label>
-                    <tags-input id="action_tags" ng-model="action.tags" display-property"text"></tags-input>
+                    <tags-input id="action_tags" ng-model="action.tags" display-property"text" required></tags-input>
                     <br />
                     <label for="scope">Scope</label>
                     <select id="scope" class="form-control" ng-model="action.scope">
@@ -23,19 +24,14 @@
                         <option value="national">National</option>
                         <option value="worldwide">Worldwide</option>
                     </select>
-                    <br />
-                    <label for="map">Click anywhere on the map to select a location</label>
-                    <div ng-if="action.locations.length > 0">
-                        <p>Multiple addresses detected. Select one from the list below:</p>
-                        <ul>
-                            <li ng-repeat="location in action.locations" data-index="{{$index}}"><a href="#" ng-click="setAddress(location, $index)">{{location.formatted_address}}</a></li>
-                        </ul>
-                    </div>
-                    <ng-map id="map" zoom="5" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">
-                    </ng-map>
+
                     <br />
                     <label for="address">Address</label>
-                    <input id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" required disabled>
+                    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+                    <br/>
+                    <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-if="$parent.render">
+                        <marker position="{{pos.lat}},{{pos.lng}}"></marker>
+                    </ng-map>
                     <br />
                     <img src="{{ action.image_preview.src }}" style="min-height: 350px; width: 100%;" ng-show="action.image_preview.visible"/>
                     <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />

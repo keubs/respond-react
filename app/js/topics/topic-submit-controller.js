@@ -36,6 +36,10 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
 
   $scope.linkEntered = function() {
     $scope.formLoading = true;
+    if(!helpers.validateUrl($scope.article_link)) {
+      $scope.formLoading = false;
+      return;
+    }
     LinkFactory.link($scope)
     .then(function(data) {
       $scope.topic = data;

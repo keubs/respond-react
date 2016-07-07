@@ -68,8 +68,9 @@ function actionService($q, $http, AppSettings, AddressService) {
             console.log(err, status);
             deferred.reject({err, status});
           });
-      }, function(error) {
-          console.log(error);
+      }, function(err, status) {
+          console.log(err);
+          deferred.reject({err, status});
       });
     
     return deferred.promise;

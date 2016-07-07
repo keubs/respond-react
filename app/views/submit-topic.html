@@ -1,5 +1,6 @@
 <form ng-controller="TopicSubmitCtrl" ng-submit="submit()">
   <h1>Submit a topic</h1>
+  <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
   <p ng-show="errors.general">{{ errors.general }}</p>
   <label for="article_link">Article Link</label>
   <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" ng-blur="linkEntered()" required>
