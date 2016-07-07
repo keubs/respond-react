@@ -6,16 +6,33 @@
 const helpers = require('../helpers/helpers.js');
 
 module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap) {
-  console.log(this.map);
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
 
   $scope.topic.locations = [];
   $scope.topic.created_by = $window.sessionStorage.id;
+  $scope.pos = {};
   var markers = [];
   var vm = this;
+  if(!vm.map) {
+    NgMap.getMap('map').then(function(map) {
+      vm.map = map;
+      vm.placeChanged = function() {
+        vm.place = this.getPlace();
+        $scope.topic.locations = vm.place;
+        vm.map.setCenter(vm.place.geometry.location);
+        vm.map.setZoom(15);
+        $scope.pos.lat = vm.place.geometry.location.lat();
+        $scope.pos.lng = vm.place.geometry.location.lng();
+        $scope.topic.address.lat = vm.place.geometry.location.lat();
+        $scope.topic.address.lng = vm.place.geometry.location.lng();
+      }
+    }, function(error){
+      console.log(error);
+    });
 
+  };
 
   $scope.submit = function() {
     $scope.topic.tags = helpers.jsonified($scope.topic.tags);
@@ -50,31 +67,6 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     });
   };
 
-  if(!vm.map) {
-    NgMap.getMap('map').then(function(map) {
-      vm.map = map;
-      google.maps.event.addListener(vm.map, 'click', function(event) {
-          $scope.topic.address = {};
-          $scope.topic.address.lat = event.latLng.lat();
-          $scope.topic.address.lng = event.latLng.lng();
-          var geocoder = new google.maps.Geocoder;
-
-          helpers.geocodeLatLng(geocoder, map, $scope.topic.address.lat, $scope.topic.address.lng, function(location){
-            $scope.$apply(function(){
-              if(location.length > 1) {
-                $scope.topic.locations = location;
-              } else {
-                $scope.topic.address.formatted = location[0].formatted_address;
-              }
-            });
-          })
-
-      });
-    }, function(error){
-      console.log(error);
-    });
-
-  };
 
   $scope.setAddress = function(address, index) {
     $scope.topic.locations = $scope.topic.locations[index];

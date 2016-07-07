@@ -1,5 +1,5 @@
 <div class="col-md-8 submit-wrapper">
-  <form ng-controller="TopicSubmitCtrl" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
+  <form ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
     <h1>Submit a topic</h1>
     <p ng-show="errors.general">{{ errors.general }}</p>
     <label for="article_link">Article Link</label>
@@ -19,18 +19,13 @@
         <option value="worldwide">Worldwide</option>
     </select>
     <br />
-    <label for="map">Click anywhere on the map to select a location</label>
-    <div ng-if="topic.locations.length > 0">
-        <p>Multiple addresses detected. Select one from the list below:</p>
-        <ul>
-            <li ng-repeat="location in topic.locations" data-index="{{$index}}"><a href="#" ng-click="setAddress(location, $index)">{{location.formatted_address}}</a></li>
-        </ul>
-    </div>
-    <ng-map id="map" zoom="3" center="37.774546, -122.433523" map-type-id="">
+    <label for="address">Address</label>
+    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+    <br/>
+    <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="">
+        <marker position="{{pos.lat}},{{pos.lng}}"></marker>
     </ng-map>
     <br />
-    <label for="address">Address</label>
-    <input id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" required disabled>
     <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
     <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
     <p ng-show="errors.article_link">{{ errors.article_link }}</p>

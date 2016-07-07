@@ -49,6 +49,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
 	$scope.linkEntered = function() {
     $scope.formLoading = true;
+    $scope.alerts = [];
     if(!helpers.validateUrl($scope.article_link)) {
       $scope.formLoading = false;
       return;
