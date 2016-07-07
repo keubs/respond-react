@@ -10,7 +10,7 @@
     <p ng-show="errors.title" id="">{{ errors.title }}</p>
     <br>
     <label for="tags">Tags</label>
-    <tags-input id="tags" ng-model="topic.tags" required></tags-input>
+    <tags-input id="tags" ng-model="topic.tags" required replace-spaces-with-dashes="false"></tags-input>
     <br />
     <label for="scope">Scope</label>
     <select id="scope" class="form-control" ng-model="topic.scope">
