@@ -15,7 +15,6 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   $scope.login = function() {
     AuthService.login($scope.user)
       .then(function() {
-        $location.path('/');
       }, function(error) {
         $scope.errors = {};
 
