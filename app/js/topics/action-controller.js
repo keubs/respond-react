@@ -4,9 +4,30 @@
  **/
 
 const helpers = require('../helpers/helpers.js');
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, $window) {
     $scope.action = {};
     $scope.alerts = [];
+
+
+    $scope.action.date_time_display = false;
+    $scope.action.end_date_time_display = false;
+    $scope.mytime = new Date();
+
+    $scope.hstep = 1;
+    $scope.mstep = 15;
+    $scope.ismeridian = true;
+    $scope.options = {
+      hstep: [1, 2, 3],
+      mstep: [1, 5, 10, 15, 25, 30]
+    };
+
+    $scope.update = function() {
+        var d = new Date();
+        d.setHours( 14 );
+        d.setMinutes( 0 );
+        $scope.mytime = d;
+      };
+
     $scope.action.locations = [];
     $scope.render = true;
     $scope.pos = {};
@@ -15,7 +36,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     if(!vm.map) {
       NgMap.getMap('map').then(function(map) {
         vm.map = map;
-        vm.placeChanged = function() {
+        vm.placeChanged = function(e) {
+          debugger;
           vm.place = this.getPlace();
           $scope.action.locations = vm.place;
           vm.map.setCenter(vm.place.geometry.location);
@@ -33,19 +55,23 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
     $scope.submit = function() {
         if($scope.action.tags !== '') {
-          $scope.action.tags = helpers.jsonified($scope.action.tags);
+          $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
         $scope.action.topic = $stateParams.topic;
         getAddressComponents($scope.action.locations);
-		    ActionService.new($scope.action)
-			   .then(function(data){
+        console.log($scope.action);
+
+        ActionService.new($scope.action)
+         .then(function(data){
           $scope.alerts = [];
+          $window.scrollTo(0, 0);
           $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
           $scope.formloading = false;
 			   }, function(error) {
+            $window.scrollTo(0, 0);
             $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Please try again or Contact us'});
       });
-	};
+	   };
 
 	$scope.linkEntered = function() {
     $scope.formLoading = true;
@@ -87,6 +113,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         $scope.errors.password = helpers.errorStringify(error.password);
 
       });
+  };
+
+  $scope.showEnd = function() {
+    $scope.action.end_date_time_display = true;
   };
 
   function getAddressComponents(location) {

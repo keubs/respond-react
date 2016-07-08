@@ -15,8 +15,32 @@
                     <label for="action_description">Description:</label>
                     <textarea id="action_description" ng-model="action.description" class="form-control" placeholder="Description" style="width:100%; height: 150px;" required></textarea>
                     <br />
+                    <label for="action_tags">Is this action in-person or remote?</label>
+                    <br/>
+                    <div id="respond_react" ng-model="action.respond_react" class="btn-group" role="group">
+                      <button type="button" class="btn btn-default">In Person</button>
+                      <button type="button" class="btn btn-default">Remote</button>
+                    </div>
+                    <br /><br />
+                    <div class="checkbox">
+                      <label><input type="checkbox" value="" ng-model="action.date_time_display">Does this action have and start and/or end date/time?</label>
+                    </div>
+                    <div ng-if="action.date_time_display == true">
+                        <div style="display: inline-block; margin-right: 20px;">
+                            <label for="start_date_time">Start Date</label>
+                            <uib-datepicker id="start_date_time" ng-model="action.start_date" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
+                            <uib-timepicker id="end_date_time" ng-model="action.start_time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                        </div>
+                        <div ng-if="action.end_date_time_display == true" style="display: inline-block;">
+                            <label for="end_date_time">End Date</label>
+                            <uib-datepicker ng-model="action.end_date" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
+                            <uib-timepicker ng-model="action.end_time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                        </div>
+                        <a href="" ng-if="action.end_date_time_display == false" ng-click="showEnd()">+End</a>
+                        <br /><br />
+                    </div>
                     <label for="action_tags">Tags</label>
-                    <tags-input id="action_tags" ng-model="action.tags" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
+                    <tags-input id="action_tags" ng-model="action.tags_list" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
                     <br />
                     <label for="scope">Scope</label>
                     <select id="scope" class="form-control" ng-model="action.scope" required>
@@ -24,7 +48,6 @@
                         <option value="national">National</option>
                         <option value="worldwide">Worldwide</option>
                     </select>
-
                     <br />
                     <label for="address">Address</label>
                     <input places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">

@@ -29,7 +29,7 @@
 	    <a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
 	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
 	    <aside><a href="http://maps.google.com/?q={{action.address_raw}}" target="_blank">{{action.address_raw}}</aside>
-	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on}}</aside>
+	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on | date : fullDate}}</aside>
 	    <div ng-repeat="tag in action.tags" class="tag"><a href="/actions/tag/{{tag}}">{{tag}}</a></div>
 	  </div>
 	</div>
