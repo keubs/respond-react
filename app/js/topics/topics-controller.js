@@ -1,5 +1,5 @@
 'use strict';
-
+var helpers = require('../helpers/helpers.js');  
 module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
@@ -103,4 +103,7 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
     }
   };
 
+  $scope.formatDateTime = function(dateTime){
+    return helpers.formatDateTime(dateTime);
+  }
 };
