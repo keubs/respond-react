@@ -18,8 +18,8 @@
                     <label for="action_tags">Is this action in-person or remote?</label>
                     <br/>
                     <div id="respond_react" ng-model="action.respond_react" class="btn-group" role="group">
-                      <button type="button" class="btn btn-default">In Person</button>
-                      <button type="button" class="btn btn-default">Remote</button>
+                      <button ng-model="action.respond_react" value="respond" type="button" class="btn btn-default">In Person</button>
+                      <button ng-model="action.respond_react" value="react" type="button" class="btn btn-default">Remote</button>
                     </div>
                     <br /><br />
                     <div class="checkbox">
@@ -28,13 +28,13 @@
                     <div ng-if="action.date_time_display == true">
                         <div style="display: inline-block; margin-right: 20px;">
                             <label for="start_date_time">Start Date</label>
-                            <uib-datepicker id="start_date_time" ng-model="action.start_date" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
-                            <uib-timepicker id="end_date_time" ng-model="action.start_time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                            <uib-datepicker id="start_date_time" ng-model="action.start_date_time_value" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
+                            <uib-timepicker id="start_date_time" ng-model="action.start_date_time_value" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
                         </div>
                         <div ng-if="action.end_date_time_display == true" style="display: inline-block;">
                             <label for="end_date_time">End Date</label>
-                            <uib-datepicker ng-model="action.end_date" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
-                            <uib-timepicker ng-model="action.end_time" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+                            <uib-datepicker ng-model="action.end_date_time_value" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
+                            <uib-timepicker ng-model="action.end_date_time_value" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
                         </div>
                         <a href="" ng-if="action.end_date_time_display == false" ng-click="showEnd()">+End</a>
                         <br /><br />

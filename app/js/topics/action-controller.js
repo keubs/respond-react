@@ -4,7 +4,7 @@
  **/
 
 const helpers = require('../helpers/helpers.js');
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, $window) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService) {
     $scope.action = {};
     $scope.alerts = [];
 
@@ -59,18 +59,20 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         }
         $scope.action.topic = $stateParams.topic;
         getAddressComponents($scope.action.locations);
-        console.log($scope.action);
+        if($scope.action.date_time_display) var startDate = new Date($scope.action.start_date_time_value);
+        if($scope.action.end_date_time_display) var endDate = new Date($scope.action.end_date_time_value);
 
-        ActionService.new($scope.action)
-         .then(function(data){
-          $scope.alerts = [];
-          $window.scrollTo(0, 0);
-          $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
-          $scope.formloading = false;
-			   }, function(error) {
-            $window.scrollTo(0, 0);
+        if($scope.action.date_time_display) $scope.action.start_date_time = startDate.toISOString();
+        if($scope.action.end_date_time_display) $scope.action.end_date_time = endDate.toISOString();
+
+		    ActionService.new($scope.action)
+		      .then(function(data){
+            $scope.alerts = [];
+            $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
+            $scope.formloading = false;
+	        }, function(error) {
             $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Please try again or Contact us'});
-      });
+          });
 	   };
 
 	$scope.linkEntered = function() {
