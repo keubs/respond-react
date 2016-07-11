@@ -1,6 +1,6 @@
 'use strict';
 var helpers = require('../helpers/helpers.js');  
-module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
+module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams, $log) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.isLoggedIn = AuthService.isLoggedIn();
@@ -8,7 +8,39 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
 
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.tag = $stateParams.tag || null;
-  TopicService.get($scope.tag).then(function(data) {
+
+  /* Pagination Stuff */
+  $scope.currentPage = 1;
+  $scope.totalItems = 2;
+  $scope.maxSize = 10;
+  $scope.bigTotalItems = 175;
+  $scope.bigCurrentPage = 1;
+
+  TopicService.count().then(function(data){
+    $scope.totalItems = data.count;
+  }, function(err){
+      console.log(err);
+  });
+
+  $scope.setPage = function (pageNo) {
+    console.log(pageNo);
+    $scope.currentPage = pageNo;
+  };
+
+  $scope.pageChanged = function() {
+    TopicService.get(null, $scope.currentPage).then(function(data) {
+      $scope.topics = data;
+    }, function(err) {
+      if(err.status === 500 || err.status === -1) {
+        $location.path('/500');
+      } else if(err.status === 401) {
+        AuthService.logout();
+      }
+    });
+  };
+  /* End Pagination */
+
+  TopicService.get($scope.tag, $scope.currentPage).then(function(data) {
     $scope.topics = data;
   }, function(err) {
     console.log(err);

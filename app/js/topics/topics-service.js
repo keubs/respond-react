@@ -6,12 +6,14 @@
 function TopicService($q, $http, AppSettings, AddressService) {
   var service = {};
 
-  service.get = function(tag) {
+  service.get = function(tag, page) {
 
     var deferred = $q.defer();
     var url = '';
     if(tag) {
       url = AppSettings.apiUrl + '/topics/tag/' + tag + '/';
+    } else if(page) {
+      url = AppSettings.apiUrl + '/topics/?order_by=score&page=' + page;
     } else {
       url = AppSettings.apiUrl + '/topics/?order_by=score';
     }
@@ -26,6 +28,22 @@ function TopicService($q, $http, AppSettings, AddressService) {
 
     return deferred.promise;
   };
+
+  service.count = function() {
+
+    var deferred = $q.defer();
+
+    $http.get(AppSettings.apiUrl + '/topics/count')
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err, status) {
+        console.log(err, status);
+        deferred.reject({err, status});
+      });
+
+      return deferred.promise;
+  },
 
   service.topic = function(id) {
     var deferred = $q.defer();
