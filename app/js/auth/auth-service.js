@@ -43,9 +43,11 @@ module.exports = function($q, $http, $window, AppSettings) {
   };
 
   service.logout = function() {
+    delete window.localStorage.satellizer_jwt_token;
     delete $window.sessionStorage.token;
     delete $window.sessionStorage.user;
-    delete $window.sessionStorage.id
+    delete $window.sessionStorage.id;
+    delete $window.sessionStorage.thumb;
     delete $http.defaults.headers.common.Authorization;
   };
 
