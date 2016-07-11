@@ -22,7 +22,7 @@
             <a href="#" ng-click="logout()">Logout</a>
           </li>
           <li style="padding: 10px 10px 0 0">
-            <a href="#" ng-click="getUser()" style="padding:0"><img ng-if="thumb != null" src="{{thumb}}" style="height: 32px; border: solid 1px 666; border-radius: 3px;" /></a>
+            <a href="user/{{userid}}" ng-click="getUser()" style="padding:0"><img ng-if="thumb != null" src="{{thumb}}" style="height: 32px; border: solid 1px 666; border-radius: 3px;" /></a>
           </li>
         </ul>
         <form ng-hide="isLoggedIn()" ng-submit="login()" ng-hide="isRegister()" class="navbar-form navbar-right">

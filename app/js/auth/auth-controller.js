@@ -6,6 +6,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   $scope._isRegister = false;
   $scope.errors = {};
   $scope.alerts = [];
+  $scope.userid = $window.sessionStorage.id;
   set_user();
   $scope.register = function() {
     AuthService.register($scope.user);

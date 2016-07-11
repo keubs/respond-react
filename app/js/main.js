@@ -7,6 +7,7 @@ require('angular-ui-router');
 require('./templates');
 require('./topics/_index');
 require('./viewControllers/_index');
+require('./users/_index');
 require('./auth/_index');
 require('ng-resource');
 require('ng-tags-input');
