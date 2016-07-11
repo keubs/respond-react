@@ -1,19 +1,19 @@
 'use strict';
 
-module.exports = function($scope, $location, $stateParams, TopicService,
+module.exports = function($scope, $rootScope, $location, $stateParams, TopicService,
                           ActionService, AuthService, AppSettings, $uibModal) {
 
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.googleApiKey = AppSettings.googleApiKey;
   $scope.isLoggedIn = AuthService.isLoggedIn();
-
   TopicService.topic($stateParams.topic)
     .then(function(data) {
       for (var attr in data) {
         $scope.topic[attr] = data[attr];
       }
 
+      $rootScope.pageTitle = $scope.topic.title;
       TopicService.topic_actions($stateParams.topic)
         .then(function(data){
           $scope.topic.actions = data;
