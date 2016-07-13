@@ -23,6 +23,7 @@ angular.element(document).ready(function() {
     'templates',
     'topics',
     'auth',
+    'user',
     'viewControllers',
     'ngTagsInput',
     'satellizer',
