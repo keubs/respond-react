@@ -5,35 +5,50 @@
 			<ul class="tags">
 				<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag}}">{{tag}}</a></li>
 			</ul>
-			<img style="max-height:600px; max-width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" />
-			<span ng-if="topic.address.latitude !== ''">
-				<img src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom=7&key={{googleApiKey}}&size=600x450" />
-			</span>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-lg-6">
+			<img style="width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" />
+		</div>
+		<div class="col-md-6 col-lg-6">
+			<span ng-if="topic.address.latitude !== ''">
+				<img src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x350" />
+			</span>
+		</div>		
 	</div>
 </div>
 <div class="container-fluid">
-	<h1 style="display: inline-block; margin-right: 50px;">Actions</h1> <button type="button" class="btn btn-primary btn-lg" ng-click="submitAction()">Submit your own!</button><br/><br/>
-	<div ng-repeat="action in topic.actions track by $index" class="row" style="margin-top: 1em">
-	  <div class="col-md-2 col-sm-2" style="text-align: center;">
-	    <span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action">
-	    </span>
-	    <h3 class="score">{{action.score}}</h3>
-	    <span ng-click="downVoteAction($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote action">
-	    </span>
-	  </div>
-	  <div class="col-md-2 col-sm-2">
-	    <a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="min-height: 100px; width: 100%" /></a>
-	  </div>
-	  <div class="col-md-6 col-sm-6">
-	    <a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
-	    <aside class="error" ng-show="topic.error">{{action.error}}</aside>
-	    <aside><span ng-if="action.start_date_time != null">Starts: {{action.start_date_time | date:fullDate}} at</span> <a href="http://maps.google.com/?q={{action.address_raw}}" target="_blank">{{action.address_raw}}</a></aside>
-	    <aside>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on | date : fullDate}}</aside>
-	    <div ng-repeat="tag in action.tags" class="tag"><a href="/actions/tag/{{tag}}">{{tag}}</a></div>
-	  </div>
-	</div>
-	<div ng-if="topic.actions.length == 0">
-		<p>Actions are how you can get involved. <a href="#" ng-click="submitAction()">Submit one now</a> and help others find ways to do their part to help!</p>
+	<div class="row" style="margin: 2em 0;">
+		<div class="col-md-10">
+			<div ng-if="topic.actions.length == 0">
+				<p>Actions are how you can get involved. <a href="#" ng-click="submitAction()">Submit one now</a> and help others find ways to do their part to help!</p>
+			</div>
+			<div class="row">
+				<div class="col-md-12"><h1 style="display: inline-block; margin-right: 50px;">Actions</h1> </div>
+			</div>
+			<div ng-repeat="action in topic.actions track by $index" class="row" style="margin-top: 1em">
+				
+			  	<div class="col-md-2 col-sm-2" style="text-align: center;">
+			    	<span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote action"></span>
+			    	<h3 class="score">{{action.score}}</h3>
+			    	<span ng-click="downVoteAction($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote action"></span>
+			  	</div>
+			  	<div class="col-md-2 col-sm-2">
+			    	<a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="min-height: 100px; width: 100%" /></a>
+			  	</div>
+			  	<div class="col-md-6 col-sm-6">
+			    	<a href="{{action.article_link}}" target="_blank">{{action.title}}</a>
+			    	<aside class="error" ng-show="topic.error">{{action.error}}</aside>
+			    	<aside><span ng-if="action.start_date_time != null">Starts: {{action.start_date_time | date:fullDate}} at</span> <a href="http://maps.google.com/?q={{action.address_raw}}" target="_blank">{{action.address_raw}}</a></aside>
+			    	<p>Submitted by <a href="#/user/{{action.created_by}}">{{action.username}}</a> on {{action.created_on | date : fullDate}}</p>
+			    	<div ng-repeat="tag in action.tags" class="tag"><a href="/actions/tag/{{tag}}">{{tag}}</a></div>
+			  	</div>
+			</div>		
+		</div>
+		<div class="col-md-2">
+			<br />
+			<button type="button" class="btn btn-primary btn-lg" ng-click="submitAction()">Submit your own!</button>
+		</div>
 	</div>
 </div>

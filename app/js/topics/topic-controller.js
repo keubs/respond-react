@@ -1,5 +1,5 @@
 'use strict';
-
+const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $rootScope, $location, $stateParams, TopicService,
                           ActionService, AuthService, AppSettings, $uibModal) {
 
@@ -13,6 +13,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
         $scope.topic[attr] = data[attr];
       }
 
+      $scope.mapZoom = helpers.setZoom($scope.topic.scope);
       $rootScope.pageTitle = $scope.topic.title;
       TopicService.topic_actions($stateParams.topic)
         .then(function(data){

@@ -22,11 +22,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
         vm.place = this.getPlace();
         $scope.topic.locations = vm.place;
         vm.map.setCenter(vm.place.geometry.location);
-        if($scope.action.scope == 'local')
-          vm.map.setZoom(15);
-        else if($scope.action.scope == 'national')
-          vm.map.setZoom(10);
-        else vm.map.setZoom(5);
+        vm.map.setZoom(helpers.setZoom($scope.topic.scope));
         $scope.pos.lat = vm.place.geometry.location.lat();
         $scope.pos.lng = vm.place.geometry.location.lng();
         $scope.topic.address.lat = vm.place.geometry.location.lat();
