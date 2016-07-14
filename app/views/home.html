@@ -43,7 +43,7 @@
     <div class="col-lg-6 col-md-6 col-sm-6">
       <a href="topic/{{topic.id}}">{{topic.title}}</a>
       <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-      <aside>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</aside>
+      <p>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</p>
       <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag}}">{{tag}}</a></div></aside>
       <br />
       <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
