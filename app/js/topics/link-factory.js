@@ -25,7 +25,7 @@
                       if(response.cover) returnData.image_url = response.cover.source || "";
                       returnData.image_preview.visible = true;
                       if(response.cover) returnData.image_preview.src = response.cover.source || "";
-                      returnData.tags = [
+                      returnData.tags_list = [
                         {'text' : 'Facebook Event'}
                       ];
                       deferred.resolve(returnData);
@@ -50,7 +50,7 @@
                         if(data.multimedia[1]) returnData.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
                         returnData.title = data.headline.main;
                         returnData.description = data.snippet;
-                        returnData.tags = [
+                        returnData.tags_list = [
                           {'text' : 'New York Times'}
                         ];
                         deferred.resolve(returnData);
@@ -67,13 +67,13 @@
                   .success(function(data) {
                     var returnData = {};
                     if($scope.article_link.search(/change.org/i) > -1) {
-                        returnData.tags = [
+                        returnData.tags_list = [
                           {'text' : 'Petition'},
                           {'text' : 'Change.org'}
                         ];
                     }
                     else if($scope.article_link.search(/moveon.org/i) > -1) {
-                      returnData.tags = [
+                      returnData.tags_list = [
                         {'text' : 'Petition'},
                         {'text' : 'MoveOn.org'}
                       ];
