@@ -6,7 +6,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.googleApiKey = AppSettings.googleApiKey;
-  $scope.isLoggedIn = AuthService.isLoggedIn();
+  $scope.isLoggedIn = AuthService.newIsLoggedIn();
   TopicService.topic($stateParams.topic)
     .then(function(data) {
       for (var attr in data) {
@@ -108,11 +108,12 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     =            Action Submit Modal            =
     ===========================================*/
     $scope.submitAction = function(){
+      var size = $rootScope.user ? 'lg' : 'sm';
       var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: 'submit-action.html',
         controller: 'ActionCtrl',
-        size: 'lg',
+        size: size,
       });
     };
     /*=====  End of Action Submit Modal  ======*/
