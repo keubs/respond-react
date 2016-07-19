@@ -4,7 +4,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
-  console.log($scope.isLoggedIn);
   $scope.topics = [];
 
   $scope.backendUrl = AppSettings.backendUrl;
