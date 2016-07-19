@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-module.exports = function($q, $http, $window, AppSettings) {
+module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies) {
 
   var service = {};
 
@@ -17,16 +17,12 @@ module.exports = function($q, $http, $window, AppSettings) {
         deferred.reject(error);
       });
   };
+
   service.login = function(user) {
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/token-auth/', user)
       .success(function(data) {
-        // TODO: do this the right way?
-        $window.sessionStorage.token = data.token;
-        $window.sessionStorage.user = user.username;
-        $window.sessionStorage.id = data.user.id;
-        $http.defaults.headers.common.Authorization = 'JWT ' + data.token;
-        deferred.resolve();
+        deferred.resolve(data);
       })
       .error(function(error) {
         deferred.reject(error);
@@ -37,17 +33,27 @@ module.exports = function($q, $http, $window, AppSettings) {
 
   service.socialLogin = function(user) {
     $window.sessionStorage.token = user.token;
-    $window.sessionStorage.user = user.username;
-    $window.sessionStorage.id = user.id;
+    // $window.sessionStorage.user = user.username;
+    // $window.sessionStorage.id = user.id;
     $http.defaults.headers.common.Authorization = 'JWT ' + user.token;
   };
 
   service.logout = function() {
-    delete window.localStorage.satellizer_jwt_token;
+    delete $rootScope.user;
+    // Social Auth
+    delete $window.localStorage.satellizer_jwt_token;
+
+
     delete $window.sessionStorage.token;
     delete $window.sessionStorage.user;
-    delete $window.sessionStorage.id;
-    delete $window.sessionStorage.thumb;
+
+    delete $window.localStorage.token;
+    delete $window.localStorage.user;
+
+    $cookies.remove('rr_token');
+    $cookies.remove('rr_user');
+    // delete $window.sessionStorage.id;
+    // delete $window.sessionStorage.thumb;
     delete $http.defaults.headers.common.Authorization;
   };
 
@@ -60,5 +66,84 @@ module.exports = function($q, $http, $window, AppSettings) {
     }
   };
 
+
+  service.newIsLoggedIn = function() {
+    if($window.sessionStorage.token) {
+      if ($window.sessionStorage.user) {
+        $rootScope.user = JSON.parse($window.sessionStorage.user);
+        return true;
+      } else {
+        service.getUserFromToken($window.sessionStorage.token)
+          .then(function(data){
+            service.setLoginData($window.sessionStorage.token, data);
+            service.newIsLoggedIn();
+          }, function(error){
+            console.log(error);
+            return false;
+          });
+      }
+    } else if ($window.localStorage.token) {
+      if ($window.localStorage.user) {
+        $window.sessionStorage.token = $window.localStorage.token;
+        $window.sessionstorage.user = $window.localStorage.user;
+        $rootScope.user = JSON.parse($window.localStorage.user);
+        return true;
+      } else {
+        service.getUserFromToken($window.localStorage.token)
+          .then(function(data){
+            service.setLoginData($window.localStorage.token, data);
+            service.newIsLoggedIn();
+          }, function(error){
+            console.log(error);
+            return false;
+          });
+      }
+    } else if ($cookies.get('rr_token')) {
+      if($cookies.get('rr_user')) {
+        $window.sessionStorage.token = $cookies.get('rr_token');
+        $window.sessionstorage.user = $cookies.get('rr_user');
+        $rootScope.user = JSON.parse($cookies.get('rr_user'));
+        return true;
+      } else {
+        service.getUserFromToken($cookies.get('rr_token'))
+          .then(function(data){
+            service.setLoginData($cookies.get('rr_token'), data);
+            service.newIsLoggedIn();
+          }, function(error){
+            console.log(error);
+            return false;
+          });
+      }
+    } else {
+      return false;
+    }
+  };
+
+  service.getUserFromToken = function(token) {
+    $http.defaults.headers.common.Authorization = 'JWT ' + token;
+
+    var deferred = $q.defer();
+    $http.post(AppSettings.apiUrl + '/misc/token-auth/')
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err){
+        deferred.reject({err});
+      });
+
+      return deferred.promise;
+  };
+
+  service.setLoginData = function(token, data) {
+    $window.sessionStorage.token = token;
+    $window.localStorage.token = token;
+    $cookies.put('rr_token', token);
+
+    $window.sessionStorage.user = (typeof data === 'object') ? JSON.stringify(data) : data;
+    $window.localStorage.user = (typeof data === 'object') ? JSON.stringify(data) : data;
+    $cookies.put('rr_user', (typeof data === 'object') ? JSON.stringify(data) : data);
+
+    $http.defaults.headers.common.Authorization = 'JWT ' + data.token;
+  }
   return service;
 };

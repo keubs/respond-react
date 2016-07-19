@@ -4,10 +4,9 @@
  **/
 
 const helpers = require('../helpers/helpers.js');
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, $rootScope) {
     $scope.action = {};
     $scope.alerts = [];
-
 
     $scope.action.date_time_display = false;
     $scope.action.end_date_time_display = false;
@@ -21,6 +20,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       mstep: [1, 5, 10, 15, 25, 30]
     };
 
+    $scope.isLoggedIn = AuthService.newIsLoggedIn();
+    
     $scope.update = function() {
         var d = new Date();
         d.setHours( 14 );

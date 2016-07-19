@@ -5,6 +5,10 @@ body {
   // padding: $half-space;
 }
 
+#content {
+  max-width: 1100px;
+  margin: 0 auto;
+}
 .header {
   margin: 20px;
 }
@@ -40,16 +44,6 @@ body {
         color: #920832;
     }
 }
-
-
-.btn-submit-topic {
-  display: none;
-
-  &.visible {
-    display: block;
-  }
-}
-
 
 .submit-wrapper {
   .form-submit-action,
@@ -90,6 +84,17 @@ h3.score {
     margin: .1em 0;
 }
 
+.gmap {
+  width: 100%;
+}
+
+.topic-score {
+  display: inline-block;
+  border: 1px solid #CCC;
+  /* background: #FFF; */
+  padding: 10px 20px;
+  border-radius: 2px;
+}
 
 div.tag {
   padding: 3px 8px;
@@ -103,8 +108,14 @@ div.tag {
   }
 }
 
-.modal-lg {
-  width: 1200px;
+.modal-dialog {
+  &.modal-lg {
+    width: 1200px;
+  }
+
+  &.modal-sm {
+    width: 450px;
+  }
 }
 
 .banner-wrapper {
@@ -124,6 +135,7 @@ div.tag {
   img {
     width: 95%;
     margin: 0 auto;
+    min-height: 214px;
   }
 }
 

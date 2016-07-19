@@ -11,10 +11,10 @@
         <a class="navbar-brand" href="/">squ.ad</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-hide="isLoggedIn()">
-        <ul ng-show="isLoggedIn()" class="nav navbar-nav navbar-right">
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-hide="">
+        <ul ng-if="isLoggedIn == true" class="nav navbar-nav navbar-right">
           <li>
-            <a href="user/{{userid}}" style="">
+            <a href="user/{{user.userid}}" style="">
               {{ user.username }}
             </a>
           </li>
@@ -22,14 +22,14 @@
             <a href="#" ng-click="logout()">Logout</a>
           </li>
           <li style="padding: 10px 10px 0 0">
-            <a href="user/{{userid}}" style="padding:0"><img ng-if="thumb != null" src="{{thumb}}" style="height: 32px; border: solid 1px 666; border-radius: 3px;" /></a>
+            <a href="user/{{user.userid}}" style="padding:0"><img ng-if="thumb != null" src="{{user.thumb}}" style="height: 32px; border: solid 1px 666; border-radius: 3px;" /></a>
           </li>
         </ul>
-        <form ng-hide="isLoggedIn()" ng-submit="login()" ng-hide="isRegister()" class="navbar-form navbar-right">
+        <form ng-submit="login()" ng-if="isLoggedIn != true" class="navbar-form navbar-right">
           <div class="form-group">
             <p ng-show="errors.general">{{ errors.general }}</p>
-            <input class="form-control"  id="username" type="text" ng-model="user.username" aria-describedby="usernameError" placeholder="Username">
-            <input class="form-control" id="password" type="password" ng-model="user.password" aria-describedby="passwordError" placeholder="Password">
+            <input class="form-control"  id="username" type="text" ng-model="credentials.username" aria-describedby="usernameError" placeholder="Username">
+            <input class="form-control" id="password" type="password" ng-model="credentials.password" aria-describedby="passwordError" placeholder="Password">
             <input class="form-control" type="submit" value="Log in" />
             <button  class="form-control" ng-click="authenticate('facebook')">Sign in with Facebook</button>
           </div>

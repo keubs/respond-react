@@ -15,6 +15,7 @@ require('satellizer');
 require('angularjs-facebook');
 require('angular-ui-bootstrap');
 require('ngMap');
+require('angular-cookies');
 // create and bootstrap application
 angular.element(document).ready(function() {
 
@@ -30,6 +31,7 @@ angular.element(document).ready(function() {
     'facebook',
     'ui.bootstrap',
     'ngMap',
+    'ngCookies',
   ];
 
   // mount on window for testing

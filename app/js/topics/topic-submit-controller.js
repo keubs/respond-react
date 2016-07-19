@@ -5,13 +5,13 @@
 
 const helpers = require('../helpers/helpers.js');
 
-module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap) {
+module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
 
   $scope.topic.locations = [];
-  $scope.topic.created_by = $window.sessionStorage.id;
+  $scope.topic.created_by = $rootScope.user.id;
   $scope.pos = {};
   var markers = [];
   var vm = this;

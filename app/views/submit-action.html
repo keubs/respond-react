@@ -1,7 +1,7 @@
 <div ng-controller="AuthCtrl">
     <div ng-controller="ActionCtrl as vm" class="container-fluid" style="margin:2em 0">
         <div class="row">
-            <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn()">
+            <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn == true">
                 <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
                 <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action">
                     <h1>Submit an action for this topic</h1>
@@ -65,7 +65,7 @@
                 <div class="loader" ng-class="{loading: formLoading}"></div>
             </div>
         </div>
-        <div ng-hide="isLoggedIn()">
+        <div ng-if="isLoggedIn == false">
           <form ng-submit="login()" ng-hide="isRegister()">
             <h2>Please Log In before submitting an action</h2>
             <p ng-show="errors.general">{{ errors.general }}</p>

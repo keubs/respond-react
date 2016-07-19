@@ -2,32 +2,38 @@
 
 const helpers = require('../helpers/helpers.js');
 
-module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
+module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings, $rootScope, $cookies) {
   $scope._isRegister = false;
   $scope.errors = {};
+  $scope.credentials = {};
   $scope.alerts = [];
   $scope.userid = $window.sessionStorage.id;
-  set_user();
+  $scope.isLoggedIn = AuthService.newIsLoggedIn();
+  console.log($scope.user);
   $scope.register = function() {
     AuthService.register($scope.user);
   };
 
-  $scope.thumb = $window.sessionStorage.thumb;
   $scope.login = function() {
-    AuthService.login($scope.user)
-      .then(function() {
+    AuthService.login($scope.credentials)
+      .then(function(data) {
+        console.log(data);
+        var token = data.token;
+        AuthService.setLoginData(token, data.user);
+
+        $scope.user = data.user;
+        $scope.isLoggedIn = true;
       }, function(error) {
         $scope.errors = {};
-
         $scope.errors.general = helpers.errorStringify(error.non_field_errors);
         $scope.errors.username = helpers.errorStringify(error.username);
         $scope.errors.password = helpers.errorStringify(error.password);
-
       });
   };
 
   $scope.logout = function() {
     AuthService.logout();
+    $scope.isLoggedIn = false;
      var req = {
          method: "POST",
          url: '/api/logout/session/',
@@ -35,20 +41,10 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
      };
      $http(req).then(function(response){
          console.log("Got user from session cookies");
-         set_user();
+         AuthService.logout();
      });
   };
 
-  $scope.isLoggedIn = function() {
-    let user = AuthService.isLoggedIn();
-    if (user) {
-      $scope.user = $scope.user || {};
-      $scope.user.username = user;
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   $scope.isRegister = function() {
     return $scope._isRegister;
@@ -66,34 +62,24 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   };
 
   $scope.authenticate = function(provider) {
-      $auth.authenticate(provider).then(function(response){
-          $auth.setToken(response.data.token);
-          set_user(response);
-          // self.jwtPayload = $auth.getPayload();
+      $auth.authenticate(provider).then(function(data){
+          var userObject = {
+            'first_name'  : data.data.first_name,
+            'last_name'   : data.data.last_name,
+            'email'       : data.data.email,
+            'social_thumb': data.data.social_thumb,
+            'username'    : data.data.username,
+            'id'          : data.data.id
+          };
+
+          AuthService.setLoginData(data.data.token, userObject);
+          $scope.user = userObject;
+          $scope.isLoggedIn = true;
       }).catch(function(data) {
           var err_msg = "Something went wrong, maybe you haven't installed 'djangorestframework-jwt'?";
           console.log(data);
           console.log(err_msg);
           alert(err_msg);
       });
-  };
-
-  function set_user(response){
-      var source;
-      if (response){
-          AuthService.socialLogin(response.data);
-          $scope.thumb = response.data.social_thumb;
-          $window.sessionStorage.thumb = $scope.thumb;
-          $scope.alerts.push({ type : 'success', msg: 'You are now logged in. Start submitting topics and actions today!'});
-      } else {
-          source = {
-              'username': null,
-              'first_name': null,
-              'last_name': null,
-              'email': null,
-              'social_thumb': '{% static "anonymous.png" %}'
-          };
-      }
-
   };
 };

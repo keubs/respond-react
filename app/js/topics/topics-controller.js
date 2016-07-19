@@ -3,7 +3,8 @@ var helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams, $log) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
-  $scope.isLoggedIn = AuthService.isLoggedIn();
+  $scope.isLoggedIn = AuthService.newIsLoggedIn();
+  console.log($scope.isLoggedIn);
   $scope.topics = [];
 
   $scope.backendUrl = AppSettings.backendUrl;
@@ -23,7 +24,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   });
 
   $scope.setPage = function (pageNo) {
-    console.log(pageNo);
     $scope.currentPage = pageNo;
   };
 
