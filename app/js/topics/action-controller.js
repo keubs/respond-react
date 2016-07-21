@@ -7,7 +7,10 @@ const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, $rootScope) {
     $scope.action = {};
     $scope.alerts = [];
+    $scope.isLoggedIn = AuthService.newIsLoggedIn();
 
+    /*----------  start/end date/time section  ----------*/
+    
     $scope.action.date_time_display = false;
     $scope.action.end_date_time_display = false;
     $scope.mytime = new Date();
@@ -20,7 +23,6 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       mstep: [1, 5, 10, 15, 25, 30]
     };
 
-    $scope.isLoggedIn = AuthService.newIsLoggedIn();
     
     $scope.update = function() {
         var d = new Date();
@@ -29,10 +31,13 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         $scope.mytime = d;
       };
 
+    /*----------  end start/end date/time section  ----------*/
+
+    /*----------  start Map  ----------*/
+    
     $scope.action.locations = [];
     $scope.render = true;
     $scope.pos = {};
-    var markers = [];
     var vm = this;
     if(!vm.map) {
       NgMap.getMap('map').then(function(map) {
@@ -53,6 +58,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
     }
 
+    /*----------  end map  ----------*/
+    
     $scope.submit = function() {
         if($scope.action.tags !== '') {
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
