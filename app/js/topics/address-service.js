@@ -19,12 +19,27 @@ function addressService($q, $http, AppSettings) {
             deferred.resolve(data);
         })
         .error(function (err, status) {
-            console.log(err, status);
+            // console.log(err, status);
             deferred.reject({err, status});
         });
 
         return deferred.promise;
    };
+
+   service.get = function(address){
+        var deferred = $q.defer();
+        var url = AppSettings.apiUrl + '/addresses/' + address;
+
+        $http.get(url)
+        .success(function(data){
+            deferred.resolve(data);
+        })
+        .error(function (err, status) {
+            deferred.reject({err, status})
+        });
+
+        return deferred.promise;
+   }
 
    return service;
 };

@@ -46,7 +46,7 @@ var proto = {
 
     setZoom : function(scope) {
       if(scope == 'local')
-        return 15;
+        return 11;
       else if(scope == 'national')
         return 10;
       else return 5;

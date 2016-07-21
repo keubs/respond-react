@@ -1,7 +1,8 @@
-<div ng-controller="UserCtrl">
-	<div style="width: 95%; border-radius: 5px; height: 200px; background-color: #DDD; margin: 0 auto;">
-		<div style="padding: 50px 50px;">
-			<img src="{{user.social_thumb}}" style="border-radius: 50px; display: inline-block;" /><h2 style="margin: 0; display: inline-block; margin-left: 20px;">{{user.username}}</h2>
+<div ng-controller="UserCtrl" id="user-controller" ng-init="init()">
+	<div class="user_banner">
+		<div class="user_banner_inner">
+			<img src="{{user.social_thumb}}" class="user_thumb" />
+			<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="#" ng-click="editUser()">[edit]</a>
 		</div>
 	</div>
 </div>

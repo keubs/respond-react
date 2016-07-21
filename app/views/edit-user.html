@@ -1,0 +1,33 @@
+<div ng-controller="EditUserCtrl as vm" style="margin:2em 1em" ng-init="init()">
+	<div class="row">
+    	<div class="col-md-12 col-sm-12 submit-wrapper">
+			<form ng-submit="submit()">
+				<h1>Edit User: {{currentUser.username}}</h1>
+				<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+				<img src="{{currentUser.social_thumb}}" style="display: inline-block; margin: 0 auto;" />
+				<br /><br />
+				<label for="username">Username:</label>
+				<input id="username" type="text" ng-model="currentUser.username" class="form-control" placeholder="{{currentUser.username}}" required>
+				<aside class="error" ng-show="article_link_error">{{article_link_error}}</aside>
+				<br />
+				<label for="email">Email:</label>
+				<input id="email" type="text" ng-model="currentUser.email" class="form-control" placeholder="Email Address" required>
+				<br />
+				<label for="first_name">First Name:</label>
+				<input id="first_name" type="text" ng-model="currentUser.first_name" class="form-control" placeholder="First Name" required>
+				<br />
+				<label for="last_name">Last Name:</label>
+				<input id="last_name" type="text" ng-model="currentUser.last_name" class="form-control" placeholder="Last Name" required>
+				<br />
+				<label for="address">Address</label>
+				<input places-auto-complete id="address" type="text" class="form-control"  ng-model="currentUser.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+				<br/>
+				<ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id=""  ng-if="$parent.render">
+				    <marker position="{{pos.lat}},{{pos.lng}}"></marker>
+				</ng-map>
+				<br />
+				<input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+			</form>
+		</div>
+	</div>
+</div>

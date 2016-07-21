@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngInject
  */
@@ -85,7 +84,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     } else if ($window.localStorage.token) {
       if ($window.localStorage.user) {
         $window.sessionStorage.token = $window.localStorage.token;
-        $window.sessionstorage.user = $window.localStorage.user;
+        $window.sessionStorage.user = $window.localStorage.user;
         $rootScope.user = JSON.parse($window.localStorage.user);
         return true;
       } else {
@@ -101,7 +100,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     } else if ($cookies.get('rr_token')) {
       if($cookies.get('rr_user')) {
         $window.sessionStorage.token = $cookies.get('rr_token');
-        $window.sessionstorage.user = $cookies.get('rr_user');
+        $window.sessionStorage.user = $cookies.get('rr_user');
         $rootScope.user = JSON.parse($cookies.get('rr_user'));
         return true;
       } else {

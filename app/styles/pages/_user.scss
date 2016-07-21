@@ -1,0 +1,23 @@
+#user-controller {
+	.user_banner {
+		width: 95%; 
+		border-radius: 5px; 
+		height: 200px; 
+		background-color: #DDD; 
+		margin: 0 auto;
+
+		h2 {
+			margin: 0; display: inline-block; margin-left: 20px;
+		}
+	}
+
+	.user_banner_inner {
+		padding: 50px 50px;
+	}
+
+	.user_thumb {
+		border-radius: 50px; 
+		display: inline-block;
+	}
+	
+}

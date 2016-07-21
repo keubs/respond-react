@@ -1,13 +1,32 @@
 'use strict';
+/**
+ * @ngInject
+ **/
+module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, AddressService) {
+	$scope.currentUser = {};
 
-module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $rootScope) {
-	$scope.user = UserService.get($stateParams.userid)
-		.then(function(data){
-			$scope.user = data;
-		}, function(error){
-			console.log(error);
-		});
+	$scope.editUser = function(){
+	/*===========================================
+	=            Edit User Modal            =
+	===========================================*/
+	  var modalInstance = $uibModal.open({
+	    animation: true,
+	    templateUrl: 'edit-user.html',
+	    controller: 'EditUserCtrl',
+	    size: 'sm',
+	  });
+	/*=====  End of Edit User Modal  ======*/
+	};
 
-	console.log($rootScope.user);
-	$scope.isCurrentUser = false;
+	$scope.init = function() {
+		UserService.get($stateParams.userid)
+			.then(function(data){
+				$scope.user = data;
+				$scope.currentUser = $rootScope.user;
+				console.log($scope.user);
+				$scope.isCurrentUser = ($scope.currentUser.id === $scope.user.id) ? true : false;
+			}, function(error){
+				console.log(error);
+			});	
+	};
 };

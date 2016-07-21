@@ -1,5 +1,7 @@
 'use strict';
-
+/**
+ * @ngInject
+ **/
 const helpers = require('../helpers/helpers.js');
 
 module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings, $rootScope, $cookies) {
@@ -9,7 +11,6 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   $scope.alerts = [];
   $scope.userid = $window.sessionStorage.id;
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
-  console.log($scope.user);
   $scope.register = function() {
     AuthService.register($scope.user);
   };
@@ -63,13 +64,15 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
 
   $scope.authenticate = function(provider) {
       $auth.authenticate(provider).then(function(data){
+        console.log(data);
           var userObject = {
             'first_name'  : data.data.first_name,
             'last_name'   : data.data.last_name,
             'email'       : data.data.email,
             'social_thumb': data.data.social_thumb,
             'username'    : data.data.username,
-            'id'          : data.data.id
+            'id'          : data.data.id,
+            'address'     : data.data.address,
           };
 
           AuthService.setLoginData(data.data.token, userObject);
