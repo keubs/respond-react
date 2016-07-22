@@ -28,11 +28,11 @@ function UserService($q, $http, AppSettings, AddressService, AuthService, $windo
       .then(function(data){
         user.address = data.id;
         address = data;
-        console.log(data);
         $http.post(AppSettings.apiUrl + '/users/'+ user.id +'/update', user)
           .success(function(data){
             AuthService.setLoginData($window.sessionStorage.token, data);
-            user.address = address.raw;
+            data.address = address;
+            data.address.formatted = address.raw;
             deferred.resolve(data);
           })
           .error(function(err){

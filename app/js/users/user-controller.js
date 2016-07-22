@@ -13,7 +13,7 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 	    animation: true,
 	    templateUrl: 'edit-user.html',
 	    controller: 'EditUserCtrl',
-	    size: 'sm',
+	    size: 'lg',
 	  });
 	/*=====  End of Edit User Modal  ======*/
 	};

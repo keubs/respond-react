@@ -6,6 +6,8 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	$scope.currentUser.address = {};
 	$scope.render = true;
 	$scope.pos = {};
+	$scope.alerts = [];
+
 	var vm = this;
 	if(!vm.map) {
 	  NgMap.getMap('map').then(function(map) {
@@ -27,11 +29,13 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	}
 
 	$scope.submit = function() {
-		getAddressComponents($scope.location);
-		console.log($scope.currentUser);
+		if($scope.location) getAddressComponents($scope.location);
 		UserService.update($scope.currentUser)
 			.then(function(data){
-				console.log(data);
+				$scope.alerts = [];
+				$scope.alerts.push({ type : 'success', msg: 'Profile updated'});
+				vm.placeChanged();
+				$scope.currentUser = data;
 			}, function(error){
 				// console.log(error);
 			});
@@ -80,6 +84,6 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	     $scope.currentUser.address.postal_code = component.long_name; 
 	    }
 	  });
-	}
+	};
 };
 
