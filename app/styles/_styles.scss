@@ -111,10 +111,12 @@ div.tag {
 .modal-dialog {
   &.modal-lg {
     width: 1200px;
+    max-width: 90%;
   }
 
   &.modal-sm {
     width: 450px;
+    max-width: 45%;
   }
 }
 
