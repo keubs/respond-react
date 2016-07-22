@@ -34,7 +34,7 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 			.then(function(data){
 				$scope.alerts = [];
 				$scope.alerts.push({ type : 'success', msg: 'Profile updated'});
-				vm.placeChanged();
+				// vm.placeChanged();
 				$scope.currentUser = data;
 			}, function(error){
 				// console.log(error);
