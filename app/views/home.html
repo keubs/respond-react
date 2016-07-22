@@ -2,15 +2,17 @@
   <div class="row banner-wrapper">
     <div class="col-md-4 col-lg-4 col-sm-4 banner national">
       <span class="banner-label">National</span>
-      <a href="#">
-        <img src="http://squ.ad:8100/static/image_to7wQpk.jpg" />
+      <a href="/topics/{{national.id}}">
+        <img src="http://squ.ad:8100/{{national.image}}" />
       </a>
+      <p>{{national.title}}</p>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 banner local">
       <span class="banner-label">Local</span>
-      <a href="#">
-        <img src="http://squ.ad:8100/static/image_Owgh39S.jpg" />
+      <a href="/topics/{{local.id}}">
+        <img src="http://squ.ad:8100/{{local.image}}" />
       </a>
+      <p>{{local.title}}</p>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 banner world">
       <span class="banner-label">Worldwide</span>

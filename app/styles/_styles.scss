@@ -132,12 +132,17 @@ div.tag {
     left: 40%;
     font-size: 30px;
     color: #FFF;
+    -webkit-text-stroke: 1px black;
   }
 
   img {
     width: 95%;
     margin: 0 auto;
     min-height: 214px;
+  }
+
+  p {
+    margin: 1em 0;
   }
 }
 

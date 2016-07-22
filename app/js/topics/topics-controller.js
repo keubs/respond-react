@@ -46,6 +46,22 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
     }
   });
 
+  TopicService.local()
+    .then(function(data){
+      $scope.local = data.data;
+      console.log(data);
+    }, function(error){
+
+  });
+
+  TopicService.national()
+    .then(function(data){
+      $scope.national = data.data;
+      console.log(data);
+    }, function(error){
+
+  });
+
 
   $scope.deleteTopic = function($topicIndex) {
     let topic = $scope.topics[$topicIndex];
@@ -132,5 +148,5 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
 
   $scope.formatDateTime = function(dateTime){
     return helpers.formatDateTime(dateTime);
-  }
+  };
 };

@@ -96,6 +96,30 @@ function TopicService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
+  service.local = function(){
+    var deferred = $q.defer();
+    $http.get(AppSettings.apiUrl + '/topics/scope/local/')
+      .then(function(data){
+        deferred.resolve(data);
+      }, function(error){
+        deferred.reject({error, status});
+      });
+
+    return deferred.promise;
+  };
+
+  service.national = function(){
+    var deferred = $q.defer();
+    $http.get(AppSettings.apiUrl + '/topics/scope/national/')
+      .then(function(data){
+        deferred.resolve(data);
+      }, function(error){
+        deferred.reject({error, status});
+      });
+
+    return deferred.promise;
+  };
+
   service.find = function(topicId) {
     console.log(topicId);
   };
