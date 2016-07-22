@@ -29,6 +29,7 @@
 <div class="container-fluid">
   <h1 ng-show="tag">Tag: {{tag}}</h1>
   <br />
+  <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
   <div ng-repeat="topic in topics" class="row">
     <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
       <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">
@@ -49,5 +50,5 @@
       <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
     </div>
   </div>
-  <uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" items-per-page="10" ng-if="totalItems > 10"></uib-pagination>
+  <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
 </div>

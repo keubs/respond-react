@@ -22,10 +22,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
       console.log(err);
   });
 
-  $scope.setPage = function (pageNo) {
-    $scope.currentPage = pageNo;
-  };
-
   $scope.pageChanged = function() {
     TopicService.get(null, $scope.currentPage).then(function(data) {
       $scope.topics = data;
