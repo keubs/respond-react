@@ -62,6 +62,14 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
 
   });
 
+  TopicService.worldwide()
+    .then(function(data){
+      $scope.worldwide = data.data;
+      console.log(data);
+    }, function(error){
+
+  });
+
 
   $scope.deleteTopic = function($topicIndex) {
     let topic = $scope.topics[$topicIndex];

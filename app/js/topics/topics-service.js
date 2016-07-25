@@ -120,6 +120,18 @@ function TopicService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
+  service.worldwide = function(){
+    var deferred = $q.defer();
+    $http.get(AppSettings.apiUrl + '/topics/scope/worldwide/')
+      .then(function(data){
+        deferred.resolve(data);
+      }, function(error){
+        deferred.reject({error, status});
+      });
+
+    return deferred.promise;
+  };
+
   service.find = function(topicId) {
     console.log(topicId);
   };
