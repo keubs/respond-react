@@ -142,7 +142,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     $window.localStorage.user = (typeof data === 'object') ? JSON.stringify(data) : data;
     $cookies.put('rr_user', (typeof data === 'object') ? JSON.stringify(data) : data);
 
-    $http.defaults.headers.common.Authorization = 'JWT ' + data.token;
+    $http.defaults.headers.common.Authorization = 'JWT ' + token || data.token;
   }
   return service;
 };
