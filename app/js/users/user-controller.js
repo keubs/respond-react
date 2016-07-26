@@ -4,7 +4,7 @@
  **/
 module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, AddressService) {
 	$scope.currentUser = {};
-
+	$scope.backendUrl = AppSettings.backendUrl;
 	$scope.editUser = function(){
 	/*===========================================
 	=            Edit User Modal            =
@@ -28,5 +28,13 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			}, function(error){
 				console.log(error);
 			});	
+
+		UserService.topics($stateParams.userid)
+			.then(function(data){
+				console.log(data);
+				$scope.topics = data;
+			}, function(error){
+				console.log(error);
+			});
 	};
 };

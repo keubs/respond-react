@@ -21,6 +21,20 @@ function UserService($q, $http, AppSettings, AddressService, AuthService, $windo
   		return deferred.promise;
   };
 
+  service.topics = function(id){
+    var deferred = $q.defer();
+
+    $http.get(AppSettings.apiUrl + '/users/' + id + '/topics/')
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err){
+        deferred.reject(err);
+      });
+
+      return deferred.promise;
+  }
+
   service.update = function(user) {
     var deferred = $q.defer();
     var address = null;

@@ -1,8 +1,46 @@
 <div ng-controller="UserCtrl" id="user-controller" ng-init="init()">
-	<div class="user_banner">
-		<div class="user_banner_inner">
-			<img src="{{user.social_thumb}}" class="user_thumb" />
-			<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="#" ng-click="editUser()">[edit]</a>
+	<div class="row">
+		<div class="user_banner">
+			<div class="user_banner_inner">
+				<img src="{{user.social_thumb}}" class="user_thumb" />
+				<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="#" ng-click="editUser()">[edit]</a>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="">
+		<div class="col-md-2">
+			<ul style="list-style: none; margin: 1em 0; padding: 0">
+				<li>{{user.topic_count}} topics submitted</li>
+				<li>{{user.action_count}} actions submitted</li>
+				<li>{{user.vote_count}} upvotes</li>
+			</ul>
+		</div>
+		<div class="col-md-10">
+			<h3>Topics by {{user.username}}</h3>
+			<div ng-repeat="topic in topics" class="row">
+			  <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
+			    <!-- <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">
+			    </span>
+			    <h3 style="margin: .5em 0">{{topic.score}}</h3>
+			    <span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote">
+			    </span> -->
+			  </div>
+			  <div class="col-lg-4 col-md-4 col-sm-4">
+			    <a href="http://squ.ad:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
+			  </div>
+			  <div class="col-lg-6 col-md-6 col-sm-6">
+			    <a href="topic/{{topic.id}}">{{topic.title}}</a>
+			    <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
+			    <p>
+				    <!-- Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}<a> 
+				    on {{topic.created_on | date : fullDate}} -->
+				    {{topic.created_on | date : fullDate}}
+			    </p>
+			    <!-- <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag.slug}}">{{tag.name}}</a></div></aside> -->
+			    <br />
+			    <!-- <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside> -->
+			  </div>
+			</div>
 		</div>
 	</div>
 </div>
