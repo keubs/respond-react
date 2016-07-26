@@ -5,25 +5,34 @@
 
 const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, $rootScope) {
-    $scope.action = {};
-    $scope.alerts = [];
-    $scope.isLoggedIn = AuthService.newIsLoggedIn();
+    var vm = this;
 
-    /*----------  start/end date/time section  ----------*/
-    
-    $scope.action.date_time_display = false;
-    $scope.action.end_date_time_display = false;
-    $scope.mytime = new Date();
+    $scope.init = function(){
+      $scope.action = {};
+      $scope.alerts = [];
+      $scope.isLoggedIn = AuthService.newIsLoggedIn();
+      console.log($scope.action);
+      /*----------  start/end date/time section  ----------*/
+      
+      $scope.action.date_time_display = false;
+      $scope.action.end_date_time_display = false;
+      $scope.mytime = new Date();
 
-    $scope.hstep = 1;
-    $scope.mstep = 15;
-    $scope.ismeridian = true;
-    $scope.options = {
-      hstep: [1, 2, 3],
-      mstep: [1, 5, 10, 15, 25, 30]
+      $scope.hstep = 1;
+      $scope.mstep = 15;
+      $scope.ismeridian = true;
+      $scope.options = {
+        hstep: [1, 2, 3],
+        mstep: [1, 5, 10, 15, 25, 30]
+      };
+
+
+      $scope.action.locations = [];
+      $scope.render = true;
+      $scope.pos = {};
+      
     };
 
-    
     $scope.update = function() {
         var d = new Date();
         d.setHours( 14 );
@@ -34,11 +43,6 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     /*----------  end start/end date/time section  ----------*/
 
     /*----------  start Map  ----------*/
-    
-    $scope.action.locations = [];
-    $scope.render = true;
-    $scope.pos = {};
-    var vm = this;
     if(!vm.map) {
       NgMap.getMap('map').then(function(map) {
         vm.map = map;

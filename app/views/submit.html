@@ -14,12 +14,13 @@
     <br />
     <label for="scope">Scope</label>
     <select id="scope" class="form-control" ng-model="topic.scope" required>
-        <option value="local">Local</option>
-        <option value="national">National</option>
-        <option value="worldwide">Worldwide</option>
+        <option value="local">Local (Your State)</option>
+        <option value="national" selected>National (Your Country)</option>
+        <option value="worldwide">Worldwide (Outside Your Country)</option>
     </select>
     <br />
     <label for="address">Address</label>
+    <p>Can be as vague as the country or as specific as a street-level address.</p>
     <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
     <br/>
     <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="">

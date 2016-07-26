@@ -9,6 +9,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
+  $scope.topic.scope = 'national';
 
   $scope.topic.locations = [];
   $scope.topic.created_by = $rootScope.user.id;
