@@ -8,7 +8,7 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
 
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.tag = $stateParams.tag || null;
-
+  if($scope.tag) $scope.tag_title = helpers.toTitleCase($scope.tag);
   /* Pagination Stuff */
   $scope.currentPage = 1;
   $scope.totalItems = 2;
@@ -157,4 +157,8 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   $scope.formatDateTime = function(dateTime){
     return helpers.formatDateTime(dateTime);
   };
+
+  $scope.removeTag = function(){
+    $location.path('/');
+  }
 };

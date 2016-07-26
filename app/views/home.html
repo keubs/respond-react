@@ -30,7 +30,7 @@
 </div>
 <br />
 <div class="container-fluid">
-  <h1 ng-show="tag">Tag: {{tag}}</h1>
+  <span ng-if="tag != null"><h1>Tag: {{tag_title}}</h1><a href="#" ng-click="removeTag()">[Remove]</a></span>
   <br />
   <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
   <div ng-repeat="topic in topics" class="row">
@@ -48,7 +48,7 @@
       <a href="topic/{{topic.id}}">{{topic.title}}</a>
       <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
       <p>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</p>
-      <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag}}">{{tag}}</a></div></aside>
+      <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag.slug}}">{{tag.name}}</a></div></aside>
       <br />
       <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
     </div>
