@@ -12,6 +12,14 @@
 
 	.user_banner_inner {
 		padding: 50px 50px;
+
+		ul {
+			list-style: none; margin: 0 0 1em 0; padding: 0; display: inline-block; margin-left: 2em; float: right;
+			li {
+				margin: .5em 0;
+				text-align: right;
+			}
+		}
 	}
 
 	.user_thumb {

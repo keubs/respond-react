@@ -23,18 +23,16 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			.then(function(data){
 				$scope.user = data;
 				$scope.currentUser = $rootScope.user;
-				console.log($scope.user);
 				$scope.isCurrentUser = ($scope.currentUser.id === $scope.user.id) ? true : false;
-			}, function(error){
-				console.log(error);
+			}, function(err){
+				console.log(err);
 			});	
 
 		UserService.topics($stateParams.userid)
 			.then(function(data){
-				console.log(data);
 				$scope.topics = data;
-			}, function(error){
-				console.log(error);
+			}, function(err){
+				console.log(err);
 			});
 	};
 };

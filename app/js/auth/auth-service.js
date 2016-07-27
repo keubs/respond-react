@@ -69,6 +69,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
   service.newIsLoggedIn = function() {
     if($window.sessionStorage.token) {
       if ($window.sessionStorage.user) {
+        $http.defaults.headers.common.Authorization = 'JWT ' + $window.sessionStorage.token;
         $rootScope.user = JSON.parse($window.sessionStorage.user);
         return true;
       } else {
@@ -85,6 +86,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
       if ($window.localStorage.user) {
         $window.sessionStorage.token = $window.localStorage.token;
         $window.sessionStorage.user = $window.localStorage.user;
+        $http.defaults.headers.common.Authorization = 'JWT ' + $window.sessionStorage.token;
         $rootScope.user = JSON.parse($window.localStorage.user);
         return true;
       } else {
@@ -101,6 +103,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
       if($cookies.get('rr_user')) {
         $window.sessionStorage.token = $cookies.get('rr_token');
         $window.sessionStorage.user = $cookies.get('rr_user');
+        $http.defaults.headers.common.Authorization = 'JWT ' + $window.sessionStorage.token;
         $rootScope.user = JSON.parse($cookies.get('rr_user'));
         return true;
       } else {
@@ -142,7 +145,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     $window.localStorage.user = (typeof data === 'object') ? JSON.stringify(data) : data;
     $cookies.put('rr_user', (typeof data === 'object') ? JSON.stringify(data) : data);
 
-    $http.defaults.headers.common.Authorization = 'JWT ' + token || data.token;
+    $http.defaults.headers.common.Authorization = 'JWT ' + token || 'JWT ' + data.token;
   }
   return service;
 };

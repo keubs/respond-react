@@ -10,12 +10,13 @@ function UserService($q, $http, AppSettings, AddressService, AuthService, $windo
   service.get = function(id){
   	var deferred = $q.defer();
 
-  	$http.get(AppSettings.apiUrl + '/users/' + id)
+  	$http.get(AppSettings.apiUrl + '/users/' + id + '/')
   		.success(function(data){
   			deferred.resolve(data);
   		})
-  		.error(function(err){
-  			deferred.reject(err);
+  		.error(function(err, status) {
+        console.log(err, status);
+        deferred.reject({err, status});
   		});
 
   		return deferred.promise;
