@@ -1,10 +1,10 @@
 'use strict';
 
 const CONFIG = {
-  appTitle: 'Squ.ad',
-  apiUrl: 'http://squ.ad:8100/api',
-  backendUrl: 'http://squ.ad:8100',
-  googleApiKey: 'AIzaSyCXTvRIagOKwGgdiJitmFp6UymHlxzlM-8',
+  appTitle: 'respond/react',
+  apiUrl: 'http://respondreact.com:8100/api',
+  backendUrl: 'http://respondreact.com:8100',
+  googleApiKey: 'AIzaSyAztcWr5QxKQB2tBPwTAbqgIggtUHu4D1M',
 };
 
 module.exports = CONFIG;

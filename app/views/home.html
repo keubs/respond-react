@@ -3,21 +3,21 @@
     <div class="col-md-4 col-lg-4 col-sm-4 banner national">
       <span class="banner-label">National</span>
       <a href="/topic/{{national.id}}">
-        <img src="http://squ.ad:8100/{{national.image}}" />
+        <img src="http://respondreact.com:8100/{{national.image}}" />
       </a>
       <p><a href="/topic/{{national.id}}">{{national.title}}</a></p>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 banner local" ng-if="local != null">
       <span class="banner-label">Local</span>
       <a href="/topic/{{local.id}}">
-        <img src="http://squ.ad:8100/{{local.image}}" />
+        <img src="http://respondreact.com:8100/{{local.image}}" />
       </a>
       <p><a href="/topic/{{national.id}}">{{local.title}}</a></p>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide">
       <span class="banner-label">Worlwide</span>
       <a href="/topic/{{local.id}}">
-        <img src="http://squ.ad:8100/{{worldwide.image}}" />
+        <img src="http://respondreact.com:8100/{{worldwide.image}}" />
       </a>
       <p><a href="/topic/{{worldwide.id}}">{{worldwide.title}}</a></p>
     </div>
@@ -35,19 +35,19 @@
   <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
   <div ng-repeat="topic in topics" class="row">
     <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
-      <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">
+      <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote">
       </span>
       <h3 style="margin: .5em 0">{{topic.score}}</h3>
-      <span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote">
+      <span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-chevron-down downvote">
       </span>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4">
-      <a href="http://squ.ad:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
+      <a href="http://respondreact.com:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6">
       <a href="topic/{{topic.id}}">{{topic.title}}</a>
       <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-      <p>Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</p>
+      <p>Submitted by <a href="/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</p>
       <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag.slug}}">{{tag.name}}</a></div></aside>
       <br />
       <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
