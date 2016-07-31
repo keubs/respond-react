@@ -63,8 +63,8 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   };
 
   $scope.authenticate = function(provider) {
-      $auth.authenticate(provider).then(function(data){
-        console.log(data);
+      $auth.authenticate(provider)
+        .then(function(data){
           var userObject = {
             'first_name'  : data.data.first_name,
             'last_name'   : data.data.last_name,
@@ -78,6 +78,8 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
           AuthService.setLoginData(data.data.token, userObject);
           $scope.user = userObject;
           $scope.isLoggedIn = true;
+      }, function(error){
+        console.log(error);
       }).catch(function(data) {
           var err_msg = "Something went wrong, maybe you haven't installed 'djangorestframework-jwt'?";
           console.log(data);
