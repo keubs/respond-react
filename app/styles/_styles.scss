@@ -143,6 +143,10 @@ div.tag {
   p {
     margin: 1em 0;
   }
+
+  a.banner-image {
+    min-height: 200px; background-size: cover; display: block; width: 95%;
+  }
 }
 
 .pac-container {

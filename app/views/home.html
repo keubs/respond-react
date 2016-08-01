@@ -2,23 +2,18 @@
   <div class="row banner-wrapper">
     <div class="col-md-4 col-lg-4 col-sm-4 banner national">
       <span class="banner-label">National</span>
-      <a href="/topic/{{national.id}}">
-        <img src="http://respondreact.com:8100/{{national.image}}" />
+      <a class="banner-image" style="background-image: url({{backendUrl}}/{{national.image}})" href="/topic/{{national.id}}">
       </a>
       <p><a href="/topic/{{national.id}}">{{national.title}}</a></p>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 banner local" ng-if="local != null">
       <span class="banner-label">Local</span>
-      <a href="/topic/{{local.id}}">
-        <img src="http://respondreact.com:8100/{{local.image}}" />
-      </a>
+      <a class="banner-image" style="background-image: url({{backendUrl}}/{{local.image}});" href="/topic/{{local.id}}"></a>
       <p><a href="/topic/{{national.id}}">{{local.title}}</a></p>
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide">
       <span class="banner-label">Worlwide</span>
-      <a href="/topic/{{local.id}}">
-        <img src="http://respondreact.com:8100/{{worldwide.image}}" />
-      </a>
+      <a class="banner-image" style="background-image: url({{backendUrl}}/{{worldwide.image}})" href="/topic/{{worldwide.id}}"></a>
       <p><a href="/topic/{{worldwide.id}}">{{worldwide.title}}</a></p>
     </div>
   </div>

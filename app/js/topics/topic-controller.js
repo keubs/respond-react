@@ -14,7 +14,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
       }
 
       $scope.mapZoom = helpers.setZoom($scope.topic.scope);
-      $rootScope.pageTitle = $scope.topic.title;
+      $rootScope.pageTitle = "Get Involved | " + $scope.topic.title;
       TopicService.topic_actions($stateParams.topic)
         .then(function(data){
           $scope.topic.actions = data;
