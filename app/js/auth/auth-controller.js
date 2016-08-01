@@ -79,11 +79,13 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
           $scope.user = userObject;
           $scope.isLoggedIn = true;
       }, function(error){
+        $scope.alerts.push({ type : 'danger', msg: 'There was an error with your authentication using ' + provider + '. We are working on it.'});
         console.log(error);
       }).catch(function(data) {
           var err_msg = "Something went wrong, maybe you haven't installed 'djangorestframework-jwt'?";
           console.log(data);
           console.log(err_msg);
+          $scope.alerts.push({ type : 'danger', msg: 'There was an error with your authentication using ' + provider + '. We are working on it.'});
           alert(err_msg);
       });
   };
