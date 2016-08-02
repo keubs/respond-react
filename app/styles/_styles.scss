@@ -129,12 +129,14 @@ div.tag {
 .banner {
   position: relative;
   .banner-label {
-    position: absolute;
-    top: 30px;
-    left: 40%;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    // top: 30px;
+    // left: 40%;
     font-size: 30px;
-    color: #FFF;
-    -webkit-text-stroke: 1px black;
+    color: #000;
+    // -webkit-text-stroke: 1px black;
   }
 
   img {
