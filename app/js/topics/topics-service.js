@@ -137,7 +137,7 @@ function TopicService($q, $http, AppSettings, AddressService) {
   };
 
   service.delete = function(topicId) {
-    console.log(topicId);
+    
   };
 
   service.addComment = function(topicId, comment) {

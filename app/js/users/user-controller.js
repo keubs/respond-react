@@ -35,4 +35,23 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 				console.log(err);
 			});
 	};
+
+
+	$scope.deleteTopic = function(id) {
+		var send = {
+			type: 'topic',
+			id  : id
+		}
+		var modalInstance = $uibModal.open({
+		  animation: true,
+		  templateUrl: 'delete.html',
+		  controller: 'DeleteContentCtrl',
+		  size: 'sm',
+		  resolve: {
+		  	items : function(){
+		  		return send;
+		  	}
+		  }
+		});
+	}
 };

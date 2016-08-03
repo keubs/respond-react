@@ -1,0 +1,61 @@
+<div class="row" style="margin:2em 1em" ng-init="init()">
+    <div class="col-md-12 col-sm-12 submit-wrapper">
+        <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
+            <h1>Edit topic {{topic.title}}</h1>
+            <p ng-show="errors.general">{{ errors.general }}</p>
+            <label for="article_link">Article Link</label>
+            <input id="article_link" type="url" ng-model="topic.article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required>
+            <br />
+            <label for="title">Title</label>
+            <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
+            <p ng-show="errors.title" id="">{{ errors.title }}</p>
+            <br>
+            <label for="tags">Tags</label>
+            <tags-input id="tags" ng-model="topic.tags" required replace-spaces-with-dashes="false"></tags-input>
+            <br />
+            <label for="scope">Scope</label>
+            <select id="scope" class="form-control" ng-model="topic.scope" required>
+                <option value="local">Local (Your State)</option>
+                <option value="national" selected>National (Your Country)</option>
+                <option value="worldwide">Worldwide (Outside Your Country)</option>
+            </select>
+            <br />
+            <label for="address">Address</label>
+            <p>Can be as vague as the country or as specific as a street-level address.</p>
+            <input id="address" ng-model="topic.address.formatted" type="text" class="form-control" placeholder="Address" required component-restrictions="" types="['geocode']" ng-init="initAutoComplete()">
+            <br/>
+            <ng-map id="map" zoom="{{zoom}}" center="{{pos.lat}}, {{pos.lng}}" ng-if="render">
+            <marker position="{{pos.lat}},{{pos.lng}}"></marker>
+            </ng-map>
+            <br />
+            <br /><img src="{{ topic.image_preview.src }}" style="min-height: 350px; width: 100%;"/>
+            <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
+            <p ng-show="errors.article_link">{{ errors.article_link }}</p>
+            <br>
+            <input type="hidden" ng-model="topic.created_by" value="1"/>
+            <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
+            <br />
+            <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" />
+        </form>
+    <div class="loader" ng-class="{loading: formLoading}"></div>
+    </div>
+<script type="text/ng-template" id="deleteContent.html">
+    <div class="modal-header">
+
+        <h3 class="modal-title">I'm a modal!</h3>
+        
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="item in items">
+                <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+</div>
