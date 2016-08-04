@@ -137,7 +137,15 @@ function TopicService($q, $http, AppSettings, AddressService) {
   };
 
   service.delete = function(topicId) {
-    
+    var deferred = $q.defer();
+    $http.delete(AppSettings.apiUrl + '/topics/' + topicId + '/delete')
+      .then(function(data){
+        deferred.resolve(data);
+      }, function(error){
+        deferred.reject({error, status});
+      });
+
+      return deferred.promise;
   };
 
   service.addComment = function(topicId, comment) {

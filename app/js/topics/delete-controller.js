@@ -1,7 +1,7 @@
 'use strict'
 
 
-module.exports = function($scope, items, TopicService) {
+module.exports = function($scope, items, TopicService, $uibModalInstance) {
 	console.log(items);
 	switch(items.type) {
 		case 'topic':
@@ -17,6 +17,16 @@ module.exports = function($scope, items, TopicService) {
 	$scope.ok = function(){
 
 	};
+
+	$scope.delete = function(){
+		TopicService.delete(items.id)
+			.then(function(data){
+				console.log(data);
+				$uibModalInstance.close();
+			}, function(error){
+				console.log(error);
+			})
+	}
 
 	function getTopic(id) {
 		TopicService.topic(id)
