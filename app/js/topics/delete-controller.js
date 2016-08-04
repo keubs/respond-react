@@ -21,8 +21,11 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 	$scope.delete = function(){
 		TopicService.delete(items.id)
 			.then(function(data){
-				console.log(data);
-				$uibModalInstance.close();
+				$scope.message = 'This post was deleted successfully.';
+				setTimeout(function(){
+					window.location.href = window.location;
+				}, 2000);
+				
 			}, function(error){
 				console.log(error);
 			})
