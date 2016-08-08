@@ -159,6 +159,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   };
 
   $scope.removeTag = function(){
-    $location.path('/');
+    $location.path('#');
   }
 };

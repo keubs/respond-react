@@ -10,9 +10,32 @@ body {
   margin: 0 auto;
   background: #FFF;
   padding: 15px 30px;
+  padding-top: 60px;
 }
 .header {
-  margin: 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+.navbar-default {
+  background: linear-gradient(to right, #29b4cf, #ed780b 100%);
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+
+  .navbar-nav > li > a {
+    color: #FFF;
+  }
+
+  .navbar-brand {
+    color: #FFF;
+  }
+}
+
+.tag-header {
+  display: inline-block;
+  margin-right: 10px;
 }
 
 // temp
@@ -110,6 +133,15 @@ div.tag {
   }
 }
 
+.logo {
+  padding: 10px 0 0 20px; 
+  float: left; 
+  display: block;
+
+  img {
+    height: 32px; border: solid 1px 666; border-radius: 3px;
+  }
+}
 .modal-dialog {
   &.modal-lg {
     width: 1200px;
@@ -135,7 +167,7 @@ div.tag {
     // top: 30px;
     // left: 40%;
     font-size: 30px;
-    color: #000;
+    color: #555;
     // -webkit-text-stroke: 1px black;
   }
 

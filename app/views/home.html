@@ -1,6 +1,6 @@
 <div class="container-fluid" style="text-align: center;">
   <div class="row banner-wrapper">
-    <div class="col-md-4 col-lg-4 col-sm-4 banner national">
+    <div class="col-md-4 col-lg-4 col-sm-4 banner national" ng-if="national != null">
       <span class="banner-label">National</span>
       <a class="banner-image" style="background-image: url({{backendUrl}}/{{national.image}})" href="/topic/{{national.id}}">
       </a>
@@ -11,7 +11,7 @@
       <a class="banner-image" style="background-image: url({{backendUrl}}/{{local.image}});" href="/topic/{{local.id}}"></a>
       <p><a href="/topic/{{national.id}}">{{local.title}}</a></p>
     </div>
-    <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide">
+    <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide" ng-if="worldwide != null">
       <span class="banner-label">Worldwide</span>
       <a class="banner-image" style="background-image: url({{backendUrl}}/{{worldwide.image}})" href="/topic/{{worldwide.id}}"></a>
       <p><a href="/topic/{{worldwide.id}}">{{worldwide.title}}</a></p>
@@ -25,8 +25,7 @@
 </div>
 <br />
 <div class="container-fluid">
-  <span ng-if="tag != null"><h1>Tag: {{tag_title}}</h1><a href="#" ng-click="removeTag()">[Remove]</a></span>
-  <br />
+  <span ng-if="tag != null"><h1 class="tag-header">Tag: {{tag_title}}</h1><a href="#" ng-click="removeTag()">[Remove]</a></span>
   <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
   <div ng-repeat="topic in topics" class="row">
     <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">

@@ -2,7 +2,7 @@
 
 
 module.exports = function($scope, items, TopicService, $uibModalInstance) {
-	console.log(items);
+	$scope.message = "You will not be able to recover this post";
 	switch(items.type) {
 		case 'topic':
 			getTopic(items.id);
@@ -14,8 +14,8 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 	};
 
 
-	$scope.ok = function(){
-
+	$scope.cancel = function(){
+		$uibModalInstance.close();
 	};
 
 	$scope.delete = function(){

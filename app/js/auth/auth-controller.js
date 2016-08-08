@@ -43,6 +43,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
      $http(req).then(function(response){
          console.log("Got user from session cookies");
          AuthService.logout();
+         window.location.href = window.location;
      });
   };
 
