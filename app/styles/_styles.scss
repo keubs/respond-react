@@ -31,6 +31,13 @@ body {
   .navbar-brand {
     color: #FFF;
   }
+
+  .navbar-toggle {
+      border-color: #FFF;
+      .icon-bar {
+        background-color: #FFF;
+      }
+  }
 }
 
 .tag-header {
