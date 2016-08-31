@@ -10,7 +10,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     var deferred = $q.defer();
     $http.post(AppSettings.apiUrl + '/user/register/', user)
       .success(function(data){
-        deferred.resolve();
+        deferred.resolve(data);
       })
       .error(function(error){
         deferred.reject(error);
@@ -146,6 +146,7 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     $cookies.put('rr_user', (typeof data === 'object') ? JSON.stringify(data) : data);
 
     $http.defaults.headers.common.Authorization = 'JWT ' + token || 'JWT ' + data.token;
-  }
+  };
+
   return service;
 };
