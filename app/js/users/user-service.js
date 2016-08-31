@@ -34,7 +34,7 @@ function UserService($q, $http, AppSettings, AddressService, AuthService, $windo
       });
 
       return deferred.promise;
-  }
+  };
 
   service.update = function(user) {
     var deferred = $q.defer();
@@ -66,7 +66,7 @@ function UserService($q, $http, AppSettings, AddressService, AuthService, $windo
       });
 
       return deferred.promise;
-  }
+  };
   return service;
 }
 

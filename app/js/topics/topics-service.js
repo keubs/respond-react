@@ -48,7 +48,6 @@ function TopicService($q, $http, AppSettings, AddressService) {
   service.topic = function(id) {
     var deferred = $q.defer();
 
-
     $http.get(AppSettings.apiUrl + '/topics/' + id)
       .success(function(data) {
         deferred.resolve(data);

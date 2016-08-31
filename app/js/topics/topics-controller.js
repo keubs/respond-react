@@ -1,6 +1,6 @@
 'use strict';
 var helpers = require('../helpers/helpers.js');  
-module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams, $log) {
+module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
@@ -8,7 +8,9 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
 
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.tag = $stateParams.tag || null;
-  if($scope.tag) $scope.tag_title = helpers.toTitleCase($scope.tag);
+  if($scope.tag) {
+    $scope.tag_title = helpers.toTitleCase($scope.tag);
+  }
   /* Pagination Stuff */
   $scope.currentPage = 1;
   $scope.totalItems = 2;
@@ -51,7 +53,7 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
       $scope.local = data.data;
       console.log(data);
     }, function(error){
-
+      console.log(error);
   });
 
   TopicService.national()
@@ -59,7 +61,7 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
       $scope.national = data.data;
       console.log(data);
     }, function(error){
-
+      console.log(error);
   });
 
   TopicService.worldwide()
@@ -67,7 +69,7 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
       $scope.worldwide = data.data;
       console.log(data);
     }, function(error){
-
+      console.log(error);
   });
 
 
@@ -160,5 +162,5 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
 
   $scope.removeTag = function(){
     $location.path('#');
-  }
+  };
 };

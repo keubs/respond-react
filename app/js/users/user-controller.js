@@ -2,14 +2,14 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, AddressService) {
+module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope) {
 	$scope.currentUser = {};
 	$scope.backendUrl = AppSettings.backendUrl;
 	$scope.editUser = function(){
 	/*===========================================
 	=            Edit User Modal            =
 	===========================================*/
-	  var modalInstance = $uibModal.open({
+	  $uibModal.open({
 	    animation: true,
 	    templateUrl: 'edit-user.html',
 	    controller: 'EditUserCtrl',
@@ -41,8 +41,8 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		var send = {
 			type: 'topic',
 			id  : id
-		}
-		var modalInstance = $uibModal.open({
+		};
+		$uibModal.open({
 		  animation: true,
 		  templateUrl: 'delete.html',
 		  controller: 'DeleteContentCtrl',
