@@ -40,7 +40,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
          url: '/api/logout/session/',
          skipAuthorization: true  // in case of session auth don't send token header
      };
-     $http(req).then(function(response){
+     $http(req).then(function(){
          console.log("Got user from session cookies");
          AuthService.logout();
          window.location.href = window.location;
@@ -57,10 +57,12 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   };
 
   $scope.hasThumb = function() {
-    if($scope.social_thumb)
+    if($scope.social_thumb) {
       return $scope.social_thumb;
-    else
+    }
+    else {
       return AppSettings.apiUrl + '/static/anonymous.png';
+    }
   };
 
   $scope.authenticate = function(provider) {

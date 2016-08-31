@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 module.exports = function($scope, items, TopicService, $uibModalInstance) {
@@ -11,7 +11,7 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 			break;
 		default:
 			break;
-	};
+	}
 
 
 	$scope.cancel = function(){
@@ -20,7 +20,7 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 
 	$scope.delete = function(){
 		TopicService.delete(items.id)
-			.then(function(data){
+			.then(function(){
 				$scope.message = 'This post was deleted successfully.';
 				setTimeout(function(){
 					window.location.href = window.location;
@@ -28,8 +28,8 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 				
 			}, function(error){
 				console.log(error);
-			})
-	}
+			});
+	};
 
 	function getTopic(id) {
 		TopicService.topic(id)
@@ -39,5 +39,5 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 			}, function(error){
 				console.log(error);
 			});
-	};
+	}
 };
