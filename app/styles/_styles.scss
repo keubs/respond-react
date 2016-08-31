@@ -30,6 +30,10 @@ body {
 
   .navbar-brand {
     color: #FFF;
+
+    &:focus {
+      color: #FFF;
+    }
   }
 
   .navbar-toggle {

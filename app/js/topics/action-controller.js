@@ -55,6 +55,16 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.pos.lng = vm.place.geometry.location.lng();
           $scope.action.address.lat = vm.place.geometry.location.lat();
           $scope.action.address.lng = vm.place.geometry.location.lng();
+          if(!hasPostalCode(vm.place)) {
+            var geocoder = new google.maps.Geocoder;
+            var ll = {location: { lat: $scope.pos.lat, lng: $scope.pos.lng }};
+            geocoder.geocode(ll, function(results, status){ 
+              if(status === 'OK') {
+                getAddressComponents(results[0]);
+                console.log($scope.action.address);
+              }
+            });
+          }
         }
       }, function(error){
         console.log(error);
@@ -152,7 +162,19 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
        $scope.action.address.postal_code = component.long_name; 
       }
     });
-  }
+  };
+
+  function hasPostalCode(location){
+    var retVal = false;
+    location.address_components.forEach(function(component){
+      if(component.types.indexOf('postal_code') === -1) {
+        return;
+      } else {
+        retVal = true;
+      }
+    });
+    return retVal;
+  };
 
 };
 

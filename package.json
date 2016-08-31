@@ -107,6 +107,6 @@
     "angular-simple-logger": "^0.1.7",
     "ng-resource": "^1.3.2",
     "ng-tags-input": "^3.0.0",
-    "ngmap": "^1.17.1"
+    "ngmap": "^1.17.6"
   }
 }
