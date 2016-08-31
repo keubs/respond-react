@@ -1,6 +1,5 @@
 'use strict';
 
-const helpers = require('../helpers/helpers');
 module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService){
 	$scope.currentUser = {};
 	$scope.currentUser.address = {};
@@ -12,7 +11,7 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	if(!vm.map) {
 	  NgMap.getMap('map').then(function(map) {
 	    vm.map = map;
-	    vm.placeChanged = function(e) {
+	    vm.placeChanged = function() {
 	      vm.place = this.getPlace();
 	      $scope.location = vm.place;
 	      vm.map.setCenter(vm.place.geometry.location);
@@ -21,7 +20,7 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	      $scope.pos.lng = vm.place.geometry.location.lng();
 	      $scope.currentUser.address.lat = vm.place.geometry.location.lat();
 	      $scope.currentUser.address.lng = vm.place.geometry.location.lng();
-	    }
+	    };
 	  }, function(error){
 	    console.log(error);
 	  });
@@ -29,7 +28,10 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	}
 
 	$scope.submit = function() {
-		if($scope.location) getAddressComponents($scope.location);
+		if($scope.location) {
+			getAddressComponents($scope.location);
+		}
+
 		UserService.update($scope.currentUser)
 			.then(function(data){
 				$scope.alerts = [];
@@ -37,7 +39,7 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 				// vm.placeChanged();
 				$scope.currentUser = data;
 			}, function(error){
-				// console.log(error);
+				console.log(error);
 			});
 	};
 
@@ -56,7 +58,7 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 				$scope.currentUser.address.formatted = data.raw;
 
 			}, function(error){
-
+				console.log(error);
 			});
 		}, function(error){
 			console.log(error);
@@ -84,6 +86,6 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	     $scope.currentUser.address.postal_code = component.long_name; 
 	    }
 	  });
-	};
+	}
 };
 
