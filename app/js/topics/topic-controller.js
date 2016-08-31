@@ -109,7 +109,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     ===========================================*/
     $scope.submitAction = function(){
       var size = $rootScope.user ? 'lg' : 'sm';
-      var modalInstance = $uibModal.open({
+      $uibModal.open({
         animation: true,
         templateUrl: 'submit-action.html',
         controller: 'ActionCtrl',

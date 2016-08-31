@@ -14,7 +14,6 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.topic.locations = [];
   $scope.topic.created_by = $rootScope.user.id;
   $scope.pos = {};
-  var markers = [];
   var vm = this;
   if(!vm.map) {
     NgMap.getMap('map').then(function(map) {
@@ -28,12 +27,12 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
         $scope.pos.lng = vm.place.geometry.location.lng();
         $scope.topic.address.lat = vm.place.geometry.location.lat();
         $scope.topic.address.lng = vm.place.geometry.location.lng();
-      }
+      };
     }, function(error){
       console.log(error);
     });
 
-  };
+  }
 
   $scope.submit = function() {
     $scope.topic.tags = helpers.jsonified($scope.topic.tags);
@@ -48,7 +47,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
         $scope.errors.title = helpers.errorStringify(error.title);
         $scope.errors.article_link = helpers.errorStringify(error.article_link);
         $scope.errors.auth = error.status === 401 ? 'You must be logged in to do that' : '';
-        console.log(error, status)
+        console.log(error, status);
       });
   };
 

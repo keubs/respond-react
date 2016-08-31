@@ -14,7 +14,7 @@
             else if($scope.article_link.search(/facebook.com\/events/i) > -1) {
                 var eventId = $scope.article_link.replace(/https:\/\/www.facebook.com\/events/, '');
 
-                Facebook.getLoginStatus(function(response){
+                Facebook.getLoginStatus(function(){
                   Facebook.api(eventId.replace(/\//g,'') + "?fields=cover,name,description", function(response) {
                     if(!response.error) {
                       var returnData = {};
@@ -22,9 +22,13 @@
                       returnData.image_preview = {};
                       returnData.title = response.name || "";
                       returnData.description = response.description || "";
-                      if(response.cover) returnData.image_url = response.cover.source || "";
+                      if(response.cover) {
+                        returnData.image_url = response.cover.source || "";
+                      }
                       returnData.image_preview.visible = true;
-                      if(response.cover) returnData.image_preview.src = response.cover.source || "";
+                      if(response.cover) {
+                        returnData.image_preview.src = response.cover.source || "";
+                      }
                       returnData.tags_list = [
                         {'text' : 'Facebook Event'}
                       ];
@@ -46,8 +50,12 @@
                         returnData.article_link = $scope.article_link;
                         returnData.image_preview = {};
                         returnData.image_preview.visible = true;
-                        if(data.multimedia[1]) returnData.image_url = "http://nytimes.com/"+data.multimedia[1].url;
-                        if(data.multimedia[1]) returnData.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
+                        if(data.multimedia[1]) {
+                          returnData.image_url = "http://nytimes.com/"+data.multimedia[1].url;
+                        }
+                        if(data.multimedia[1]) {
+                          returnData.image_preview.src = "http://nytimes.com/"+data.multimedia[1].url;
+                        }
                         returnData.title = data.headline.main;
                         returnData.description = data.snippet;
                         returnData.tags_list = [

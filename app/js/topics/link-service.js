@@ -25,7 +25,7 @@ function LinkService($q, $http, AppSettings, Facebook) {
 		var eventId = link.replace(/https:\/\/www.facebook.com\/events/, '');
 		var deferred = $q.defer();
 
-		Facebook.getLoginStatus(function(response){
+		Facebook.getLoginStatus(function(){
 		  Facebook.api(eventId.replace(/\//g,'') + "?fields=cover,name,description", function(response) {
 		    if(!response.error) {
 		      deferred.resolve(response);
