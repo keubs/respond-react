@@ -4,7 +4,7 @@
  **/
 const helpers = require('../helpers/helpers.js');
 
-module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings, $rootScope, $cookies) {
+module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
   $scope._isRegister = false;
   $scope.errors = {};
   $scope.credentials = {};
@@ -21,7 +21,6 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
         console.log(data);
         var token = data.token;
         AuthService.setLoginData(token, data.user);
-
         $scope.user = data.user;
         $scope.isLoggedIn = true;
       }, function(error) {
@@ -35,16 +34,16 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   $scope.logout = function() {
     AuthService.logout();
     $scope.isLoggedIn = false;
-     var req = {
-         method: "POST",
-         url: '/api/logout/session/',
-         skipAuthorization: true  // in case of session auth don't send token header
-     };
-     $http(req).then(function(){
-         console.log("Got user from session cookies");
-         AuthService.logout();
-         window.location.href = window.location;
-     });
+    var req = {
+      method: 'POST',
+      url: '/api/logout/session/',
+      skipAuthorization: true,  // in case of session auth don't send token header
+    };
+    $http(req).then(function() {
+      console.log('Got user from session cookies');
+      AuthService.logout();
+      window.location.href = window.location;
+    });
   };
 
 
@@ -57,39 +56,44 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   };
 
   $scope.hasThumb = function() {
-    if($scope.social_thumb) {
+    if ($scope.social_thumb) {
       return $scope.social_thumb;
-    }
-    else {
+    } else {
       return AppSettings.apiUrl + '/static/anonymous.png';
     }
   };
 
   $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
-        .then(function(data){
-          var userObject = {
-            'first_name'  : data.data.first_name,
-            'last_name'   : data.data.last_name,
-            'email'       : data.data.email,
-            'social_thumb': data.data.social_thumb,
-            'username'    : data.data.username,
-            'id'          : data.data.id,
-            'address'     : data.data.address,
-          };
+      .then(function(data) {
+        var userObject = {
+          'first_name'  : data.data.first_name,
+          'last_name'   : data.data.last_name,
+          'email'       : data.data.email,
+          'social_thumb': data.data.social_thumb,
+          'username'    : data.data.username,
+          'id'          : data.data.id,
+          'address'     : data.data.address,
+        };
 
-          AuthService.setLoginData(data.data.token, userObject);
-          $scope.user = userObject;
-          $scope.isLoggedIn = true;
+        AuthService.setLoginData(data.data.token, userObject);
+        $scope.user = userObject;
+        $scope.isLoggedIn = true;
       }, function(error){
-        $scope.alerts.push({ type : 'danger', msg: 'There was an error with your authentication using ' + provider + '. We are working on it.'});
+        $scope.alerts.push({
+          type : 'danger',
+          msg: 'There was an error with your authentication using ' + provider + '. We are working on it.',
+        });
         console.log(error);
       }).catch(function(data) {
-          var err_msg = "Something went wrong, maybe you haven't installed 'djangorestframework-jwt'?";
-          console.log(data);
-          console.log(err_msg);
-          $scope.alerts.push({ type : 'danger', msg: 'There was an error with your authentication using ' + provider + '. We are working on it.'});
-          alert(err_msg);
+        var errMsg = 'Something went wrong, maybe you haven\'t installed \'djangorestframework-jwt\'?';
+        console.log(data);
+        console.log(errMsg);
+        $scope.alerts.push({
+          type : 'danger',
+          msg: 'There was an error with your authentication using ' + provider + '. We are working on it.',
+        });
+
       });
   };
 };
