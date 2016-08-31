@@ -53,5 +53,5 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		  	}
 		  }
 		});
-	}
+	};
 };
