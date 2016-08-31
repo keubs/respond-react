@@ -4,7 +4,7 @@
  **/
 
 const helpers = require('../helpers/helpers.js');
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, $rootScope) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService) {
     var vm = this;
 
     $scope.init = function(){
@@ -46,7 +46,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     if(!vm.map) {
       NgMap.getMap('map').then(function(map) {
         vm.map = map;
-        vm.placeChanged = function(e) {
+        vm.placeChanged = function() {
           vm.place = this.getPlace();
           $scope.action.locations = vm.place;
           vm.map.setCenter(vm.place.geometry.location);
@@ -55,8 +55,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.pos.lng = vm.place.geometry.location.lng();
           $scope.action.address.lat = vm.place.geometry.location.lat();
           $scope.action.address.lng = vm.place.geometry.location.lng();
-          if(!hasPostalCode(vm.place)) {
-            var geocoder = new google.maps.Geocoder;
+          if(!helpers.hasPostalCode(vm.place)) {
+            var geocoder = new google.maps.Geocoder();
             var ll = {location: { lat: $scope.pos.lat, lng: $scope.pos.lng }};
             geocoder.geocode(ll, function(results, status){ 
               if(status === 'OK') {
@@ -65,7 +65,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
               }
             });
           }
-        }
+        };
       }, function(error){
         console.log(error);
       });
@@ -80,18 +80,24 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         }
         $scope.action.topic = $stateParams.topic;
         getAddressComponents($scope.action.locations);
-        if($scope.action.date_time_display) var startDate = new Date($scope.action.start_date_time_value);
-        if($scope.action.end_date_time_display) var endDate = new Date($scope.action.end_date_time_value);
 
-        if($scope.action.date_time_display) $scope.action.start_date_time = startDate.toISOString();
-        if($scope.action.end_date_time_display) $scope.action.end_date_time = endDate.toISOString();
+        if($scope.action.date_time_display) {
+          var startDate = new Date($scope.action.start_date_time_value);
+          $scope.action.start_date_time = startDate.toISOString();
+        }
+
+        if($scope.action.end_date_time_display) {
+          var endDate = new Date($scope.action.end_date_time_value);
+          $scope.action.end_date_time = endDate.toISOString();
+        }
 
 		    ActionService.new($scope.action)
-		      .then(function(data){
+		      .then(function(){
             $scope.alerts = [];
             $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
             $scope.formloading = false;
 	        }, function(error) {
+            console.log(error);
             $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Please try again or Contact us'});
           });
 	   };
@@ -116,18 +122,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	    });
 	};
 
-
-  // $scope.setAddress = function(address, index) {
-  //   $scope.action.locations = $scope.action.locations[index];
-  //   if(address) {
-  //     $scope.action.address.formatted = address.formatted_address;
-  //   }
-  // };
-
   $scope.login = function() {
     AuthService.login($scope.user)
       .then(function() {
-        debugger;
+
       }, function(error) {
         $scope.errors = {};
 
@@ -162,19 +160,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
        $scope.action.address.postal_code = component.long_name; 
       }
     });
-  };
-
-  function hasPostalCode(location){
-    var retVal = false;
-    location.address_components.forEach(function(component){
-      if(component.types.indexOf('postal_code') === -1) {
-        return;
-      } else {
-        retVal = true;
-      }
-    });
-    return retVal;
-  };
+  }
 
 };
 

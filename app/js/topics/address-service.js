@@ -35,13 +35,13 @@ function addressService($q, $http, AppSettings) {
             deferred.resolve(data);
         })
         .error(function (err, status) {
-            deferred.reject({err, status})
+            deferred.reject({err, status});
         });
 
         return deferred.promise;
-   }
+   };
 
    return service;
-};
+}
 
 module.exports = addressService;

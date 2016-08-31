@@ -13,7 +13,7 @@ function actionService($q, $http, AppSettings, AddressService) {
     if(tag) {
       url = AppSettings.apiUrl + '/actions/tag/' + tag + '/';
     } else {
-      url = Appsettings.apiurl + '/actions/';
+      url = AppSettings.apiurl + '/actions/';
     }
     $http.get(url)
       .success(function(data) {

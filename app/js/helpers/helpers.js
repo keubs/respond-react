@@ -14,24 +14,6 @@ var proto = {
 	    return str;
   	},
 
-  	geocodeLatLng: function(geocoder, map, lat, lng, fn) {
-  	  var latlng = {lat: parseFloat(lat), lng: parseFloat(lng)};
-  	  var retValue;
-  	  geocoder.geocode({'location': latlng}, function(results, status) {
-  	    if (status === google.maps.GeocoderStatus.OK) {
-  	      if (results[1]) {
-  	        fn(results);
-
-  	      } else {
-  	        console.log('No results found');
-  	      }
-  	    } else {
-  	      console.log('Geocoder failed due to: ' + status);
-  	    }
-  	  });
-
-  	},
-
   	errorStringify: function(errorArray) {
   	  if (errorArray) {
   	    return errorArray.join('<br/>');
@@ -45,14 +27,30 @@ var proto = {
     },
 
     setZoom : function(scope) {
-      if(scope == 'local')
+      if(scope === 'local'){
         return 11;
-      else if(scope == 'national')
+      }
+      else if(scope === 'national'){
         return 10;
-      else return 5;
+      }
+      else {
+        return 5;
+      }
     },
      toTitleCase : function(str) {
         return str.replace(/\b\w/g, function(txt){return (txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());}).replace('-', ' ');
+    },
+
+    hasPostalCode : function(location) {
+      var retVal = false;
+      location.address_components.forEach(function(component){
+        if(component.types.indexOf('postal_code') === -1) {
+          return;
+        } else {
+          retVal = true;
+        }
+      });
+      return retVal;
     }
 };
 
