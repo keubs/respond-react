@@ -1,10 +1,11 @@
 'use strict';
+const helpers = require('../helpers/helpers.js');
+
 /**
  * @ngInject
  **/
-const helpers = require('../helpers/helpers.js');
-
 module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
+  console.log($scope);
   $scope._isRegister = false;
   $scope.errors = {};
   $scope.credentials = {};

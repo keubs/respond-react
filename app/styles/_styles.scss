@@ -192,7 +192,11 @@ div.tag {
   }
 
   a.banner-image {
-    min-height: 200px; background-size: cover; display: block; width: 95%;
+    min-height: 200px; 
+    background-size: cover; 
+    display: block; 
+    width: 95%;
+    background-position: center top;
   }
 }
 

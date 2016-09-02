@@ -1,9 +1,9 @@
 'use strict';
+
+const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-
-const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService) {
     var vm = this;
 

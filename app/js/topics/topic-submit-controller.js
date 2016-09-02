@@ -1,10 +1,10 @@
 'use strict';
-/**
- * @ngInject
- **/
 
 const helpers = require('../helpers/helpers.js');
 
+/**
+ * @ngInject
+ **/
 module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope) {
   $scope.title = 'HELLO!';
   $scope.errors = {};

@@ -1,5 +1,10 @@
 'use strict';
 var helpers = require('../helpers/helpers.js');  
+
+/**
+ * @ngInject
+ **/
+
 module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
   $scope.title = 'HELLO!';
   $scope.errors = {};

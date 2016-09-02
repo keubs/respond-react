@@ -14,7 +14,7 @@ require('ng-tags-input');
 require('satellizer');
 require('angularjs-facebook');
 require('angular-ui-bootstrap');
-require('ngMap');
+require('ngmap');
 require('angular-cookies');
 // create and bootstrap application
 angular.element(document).ready(function() {

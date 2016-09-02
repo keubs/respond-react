@@ -1,5 +1,9 @@
 'use strict';
 const helpers = require('../helpers/helpers.js');
+
+/**
+ * @ngInject
+ **/
 module.exports = function($scope, $rootScope, $location, $stateParams, TopicService,
                           ActionService, AuthService, AppSettings, $uibModal) {
 

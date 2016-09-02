@@ -1,6 +1,8 @@
 'use strict';
 
-
+/**
+ * @ngInject
+ **/
 module.exports = function($scope, items, TopicService, $uibModalInstance) {
 	$scope.message = "You will not be able to recover this post";
 	switch(items.type) {
