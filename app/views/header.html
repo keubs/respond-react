@@ -24,7 +24,7 @@
             <a href="#" ng-click="logout()">Logout</a>
           </li>
           <li style="padding: 10px 10px 0 0" ng-if="user.social_thumb != null">
-            <a href="user/{{user.id}}" style="padding:0"><img src="{{user.social_thumb}}" style="height: 32px; border: solid 1px 666; border-radius: 3px;" /></a>
+            <a href="user/{{user.id}}" style="padding:0"><img src="{{user.social_thumb}}" class="icon" /></a>
           </li>
         </ul>
         <form ng-if="isLoggedIn != true" class="navbar-form navbar-right">
