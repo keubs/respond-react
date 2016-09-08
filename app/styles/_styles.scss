@@ -18,11 +18,16 @@ body {
   z-index: 9999;
 }
 
+.pagination {
+  float: right;
+}
+
 .navbar-default {
   background: linear-gradient(to right, #29b4cf, #ed780b 100%);
   border: 0;
   border-radius: 0;
   margin: 0;
+
 
   .navbar-nav > li > a {
     color: #FFF;
@@ -41,6 +46,24 @@ body {
       .icon-bar {
         background-color: #FFF;
       }
+  }
+
+  .icon {
+    padding: 10px 10px 0 0;
+
+    a {
+      height: 32px; border: solid 1px 666; border-radius: 3px;
+    }
+  }
+}
+
+.navbar-collapse.in {
+  overflow-y: visible;
+
+  @media (max-width: 768px) {
+    input {
+      margin: 10px 0;
+    }
   }
 }
 
