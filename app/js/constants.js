@@ -2,8 +2,8 @@
 
 const CONFIG = {
   appTitle: 'respond/react',
-  apiUrl: 'http://respondreact.com:8100/api',
-  backendUrl: 'http://respondreact.com:8100',
+  apiUrl: 'http://api.respondreact.com/api',
+  backendUrl: 'http://api.respondreact.com',
   googleApiKey: 'AIzaSyAztcWr5QxKQB2tBPwTAbqgIggtUHu4D1M',
 };
 

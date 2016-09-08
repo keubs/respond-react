@@ -47,13 +47,13 @@ angular.element(document).ready(function() {
       // $httpProvider.defaults.useXDomain = true;
       $authProvider.facebook({
         // url: "http://squ.ad:8100/api/login/social/jwt_user/facebook",
-        url: "http://respondreact.com:8100/api/login/social/jwt_user/facebook",
+        url: "http://api.respondreact.com/api/login/social/jwt_user/facebook",
         clientId: '1513191525645232'
       });
 
       $authProvider.google({
         // url: "http://squ.ad:8100/api/login/social/jwt_user/google-oauth2",
-        url: "http://respondreact.com:8100/api/login/social/jwt_user/google-oauth2",
+        url: "http://api.respondreact.com/api/login/social/jwt_user/google-oauth2",
         clientId: '593171474012-e4eu1o08jset6iqv8p75mdgq95jbojcg.apps.googleusercontent.com'
       });
 
