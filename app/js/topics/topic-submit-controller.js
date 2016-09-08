@@ -27,6 +27,15 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
         $scope.pos.lng = vm.place.geometry.location.lng();
         $scope.topic.address.lat = vm.place.geometry.location.lat();
         $scope.topic.address.lng = vm.place.geometry.location.lng();
+        if(!helpers.hasPostalCode(vm.place)) {
+          var geocoder = new google.maps.Geocoder();
+          var ll = {location: { lat: $scope.pos.lat, lng: $scope.pos.lng }};
+          geocoder.geocode(ll, function(results, status){ 
+            if(status === 'OK') {
+              getAddressComponents(results[0]);
+            }
+          });
+        }
       };
     }, function(error){
       console.log(error);

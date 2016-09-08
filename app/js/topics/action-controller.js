@@ -61,7 +61,6 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
             geocoder.geocode(ll, function(results, status){ 
               if(status === 'OK') {
                 getAddressComponents(results[0]);
-                console.log($scope.action.address);
               }
             });
           }
