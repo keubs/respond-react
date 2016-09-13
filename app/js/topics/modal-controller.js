@@ -33,30 +33,40 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 	};
 
 	$scope.doAction = function(){
-		switch(items.action) {
-			case 'delete':
-				TopicService.delete(items.id)
-					.then(function(){
-						$scope.message = 'This post was deleted successfully.';
-						setTimeout(function(){
-							window.location.href = window.location;
-						}, 2000);	
-					}, function(error){
-						console.log(error);
-					});
+		switch(items.type) {
+			case 'topic':
+				switch(items.action) {
+					case 'delete':
+						TopicService.delete(items.id)
+							.then(function(){
+								$scope.message = 'This post was deleted successfully.';
+								setTimeout(function(){
+									window.location.href = window.location;
+								}, 2000);	
+							}, function(error){
+								console.log(error);
+							});
+						break;
+				}
 				break;
-			case 'approve':
-				ActionService.approve(items.id)
-					.then(function(){
-						$scope.message = 'This post as approved successfully';
-						setTimeout(function(){
-							window.location.href = window.location;
-						}, 2000);
-					}, function(error){
-						console.log(error);
-					})
-				break;
+			case 'action':
+				switch(items.action) {
+					case 'approve':
+						ActionService.approve(items.id)
+							.then(function(){
+								$scope.message = 'This post was approved successfully';
+								setTimeout(function(){
+									window.location.href = window.location;
+								}, 2000);
+							}, function(error){
+								console.log(error);
+							})
+						break;
 
+					case 'delete':
+						alert('coming soon');
+				}
+				break;
 		}
 	};
 
