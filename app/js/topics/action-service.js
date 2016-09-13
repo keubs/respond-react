@@ -94,7 +94,15 @@ function actionService($q, $http, AppSettings, AddressService) {
   };
 
   service.delete = function(actionId) {
-    console.log(actionId);
+    var deferred = $q.defer();
+    $http.delete(AppSettings.apiUrl + '/actions/' + actionId + '/delete/')
+      .then(function(data){
+        deferred.resolve(data);
+      }, function(error){
+        deferred.reject({error, status});
+      });
+
+      return deferred.promise;
   };
 
   service.addComment = function(actionId, comment) {

@@ -64,7 +64,15 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 						break;
 
 					case 'delete':
-						alert('coming soon');
+						ActionService.delete(items.id)
+							.then(function(){
+								$scope.message = 'This post was deleted successfully.';
+								setTimeout(function(){
+									window.location.href = window.location;
+								}, 2000);	
+							}, function(error){
+								console.log(error);
+							});
 				}
 				break;
 		}
