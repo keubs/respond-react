@@ -148,5 +148,33 @@ module.exports = function($q, $http, $window, AppSettings, $rootScope, $cookies)
     $http.defaults.headers.common.Authorization = 'JWT ' + token || 'JWT ' + data.token;
   };
 
+  service.unapprovedActionCount = function(){
+    var deferred = $q.defer();
+
+    $http.get(AppSettings.apiUrl + '/actions/unapproved/count/')
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err){
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+  };
+
+  service.unapprovedActions = function() {
+    var deferred = $q.defer();
+
+    $http.get(AppSettings.apiUrl + '/actions/unapproved/')
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err){
+        deferred.reject(err);
+      })
+
+      return deferred.promise;
+  }
+
   return service;
 };

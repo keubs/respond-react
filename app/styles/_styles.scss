@@ -10,7 +10,7 @@ body {
   margin: 0 auto;
   background: #FFF;
   padding: 15px 30px;
-  padding-top: 60px;
+  padding-top: 120px;
 }
 .header {
   position: fixed;
@@ -52,14 +52,16 @@ body {
     padding: 10px 10px 0 0;
 
     a {
-      height: 32px;
       border-radius: 3px;
-      width: 43px;
+      width: 32px;
 
       img {
         width: 100%;
       }
     }
+    @media (max-width: 768px) {
+      margin-left: 15px;
+    }    
   }
 }
 
@@ -183,6 +185,8 @@ div.tag {
   }
 }
 .modal-dialog {
+  margin: 20% auto;
+  
   &.modal-lg {
     width: 1200px;
     max-width: 90%;

@@ -14,22 +14,37 @@
 			</div>
 		</div>
 	</div>
+	<div ng-if="isCurrentUser == true">
+		<h1>Unapproved Actions</h1>
+		<hr />
+		<div ng-repeat="action in unapprovedActions" class="row" style="margin: 1em 0">
+			<div class="col-lg-4 col-md-4 col-sm-4">
+				<img src="{{backendUrl}}/{{action.image}}" style="width: 100%" />
+			</div>
+			<div class="col-lg-8 col-md-8 col-sm-8">
+				{{action.title}}<br />
+			<p>			
+				{{action.created_on | date : fullDate}}
+			</p>
+				<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction( action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger" style="float: right;"></span></a>&nbsp;&nbsp;
+				<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-primary" style="float: right;"></span></a>
+			<aside class="error" ng-show="action.error">{{action.error}}</aside>
+
+				<br />
+			</div>
+		</div>
+	</div>
+	<h1>Topics</h1>
+	<hr />
 	<div ng-repeat="topic in topics" class="row" style="margin: 1em 0">
-		<!-- <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
-			<span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-arrow-up upvote">
-			</span>
-			<h3 style="margin: .5em 0">{{topic.score}}</h3>
-			<span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-arrow-down downvote">
-			</span>
-		</div> -->
 		<div class="col-lg-4 col-md-4 col-sm-4">
 			<a href="http://respondreact.com:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-8">
 			<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
-			<a ng-if="isCurrentUser == true" href="#" ng-click="deleteTopic(topic.id)"><span class="glyphicon glyphicon-trash" style="float: right; font-size: 20px;"></span></a>
+			<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger" style="float: right; font-size: 20px;"></span></a>
 		<aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-		<p>
+			<p>
 			<!-- Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}<a>
 				on {{topic.created_on | date : fullDate}} -->
 				{{topic.created_on | date : fullDate}}

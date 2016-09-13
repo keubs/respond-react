@@ -3,13 +3,15 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, items, TopicService, $uibModalInstance) {
+module.exports = function($scope, items, TopicService, ActionService, $uibModalInstance) {
+	alert(items.action);
 	$scope.message = "You will not be able to recover this post";
 	switch(items.type) {
 		case 'topic':
 			getTopic(items.id);
 			break;
 		case 'action':
+			getAction(items.id);
 			break;
 		default:
 			break;
@@ -26,12 +28,10 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 				$scope.message = 'This post was deleted successfully.';
 				setTimeout(function(){
 					window.location.href = window.location;
-				}, 2000);
-				
+				}, 2000);	
 			}, function(error){
 				console.log(error);
-			});
-	};
+			});	};
 
 	function getTopic(id) {
 		TopicService.topic(id)
@@ -41,5 +41,15 @@ module.exports = function($scope, items, TopicService, $uibModalInstance) {
 			}, function(error){
 				console.log(error);
 			});
-	}
+	};
+
+	function getAction(id) {
+		ActionService.action(id)
+			.then(function(data){
+				console.log(data);
+				$scope.title = data.title;
+			}, function(error){
+				console.log(error);
+			});
+	};
 };

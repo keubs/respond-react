@@ -56,7 +56,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   TopicService.local()
     .then(function(data){
       $scope.local = data.data;
-      console.log(data);
     }, function(error){
       console.log(error);
   });
@@ -64,7 +63,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   TopicService.national()
     .then(function(data){
       $scope.national = data.data;
-      console.log(data);
     }, function(error){
       console.log(error);
   });
@@ -72,7 +70,6 @@ module.exports = function($scope, $location, TopicService, AuthService, AppSetti
   TopicService.worldwide()
     .then(function(data){
       $scope.worldwide = data.data;
-      console.log(data);
     }, function(error){
       console.log(error);
   });

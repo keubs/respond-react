@@ -42,18 +42,18 @@ angular.element(document).ready(function() {
     .constant('AppSettings', require('./constants'))
     .config(require('./on_config'))
     .run(require('./on_run'))
-    .config(function($httpProvider, $authProvider, FacebookProvider) {
+    .config(function(AppSettings, $httpProvider, $authProvider, FacebookProvider) {
       // Enable cross domain calls
       // $httpProvider.defaults.useXDomain = true;
       $authProvider.facebook({
         // url: "http://squ.ad:8100/api/login/social/jwt_user/facebook",
-        url: "http://api.respondreact.com/api/login/social/jwt_user/facebook",
+        url: AppSettings.apiUrl + "/login/social/jwt_user/facebook",
         clientId: '1513191525645232'
       });
 
       $authProvider.google({
         // url: "http://squ.ad:8100/api/login/social/jwt_user/google-oauth2",
-        url: "http://api.respondreact.com/api/login/social/jwt_user/google-oauth2",
+        url:  AppSettings.apiUrl + "/api/login/social/jwt_user/google-oauth2",
         clientId: '593171474012-e4eu1o08jset6iqv8p75mdgq95jbojcg.apps.googleusercontent.com'
       });
 

@@ -34,18 +34,27 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			}, function(err){
 				console.log(err);
 			});
+
+		AuthService.unapprovedActions()
+			.then(function(data){
+				$scope.unapprovedActions = data;
+				console.log(data);
+			}, function(err){
+				console.log(err);
+			});
+
 	};
 
-
-	$scope.deleteTopic = function(id) {
+	$scope.modalAction = function(id, type, action) {
 		var send = {
-			type: 'topic',
-			id  : id
+			type: type,
+			id  : id,
+			action: action,
 		};
 		$uibModal.open({
 		  animation: true,
-		  templateUrl: 'delete.html',
-		  controller: 'DeleteContentCtrl',
+		  templateUrl: 'modal.html',
+		  controller: 'ModalContentCtrl',
 		  size: 'sm',
 		  resolve: {
 		  	items : function(){
@@ -54,4 +63,5 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		  }
 		});
 	};
+
 };

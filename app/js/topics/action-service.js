@@ -30,7 +30,7 @@ function actionService($q, $http, AppSettings, AddressService) {
   service.action = function(id) {
     var deferred = $q.defer();
 
-    $http.get(AppSettings.apiUrl + '/actions/' + id)
+    $http.get(AppSettings.apiUrl + '/actions/' + id + '/')
       .success(function(data) {
         deferred.resolve(data);
       })
@@ -76,6 +76,19 @@ function actionService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
+  service.approve = function(id) {
+    var deferred = $q.defer();
+
+    $http.post(AppSettings.apiUrl + '/actions/' + id + '/approve/')
+      .success(function(data){
+        deferred.resolve(data);
+      })
+      .error(function(err, status){
+        deferred.reject({err, status});
+      });
+      
+    return deferred.promise;
+  };
   service.find = function(actionId) {
     console.log(actionId);
   };

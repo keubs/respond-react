@@ -5,13 +5,7 @@ const helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
-  console.log($scope);
-  $scope._isRegister = false;
-  $scope.errors = {};
-  $scope.credentials = {};
-  $scope.alerts = [];
-  $scope.userid = $window.sessionStorage.id;
-  $scope.isLoggedIn = AuthService.newIsLoggedIn();
+  
   $scope.register = function() {
     AuthService.register($scope.user);
   };
@@ -19,7 +13,6 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   $scope.login = function() {
     AuthService.login($scope.credentials)
       .then(function(data) {
-        console.log(data);
         var token = data.token;
         AuthService.setLoginData(token, data.user);
         $scope.user = data.user;
@@ -96,5 +89,25 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
         });
 
       });
+  };
+
+  $scope.init = function(){
+    $scope._isRegister = false;
+    $scope.errors = {};
+    $scope.credentials = {};
+    $scope.alerts = [];
+    $scope.userid = $window.sessionStorage.id;
+    $scope.isLoggedIn = AuthService.newIsLoggedIn();
+
+    if($scope.isLoggedIn) {
+      AuthService.unapprovedActionCount()
+        .then(function(data){
+          $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved actions. Approve or delete them in your dashboard.'});
+        })
+    }
+  };
+
+  $scope.closeAlert = function(index) {
+    $scope.alerts.splice(index, 1);
   };
 };
