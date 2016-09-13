@@ -7,6 +7,7 @@
 					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="#" ng-click="editUser()">[edit]</a>
 				</div>
 				<ul>
+				<li ng-if="unapprovedActionCount > 0" style="color: red">{{unapprovedActionCount}} unapproved actions <span class="glyphicon glyphicon-alert"></span> </li>
 					<li>{{user.topic_count}} topics submitted <span class="glyphicon glyphicon-flag"></span> </li>
 					<li>{{user.action_count}} actions submitted <span class="glyphicon glyphicon-fire"></span> </li>
 					<li>{{user.vote_count}} upvotes <span class="glyphicon glyphicon-upload"></span> </li>
@@ -14,8 +15,8 @@
 			</div>
 		</div>
 	</div>
-	<div ng-if="isCurrentUser == true">
-		<h1>Unapproved Actions</h1>
+	<div ng-if="isCurrentUser == true && unapprovedActionCount > 0">
+		<h1>Unapproved Actions ({{unapprovedActionCount}})</h1>
 		<hr />
 		<div ng-repeat="action in unapprovedActions" class="row" style="margin: 1em 0">
 			<div class="col-lg-4 col-md-4 col-sm-4">
@@ -26,8 +27,10 @@
 			<p>			
 				{{action.created_on | date : fullDate}}
 			</p>
-				<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction( action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger" style="float: right;"></span></a>&nbsp;&nbsp;
-				<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-primary" style="float: right;"></span></a>
+			<div style="float: right">
+				<a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a>
+				<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-primary"></span></a>
+			</div>
 			<aside class="error" ng-show="action.error">{{action.error}}</aside>
 
 				<br />
@@ -42,7 +45,9 @@
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-8">
 			<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
-			<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger" style="float: right; font-size: 20px;"></span></a>
+			<div style="float: right">
+				<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')" tooltip-placement="left" uib-tooltip="Delete this topic"><span class="glyphicon glyphicon-trash btn btn-danger" style="font-size: 20px;"></span></a>
+			</div>
 		<aside class="error" ng-show="topic.error">{{topic.error}}</aside>
 			<p>
 			<!-- Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}<a>

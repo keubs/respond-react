@@ -43,6 +43,14 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 				console.log(err);
 			});
 
+		AuthService.unapprovedActionCount()
+			.then(function(data){
+				console.log(data.count);
+				$scope.unapprovedActionCount = data.count;
+			}, function(err){
+				console.log(err);
+			});
+
 	};
 
 	$scope.modalAction = function(id, type, action) {

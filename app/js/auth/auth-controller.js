@@ -102,7 +102,9 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
     if($scope.isLoggedIn) {
       AuthService.unapprovedActionCount()
         .then(function(data){
-          $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved actions. Approve or delete them in your dashboard.'});
+          if(data.count > 0){
+            $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved actions. Approve or delete them in your dashboard.'});
+          }
         })
     }
   };
