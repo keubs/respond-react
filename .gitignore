@@ -2,3 +2,5 @@ node_modules
 build/*
 templates.js
 logs
+coverage
+.DS_Store
