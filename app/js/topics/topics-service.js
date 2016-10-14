@@ -77,9 +77,24 @@ function TopicService($q, $http, AppSettings, AddressService) {
 
   service.new = function(topic) {
     var deferred = $q.defer();
-    AddressService.submit(topic.address)
-      .then(function(data){
-        topic.address = data.id;
+
+    if(topic.address){
+      AddressService.submit(topic.address)
+        .then(function(data){
+          topic.address = data.id;
+          $http.post(AppSettings.apiUrl + '/topics/' + 'submit', topic)
+            .success(function(data) {
+              deferred.resolve(data);
+            })
+            .error(function(err, status) {
+              console.log(err, status);
+              deferred.reject({err, status});
+            });
+        }, function(error){
+          console.log(error);
+        });
+      } else {
+        topic.address = null;
         $http.post(AppSettings.apiUrl + '/topics/' + 'submit', topic)
           .success(function(data) {
             deferred.resolve(data);
@@ -88,9 +103,7 @@ function TopicService($q, $http, AppSettings, AddressService) {
             console.log(err, status);
             deferred.reject({err, status});
           });
-      }, function(error){
-        console.log(error);
-      });
+      }
 
     return deferred.promise;
   };

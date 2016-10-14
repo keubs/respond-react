@@ -44,9 +44,9 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   }
 
   $scope.submit = function() {
-    $scope.topic.tags = helpers.jsonified($scope.topic.tags);
     $scope.topic.image_preview = undefined;
-    getAddressComponents($scope.topic.locations);
+    if($scope.topic.tags) $scope.topic.tags = helpers.jsonified($scope.topic.tags);
+    if($scope.topic.address) getAddressComponents($scope.topic.locations);
     TopicService.new($scope.topic)
       .then(function(data) {
         $location.path('/topic/' + data.id);

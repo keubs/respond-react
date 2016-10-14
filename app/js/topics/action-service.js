@@ -57,21 +57,34 @@ function actionService($q, $http, AppSettings, AddressService) {
   service.new = function(action) {
 
     var deferred = $q.defer();
-    AddressService.submit(action.address)
-      .then(function(data){
-        action.address = data.id;
-        $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
-          .success(function(data) {
-            deferred.resolve(data);
-          })
-          .error(function(err, status) {
-            console.log(err, status);
+
+    if(action.address) {
+      AddressService.submit(action.address)
+        .then(function(data){
+          action.address = data.id;
+          $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
+            .success(function(data) {
+              deferred.resolve(data);
+            })
+            .error(function(err, status) {
+              console.log(err, status);
+              deferred.reject({err, status});
+            });
+        }, function(err, status) {
+            console.log(err);
             deferred.reject({err, status});
-          });
-      }, function(err, status) {
-          console.log(err);
+        });
+    } else {
+      action.address = null;
+      $http.post(AppSettings.apiUrl + '/actions/' + 'submit', action)
+        .success(function(data) {
+          deferred.resolve(data);
+        })
+        .error(function(err, status) {
+          console.log(err, status);
           deferred.reject({err, status});
-      });
+        });
+    }
     
     return deferred.promise;
   };

@@ -15,7 +15,7 @@
 			<a href="{{ topic.article_link }}"><img style="width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" /></a>
 		</div>
 		<div class="col-md-6 col-lg-6">
-			<span ng-if="topic.address.latitude !== ''">
+			<span ng-if="topic.address !== null">
 				<img class="gmap" src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x350" />
 			</span>
 		</div>

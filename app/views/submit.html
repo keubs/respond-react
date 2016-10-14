@@ -2,26 +2,26 @@
   <form ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
     <h1>Submit a topic</h1>
     <p ng-show="errors.general">{{ errors.general }}</p>
-    <label for="article_link">Article Link</label>
-    <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required>
+    <label class="required" for="article_link">Article Link</label>
+    <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required autofocus>
     <br />
-    <label for="title">Title</label>
+    <label class="required" for="title">Title</label>
     <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
     <p ng-show="errors.title" id="">{{ errors.title }}</p>
     <br>
     <label for="tags">Tags</label>
-    <tags-input id="tags" ng-model="topic.tags" required replace-spaces-with-dashes="false"></tags-input>
+    <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
     <br />
-    <label for="scope">Scope</label>
+    <label class="required" for="scope">Scope</label>
     <select id="scope" class="form-control" ng-model="topic.scope" required>
-        <option value="local">Local (Your State)</option>
-        <option value="national" selected>National (Your Country)</option>
-        <option value="worldwide">Worldwide (Outside Your Country)</option>
+        <option value="local">Local (Affects only this state)</option>
+        <option value="national" selected>National (Affects only this country)</option>
+        <option value="worldwide">Worldwide (Affects the world)</option>
     </select>
     <br />
     <label for="address">Address</label>
-    <p>Can be as vague as the country or as specific as a street-level address.</p>
-    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+    <p>Can be as vague as the country (e.g. United States of America), <br/>or as specific as a street-level address (e.g. 100 Market st San Francisco, California).</p>
+    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
     <br/>
     <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="">
         <marker position="{{pos.lat}},{{pos.lng}}"></marker>

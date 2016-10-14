@@ -185,7 +185,6 @@ div.tag {
   }
 }
 .modal-dialog {
-  margin: 20% auto;
   
   &.modal-lg {
     width: 1200px;
@@ -195,6 +194,7 @@ div.tag {
   &.modal-sm {
     width: 450px;
     max-width: 45%;
+    margin: 20% auto;
   }
 }
 
@@ -246,4 +246,12 @@ div.tag {
   background: #FFF;
   padding: 1em .5em;
   margin-top: 2em;
+}
+
+label.required {
+  &:after {
+    padding-left: 2px;
+    content:"*";
+    color:red;
+  }
 }
