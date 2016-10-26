@@ -41,7 +41,9 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       }
     })
     .state('Submit Action', {
-      controller: 'ActionCtrl',
+      url: '/topic/:topic/submit-action',
+      templateUrl: 'submit-action.html',
+      controller: 'ActionSubmitCtrl',
       data: {
         requireLogin: true
       }

@@ -1,10 +1,11 @@
 <div ng-controller="AuthCtrl">
-    <div ng-controller="ActionCtrl as vm" class="container-fluid" ng-init="init()" style="margin:2em 0">
+    <div ng-controller="ActionSubmitCtrl as vm" class="container-fluid" ng-init="init()" style="margin:2em 0">
         <div class="row">
             <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn == true">
                 <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
                 <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action">
-                    <h1>Submit an action for this topic</h1>
+                    <h1>Submit an action for:</h1>
+                    <h2><a href="/topic/{{topic.id}}">{{topic.title}}</a></h2>
                     <label for="article_link">Link:</label>
                     <input id="article_link" type="text" ng-model="article_link" class="form-control" placeholder="Article Link" ng-blur="linkEntered()" required>
                     <aside class="error" ng-show="article_link_error">{{article_link_error}}</aside>
@@ -50,7 +51,7 @@
                     </select>
                     <br />
                     <label for="address">Address</label>
-                    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" required component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+                    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
                     <br/>
                     <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-if="render">
                         <marker position="{{pos.lat}},{{pos.lng}}"></marker>

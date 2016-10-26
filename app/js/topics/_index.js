@@ -7,6 +7,7 @@ exports = angular.module('topics', [])
             .controller('DeleteContentCtrl', require('./delete-controller'))
             .controller('ModalContentCtrl', require('./modal-controller'))
             .controller('TopicSubmitCtrl', require('./topic-submit-controller'))
+            .controller('ActionSubmitCtrl', require('./action-submit-controller'))
             .controller('TopicCtrl', require('./topic-controller')) // Singular
             .controller('ActionCtrl', require('./action-controller'))
             .controller('ActionsCtrl', require('./actions-controller'))

@@ -108,18 +108,18 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     };
 
 
-    /*===========================================
-    =            Action Submit Modal            =
-    ===========================================*/
-    $scope.submitAction = function(){
-      var size = $rootScope.user ? 'lg' : 'sm';
-      $uibModal.open({
-        animation: true,
-        templateUrl: 'submit-action.html',
-        controller: 'ActionCtrl',
-        size: size,
-      });
-    };
-    /*=====  End of Action Submit Modal  ======*/
+    // /*===========================================
+    // =            Action Submit Modal            =
+    // ===========================================*/
+    // $scope.submitAction = function(){
+    //   var size = $rootScope.user ? 'lg' : 'sm';
+    //   $uibModal.open({
+    //     animation: true,
+    //     templateUrl: 'submit-action.html',
+    //     controller: 'ActionCtrl',
+    //     size: size,
+    //   });
+    // };
+    // /*=====  End of Action Submit Modal  ======*/
 
 };
