@@ -18,22 +18,24 @@
 	<div ng-if="isCurrentUser == true && unapprovedActionCount > 0">
 		<h1>Unapproved Actions ({{unapprovedActionCount}})</h1>
 		<hr />
-		<div ng-repeat="action in unapprovedActions" class="row" style="margin: 1em 0">
-			<div class="col-lg-4 col-md-4 col-sm-4">
-				<img src="{{backendUrl}}/{{action.image}}" style="width: 100%" />
-			</div>
-			<div class="col-lg-8 col-md-8 col-sm-8">
-				{{action.title}}<br />
-			<p>			
-				{{action.created_on | date : fullDate}}
-			</p>
-			<div style="float: right">
-				<a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a>
-				<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-primary"></span></a>
-			</div>
-			<aside class="error" ng-show="action.error">{{action.error}}</aside>
-
-				<br />
+		<div ng-repeat="topic in unapprovedActions">
+			<h3>{{topic.title}}</h3>
+		
+			<div ng-repeat="action in topic.actions" class="row" style="margin: 1em; padding: 1em; background: #EEE">
+				<div class="col-lg-1 col-md-1 col-sm-1">
+					<img src="{{backendUrl}}/{{action.image}}" style="width: 100%" />
+				</div>
+				<div class="col-lg-11 col-md-11 col-sm-11">
+					<a href="{{action.url}}" target="_blank">{{action.title}}</a>
+					<p>			
+						{{action.created_on | date : fullDate}}
+					</p>
+					<div style="float: right">
+						<a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a>
+						<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-primary"></span></a>
+						<aside class="error" ng-show="action.error">{{action.error}}</aside>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

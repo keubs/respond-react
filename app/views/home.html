@@ -26,9 +26,6 @@
 <br />
 <div class="container-fluid">
   <span ng-if="tag != null"><h1 class="tag-header">Tag: {{tag_title}}</h1><a href="#" ng-click="removeTag()">[Remove]</a></span>
-  <div class="clearfix">
-  <ul uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
-  </div>
   <div ng-repeat="topic in topics" class="row">
     <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
       <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote">
