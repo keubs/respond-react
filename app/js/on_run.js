@@ -22,6 +22,10 @@ function OnRun($rootScope, AppSettings, $location) {
       $rootScope.pageTitle += ' \u2014 ';
     }
 
+    if (toState.og_title) {
+      $rootScope.og_title;
+    }
+
     $rootScope.pageTitle += AppSettings.appTitle;
   });
 

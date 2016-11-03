@@ -74,18 +74,8 @@
                 $http.post(AppSettings.apiUrl + '/getopengraph/', {url: $scope.article_link, type: type})
                   .success(function(data) {
                     var returnData = {};
-                    if($scope.article_link.search(/change.org/i) > -1) {
-                        returnData.tags_list = [
-                          {'text' : 'Petition'},
-                          {'text' : 'Change.org'}
-                        ];
-                    }
-                    else if($scope.article_link.search(/moveon.org/i) > -1) {
-                      returnData.tags_list = [
-                        {'text' : 'Petition'},
-                        {'text' : 'MoveOn.org'}
-                      ];
-                    }
+
+                    returnData.tags_list = data.tags;
                     returnData.article_link = $scope.article_link;
                     returnData.image_preview = {};
                     returnData.image_preview.visible = true;
@@ -102,6 +92,13 @@
             }
             return deferred.promise;
         },
+
+        linkType: function($scope){
+          $http.post(AppSettings.apiUrl + '/linkfactory/')
+          .success(function(data){
+            console.log(data);
+          })
+        }
     };
  }
 
