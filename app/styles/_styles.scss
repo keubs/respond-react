@@ -260,3 +260,9 @@ label.required {
     color:red;
   }
 }
+
+@media (max-width: 768px) {
+  h1.tagline {
+    font-size: 20px;
+  }
+}
