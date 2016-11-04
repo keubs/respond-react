@@ -50,10 +50,12 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     /*----------  end start/end date/time section  ----------*/
 
     /*----------  start Map  ----------*/
+    $scope.placePicked = false;
     if(!vm.map) {
       NgMap.getMap('map').then(function(map) {
         vm.map = map;
         vm.placeChanged = function() {
+          $scope.placePicked = true;
           vm.place = this.getPlace();
           $scope.action.locations = vm.place;
           vm.map.setCenter(vm.place.geometry.location);
@@ -85,7 +87,12 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
         $scope.action.topic = $stateParams.topic;
-        if($scope.action.address) getAddressComponents($scope.action.locations);
+        if($scope.action.address && !$scope.placePicked) {
+          window.scrollTo(0,0);
+          $scope.alerts.push({ type : 'danger', msg: 'Please select a location from the address dropdown'});          
+          return;
+        }
+        if($scope.action.address && $scope.placePicked) getAddressComponents($scope.action.locations);
 
         if($scope.action.date_time_display) {
           var startDate = new Date($scope.action.start_date_time_value);
@@ -100,7 +107,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 		    ActionService.new($scope.action)
 		      .then(function(){
             $scope.alerts = [];
-            $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action on this page soon'});
+            $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action posted publicly soon'});
             $scope.formloading = false;
             window.scrollTo(0, 0);
 	        }, function(error) {
