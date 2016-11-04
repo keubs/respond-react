@@ -5,8 +5,8 @@ var helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 
-module.exports = function($scope, $location, TopicService, AuthService, AppSettings, $stateParams) {
-  $scope.title = 'HELLO!';
+module.exports = function($scope, $rootScope, $location, TopicService, AuthService, AppSettings, $stateParams) {
+  $rootScope.pageTitle = "Don't just react, respond.";
   $scope.errors = {};
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
   $scope.topics = [];
