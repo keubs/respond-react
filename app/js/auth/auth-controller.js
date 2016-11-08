@@ -4,7 +4,7 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings) {
+module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings, $uibModal, $cookies) {
   
   $scope.register = function() {
     AuthService.register($scope.user);
@@ -106,10 +106,26 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
             $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved actions. Approve or delete them in your dashboard.'});
           }
         })
+    } else {
+      if($cookies.get('rr_newuser')) {
+      } else {
+        $scope.newUser();
+      }
     }
   };
 
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
+  };
+
+
+  $scope.newUser = function(){
+    $uibModal.open({
+      animation: true,
+      templateUrl: 'new-user.html',
+      size: 'sm',
+    });
+
+    $cookies.put('rr_newuser', true);
   };
 };
