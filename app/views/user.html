@@ -39,9 +39,10 @@
 			</div>
 		</div>
 	</div>
-	<h1>Topics</h1>
+	<h2 ng-if="topics.length == 0">You have not submitted any topics yet.</h2>
+	<h2 ng-if="topics.length > 0">Topics</h2>
 	<hr />
-	<div ng-repeat="topic in topics" class="row" style="margin: 1em 0">
+	<div ng-if="topics.length > 0" ng-repeat="topic in topics" class="row" style="margin: 1em 0">
 		<div class="col-lg-4 col-md-4 col-sm-4">
 			<a href="http://respondreact.com:3000/topic/{{topic.id}}"><img src="{{backendUrl}}/{{topic.image}}" style="width: 100%" /></a>
 		</div>
