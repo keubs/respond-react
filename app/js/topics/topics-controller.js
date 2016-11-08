@@ -6,28 +6,32 @@ var helpers = require('../helpers/helpers.js');
  **/
 
 module.exports = function($scope, $rootScope, $location, TopicService, AuthService, AppSettings, $stateParams) {
-  $rootScope.pageTitle = "Don't just react, respond.";
-  $scope.errors = {};
-  $scope.isLoggedIn = AuthService.newIsLoggedIn();
-  $scope.topics = [];
 
-  $scope.backendUrl = AppSettings.backendUrl;
-  $scope.tag = $stateParams.tag || null;
-  if($scope.tag) {
-    $scope.tag_title = helpers.toTitleCase($scope.tag);
-  }
-  /* Pagination Stuff */
-  $scope.currentPage = 1;
-  $scope.totalItems = 2;
-  $scope.maxSize = 10;
-  $scope.bigTotalItems = 175;
-  $scope.bigCurrentPage = 1;
 
-  TopicService.count().then(function(data){
-    $scope.totalItems = data.count;
-  }, function(err){
-      console.log(err);
-  });
+  $scope.init = function() {
+    $rootScope.pageTitle = "respond/react | Don't just react, respond.";
+    $scope.errors = {};
+    $scope.isLoggedIn = AuthService.newIsLoggedIn();
+    $scope.topics = [];
+
+    $scope.backendUrl = AppSettings.backendUrl;
+    $scope.tag = $stateParams.tag || null;
+    if($scope.tag) {
+      $scope.tag_title = helpers.toTitleCase($scope.tag);
+    }
+    /* Pagination Stuff */
+    $scope.currentPage = 1;
+    $scope.totalItems = 2;
+    $scope.maxSize = 10;
+    $scope.bigTotalItems = 175;
+    $scope.bigCurrentPage = 1;
+
+    TopicService.count().then(function(data){
+      $scope.totalItems = data.count;
+    }, function(err){
+        console.log(err);
+    });
+  };
 
   $scope.pageChanged = function() {
     TopicService.get(null, $scope.currentPage).then(function(data) {
