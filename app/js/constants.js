@@ -13,7 +13,7 @@ if(window.location.port !== ''){
 	  appTitle: 'respond/react',
 	  apiUrl: 'http://api.respondreact.com/api',
 	  backendUrl: 'http://api.respondreact.com',
-	  mediaUrl: 'http://media.respondreact.com',
+	  mediaUrl: '',
 	  googleApiKey: 'AIzaSyAztcWr5QxKQB2tBPwTAbqgIggtUHu4D1M',
 	};
 }
