@@ -70,7 +70,15 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       data: {
         requireLogin: true
       }
-    });
+    })
+    .state('Terms and Conditions', {
+      url: '/terms-conditions',
+      templateUrl: 'terms-conditions.html',
+      data : {
+        requireLogin: false
+      }
+    })
+    ;
 
   $urlRouterProvider.otherwise('/');
 
