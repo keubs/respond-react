@@ -78,6 +78,13 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
         requireLogin: false
       }
     })
+    .state('Privacy Policy', {
+      url: '/privacy-policy',
+      templateUrl: 'privacy-policy.html',
+      data : {
+        requireLogin: false
+      }
+    })
     ;
 
   $urlRouterProvider.otherwise('/');
