@@ -19,6 +19,8 @@ button, button.btn-primary {
   max-width: 1300px;
   margin: 0 auto;
   padding-top: 80px;
+
+  min-height: 100vh;
 }
 .header {
   position: fixed;
@@ -272,6 +274,13 @@ div.tag {
   background: #FFF;
   padding: 1em .5em;
   margin-top: 2em;
+
+  ul {
+    li {
+      display: inline-block;
+      padding: 10px 20px;
+    }
+  }
 }
 
 label.required {
