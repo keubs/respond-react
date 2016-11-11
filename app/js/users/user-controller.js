@@ -5,6 +5,8 @@
 module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope) {
 	$scope.currentUser = {};
 	$scope.backendUrl = AppSettings.backendUrl;
+	$scope.mediaUrl = AppSettings.mediaUrl;
+	
 	$scope.editUser = function(){
 	/*===========================================
 	=            Edit User Modal            =
