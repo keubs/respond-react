@@ -214,9 +214,15 @@ div.tag {
   }
 
   &.modal-sm {
-    width: 450px;
+    width: 650px;
     max-width: 45%;
     margin: 20% auto;
+
+  }
+}
+@media (min-width: 768px) {
+  .modal-dialog.modal-sm {
+    width: 95% !important;
   }
 }
 

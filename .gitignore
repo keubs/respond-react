@@ -4,3 +4,4 @@ templates.js
 logs
 coverage
 .DS_Store
+media/*

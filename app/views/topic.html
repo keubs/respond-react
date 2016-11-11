@@ -13,7 +13,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6 col-lg-6">
-			<a href="{{ topic.article_link }}"><img style="width: 100%;" src="{{ backendUrl }}/{{ topic.image }}" /></a>
+			<a href="{{ topic.article_link }}"><img style="width: 100%;" src="{{mediaUrl}}/{{ topic.image }}" /></a>
 		</div>
 		<div class="col-md-6 col-lg-6">
 			<span ng-if="topic.address !== null">
@@ -37,7 +37,7 @@
 					<span ng-click="downVoteAction($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-chevron-down downvote action"></span>
 				</div>
 				<div class="col-md-2 col-sm-2">
-					<a href="{{action.article_link}}" target="_blank"><img src="{{backendUrl}}/{{action.image}}" style="width: 100%" /></a>
+					<a href="{{action.article_link}}" target="_blank"><img src="{{mediaUrl}}/{{action.image}}" style="width: 100%" /></a>
 				</div>
 				<div class="col-md-6 col-sm-6">
 					<a href="{{action.article_link}}" target="_blank">{{action.title}}</a>

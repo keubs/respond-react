@@ -15,6 +15,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $scope.topics = [];
 
     $scope.backendUrl = AppSettings.backendUrl;
+    $scope.mediaUrl = AppSettings.mediaUrl;
     $scope.tag = $stateParams.tag || null;
     if($scope.tag) {
       $scope.tag_title = helpers.toTitleCase($scope.tag);
