@@ -26,6 +26,14 @@ button, button.btn-primary {
   position: fixed;
   width: 100%;
   z-index: 9999;
+
+  img {
+    border-radius: 20px;
+  }
+
+  a {
+    border-bottom: none;
+  }
 }
 
 .pagination {
