@@ -16,6 +16,7 @@ require('angularjs-facebook');
 require('angular-ui-bootstrap');
 require('ngmap');
 require('angular-cookies');
+
 // create and bootstrap application
 angular.element(document).ready(function() {
 
@@ -54,7 +55,8 @@ angular.element(document).ready(function() {
       $authProvider.google({
         // url: "http://squ.ad:8100/api/login/social/jwt_user/google-oauth2",
         url:  AppSettings.apiUrl + "/login/social/jwt_user/google-oauth2",
-        clientId: '593171474012-e4eu1o08jset6iqv8p75mdgq95jbojcg.apps.googleusercontent.com'
+        clientId: '593171474012-e4eu1o08jset6iqv8p75mdgq95jbojcg.apps.googleusercontent.com',
+        redirectUri: window.location.origin + '/'
       });
 
       $authProvider.authToken = 'JWT';
