@@ -73,7 +73,9 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
         AuthService.setLoginData(data.data.token, userObject);
         $scope.user = userObject;
         $scope.isLoggedIn = true;
+        window.location.href = window.location;
       }, function(error){
+        $scope.alerts = [];
         $scope.alerts.push({
           type : 'danger',
           msg: 'There was an error with your authentication using ' + provider + '. We are working on it.',
@@ -83,6 +85,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
         var errMsg = 'Something went wrong, maybe you haven\'t installed \'djangorestframework-jwt\'?';
         console.log(data);
         console.log(errMsg);
+        $scope.alerts = [];
         $scope.alerts.push({
           type : 'danger',
           msg: 'There was an error with your authentication using ' + provider + '. We are working on it.',
@@ -120,10 +123,20 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
 
 
   $scope.newUser = function(){
+    var send = {
+      title: 'Welcome to respond/react!',
+      message  : "<p>Respond React is a link sharing site for anyone who wants to do more than just get depressed by the news. Every day, we aspire to connect you with the actual people affected by those oftentimes harrowing headlines you read on sites like cnn.com and nytimes.com.</p><p>Whether it be crowdsourcing, crowdfunding, petitions, rallies, fundraisers, or events, respond/react aims to find you way you can get involved.</p><p>In addition, if you've created a change.org petition, kickstarter.com fund, or a facebook event and you want more people to see it, <a href='#'>register now</a> and start posting your action under any headlines you see on this site!</p><p>Don't just <em>react</em>, <strong>respond</strong>!</p>"
+    };
     $uibModal.open({
       animation: true,
-      templateUrl: 'new-user.html',
+      templateUrl: 'modal.html',
+      controller: 'ModalContentCtrl',
       size: 'sm',
+      resolve: {
+        items : function(){
+          return send;
+        }
+      }
     });
 
     $cookies.put('rr_newuser', true);

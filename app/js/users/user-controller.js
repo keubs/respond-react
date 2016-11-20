@@ -63,8 +63,8 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		};
 		$uibModal.open({
 		  animation: true,
-		  templateUrl: 'modal.html',
-		  controller: 'ModalContentCtrl',
+		  templateUrl: 'action-modal.html',
+		  controller: 'ModalActionCtrl',
 		  size: 'sm',
 		  resolve: {
 		  	items : function(){
