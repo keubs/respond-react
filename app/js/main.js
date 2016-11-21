@@ -16,6 +16,7 @@ require('angularjs-facebook');
 require('angular-ui-bootstrap');
 require('ngmap');
 require('angular-cookies');
+require('angular-sanitize');
 
 // create and bootstrap application
 angular.element(document).ready(function() {
@@ -33,6 +34,7 @@ angular.element(document).ready(function() {
     'ui.bootstrap',
     'ngMap',
     'ngCookies',
+    'ngSanitize',
   ];
 
   // mount on window for testing
@@ -51,6 +53,7 @@ angular.element(document).ready(function() {
         url: AppSettings.apiUrl + "/login/social/jwt_user/facebook",
         clientId: '1513191525645232'
       });
+
 
       $authProvider.google({
         // url: "http://squ.ad:8100/api/login/social/jwt_user/google-oauth2",
