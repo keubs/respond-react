@@ -45,7 +45,6 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 			getAddressComponents($scope.location);
 		}
 		$scope.currentUser.new_user = false;
-		debugger;
 		console.log($scope.currentUser);
 		UserService.update($scope.currentUser)
 			.then(function(data){
