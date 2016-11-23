@@ -5,7 +5,7 @@ var helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 
-module.exports = function($scope, $rootScope, $location, TopicService, AuthService, AppSettings, $stateParams) {
+module.exports = function($scope, $rootScope, $location, TopicService, AuthService, AppSettings, $stateParams, AddressService) {
 
 
   $scope.init = function() {
@@ -32,6 +32,11 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     }, function(err){
         console.log(err);
     });
+
+    /* Banners */
+    $scope.refresh('worldwide');
+    $scope.refresh('local');
+    $scope.refresh('national');
   };
 
   $scope.pageChanged = function() {
@@ -56,27 +61,6 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     } else if(err.status === 401) {
       AuthService.logout();
     }
-  });
-
-  TopicService.local()
-    .then(function(data){
-      $scope.local = data.data;
-    }, function(error){
-      console.log(error);
-  });
-
-  TopicService.national()
-    .then(function(data){
-      $scope.national = data.data;
-    }, function(error){
-      console.log(error);
-  });
-
-  TopicService.worldwide()
-    .then(function(data){
-      $scope.worldwide = data.data;
-    }, function(error){
-      console.log(error);
   });
 
 
@@ -170,4 +154,41 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   $scope.removeTag = function(){
     $location.path('#');
   };
+
+  $scope.refresh = function(scope) {
+    switch(scope){
+      case 'worldwide':
+        TopicService.worldwide()
+          .then(function(data){
+            $scope.worldwide = data.data;
+          }, function(error){
+            console.log(error);
+        });
+      break;
+
+      case 'local':
+        TopicService.local()
+          .then(function(data){
+            $scope.local = data.data;
+
+            AddressService.get(data.data.address)
+              .then(function(data){
+                console.log(data);
+                $scope.state = data.locality.state.name;
+              })
+          }, function(error){
+            console.log(error);
+        });
+      break;
+
+      case 'national':
+        TopicService.national()
+          .then(function(data){
+            $scope.national = data.data;
+          }, function(error){
+            console.log(error);
+        });
+      break;
+    }
+  }
 };
