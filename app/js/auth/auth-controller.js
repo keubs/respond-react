@@ -34,7 +34,6 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
       skipAuthorization: true,  // in case of session auth don't send token header
     };
     $http(req).then(function() {
-      console.log('Got user from session cookies');
       AuthService.logout();
       window.location.href = window.location;
     });
@@ -70,10 +69,12 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
           'address'     : data.data.address,
         };
 
+
         AuthService.setLoginData(data.data.token, userObject);
         $scope.user = userObject;
         $scope.isLoggedIn = true;
-        window.location.href = window.location;
+        window.location.href = data.data.new_user ? '/user/' + data.data.id + "?new_user=true" : window.location;
+        // window.location.href = window.location;
       }, function(error){
         $scope.alerts = [];
         $scope.alerts.push({
@@ -110,9 +111,9 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
           }
         })
     } else {
-      if($cookies.get('rr_newuser')) {
+      if($cookies.get('rr_firstVisitor')) {
       } else {
-        $scope.newUser();
+        $scope.firstVisitor();
       }
     }
   };
@@ -122,7 +123,7 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
   };
 
 
-  $scope.newUser = function(){
+  $scope.firstVisitor = function(){
     var send = {
       title: 'Welcome to respond/react!',
       message  : "<p>Respond React is a link sharing site for anyone who wants to do more than just get depressed by the news. Every day, we aspire to connect you with the actual people affected by those oftentimes harrowing headlines you read on sites like cnn.com and nytimes.com.</p><p>Whether it be crowdsourcing, crowdfunding, petitions, rallies, fundraisers, or events, respond/react aims to find you way you can get involved.</p><p>In addition, if you've created a change.org petition, kickstarter.com fund, or a facebook event and you want more people to see it, <a href='#'>register now</a> and start posting your action under any headlines you see on this site!</p><p>Don't just <em>react</em>, <strong>respond</strong>!</p>"
@@ -139,6 +140,6 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
       }
     });
 
-    $cookies.put('rr_newuser', true);
+    $cookies.put('rr_firstVisitor', true);
   };
 };

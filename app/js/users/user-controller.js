@@ -1,31 +1,23 @@
 'use strict';
+const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
 module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope) {
-	$scope.currentUser = {};
-	$scope.backendUrl = AppSettings.backendUrl;
-	$scope.mediaUrl = AppSettings.mediaUrl;
-	
-	$scope.editUser = function(){
-	/*===========================================
-	=            Edit User Modal            =
-	===========================================*/
-	  $uibModal.open({
-	    animation: true,
-	    templateUrl: 'edit-user.html',
-	    controller: 'EditUserCtrl',
-	    size: 'lg',
-	  });
-	/*=====  End of Edit User Modal  ======*/
-	};
 
 	$scope.init = function() {
+		// $scope.currentUser = {};
+		$scope.backendUrl = AppSettings.backendUrl;
+		$scope.mediaUrl = AppSettings.mediaUrl;
+
 		UserService.get($stateParams.userid)
 			.then(function(data){
 				$scope.user = data;
 				$scope.currentUser = $rootScope.user;
 				$scope.isCurrentUser = ($scope.currentUser.id === $scope.user.id) ? true : false;
+				if($scope.currentUser && helpers.getParameterByName('new_user') == 'true') {
+					$scope.editUser();
+				}
 			}, function(err){
 				console.log(err);
 			});	
@@ -37,22 +29,35 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 				console.log(err);
 			});
 
-		AuthService.unapprovedActions()
-			.then(function(data){
-				$scope.unapprovedActions = data;
-				console.log(data);
-				console.log(data);
-			}, function(err){
-				console.log(err);
-			});
+		if($scope.currentUser) {
+			AuthService.unapprovedActions()
+				.then(function(data){
+					$scope.unapprovedActions = data;
+				}, function(err){
+					console.log(err);
+				});
 
-		AuthService.unapprovedActionCount()
-			.then(function(data){
-				$scope.unapprovedActionCount = data.count;
-			}, function(err){
-				console.log(err);
-			});
-
+			AuthService.unapprovedActionCount()
+				.then(function(data){
+					$scope.unapprovedActionCount = data.count;
+				}, function(err){
+					console.log(err);
+				});
+		}
+	};
+	
+	$scope.editUser = function(send) {
+	  $uibModal.open({
+	    animation: true,
+	    templateUrl: 'edit-user.html',
+	    controller: 'EditUserCtrl',
+	    size: 'lg',
+	    resolve: {
+	      items : function(){
+	        return send;
+	      }
+	    }
+	  });
 	};
 
 	$scope.modalAction = function(id, type, action) {

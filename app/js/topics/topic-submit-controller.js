@@ -10,7 +10,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.errors = {};
   $scope.topic = {};
   $scope.topic.scope = 'national';
-
+// $scope.submitted = true;
   $scope.topic.locations = [];
   $scope.topic.created_by = $rootScope.user.id;
   $scope.pos = {};
@@ -44,6 +44,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   }
 
   $scope.submit = function() {
+    $scope.submitted = true;
     $scope.topic.image_preview = undefined;
     if($scope.topic.tags) $scope.topic.tags = helpers.jsonified($scope.topic.tags);
     if($scope.topic.address) getAddressComponents($scope.topic.locations);
@@ -52,6 +53,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
         $location.path('/topic/' + data.id);
       }, function(error, status) {
         $scope.errors = {};
+        $scope.submitted = false;
         $scope.errors.general = helpers.errorStringify(error.non_field_errors);
         $scope.errors.title = helpers.errorStringify(error.title);
         $scope.errors.article_link = helpers.errorStringify(error.article_link);

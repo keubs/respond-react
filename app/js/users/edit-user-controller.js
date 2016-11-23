@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService){
+const helpers = require('../helpers/helpers.js');
+/**
+ * @ngInject
+ **/
+module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService, items){
 	$scope.currentUser = {};
 	$scope.currentUser.address = {};
 	$scope.render = true;
@@ -20,6 +24,15 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	      $scope.pos.lng = vm.place.geometry.location.lng();
 	      $scope.currentUser.address.lat = vm.place.geometry.location.lat();
 	      $scope.currentUser.address.lng = vm.place.geometry.location.lng();
+	      if(!helpers.hasPostalCode(vm.place)) {
+	        var geocoder = new google.maps.Geocoder();
+	        var ll = {location: { lat: $scope.pos.lat, lng: $scope.pos.lng }};
+	        geocoder.geocode(ll, function(results, status){ 
+	          if(status === 'OK') {
+	            getAddressComponents(results[0]);
+	          }
+	        });
+	      }
 	    };
 	  }, function(error){
 	    console.log(error);
@@ -31,12 +44,14 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 		if($scope.location) {
 			getAddressComponents($scope.location);
 		}
-
+		$scope.currentUser.new_user = false;
+		debugger;
+		console.log($scope.currentUser);
 		UserService.update($scope.currentUser)
 			.then(function(data){
 				$scope.alerts = [];
 				$scope.alerts.push({ type : 'success', msg: 'Profile updated'});
-				// vm.placeChanged();
+
 				$scope.currentUser = data;
 			}, function(error){
 				console.log(error);
@@ -48,12 +63,9 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 		.then(function(data){
 			$scope.user = data;
 			$scope.currentUser = $rootScope.user;
-
-			console.log($scope.currentUser);
 			
 			AddressService.get($scope.currentUser.address)
 			.then(function(data){
-				console.log(data);
 				$scope.currentUser.address = {};
 				$scope.currentUser.address.formatted = data.raw;
 
@@ -62,9 +74,14 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 			});
 		}, function(error){
 			console.log(error);
-		});		
-	};
+		});	
 
+		if (helpers.getParameterByName('new_user') == 'true') {
+			$scope.alerts.push({msg: 'It looks like this is your first time logging in. \
+			  Add a location (i.e. your city or neighborhood) so you can see headlines near you. \
+			  If you have a news article you\'d like to share, submit a topic.'});
+		}
+	};
 
 	function getAddressComponents(location) {
 	  	location.address_components.forEach(function(component){
