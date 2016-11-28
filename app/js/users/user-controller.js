@@ -18,6 +18,10 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 				if($scope.currentUser && helpers.getParameterByName('new_user') == 'true') {
 					$scope.editUser();
 				}
+
+				if($scope.currentUser && $scope.isCurrentUser) {
+					$scope.getUnapproved();
+				}
 			}, function(err){
 				console.log(err);
 			});	
@@ -28,22 +32,6 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			}, function(err){
 				console.log(err);
 			});
-
-		if($scope.currentUser) {
-			AuthService.unapprovedActions()
-				.then(function(data){
-					$scope.unapprovedActions = data;
-				}, function(err){
-					console.log(err);
-				});
-
-			AuthService.unapprovedActionCount()
-				.then(function(data){
-					$scope.unapprovedActionCount = data.count;
-				}, function(err){
-					console.log(err);
-				});
-		}
 	};
 	
 	$scope.editUser = function(send) {
@@ -78,5 +66,22 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		  }
 		});
 	};
+
+	$scope.getUnapproved = function(){
+
+		AuthService.unapprovedActions()
+			.then(function(data){
+				$scope.unapprovedActions = data;
+			}, function(err){
+				console.log(err);
+			});
+
+		AuthService.unapprovedActionCount()
+			.then(function(data){
+				$scope.unapprovedActionCount = data.count;
+			}, function(err){
+				console.log(err);
+			});
+	}
 
 };
