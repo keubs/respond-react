@@ -18,7 +18,7 @@ button, button.btn-primary {
 #content {
   max-width: 1300px;
   margin: 0 auto;
-  padding-top: 80px;
+  // padding-top: 80px;
   min-height: 100vh;
 }
 .state {
@@ -29,10 +29,19 @@ button, button.btn-primary {
   width: 100%;
 }
 
+.topic-submit {
+  opacity: 0;
+  transition: opacity .5s;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
 .header {
-  position: fixed;
-  width: 100%;
-  z-index: 9999;
+  // position: fixed;
+  // width: 100%;
+  // z-index: 9999;
 
   img {
     border-radius: 20px;
