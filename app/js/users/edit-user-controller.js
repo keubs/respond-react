@@ -71,15 +71,15 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 			}, function(error){
 				console.log(error);
 			});
+
+			if ($scope.currentUser.new_user && helpers.getParameterByName('new_user') == 'true') {
+				$scope.alerts.push({msg: 'It looks like this is your first time logging in. \
+				  Add a location (i.e. your city or neighborhood) so you can see headlines near you. \
+				  If you have a news article you\'d like to share, submit a topic.'});
+			}
 		}, function(error){
 			console.log(error);
 		});	
-
-		if (helpers.getParameterByName('new_user') == 'true') {
-			$scope.alerts.push({msg: 'It looks like this is your first time logging in. \
-			  Add a location (i.e. your city or neighborhood) so you can see headlines near you. \
-			  If you have a news article you\'d like to share, submit a topic.'});
-		}
 	};
 
 	function getAddressComponents(location) {
