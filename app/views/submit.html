@@ -1,43 +1,49 @@
 <div class="col-md-12 submit-wrapper">
   <form ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
+    <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     <h1>Submit a topic</h1>
     <p ng-show="errors.general">{{ errors.general }}</p>
     <label class="required" for="article_link">Article Link</label>
-    <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" ng-blur="linkEntered()" class="form-control" required autofocus>
+    <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" class="form-control form-inline" ng-blur="linkEntered()" required autofocus>
     <br />
-    <label class="required" for="title">Title</label>
-    <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
-    <p ng-show="errors.title" id="">{{ errors.title }}</p>
-    <br>
-    <label for="tags">Tags</label>
-    <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
+    <button ng-if="validUrl==false" value="Continue" class="btn btn-primary form-inline">Continue</button>
     <br />
-    <label class="required" for="scope">Scope</label>
-    <select id="scope" class="form-control" ng-model="topic.scope" required>
-        <option value="local">Local (Affects only this state)</option>
-        <option value="national" selected>National (Affects only this country)</option>
-        <option value="worldwide">Worldwide (Affects the world)</option>
-    </select>
-    <br />
-    <label for="address">Address</label>
-    <p>Can be as vague as the country (e.g. United States of America), <br/>or as specific as a street-level address (e.g. 100 Market st San Francisco, California).</p>
-    <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
-    <br/>
-    <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="">
-        <marker position="{{pos.lat}},{{pos.lng}}"></marker>
-    </ng-map>
-    <br />
-    <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
-    <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
-    <p ng-show="errors.article_link">{{ errors.article_link }}</p>
+    <div class="topic-submit" ng-class="{'show' : validUrl}">
+        <label class="required" for="title">Title</label>
+        <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
+        <p ng-show="errors.title" id="">{{ errors.title }}</p>
+        <br>
+        <label for="tags">Tags</label>
+        <p>(e.g. #StandingRock, Earthquake, 'Mass Shooting', #brexit)</p>
+        <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
+        <br />
+        <label class="required" for="scope">Scope</label>
+        <select id="scope" class="form-control" ng-model="topic.scope" required>
+            <option value="local">Local (Affects only this state)</option>
+            <option value="national" selected>National (Affects only this country)</option>
+            <option value="worldwide">Worldwide (Affects the world)</option>
+        </select>
+        <br />
+        <label for="address">Address</label>
+        <p>Can be as vague as the country (e.g. United States of America), <br/>or as specific as a street-level address (e.g. 100 Market st San Francisco, California).</p>
+        <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+        <br/>
+        <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="">
+            <marker position="{{pos.lat}},{{pos.lng}}"></marker>
+        </ng-map>
+        <br />
+        <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
+        <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
+        <p ng-show="errors.article_link">{{ errors.article_link }}</p>
 
-    <br>
+        <br>
 
-    <input type="hidden" ng-model="topic.created_by" value="1"/>
+        <input type="hidden" ng-model="topic.created_by" value="1"/>
 
-    <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
-    <br />
-    <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : submitted}" />
+        <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
+        <br />
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : submitted}" />
+    </div>
   </form>
   <div class="loader" ng-class="{loading: formLoading}"></div>
 </div>

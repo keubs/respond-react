@@ -11,7 +11,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       $scope.topic = {};
       $scope.alerts = [];
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
-      
+      $scope.validUrl = false;
       /*----------  start/end date/time section  ----------*/
       
       $scope.action.date_time_display = false;
@@ -128,10 +128,12 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	    .then(function(data) {
         $scope.action = data;
         $scope.formLoading = false;
+        $scope.validUrl = true;
 	    }, function(error) {
-	      console.log(error);
+        $scope.validUrl = false;
         if(error.status === 409) {
-          $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Your action has already been submitted'});
+          window.scrollTo(0,0);
+          $scope.alerts.push({ type : 'danger', msg: 'Your action has already been submitted.'});
         }
         $scope.formLoading = false;
 	    });

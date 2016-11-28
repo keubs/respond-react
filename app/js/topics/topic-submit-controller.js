@@ -9,6 +9,9 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
+  $scope.alerts = [];
+  $scope.validUrl = false;
+
   $scope.topic.scope = 'national';
 // $scope.submitted = true;
   $scope.topic.locations = [];
@@ -71,9 +74,12 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     LinkFactory.link($scope)
     .then(function(data) {
       $scope.topic = data;
+      $scope.alerts = [];
+      $scope.validUrl = true;
       $scope.formLoading = false;
     }, function(error) {
-      console.log(error);
+      $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting a topic. Please find another one and try again.'});          
+      $scope.validUrl = false;
       $scope.formLoading = false;
     });
   };

@@ -1,4 +1,3 @@
-
 <div ng-controller="ActionSubmitCtrl as vm" class="container-fluid" ng-init="init()" style="margin:2em 0">
     <div class="row">
         <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn == true">
@@ -8,7 +7,11 @@
                 <h2><a href="/topic/{{topic.id}}">{{topic.title}}</a></h2>
                 <label for="article_link">Link:</label>
                 <input id="article_link" type="text" ng-model="article_link" class="form-control" placeholder="Article Link" ng-blur="linkEntered()" required>
-                <aside class="error" ng-show="article_link_error">{{article_link_error}}</aside>
+            <aside class="error" ng-show="article_link_error">{{article_link_error}}</aside>
+            <br />
+            <button ng-if="validUrl==false" value="Continue" class="btn btn-primary form-inline">Continue</button>
+            <br />
+            <div class="topic-submit" ng-class="{'show' : validUrl}">
                 <br />
                 <label for="action_title">Title:</label>
                 <input id="action_title" type="text" ng-model="action.title" class="form-control" placeholder="Title" required>
@@ -19,12 +22,12 @@
                 <label for="action_tags">Is this action in-person or remote?</label>
                 <br/>
                 <div id="respond_react" ng-model="action.respond_react" class="btn-group" role="group">
-                  <button ng-model="action.respond_react" value="respond" type="button" class="btn btn-default">In Person</button>
-                  <button ng-model="action.respond_react" value="react" type="button" class="btn btn-default">Remote</button>
+                    <button ng-model="action.respond_react" value="respond" type="button" class="btn btn-default">In Person</button>
+                    <button ng-model="action.respond_react" value="react" type="button" class="btn btn-default">Remote</button>
                 </div>
                 <br /><br />
                 <div class="checkbox">
-                  <label><input type="checkbox" value="" ng-model="action.date_time_display">Does this action have and start and/or end date/time?</label>
+                    <label><input type="checkbox" value="" ng-model="action.date_time_display">Does this action have and start and/or end date/time?</label>
                 </div>
                 <div ng-if="action.date_time_display == true">
                     <div style="display: inline-block; margin-right: 20px;">
@@ -55,16 +58,16 @@
                 <label for="address">{{error.address}}</label>
                 <br/>
                 <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-if="render">
-                    <marker position="{{pos.lat}},{{pos.lng}}"></marker>
+                <marker position="{{pos.lat}},{{pos.lng}}"></marker>
                 </ng-map>
                 <br />
                 <img src="{{ action.image_preview.src }}" style="min-height: 350px; width: 100%;" ng-show="action.image_preview.visible"/>
                 <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
                 <br /><br />
                 <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
-
-            </form>
-            <div class="loader" ng-class="{loading: formLoading}"></div>
-        </div>
+            </div>
+        </form>
+        <div class="loader" ng-class="{loading: formLoading}"></div>
     </div>
+</div>
 </div>
