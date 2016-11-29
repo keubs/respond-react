@@ -23,9 +23,8 @@
   </div>
   <br />
   <div class="container-fluid back">
-    <h3 style="" class="banner">What's trending today</h3>
+    <h3 style="" class="banner">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
     <div class="inner">
-      <span ng-if="tag != null"><h1 class="tag-header">Tag: {{tag_title}}</h1><a href="#" ng-click="removeTag()">[Remove]</a></span>
       <div ng-repeat="topic in topics" class="row">
         <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
           <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote">
@@ -39,7 +38,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
           <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-          <a href="topic/{{topic.id}}">{{topic.title}}</a>
+          <h4><a href="topic/{{topic.id}}">{{topic.title}}</a></h4>
           <p><span class="glyphicon glyphicon-user"></span> <a href="/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</p>
           <span class="glyphicon glyphicon-tags"></span>
           <aside class="tags">

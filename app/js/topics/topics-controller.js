@@ -33,6 +33,17 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         console.log(err);
     });
 
+    TopicService.get($scope.tag, $scope.currentPage).then(function(data) {
+      $scope.topics = data;
+    }, function(err) {
+      console.log(err);
+      if(err.status === 500 || err.status === -1) {
+        $location.path('/500');
+      } else if(err.status === 401) {
+        AuthService.logout();
+      }
+    });
+    
     /* Banners */
     $scope.refresh('worldwide');
     $scope.refresh('local');
@@ -52,16 +63,6 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   };
   /* End Pagination */
 
-  TopicService.get($scope.tag, $scope.currentPage).then(function(data) {
-    $scope.topics = data;
-  }, function(err) {
-    console.log(err);
-    if(err.status === 500 || err.status === -1) {
-      $location.path('/500');
-    } else if(err.status === 401) {
-      AuthService.logout();
-    }
-  });
 
 
   $scope.deleteTopic = function($topicIndex) {
