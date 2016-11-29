@@ -14,8 +14,8 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			.then(function(data){
 				$scope.user = data;
 				$scope.currentUser = $rootScope.user;
-				$scope.isCurrentUser = ($scope.currentUser.id === $scope.user.id) ? true : false;
-				if($scope.currentUser.new_user && helpers.getParameterByName('new_user') == 'true') {
+				$scope.isCurrentUser = ($scope.currentUser && $scope.currentUser.id === $scope.user.id) ? true : false;
+				if($scope.user.new_user && helpers.getParameterByName('new_user') == 'true') {
 					$scope.editUser();
 				}
 
