@@ -134,6 +134,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         if(error.status === 409) {
           window.scrollTo(0,0);
           $scope.alerts.push({ type : 'danger', msg: 'Your action has already been submitted.'});
+        } else {
+          $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting an action. Please find another one and try again.'});
         }
         $scope.formLoading = false;
 	    });
