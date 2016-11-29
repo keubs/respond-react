@@ -8,6 +8,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     var vm = this;
     $scope.init = function(){
       $scope.action = {};
+      $scope.action.scope = 'local';
       $scope.topic = {};
       $scope.alerts = [];
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
@@ -30,11 +31,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       $scope.action.locations = [];
       $scope.render = true;
       $scope.pos = {};
-      
+
       TopicService.topic($stateParams.topic)
       	.then(function(data){
       		$scope.topic = data;
-      		console.log(data);
       	}, function(error){
       		console.log(error);
       	})
@@ -48,6 +48,14 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       };
 
     /*----------  end start/end date/time section  ----------*/
+
+    $scope.scopes = [
+      {value: 'local', text: "Local (Affects only this state)"},
+      {value: 'national', text: "National (Affects only this country)"},
+      {value: 'worldwide', text: "Worldwide (Affects the world)"},
+    ];
+
+    
 
     /*----------  start Map  ----------*/
     $scope.placePicked = false;
@@ -132,6 +140,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	    }, function(error) {
         $scope.validUrl = false;
         if(error.status === 409) {
+          console.log(error);
           window.scrollTo(0,0);
           $scope.alerts.push({ type : 'danger', msg: 'Your action has already been submitted.'});
         } else {
