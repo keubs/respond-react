@@ -4,18 +4,18 @@
     <div class="row banner-wrapper">
       <div class="col-md-4 col-lg-4 col-sm-4 banner national" ng-if="national != null">
         <a class="banner-label" ng-click="refresh('national')">National</span>
-        <a class="banner-image" style="background-image: url({{mediaUrl}}/{{national.image}})" href="/topic/{{national.id}}">
+        <a class="banner-image" style="background-image: url({{national.image}})" href="/topic/{{national.id}}">
         </a>
         <p><a href="/topic/{{national.id}}">{{national.title}}</a></p>
       </div>
       <div class="col-md-4 col-lg-4 col-sm-4 banner local" ng-if="local != null">
         <a class="banner-label" ng-click="refresh('local')">Local<ng-if="state" class="state"> ({{state}})</ng-if></span>
-        <a class="banner-image" style="background-image: url({{mediaUrl}}/{{local.image}});" href="/topic/{{local.id}}"></a>
+        <a class="banner-image" style="background-image: url({{local.image}});" href="/topic/{{local.id}}"></a>
         <p><a href="/topic/{{national.id}}">{{local.title}}</a></p>
       </div>
       <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide" ng-if="worldwide != null">
         <a class="banner-label" ng-click="refresh('worldwide')">Worldwide</span>
-        <a class="banner-image" style="background-image: url({{mediaUrl}}/{{worldwide.image}})" href="/topic/{{worldwide.id}}"></a>
+        <a class="banner-image" style="background-image: url({{worldwide.image}})" href="/topic/{{worldwide.id}}"></a>
         <p><a href="/topic/{{worldwide.id}}">{{worldwide.title}}</a></p>
       </div>
     </div>
@@ -34,7 +34,7 @@
           </span>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-          <a href="topic/{{topic.id}}"><img src="{{mediaUrl}}/{{topic.image}}" style="width: 100%" /></a>
+          <a href="topic/{{topic.id}}"><img src="{{topic.image}}" style="width: 100%" /></a>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6">
           <aside class="error" ng-show="topic.error">{{topic.error}}</aside>

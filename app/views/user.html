@@ -23,7 +23,7 @@
 			
 			<div ng-repeat="action in topic.actions" class="row" style="margin: 1em; padding: 1em; background: #EEE">
 				<div class="col-lg-1 col-md-1 col-sm-1">
-					<img src="{{mediaUrl}}/{{action.image}}" style="width: 100%" />
+					<img src="{{action.image}}" style="width: 100%" />
 				</div>
 				<div class="col-lg-11 col-md-11 col-sm-11">
 					<a href="{{action.url}}" target="_blank">{{action.title}}</a>
@@ -47,7 +47,7 @@
 		<hr />
 		<div ng-if="topics.length > 0" ng-repeat="topic in topics" class="row" style="margin: 1em 0">
 			<div class="col-lg-4 col-md-4 col-sm-4">
-				<a href="/topic/{{topic.id}}"><img src="{{mediaUrl}}/{{topic.image}}" style="width: 100%" /></a>
+				<a href="/topic/{{topic.id}}"><img src="{{topic.image}}" style="width: 100%" /></a>
 			</div>
 			<div class="col-lg-8 col-md-8 col-sm-8">
 				<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
