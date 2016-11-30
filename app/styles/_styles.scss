@@ -36,9 +36,10 @@ button, button.btn-primary {
 .topic-submit {
   opacity: 0;
   transition: opacity .5s;
-
+  visibility: hidden;
   &.show {
     opacity: 1;
+    visibility: visible;
   }
 }
 
