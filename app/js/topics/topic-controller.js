@@ -20,7 +20,8 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
 
       $scope.mapZoom = helpers.setZoom($scope.topic.scope);
       $rootScope.pageTitle = "Get Involved | " + $scope.topic.title;
-      $rootScope.og_title = $scope.topic.title;
+      $rootScope.og_title = "Get Involved | " + $scope.topic.title;
+      $rootScope.og_image = data.image;
       TopicService.topic_actions($stateParams.topic)
         .then(function(data){
           $scope.topic.actions = data;

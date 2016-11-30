@@ -10,6 +10,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
 
   $scope.init = function() {
     $rootScope.pageTitle = "respond/react | Don't just react, respond.";
+    $rootScope.og_title = "respond/react | Don't just react, respond.";
     $scope.errors = {};
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.topics = [];
