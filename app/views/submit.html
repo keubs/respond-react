@@ -4,6 +4,7 @@
     <h1>Submit a topic</h1>
     <p ng-show="errors.general">{{ errors.general }}</p>
     <h3 style="border-bottom: solid 1px #29b4cf; display: inline-block;" ng-if="validUrl == false">Step 1: Submit a valid link to a news article</h3>
+    <br />
     <label class="required" for="article_link">Article Link</label>
     <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" class="form-control form-inline" ng-blur="linkEntered()" required autofocus>
     <br />

@@ -7,7 +7,9 @@
     return {
         link: function($scope) {
             var type = $scope.topic === undefined ? 'action' : 'topic';
+            var topic_id = $scope.topic === undefined ? undefined : $scope.topic.id;
             var deferred = $q.defer();
+            
             if(!$scope.article_link) {
                 deferred.reject();
             }
@@ -71,7 +73,7 @@
                  });
                  return deferred.promise;
             } else {
-                $http.post(AppSettings.apiUrl + '/getopengraph/', {url: $scope.article_link, type: type})
+                $http.post(AppSettings.apiUrl + '/getopengraph/', {url: $scope.article_link, type: type, id: topic_id})
                   .success(function(data) {
                     var returnData = {};
 

@@ -49,14 +49,6 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
     /*----------  end start/end date/time section  ----------*/
 
-    $scope.scopes = [
-      {value: 'local', text: "Local (Affects only this state)"},
-      {value: 'national', text: "National (Affects only this country)"},
-      {value: 'worldwide', text: "Worldwide (Affects the world)"},
-    ];
-
-    
-
     /*----------  start Map  ----------*/
     $scope.placePicked = false;
     if(!vm.map) {
@@ -91,6 +83,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     /*----------  end map  ----------*/
     
     $scope.submit = function() {
+        $scope.formloading = true;
         if($scope.action.tags !== '') {
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
@@ -121,7 +114,8 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	        }, function(error) {
             console.log(error);
             $scope.alerts.push({ type : 'danger', msg: 'There was an error submitting your action. Please try again or Contact us'});
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
+            $scope.formloading = false;
           });
 	   };
 
@@ -140,9 +134,13 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 	    }, function(error) {
         $scope.validUrl = false;
         if(error.status === 409) {
-          console.log(error);
           window.scrollTo(0,0);
           $scope.alerts.push({ type : 'danger', msg: 'Your action has already been submitted.'});
+        } else if (error.status === 300) {
+          // $scope.alerts.push({ type : 'warning', msg: 'WARNING: This action has already been submitted under the topic ' + error.err.title});
+          $scope.article_link_error = '<p>WARNING: This action has already been submitted under the topic <a href="/topic/' + error.err.id + '" target="_blank">' + error.err.title + "</a></p>";
+          $scope.formLoading = false;
+          $scope.validUrl = true;
         } else {
           $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting an action. Please find another one and try again.'});
         }
