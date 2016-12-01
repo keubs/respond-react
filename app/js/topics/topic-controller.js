@@ -11,7 +11,6 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.mediaUrl = AppSettings.mediaUrl;
   $scope.googleApiKey = AppSettings.googleApiKey;
-  $analytics.pageTrack('topic/' + $stateParams.topic);
   
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
   TopicService.topic($stateParams.topic)
@@ -24,6 +23,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
       $rootScope.pageTitle = "Get Involved | " + $scope.topic.title;
       $rootScope.og_title = "Get Involved | " + $scope.topic.title;
       $rootScope.og_image = data.image;
+      $analytics.pageTrack('topic/' + $stateParams.topic);
       TopicService.topic_actions($stateParams.topic)
         .then(function(data){
           $scope.topic.actions = data;
