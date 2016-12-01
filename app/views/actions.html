@@ -1,5 +1,6 @@
+   <div ng-init="init()">
     <h1 ng-show="tag">Action Tag: {{tag}}</h1>
-      <div ng-repeat="action in topic.actions track by $index" class="row" style="margin-top: 1em">
+      <div ng-repeat="action in actions track by $index" class="row" style="margin-top: 1em">
         <div class="col-md-2 col-sm-2" style="text-align: center;">
           <span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote action"></span>
           <h3 class="score">{{action.score}}</h3>
@@ -19,3 +20,4 @@
           <div ng-repeat="tag in action.tags" class="tag" ng-class="{'last':$last}"><a href="/actions/tag/{{tag.slug}}">{{tag.name}}</a></div>
         </div>
       </div>
+</div>
