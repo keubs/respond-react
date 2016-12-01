@@ -5,12 +5,14 @@ const helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 module.exports = function($scope, $rootScope, $location, $stateParams, TopicService,
-                          ActionService, AuthService, AppSettings, $uibModal) {
+                          ActionService, AuthService, AppSettings, $uibModal, $analytics) {
 
   $scope.topic = {};
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.mediaUrl = AppSettings.mediaUrl;
   $scope.googleApiKey = AppSettings.googleApiKey;
+  $analytics.pageTrack('topic/' + $stateParams.topic);
+  
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
   TopicService.topic($stateParams.topic)
     .then(function(data) {

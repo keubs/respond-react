@@ -5,7 +5,7 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope) {
+module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope, $analytics) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
@@ -13,7 +13,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.validUrl = false;
   $scope.type = 'topic';
   $scope.topic.scope = 'national';
-
+  $analytics.pageTrack('submit');
   $scope.topic.locations = [];
   $scope.topic.created_by = $rootScope.user.id;
   $scope.pos = {};

@@ -17,7 +17,8 @@ require('angular-ui-bootstrap');
 require('ngmap');
 require('angular-cookies');
 require('angular-sanitize');
-
+require('angulartics');
+require('angulartics-google-analytics');
 // create and bootstrap application
 angular.element(document).ready(function() {
 
@@ -35,6 +36,8 @@ angular.element(document).ready(function() {
     'ngMap',
     'ngCookies',
     'ngSanitize',
+    'angulartics',
+    'angulartics.google.analytics',
   ];
 
   // mount on window for testing

@@ -5,12 +5,14 @@ var helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 
-module.exports = function($scope, $rootScope, $location, TopicService, AuthService, AppSettings, $stateParams, AddressService) {
+module.exports = function($scope, $rootScope, $location, TopicService, AuthService, AppSettings, $stateParams, AddressService, $analytics) {
 
 
   $scope.init = function() {
     $rootScope.pageTitle = "respond/react | Don't just react, respond.";
     $rootScope.og_title = "respond/react | Don't just react, respond.";
+    $analytics.pageTrack('/');
+
     $scope.errors = {};
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.topics = [];
@@ -175,7 +177,6 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
 
             AddressService.get(data.data.address)
               .then(function(data){
-                console.log(data);
                 $scope.state = data.locality.state.name;
               })
           }, function(error){

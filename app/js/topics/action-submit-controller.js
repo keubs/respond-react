@@ -4,7 +4,7 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, TopicService) {
+module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, TopicService, $analytics) {
     var vm = this;
     $scope.init = function(){
       window.scrollTo(0,0);
@@ -15,6 +15,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
       $scope.validUrl = false;
       $scope.type = 'action';
+      $analytics.pageTrack('topic/'+ $stateParams.topic +'/submit-action');
       /*----------  start/end date/time section  ----------*/
       
       $scope.action.date_time_display = false;

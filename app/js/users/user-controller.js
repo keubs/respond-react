@@ -3,12 +3,13 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope) {
+module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, $analytics) {
 
 	$scope.init = function() {
 		// $scope.currentUser = {};
 		$scope.backendUrl = AppSettings.backendUrl;
 		$scope.mediaUrl = AppSettings.mediaUrl;
+		$analytics.pageTrack('user/' + $stateParams.userid);
 		UserService.get($stateParams.userid)
 			.then(function(data){
 				$rootScope.pageTitle = data.username;
