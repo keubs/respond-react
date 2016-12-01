@@ -5,9 +5,24 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
       <title ng-bind="pageTitle"></title>
-      <meta ng-bind="og_title" property="og:title" />
-      <meta ng-bind="og_image" property="og:image" />
       <meta name="description" content="">
+
+      <meta property="og:title" ng-bind="og_title" content="{title}">
+      <meta property="og:image" ng-bind="og_image" content="{image}">
+      <meta property="og:image:width">
+      <meta property="og:image:height">
+      <meta property="og:pubdate"">
+      <meta property="og:site_name" content="Respond/React">
+      <meta property="og:url">
+      <meta property="fb:app_id" name="fb_app_id" content="1513191525645232">
+      <meta content="website" property="og:type">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@keubs" />
+      <meta name="twitter:title" content="{title}" />
+      <meta name="twitter:image" content="{image}" />
+      <meta name="twitter:url" content="http://dev.respondreact.com/topic/{pk}" />
+
       <meta name="viewport" content="width=device-width">
       <script src="https://maps.google.com/maps/api/js?libraries=placeses,visualization,drawing,geometry,places&key=AIzaSyAztcWr5QxKQB2tBPwTAbqgIggtUHu4D1M"></script>
       <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet">
