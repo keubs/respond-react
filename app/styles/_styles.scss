@@ -2,7 +2,7 @@ body {
   // font-family: Helvetica, sans-serif
   font-family: 'Raleway', sans-serif;
   color: $font-color--dark;
-  background-color: $background--light;
+  background-color: #FFF;
   // padding: $half-space;
 }
 a {
@@ -16,6 +16,10 @@ p {
 button, button.btn-primary {
   background: #29b4cf;
   border-color: #29b4cf;
+}
+
+.featured {
+  background: #FFF;
 }
 
 #content {
@@ -62,7 +66,7 @@ button, button.btn-primary {
 }
 
 .back {
-  background: #FFF;
+  background: #EEE;
   padding: 1em 1em 2em 1em;
   h3.banner {
     margin: 20px 30px;
