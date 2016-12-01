@@ -11,9 +11,9 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.topic = {};
   $scope.alerts = [];
   $scope.validUrl = false;
-
+  $scope.type = 'topic';
   $scope.topic.scope = 'national';
-// $scope.submitted = true;
+
   $scope.topic.locations = [];
   $scope.topic.created_by = $rootScope.user.id;
   $scope.pos = {};

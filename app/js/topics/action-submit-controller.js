@@ -7,12 +7,14 @@ const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, TopicService) {
     var vm = this;
     $scope.init = function(){
+      window.scrollTo(0,0);
       $scope.action = {};
       $scope.action.scope = 'local';
       $scope.topic = {};
       $scope.alerts = [];
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
       $scope.validUrl = false;
+      $scope.type = 'action';
       /*----------  start/end date/time section  ----------*/
       
       $scope.action.date_time_display = false;
@@ -107,9 +109,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
 		    ActionService.new($scope.action)
 		      .then(function(){
+            $scope.formloading = true;
+            $scope.validUrl = false;
             $scope.alerts = [];
             $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action posted publicly soon'});
-            $scope.formloading = false;
             window.scrollTo(0, 0);
 	        }, function(error) {
             console.log(error);

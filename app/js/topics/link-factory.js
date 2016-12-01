@@ -6,7 +6,7 @@
  function LinkFactory($q, $http, AppSettings, Facebook) {
     return {
         link: function($scope) {
-            var type = $scope.topic === undefined ? 'action' : 'topic';
+            var type = $scope.type;
             var topic_id = $scope.topic === undefined ? undefined : $scope.topic.id;
             var deferred = $q.defer();
             
