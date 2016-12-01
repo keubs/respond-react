@@ -9,9 +9,9 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		// $scope.currentUser = {};
 		$scope.backendUrl = AppSettings.backendUrl;
 		$scope.mediaUrl = AppSettings.mediaUrl;
-
 		UserService.get($stateParams.userid)
 			.then(function(data){
+				$rootScope.pageTitle = data.username;
 				$scope.user = data;
 				$scope.currentUser = $rootScope.user;
 				$scope.isCurrentUser = ($scope.currentUser && $scope.currentUser.id === $scope.user.id) ? true : false;

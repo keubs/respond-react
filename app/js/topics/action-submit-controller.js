@@ -144,6 +144,9 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.article_link_error = '<p>WARNING: This action has already been submitted under the topic <a href="/topic/' + error.err.id + '" target="_blank">' + error.err.title + "</a></p>";
           $scope.formLoading = false;
           $scope.validUrl = true;
+
+        } else if (error.code === 104) {
+          $scope.alerts.push({ type : 'danger', msg: 'Unfortunately, Facebook doesn\'t allow unregistered users to post events from their site. Please log into Facebook in your browser to post this event.'});
         } else {
           $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting an action. Please find another one and try again.'});
         }
