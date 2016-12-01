@@ -19,7 +19,7 @@ button, button.btn-primary {
 }
 
 .featured {
-  background: #FFF;
+  background: #FFF !important;
 }
 
 #content {
@@ -272,6 +272,16 @@ div.tag {
 
 .banner {
   position: relative;
+  background: #EEE;
+  &:not(:first-child,:last-child) {
+    padding-right:7px;
+    padding-left:7px;
+  }
+
+  &.col-md-4 {
+    min-height: 340px;
+  }
+
   .banner-label {
     position: relative;
     width: 100%;
