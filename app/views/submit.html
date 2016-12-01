@@ -15,7 +15,10 @@
         <label class="required" for="title">Title</label>
         <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
         <p ng-show="errors.title" id="">{{ errors.title }}</p>
-        <br>
+        <br />
+        <label for="topic_description">Description:</label>
+        <textarea id="topic_description" ng-model="topic.description" class="form-control" placeholder="Description" style="width:100%; height: 150px;" required></textarea>
+        <br />
         <label for="tags">Tags</label>
         <p>(e.g. #StandingRock, Earthquake, 'Mass Shooting', #brexit)</p>
         <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
