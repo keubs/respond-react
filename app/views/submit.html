@@ -48,7 +48,7 @@
 
         <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
         <br />
-        <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : submitted}" />
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : formLoading}" />
     </div>
   </form>
   <div class="loader" ng-class="{loading: formLoading}"></div>

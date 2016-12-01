@@ -86,7 +86,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     /*----------  end map  ----------*/
     
     $scope.submit = function() {
-        $scope.formloading = true;
+        $scope.formLoading = true;
         if($scope.action.tags !== '') {
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
