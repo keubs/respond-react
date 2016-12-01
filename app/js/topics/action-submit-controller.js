@@ -135,6 +135,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         $scope.action = data;
         $scope.formLoading = false;
         $scope.validUrl = true;
+        $analytics.eventTrack('submission', {  category: 'action', label: $scope.action.title });
 	    }, function(error) {
         $scope.validUrl = false;
         if(error.status === 409) {

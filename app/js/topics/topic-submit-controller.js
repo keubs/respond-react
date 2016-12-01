@@ -53,6 +53,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     if($scope.topic.address) getAddressComponents($scope.topic.locations);
     TopicService.new($scope.topic)
       .then(function(data) {
+        $analytics.eventTrack('submission', {  category: 'topic', label: $scope.topic.title });
         $location.path('/topic/' + data.id);
       }, function(error, status) {
         $scope.errors = {};
