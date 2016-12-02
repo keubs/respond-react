@@ -41,7 +41,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     }, function(err) {
       console.log(err);
       if(err.status === 500 || err.status === -1) {
-        $location.path('/500');
+        // $location.path('/500');
       } else if(err.status === 401) {
         AuthService.logout();
       }
@@ -58,7 +58,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
       $scope.topics = data;
     }, function(err) {
       if(err.status === 500 || err.status === -1) {
-        $location.path('/500');
+        // $location.path('/500');
       } else if(err.status === 401) {
         AuthService.logout();
       }

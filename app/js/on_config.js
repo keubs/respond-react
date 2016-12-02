@@ -68,7 +68,7 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '/500',
       templateUrl: '500.html',
       data: {
-        requireLogin: true
+        requireLogin: false
       }
     })
     .state('Terms and Conditions', {
