@@ -15,10 +15,10 @@
 * node version v0.10.29
 * npm version 2.11.2
 
-## Steps
+## Steps to run locally
 * `npm install`
 * `gulp`
+* Open the site at http://respondreact.com:3000 (or whatever port gulp chooses)
 
 ## Frontend hosts file entries:
-* `127.0.0.1 api.respondreact.com`
-* `127.0.0.1 media.respondreact.com`
+* `127.0.0.1 respondreact.com`
