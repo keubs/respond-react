@@ -23,8 +23,8 @@
 	</div>
 </div>
 <div class="container-fluid back" style="margin-top:2em;">
-  <h3 class="banner" ng-if="topic.action_count > 0">{{topic.action_count}} ways to get involved</h3>
-  <h3 class="banner" ng-if="topic.action_count == 0">How to get involved</h3>
+  <h3 class="banner" ng-if="topic.action_count > 1">{{topic.action_count}} ways to get involved</h3>
+  <h3 class="banner" ng-if="topic.action_count <= 1">How to get involved</h3>
   <div class="inner">
 	<div class="row">
 		<div class="col-md-9">
