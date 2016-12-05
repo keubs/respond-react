@@ -15,6 +15,11 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.topic.scope = 'national';
   $analytics.pageTrack('submit');
   $scope.topic.locations = [];
+  $scope.scopes = [
+    {"text":"Local (Affects only this state)","value":"local"},
+    {"text":"National (Affects only this country)","value":"national"},
+    {"text":"Worldwide (Affects the world)","value":"worldwide"},
+  ];
   $scope.topic.created_by = $rootScope.user.id;
   $scope.pos = {};
   var vm = this;

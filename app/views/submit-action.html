@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn == true">
             <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
-            <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action">
+            <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action" ng-show="submitted==false">
                 <h1>Submit an action for:</h1>
                 <h3><a href="/topic/{{topic.id}}">{{topic.title}}</a></h3>
                 <br />
@@ -47,10 +47,10 @@
                 <tags-input id="action_tags" ng-model="action.tags_list" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
                 <br />
                 <label for="scope">Scope</label>
-                <select id="scope" class="form-control" ng-model="action.scope" required>
-                    <option value="local" selected="selected">Local (Affects only this state)</option>
-                    <option value="national">National (Affects only this country)</option>
-                    <option value="worldwide">Worldwide (Affects the world)</option>
+                <select id="scope" class="form-control" ng-model="action.scope"
+                    ng-init="action.scope = scopes[0].value"
+                    ng-options="option.value as option.text for option in scopes">
+                    <option value="">-- SELECT A SCOPE --</option>
                 </select>
                 <br />
                 <label for="address">Address</label>

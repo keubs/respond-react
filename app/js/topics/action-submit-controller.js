@@ -15,6 +15,12 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
       $scope.validUrl = false;
       $scope.type = 'action';
+      $scope.submitted = false;
+      $scope.scopes = [
+        {"text":"Local (Affects only this state)","value":"local"},
+        {"text":"National (Affects only this country)","value":"national"},
+        {"text":"Worldwide (Affects the world)","value":"worldwide"},
+      ];
       $analytics.pageTrack('topic/'+ $stateParams.topic +'/submit-action');
       /*----------  start/end date/time section  ----------*/
       
@@ -36,11 +42,11 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       $scope.pos = {};
 
       TopicService.topic($stateParams.topic)
-      	.then(function(data){
-      		$scope.topic = data;
-      	}, function(error){
-      		console.log(error);
-      	})
+        .then(function(data){
+          $scope.topic = data;
+        }, function(error){
+          console.log(error);
+        })
     };
 
     $scope.update = function() {
@@ -49,6 +55,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         d.setMinutes( 0 );
         $scope.mytime = d;
       };
+
 
     /*----------  end start/end date/time section  ----------*/
 
@@ -110,9 +117,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
 		    ActionService.new($scope.action)
 		      .then(function(){
-            $scope.formloading = true;
+            $scope.formLoading = false;
             $scope.validUrl = false;
             $scope.alerts = [];
+            $scope.submitted = true;
             $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action posted publicly soon'});
             window.scrollTo(0, 0);
 	        }, function(error) {

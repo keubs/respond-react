@@ -24,10 +24,10 @@
         <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
         <br />
         <label class="required" for="scope">Scope</label>
-        <select id="scope" class="form-control" ng-model="topic.scope" required>
-            <option value="local">Local (Affects only this state)</option>
-            <option value="national" selected>National (Affects only this country)</option>
-            <option value="worldwide">Worldwide (Affects the world)</option>
+        <select id="scope" class="form-control" ng-model="topic.scope"
+            ng-init="topic.scope = scopes[0].value"
+            ng-options="option.value as option.text for option in scopes">
+            <option value="">-- SELECT A SCOPE --</option>
         </select>
         <br />
         <label for="address">Address</label>
