@@ -56,7 +56,7 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			id  : id,
 			action: action,
 		};
-		$uibModal.open({
+		var modalInstance = $uibModal.open({
 		  animation: true,
 		  templateUrl: 'action-modal.html',
 		  controller: 'ModalActionCtrl',
@@ -67,6 +67,12 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		  	}
 		  }
 		});
+
+		modalInstance.result.then(function(){
+			$scope.getUnapproved();
+		}, function(){			
+			
+		})
 	};
 
 	$scope.getUnapproved = function(){

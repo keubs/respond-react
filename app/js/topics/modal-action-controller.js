@@ -41,8 +41,8 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 							.then(function(){
 								$scope.message = 'This post was deleted successfully.';
 								setTimeout(function(){
-									window.location.href = window.location;
-								}, 2000);	
+									$uibModalInstance.close();
+								}, 1000);	
 							}, function(error){
 								console.log(error);
 							});
@@ -56,8 +56,8 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 							.then(function(){
 								$scope.message = 'This post was approved successfully';
 								setTimeout(function(){
-									window.location.href = window.location;
-								}, 2000);
+									$uibModalInstance.close();
+								}, 1000);
 							}, function(error){
 								console.log(error);
 							})
@@ -68,8 +68,8 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 							.then(function(){
 								$scope.message = 'This post was deleted successfully.';
 								setTimeout(function(){
-									window.location.href = window.location;
-								}, 2000);	
+									$uibModalInstance.close();
+								}, 1000);	
 							}, function(error){
 								console.log(error);
 							});
