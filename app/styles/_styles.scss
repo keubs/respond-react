@@ -258,12 +258,21 @@ div.tag {
     margin: 20% auto;
 
   }
+
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 21px;
+    border-bottom: none;
+  }
 }
 @media (max-width: 768px) {
   .modal-dialog.modal-sm {
     width: 95% !important;
     max-width: 95%;
   }
+
 }
 
 .banner-wrapper {
