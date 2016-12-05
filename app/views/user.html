@@ -41,7 +41,7 @@
 </div>
 <br />
 <div class="container-fluid back">
-	<h2 ng-if="topics.length == 0">You have not submitted any topics yet.</h2>
+	<h2 ng-if="topics.length == 0"><span ng-if="isCurrentUser == true">You have</span><span ng-if="isCurrentUser == false">{{user.username}} has</span> not submitted any topics yet.</h2>
 	<h2 ng-if="topics.length > 0">Topics</h2>
 	<div class="inner">
 		<hr />
@@ -64,6 +64,9 @@
 				<br />
 				<!-- <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside> -->
 			</div>
+		</div>
+		<div ng-if="topics.length == 0" class="row" style="margin: 1em 0">
+			<a href="/submit" class="btn btn-primary btn-lg btn-submit-topic text-center">Submit a topic</a>
 		</div>
 	</div>
 </div>
