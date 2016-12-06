@@ -1,53 +1,64 @@
 <div ng-init="init()">
-  <h1 class="text-center tagline">Don't just <em>react</em>, <strong>respond</strong>.</h1>
-  <div class="container-fluid back featured" style="text-align: center;">
+  <h1 class="text-center tagline">Don't just react, <strong>respond.</strong></h1>
+  <div class="container-fluid featured" style="text-align: center;">
     <div class="row banner-wrapper">
       <div class="col-md-4 col-lg-4 col-sm-4 banner national" ng-if="national != null">
-        <a class="banner-label" ng-click="refresh('national')">National</span>
-        <a class="banner-image" style="background-image: url({{national.image}})" href="/topic/{{national.id}}">
-        </a>
-        <p><a href="/topic/{{national.id}}">{{national.title}}</a></p>
+        <a class="banner-image" style="background-image: url({{national.image}})" href="/topic/{{national.id}}"></a>
+        <div class="banner-copy">
+          <a class="banner-label" ng-click="refresh('national')">National</span></a>
+          <p><a href="/topic/{{national.id}}">{{national.title}}</a></p>
+          <span class="banner-meta">BY: <a href="/user/{{national.created_by}}">{{national.username}}</a> {{national.created_on | date : fullDate}}</span>
+        </div>
+        <div class="more"><a href="#">View National</a></div>
       </div>
       <div class="col-md-4 col-lg-4 col-sm-4 banner local" ng-if="local != null">
-        <a class="banner-label" ng-click="refresh('local')">Local<ng-if="state" class="state"> ({{state}})</ng-if></span>
         <a class="banner-image" style="background-image: url({{local.image}});" href="/topic/{{local.id}}"></a>
-        <p><a href="/topic/{{national.id}}">{{local.title}}</a></p>
+        <div class="banner-copy">
+          <a class="banner-label" ng-click="refresh('local')">Local ({{state}})</a>
+          <p><a href="/topic/{{national.id}}">{{local.title}}</a></p>
+          <span class="banner-meta">BY: <a href="/user/{{local.created_by}}">{{local.username}}</a> {{local.created_on | date : fullDate}}</span>
+        </div>
+        <div class="more"><a href="#">View Local</a></div>
       </div>
       <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide" ng-if="worldwide != null">
-        <a class="banner-label" ng-click="refresh('worldwide')">Worldwide</span>
         <a class="banner-image" style="background-image: url({{worldwide.image}})" href="/topic/{{worldwide.id}}"></a>
-        <p><a href="/topic/{{worldwide.id}}">{{worldwide.title}}</a></p>
+        <div class="banner-copy">
+          <a class="banner-label" ng-click="refresh('worldwide')">Worldwide</a>
+          <p><a href="/topic/{{worldwide.id}}">{{worldwide.title}}</a></p>
+          <span class="banner-meta">BY: <a href="/user/{{worldwide.created_by}}">{{worldwide.username}}</a> {{worldwide.created_on | date : fullDate}}</span>
+        </div>
+        <div class="more"><a href="#">View Worldwide</a></div>
       </div>
     </div>
-    <a style="" href="/submit" style="margin:1em; float: right;" class="btn btn-primary btn-lg btn-submit-topic text-center" ng-if="isLoggedIn == true">Submit a topic</a>
   </div>
-  <br />
-  <div class="container-fluid back">
-    <h3 style="" class="banner">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
-    <div class="inner">
-      <div ng-repeat="topic in topics" class="row">
+  <div class="container-fluid topics">
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+        <h3 class="trending">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
+      </div>
+    </div>
+    <div class="inner row">
+      <div ng-repeat="topic in topics" class="row topic">
         <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center;">
           <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote">
           </span>
-          <h3 style="margin: .5em 0">{{topic.score}}</h3>
-          <span ng-click="downVoteTopic($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-chevron-down downvote">
-          </span>
+          <h3 class="score">{{topic.score}}</h3>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
-          <a href="topic/{{topic.id}}"><img src="{{topic.thumbnail}}" style="width: 100%" /></a>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6">
-          <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-          <h4><a href="topic/{{topic.id}}">{{topic.title}}</a></h4>
-          <p><span class="glyphicon glyphicon-user"></span> <a href="/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</p>
-          <span class="glyphicon glyphicon-tags"></span>
-          <aside class="tags">
-            <div ng-repeat="tag in topic.tags" class="tag" ng-class="{'last':$last}">
-              <a href="topics/tag/{{tag.slug}}">{{tag.name}}</a>
-            </div>
-          </aside>
-          <br />
-          <aside class="right"><span class="glyphicon glyphicon-fire"></span> <a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside>
+        <div class="col-lg-10 col-md-10 col-sm-10">
+          <a class="topic-image" href="topic/{{topic.id}}"><img src="{{topic.thumbnail}}" /></a>
+          <div class="topic-right">
+            <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
+            <h4><a href="topic/{{topic.id}}">{{topic.title}}</a></h4>
+            <aside>BY: <a href="/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</aside>
+            <aside class="tags">
+            Tags: 
+              <div ng-repeat="tag in topic.tags" class="tag" ng-class="{'last':$last}">
+                <a href="topics/tag/{{tag.slug}}">{{tag.name}}</a><span ng-class="{'last':$last}">,</span>&nbsp;
+              </div>
+            </aside>
+            <aside class="right"><a href="topic/{{topic.id}}#actions"><ng-pluralize count="topic.actions" when="{'0' : 'No actions yet', '1' : '1 action', 'other' : '{{ topic.actions }} actions'}"></ng-pluralize></a></aside>
+          </div>
         </div>
       </div>
       <div class="clearfix">

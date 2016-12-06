@@ -1,4 +1,43 @@
+<div class="container-fluid topic-page">
+	<div class="row">
+		<div class="col-md-2 col-lg-2">
+		<!-- Scope -->
+			<aside>
+				{{topic.scope}}<br />
+				<a href="#">VIEW MAP</a>
+			</aside>
+		<!-- Author -->
+			<aside>	
+				By: <a href="/user/{{topic.created_by}}">{{topic.username}}</a>
+			</aside>
+		<!-- Tags -->
+			<aside>
+				<ul class="tags">
+					<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag.slug}}">{{tag.name}}</a></li>
+				</ul>
+			</aside>
+		<!-- Share -->
+		</div>
+		<div class="col-md-10 col-lg-10 topic-main">
+			<div class="row">
+				<div class="col-offset-2 col-lg-8 centered">
+					<!-- Title -->
+					<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
+					<!-- Description -->
+					<p>{{topic.description}}</p>
+					<!-- Image -->
+					<a href="{{ topic.article_link }}"><img src="{{ topic.image }}" /></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container-fluid">
+	<div class="row">
+
+	</div>
+</div>
+<!--<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-11">
 			<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
@@ -35,7 +74,6 @@
 				<div class="col-md-2 col-sm-2" style="text-align: center;">
 					<span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote action"></span>
 					<h3 class="score">{{action.score}}</h3>
-					<span ng-click="downVoteAction($index)" ng-class="{downvoted: isDownVoted($index)}" class="glyphicon glyphicon-chevron-down downvote action"></span>
 				</div>
 				<div class="col-md-2 col-sm-2">
 					<a href="{{action.article_link}}" target="_blank"><img src="{{action.image}}" style="width: 100%" /></a>
@@ -61,4 +99,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
