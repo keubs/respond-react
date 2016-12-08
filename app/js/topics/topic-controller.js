@@ -138,6 +138,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
       $scope.topic.actions = $scope.stashed;
       $scope.topic.action_count = $scope.topic.actions.length;
       $scope.stashed = [];
+      $scope.filter = null;
     }
     // /*===========================================
     // =            Action Submit Modal            =
