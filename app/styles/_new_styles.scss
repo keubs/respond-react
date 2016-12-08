@@ -166,6 +166,21 @@ header {
 	    }
   	}
 
+  	.navbar-toggle {
+  		margin-top: 0px;
+  	}
+
+  	.navbar-brand {
+  		@media (max-width: $mobile) {
+  			margin-top: 8px;
+  		}
+  	}
+
+  	.btn-submit-topic {
+  		margin: .5em 1em;
+  		color: $pop !important;
+  		font-family: 'Futura', sans-serif;
+  	}
 
 }
 
