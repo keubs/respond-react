@@ -11,7 +11,8 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
   $scope.backendUrl = AppSettings.backendUrl;
   $scope.mediaUrl = AppSettings.mediaUrl;
   $scope.googleApiKey = AppSettings.googleApiKey;
-  
+  $scope.siteUrl = AppSettings.siteUrl;
+
   $scope.isLoggedIn = AuthService.newIsLoggedIn();
   TopicService.topic($stateParams.topic)
     .then(function(data) {

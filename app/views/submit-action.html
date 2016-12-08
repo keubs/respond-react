@@ -1,4 +1,4 @@
-<div ng-controller="ActionSubmitCtrl as vm" class="container-fluid" ng-init="init()" style="margin:2em 0">
+<div ng-controller="ActionSubmitCtrl as vm" class="container-fluid" ng-init="init()" style="">
     <div class="row">
         <div class="col-md-12 col-sm-12 submit-wrapper" ng-show="isLoggedIn == true">
             <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
