@@ -5,7 +5,7 @@
 				<!-- Scope -->
 				<aside ng-if="topic.address">
 					{{topic.scope}}<br />
-					<a target="_blank" href="http://google.com/maps/place/{{topic.address.raw}}">VIEW MAP</a>
+					<a ng-click="showMap()" target="_blank">VIEW MAP</a>
 				</aside>
 				<!-- Author -->
 				<aside>	
@@ -31,6 +31,10 @@
 				<p class="description">{{topic.description}}</p>
 				<!-- Image -->
 				<a class="topic-image" href="{{ topic.article_link }}" style="background-image: url('{{topic.image}}')"></a>
+
+				<a target="_blank" ng-class="{'show' : mapDisplayed}" class="map" href="http://google.com/maps/place/{{topic.address.raw}}" ng-if="topic.address !== null">
+					<img class="gmap" src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x350" />
+				</a>
 			</div>
 			<div class="col-md-2 topic-score score">
 				<h1>{{topic.score}}</h1>

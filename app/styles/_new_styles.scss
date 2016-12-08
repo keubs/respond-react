@@ -7,6 +7,7 @@ body {
 
 a {
 	color: $pop;
+	cursor: pointer;
 }
 
 #content {
@@ -306,8 +307,8 @@ h1.tagline {
 			letter-spacing: 1px;
 
 			&.refiltered {
-				transition: height 5s;
-				height: 175px;
+				transition: all 5s;
+				height: 75px;
 				margin-bottom: 0px;
 			}
 		}
@@ -467,6 +468,16 @@ h1.tagline {
 			background-position: center center;
 			background-size: cover;
 			background-repeat: no-repeat;
+		}
+
+		.map {
+			height: 0px;
+			transition: all .5s;
+			overflow: hidden;
+			display: block;
+			&.show {
+				height: 350px;
+			}
 		}
 
 	}

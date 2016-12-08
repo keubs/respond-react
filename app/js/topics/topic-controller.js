@@ -15,6 +15,8 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $scope.siteUrl = AppSettings.siteUrl;
     $scope.stashed = [];
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
+    $scope.mapDisplayed = false;
+
     TopicService.topic($stateParams.topic)
       .then(function(data) {
         for (var attr in data) {
@@ -139,7 +141,11 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
       $scope.topic.action_count = $scope.topic.actions.length;
       $scope.stashed = [];
       $scope.filter = null;
-    }
+    };
+
+    $scope.showMap = function(){
+      $scope.mapDisplayed = $scope.mapDisplayed ? false : true;
+    };
     // /*===========================================
     // =            Action Submit Modal            =
     // ===========================================*/
