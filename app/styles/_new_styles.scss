@@ -9,6 +9,10 @@ a {
 	color: $pop;
 }
 
+#content {
+	min-height: 100vh;
+}
+
 .btn-primary {
 	border-radius: 0px;
 	border: solid 1px $pop;

@@ -96,7 +96,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
         $scope.action.topic = $stateParams.topic;
-        if($scope.action.address && !$scope.placePicked) {
+        if(!$scope.action.address) {
           window.scrollTo(0,0);
           $scope.alerts.push({ type : 'danger', msg: 'Please select a location from the address dropdown'});          
           return;
@@ -119,7 +119,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
             $scope.validUrl = false;
             $scope.alerts = [];
             $scope.submitted = true;
-            $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! Pending approval, you should see your action posted publicly soon'});
+            $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! If you are posting this action under someone else\'s topic, then you will see it posted upon appoval of the topic owner.'});
             window.scrollTo(0, 0);
 	        }, function(error) {
             console.log(error);
