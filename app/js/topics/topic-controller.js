@@ -146,6 +146,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $scope.showMap = function(){
       $scope.mapDisplayed = $scope.mapDisplayed ? false : true;
     };
+    
     // /*===========================================
     // =            Action Submit Modal            =
     // ===========================================*/
