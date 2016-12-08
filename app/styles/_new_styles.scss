@@ -33,8 +33,14 @@ a {
 }
 
 h1, h2, h3, h4, h5 {
-	font-family: 'Sentinel', serif;
+	font-family: "Sentinel SSm A", "Sentinel SSm B";
+	font-style: normal;
+	font-weight: 700;
 	font-weight: bold;
+}
+
+h3 {
+	font-size: 20px;
 }
 
 .go {
@@ -143,7 +149,36 @@ ul.dropdown-menu {
   }
 }
 
+.upvoted {
+  color: orange;
+}
 
+.downvoted {
+  color: blue;
+}
+
+.upvote,
+.downvote {
+    font-size: 25px;
+    cursor: pointer;
+    color: #222;
+
+    &.action {
+        font-size: 15px;
+    }
+}
+
+.upvote {
+    &:hover {
+        color: #F3902A;
+    }
+}
+
+.downvote {
+    &:hover {
+        color: #920832;
+    }
+}
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -195,7 +230,9 @@ header {
   	li {
   		> a {
   			font-size: 19px;
-  			font-family: 'Sentinel', serif;
+  			font-family: "Sentinel SSm A", "Sentinel SSm B";
+  			font-style: normal;
+  			font-weight: 700;
   			font-weight: bold;
   			color: $dark !important;
   		}
@@ -241,7 +278,9 @@ header {
 /* homepage */
 h1.tagline {
 	margin: 58px 0 100px 0;
-	font-family: 'Sentinel', serif;
+	font-family: "Sentinel SSm A", "Sentinel SSm B";
+	font-style: normal;
+	font-weight: 700;
 	font-weight: bold;
 
 	strong {
@@ -302,7 +341,9 @@ h1.tagline {
 			background: $content-bg;
 			margin: 8px 0 20px;
 			text-transform: uppercase;
-			font-family: 'Sentinel', serif;
+			font-family: "Sentinel SSm A", "Sentinel SSm B";
+			font-style: normal;
+			font-weight: 700;
 			font-weight: bold;
 			letter-spacing: 1px;
 
@@ -315,7 +356,7 @@ h1.tagline {
 	}
 
 	h3 {
-		font-size: 19px;
+		font-size: 17px;
 		line-height: 25px;
 		margin-top: 0;
 	}
