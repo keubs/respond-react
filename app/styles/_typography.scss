@@ -40,3 +40,44 @@ h2 {
 h3 {
   @extend .heading.-small;
 }
+
+
+@font-face {
+  font-family: 'Sentinel Book';
+  src: url('../fonts/Sentinel-Book.eot');
+  src: url('../fonts/Sentinel-Book.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Sentinel-Book.woff') format('woff'),
+    url('../fonts/Sentinel-Book.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sentinel';
+  src: url('../fonts/Sentinel-Medium.eot');
+  src: url('../fonts/Sentinel-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Sentinel-Medium.woff') format('woff'),
+    url('../fonts/Sentinel-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sentinel';
+  src: url('../fonts/Sentinel-Bold.eot');
+  src: url('../fonts/Sentinel-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Sentinel-Bold.woff') format('woff'),
+    url('../fonts/Sentinel-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Sentinel';
+  src: url('../fonts/Sentinel-Light.eot');
+  src: url('../fonts/Sentinel-Light.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Sentinel-Light.woff') format('woff'),
+    url('../fonts/Sentinel-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
