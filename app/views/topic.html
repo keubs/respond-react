@@ -1,39 +1,71 @@
-<div class="container-fluid topic-page">
-	<div class="row">
-		<div class="col-md-2 col-lg-2">
-		<!-- Scope -->
-			<aside>
-				{{topic.scope}}<br />
-				<a href="#">VIEW MAP</a>
-			</aside>
-		<!-- Author -->
-			<aside>	
-				By: <a href="/user/{{topic.created_by}}">{{topic.username}}</a>
-			</aside>
-		<!-- Tags -->
-			<aside>
-				<ul class="tags">
-					<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag.slug}}">{{tag.name}}</a></li>
-				</ul>
-			</aside>
-		<!-- Share -->
-		</div>
-		<div class="col-md-10 col-lg-10 topic-main">
-			<div class="row">
-				<div class="col-offset-2 col-lg-8 centered">
-					<!-- Title -->
-					<h1><a href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
-					<!-- Description -->
-					<p>{{topic.description}}</p>
-					<!-- Image -->
-					<a href="{{ topic.article_link }}"><img src="{{ topic.image }}" /></a>
-				</div>
+<div class="topic-detail">
+	<div class="container-fluid topic-page">
+		<div class="row">
+			<div class="col-md-2 col-lg-2">
+				<!-- Scope -->
+				<aside>
+					{{topic.scope}}<br />
+					<a href="#">VIEW MAP</a>
+				</aside>
+				<!-- Author -->
+				<aside>	
+					By: <a href="/user/{{topic.created_by}}">{{topic.username}}</a>
+				</aside>
+				<!-- Tags -->
+				<aside>
+					<ul class="tags">
+						<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag.slug}}">{{tag.name}}</a></li>
+					</ul>
+				</aside>
+				<!-- Share -->
+				<aside>
+					Share
+					<a class="facebook share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{siteUrl}}/topic/{{topic.id}}">Share on Facebook</a>
+					<a class="twitter share" target="_blank" href="https://twitter.com/home?status={{siteUrl}}/topic/{{topic.id}}">Share on Twitter</a>
+				</aside>
+			</div>
+			<div class="col-md-8 col-lg-8 topic-main">
+				<!-- Title -->
+				<h1><a class="go" href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
+				<!-- Description -->
+				<p class="description">{{topic.description}}</p>
+				<!-- Image -->
+				<a class="topic-image" href="{{ topic.article_link }}" style="background-image: url('{{topic.image}}')"></a>
+			</div>
+			<div class="col-md-2 score">
+				<h1>{{topic.score}}</h1>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="container-fluid">
-	<div class="row">
+	<div class="container-fluid actions">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 action-list-title">
+				<h2>
+					<ng-pluralize count="topic.action_count" when="{'0':'Submit an Action and get Others Involved', '1':'1 way to Involved', 'other':'{{topic.action_count}} ways to get Involved'}" />
+				</h2>
+				<a href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline" style="float:right">Submit an action!</a>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		
+			<div class="action row" ng-repeat="action in topic.actions">
+				<div class="col-md-2 score">
+					<span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote"></span>
+					<h3>{{action.score}}</h3>
+				</div>
+				<div class="col-md-5">
+					<h3>{{action.title}}</h3>
+					<aside>By: {{action.username}} {{action.created_on | date:fullDate}}</aside>
+					<aside ng-if="action.address_raw">Location: {{action.address_raw}}</aside>
+					<aside ng-repeat="tag in action.tags" class="tag" ng-class="{'last':$last}">
+					  <a href="topics/tag/{{tag.slug}}">{{tag.name}}</a><span ng-class="{'last':$last}">,</span>&nbsp;
+					</aside>
+				</div>
+				<div class="col-md-3">
+					<h3><a class="btn btn-primary go" href="{{action.article_link}}" target="_blank">Participate</a></h3>
+				</div>
+			</div>	
 
 	</div>
 </div>

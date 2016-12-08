@@ -1,4 +1,4 @@
-<div class="col-md-12 submit-wrapper">
+<div class="submit-wrapper container-fluid">
   <form ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     <h1>Submit a topic</h1>
