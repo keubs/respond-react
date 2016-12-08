@@ -3,9 +3,9 @@
 		<div class="row">
 			<div class="col-md-2 col-lg-2">
 				<!-- Scope -->
-				<aside>
+				<asideng-if="topic.address">
 					{{topic.scope}}<br />
-					<a href="#">VIEW MAP</a>
+					<a target="_blank" href="http://google.com/maps/place/{{topic.address.raw}}">VIEW MAP</a>
 				</aside>
 				<!-- Author -->
 				<aside>	
@@ -19,7 +19,7 @@
 				</aside>
 				<!-- Share -->
 				<aside>
-					Share
+					<span class="share-label">Share</span>
 					<a class="facebook share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{siteUrl}}/topic/{{topic.id}}">Share on Facebook</a>
 					<a class="twitter share" target="_blank" href="https://twitter.com/home?status={{siteUrl}}/topic/{{topic.id}}">Share on Twitter</a>
 				</aside>
@@ -42,7 +42,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 action-list-title">
 				<h2>
-					<ng-pluralize count="topic.action_count" when="{'0':'Submit an Action and get Others Involved', '1':'1 way to Involved', 'other':'{{topic.action_count}} ways to get Involved'}" />
+					<ng-pluralize count="topic.action_count" when="{'0':'Submit an Action and get Others Involved', '1':'1 way to get Involved', 'other':'{{topic.action_count}} ways to get Involved'}" />
 				</h2>
 				<a href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline" style="float:right">Submit an action!</a>
 			</div>
