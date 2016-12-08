@@ -115,6 +115,29 @@ ul.dropdown-menu {
 	color: $pop;
 }
 
+.modal-dialog {
+  
+  &.modal-lg {
+    width: 1200px;
+    max-width: 90%;
+  }
+
+  &.modal-sm {
+    width: 650px;
+    max-width: 45%;
+    margin: 20% auto;
+
+  }
+
+  .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 21px;
+    border-bottom: none;
+  }
+}
+
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -545,7 +568,7 @@ h1.tagline {
 		display: block;
 		width: 100%;
 	}
-	
+
 	/*----------  homepage  ----------*/
 	h1.tagline {
 		font-size: 24px;
@@ -572,6 +595,19 @@ h1.tagline {
 
 	.topic-detail .action-list-title {
 		border: none;
+	}
+
+	.modal-dialog.modal-sm {
+	  width: 95% !important;
+	  max-width: 95%;
+	}
+
+	.topic-main h1 {
+		font-size: 24px;
+	}
+
+	.action-list-title h2 {
+		font-size: 22px; 
 	}
 }
 

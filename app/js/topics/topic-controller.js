@@ -7,34 +7,37 @@ const helpers = require('../helpers/helpers.js');
 module.exports = function($scope, $rootScope, $location, $stateParams, TopicService,
                           ActionService, AuthService, AppSettings, $uibModal, $analytics) {
 
-  $scope.topic = {};
-  $scope.backendUrl = AppSettings.backendUrl;
-  $scope.mediaUrl = AppSettings.mediaUrl;
-  $scope.googleApiKey = AppSettings.googleApiKey;
-  $scope.siteUrl = AppSettings.siteUrl;
+  $scope.init = function(){
+    $scope.topic = {};
+    $scope.backendUrl = AppSettings.backendUrl;
+    $scope.mediaUrl = AppSettings.mediaUrl;
+    $scope.googleApiKey = AppSettings.googleApiKey;
+    $scope.siteUrl = AppSettings.siteUrl;
+    $scope.stashed = [];
+    $scope.isLoggedIn = AuthService.newIsLoggedIn();
+    TopicService.topic($stateParams.topic)
+      .then(function(data) {
+        for (var attr in data) {
+          $scope.topic[attr] = data[attr];
+        }
 
-  $scope.isLoggedIn = AuthService.newIsLoggedIn();
-  TopicService.topic($stateParams.topic)
-    .then(function(data) {
-      for (var attr in data) {
-        $scope.topic[attr] = data[attr];
-      }
-
-      $scope.mapZoom = helpers.setZoom($scope.topic.scope);
-      $rootScope.pageTitle = "Get Involved | " + $scope.topic.title;
-      $rootScope.og_title = "Get Involved | " + $scope.topic.title;
-      $rootScope.og_image = data.image;
-      $analytics.pageTrack('topic/' + $stateParams.topic);
-      TopicService.topic_actions($stateParams.topic)
-        .then(function(data){
-          $scope.topic.actions = data;
-        }, function(error){
-          console.log(error);
-        });
-    }, function(error) {
-      console.log(error);
-      $location.path('/');
-    });
+        $scope.mapZoom = helpers.setZoom($scope.topic.scope);
+        $rootScope.pageTitle = "Get Involved | " + $scope.topic.title;
+        $rootScope.og_title = "Get Involved | " + $scope.topic.title;
+        $rootScope.og_image = data.image;
+        $analytics.pageTrack('topic/' + $stateParams.topic);
+        TopicService.topic_actions($stateParams.topic)
+          .then(function(data){
+            $scope.topic.actions = data;
+          }, function(error){
+            console.log(error);
+          });
+      }, function(error) {
+        console.log(error);
+        $location.path('/');
+      });
+    
+  }
 
 
     $scope.upVoteAction = function(index) {
@@ -114,6 +117,28 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     };
 
 
+    $scope.sortActions = function(slug, name){
+      if($scope.stashed.length > 0) $scope.topic.actions = $scope.stashed;
+      var sorted = [];
+      $scope.filter = name;
+      $scope.topic.actions.forEach(function(action){
+        action.tags.forEach(function(tag){
+          if(tag.slug == slug){
+            sorted.push(action)
+          }
+        });
+      });
+
+      $scope.stashed = $scope.topic.actions;
+      $scope.topic.actions = sorted;
+      $scope.topic.action_count = sorted.length;
+    };
+
+    $scope.reset = function() {
+      $scope.topic.actions = $scope.stashed;
+      $scope.topic.action_count = $scope.topic.actions.length;
+      $scope.stashed = [];
+    }
     // /*===========================================
     // =            Action Submit Modal            =
     // ===========================================*/
