@@ -3,11 +3,10 @@
     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     <h1>Submit a topic</h1>
     <p ng-show="errors.general">{{ errors.general }}</p>
-    <h3 style="border-bottom: solid 1px #29b4cf; display: inline-block;" ng-if="validUrl == false">Step 1: Submit a valid link to a news article</h3>
+    <h3 ng-if="validUrl == false">Step 1: Submit a valid link to a news article</h3>
     <br />
-    <label class="required" for="article_link">Article Link</label>
     <div class="input-group">
-        <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Action" required>
+        <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Article" required>
         <span class="input-group-btn">
             <button value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
         </span>
@@ -19,10 +18,10 @@
         <input id="title" type="text" class="form-control"  ng-model="topic.title" placeholder="Title" required>
         <p ng-show="errors.title" id="">{{ errors.title }}</p>
         <br />
-        <label for="topic_description">Description:</label>
+        <label class="required" for="topic_description">Description:</label>
         <textarea id="topic_description" ng-model="topic.description" class="form-control" placeholder="Description" style="width:100%; height: 150px;" required></textarea>
         <br />
-        <label for="tags">Tags</label>
+        <label class="required" for="tags">Tags</label>
         <p>(e.g. #StandingRock, Earthquake, 'Mass Shooting', #brexit)</p>
         <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
         <br />
@@ -41,7 +40,9 @@
             <marker position="{{pos.lat}},{{pos.lng}}"></marker>
         </ng-map>
         <br />
-        <br /><img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
+        <br />
+        <p>This is the image that will be used to accompany your action</p>
+        <img src="{{ topic.image_preview.src }}" style="height: 350px;" ng-show="topic.image_preview.visible"/>
         <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
         <p ng-show="errors.article_link">{{ errors.article_link }}</p>
 

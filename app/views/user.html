@@ -40,31 +40,31 @@
 				</div>	
 			</div>
 		</div>
-		<div class="container-fluid user-topics">
-			<h2 ng-if="topics.length == 0"><span ng-if="isCurrentUser == true">You have</span><span ng-if="isCurrentUser == false">{{user.username}} has</span> not submitted any topics yet.</h2>
-			<h2 ng-if="topics.length > 0">Topics</h2>
-			<div class="inner">
-				<hr />
-				<div ng-if="topics.length > 0" ng-repeat="topic in topics" class="row" style="margin: 1em 0">
-					<div class="col-lg-4 col-md-4 col-sm-4">
-						<a href="/topic/{{topic.id}}"><img src="{{topic.image}}" style="width: 100%" /></a>
+	</div>
+	<div class="container-fluid user-topics">
+		<h2 ng-if="topics.length == 0"><span ng-if="isCurrentUser == true">You have</span><span ng-if="isCurrentUser == false">{{user.username}} has</span> not submitted any topics yet.</h2>
+		<h2 ng-if="topics.length > 0">Topics</h2>
+		<div class="inner">
+			<hr />
+			<div ng-if="topics.length > 0" ng-repeat="topic in topics" class="row" style="margin: 1em 0">
+				<div class="col-lg-4 col-md-4 col-sm-4">
+					<a href="/topic/{{topic.id}}"><img src="{{topic.image}}" style="width: 100%" /></a>
+				</div>
+				<div class="col-lg-8 col-md-8 col-sm-8">
+					<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
+					<div style="float: right">
+						<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')" tooltip-placement="left" uib-tooltip="Delete this topic"><span class="glyphicon glyphicon-trash btn btn-danger" style="font-size: 20px;"></span></a>
 					</div>
-					<div class="col-lg-8 col-md-8 col-sm-8">
-						<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
-						<div style="float: right">
-							<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')" tooltip-placement="left" uib-tooltip="Delete this topic"><span class="glyphicon glyphicon-trash btn btn-danger" style="font-size: 20px;"></span></a>
-						</div>
-						<aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-						<p>
-							{{topic.created_on | date : fullDate}}
-						</p>
-						<br />
-					</div>
+					<aside class="error" ng-show="topic.error">{{topic.error}}</aside>
+					<p>
+						{{topic.created_on | date : fullDate}}
+					</p>
+					<br />
 				</div>
 			</div>
-			<div ng-if="topics.length == 0" class="row" style="margin: 1em 0">
-				<a href="/submit" class="btn btn-primary btn-lg btn-submit-topic text-center">Submit a topic</a>
-			</div>
+		</div>
+		<div ng-if="topics.length == 0" class="row" style="margin: 1em 0">
+			<a href="/submit" class="btn btn-primary btn-lg btn-submit-topic text-center">Submit a topic</a>
 		</div>
 	</div>
 </div>

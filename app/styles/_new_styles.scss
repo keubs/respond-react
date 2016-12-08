@@ -22,7 +22,7 @@ a {
 	min-width: 257px;
 	line-height: 22px;
 	text-transform: uppercase;
-
+	font-family: 'Futura', sans-serif;
 	&:hover {
 		border: solid 1px white;
 		background: $pop;
@@ -142,6 +142,7 @@ ul.dropdown-menu {
   }
 }
 
+
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -249,6 +250,7 @@ h1.tagline {
 
 .banner {
 	padding: 0;
+	min-height: 470px;
 
 	&:not(:first-child,:last-child) {
 		padding: 0 10px;
@@ -284,15 +286,31 @@ h1.tagline {
 		}
 	}
 
-	.more a {
-		display: block;
-		padding: 18px 0;
-		background: $content-bg;
-		margin: 8px 0 20px;
-		text-transform: uppercase;
-		font-family: 'Sentinel', serif;
-		font-weight: bold;
-		letter-spacing: 1px;
+	&.local {
+		.more {
+			max-width: 413px;
+		}
+	}
+	
+	.more {
+		position: absolute;
+		width: 100%;
+		a {
+			display: block;
+			padding: 18px 0;
+			background: $content-bg;
+			margin: 8px 0 20px;
+			text-transform: uppercase;
+			font-family: 'Sentinel', serif;
+			font-weight: bold;
+			letter-spacing: 1px;
+
+			&.refiltered {
+				transition: height 5s;
+				height: 175px;
+				margin-bottom: 0px;
+			}
+		}
 	}
 
 	h3 {
@@ -510,6 +528,11 @@ h1.tagline {
 
 	}
 
+	a.submit-action {
+		float:right;
+		margin-top: 15px;
+	}
+
 	.share-label {
 		@media (max-width: $mobile) {
 			display: none;
@@ -546,6 +569,13 @@ h1.tagline {
   }
 }
 
+label.required {
+  &:after {
+    padding-left: 2px;
+    content:"*";
+    color:red;
+  }
+}
 /*=====  End of Form styles  ======*/
 
 

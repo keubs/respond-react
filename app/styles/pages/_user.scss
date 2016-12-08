@@ -1,9 +1,8 @@
 #user-controller {
 	.user-banner { 
-		border-radius: 5px; 
-		height: 200px; 
+		min-height: 200px; 
 		background-color: $content-bg; 
-
+		margin: 20px auto 20px;
 
 		h2 {
 			margin: 0; display: inline-block; margin-left: 20px;
