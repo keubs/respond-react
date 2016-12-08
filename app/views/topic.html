@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-md-2 col-lg-2">
 				<!-- Scope -->
-				<asideng-if="topic.address">
+				<aside ng-if="topic.address">
 					{{topic.scope}}<br />
 					<a target="_blank" href="http://google.com/maps/place/{{topic.address.raw}}">VIEW MAP</a>
 				</aside>
@@ -32,7 +32,7 @@
 				<!-- Image -->
 				<a class="topic-image" href="{{ topic.article_link }}" style="background-image: url('{{topic.image}}')"></a>
 			</div>
-			<div class="col-md-2 score">
+			<div class="col-md-2 topic-score score">
 				<h1>{{topic.score}}</h1>
 			</div>
 		</div>

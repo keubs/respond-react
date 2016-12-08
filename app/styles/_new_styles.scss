@@ -100,6 +100,21 @@ ul.dropdown-menu {
 	height: auto;
 }
 
+.pagination>.active>a, 
+.pagination>.active>a:hover, 
+.pagination>.active>a:focus, 
+.pagination>.active>span, 
+.pagination>.active>span:hover, 
+.pagination>.active>span:focus {
+	background-color: $pop;
+	border-color: $pop;
+}
+
+.pagination > li > a, 
+.pagination > li > span {
+	color: $pop;
+}
+
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -303,7 +318,7 @@ h1.tagline {
 		}
 	}
 
-	.col-md-10 {
+	.topic-content {
 		border-bottom: 3px solid white;
 		padding-bottom: 45px;
 		margin-bottom: 45px;
@@ -514,6 +529,53 @@ h1.tagline {
 }
 
 /*=====  End of Form styles  ======*/
+
+
+/*========================================
+=            mobile overrides            =
+========================================*/
+
+@media (max-width: $mobile) {
+	/*----------  global overrides  ----------*/
+	.row {
+		margin: 0;
+	}
+
+	.btn-lg, .btn-primary {
+		display: block;
+		width: 100%;
+	}
+	
+	/*----------  homepage  ----------*/
+	h1.tagline {
+		font-size: 24px;
+		margin: 30px 0;
+	}
+
+	.topics .topic-content {
+		border-bottom: none;
+	}
+
+	.topics .col-md-1, .topics .col-lg-1 {
+		padding: 20px 0;
+	}
+
+	.topics .topic {
+		border-bottom: 3px solid white;
+	}
+
+	/*----------  detail page  ----------*/
+	.topic-score {
+		display: none;
+	}
+
+
+	.topic-detail .action-list-title {
+		border: none;
+	}
+}
+
+/*=====  End of mobile overrides  ======*/
 
 
 
