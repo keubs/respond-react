@@ -60,12 +60,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     /*----------  end start/end date/time section  ----------*/
 
     /*----------  start Map  ----------*/
-    $scope.placePicked = false;
     if(!vm.map) {
       NgMap.getMap('map').then(function(map) {
         vm.map = map;
         vm.placeChanged = function() {
-          $scope.placePicked = true;
           vm.place = this.getPlace();
           $scope.action.locations = vm.place;
           vm.map.setCenter(vm.place.geometry.location);
@@ -103,7 +101,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.alerts.push({ type : 'danger', msg: 'Please select a location from the address dropdown'});          
           return;
         }
-        if($scope.action.address && $scope.placePicked) getAddressComponents($scope.action.locations);
+        if($scope.action.address) getAddressComponents($scope.action.locations);
 
         if($scope.action.date_time_display) {
           var startDate = new Date($scope.action.start_date_time_value);

@@ -6,9 +6,12 @@
     <h3 style="border-bottom: solid 1px #29b4cf; display: inline-block;" ng-if="validUrl == false">Step 1: Submit a valid link to a news article</h3>
     <br />
     <label class="required" for="article_link">Article Link</label>
-    <input id="article_link" type="url" ng-model="article_link" placeholder="Article Link" class="form-control form-inline" ng-blur="linkEntered()" required autofocus>
-    <br />
-    <button ng-if="validUrl==false" value="Continue" class="btn btn-primary form-inline">Continue</button>
+    <div class="input-group">
+        <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Action" required>
+        <span class="input-group-btn">
+            <button value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
+        </span>
+    </div>
     <h3 style="border-bottom: solid 1px #29b4cf; display: inline-block;" ng-if="validUrl == true">Step 2: Enter as much extra information about the news article as possible.</h3>
     <br />
     <div class="topic-submit" ng-class="{'show' : validUrl}">

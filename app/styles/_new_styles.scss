@@ -73,6 +73,33 @@ ul.dropdown-menu {
   z-index: 9999;
 }
 
+.submit-wrapper {
+  .form-submit-action,
+  .form-submit-topic {
+    position: relative;
+    &.loading {
+      opacity: .2;
+    }
+  }
+  .loader {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    background-image: url(../images/ajax-loader.gif);
+    width: 32px;
+    height: 32px;
+    display: none;
+
+    &.loading {
+      display: block;
+    }
+  }
+}
+
+.form-control {
+	height: auto;
+}
+
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -100,7 +127,7 @@ header {
 		}
 
 		.navbar-brand {
-			background: url('../images/logo.png') no-repeat;
+			background: url('../images/logo-2x.jpg') no-repeat;
 			background-size: contain;
 			width: 222px;
 			text-indent: -9999px;
@@ -335,6 +362,12 @@ h1.tagline {
 			margin:  0 0 33px 0;
 			text-transform: uppercase;
 			font-size: 10px;
+
+			@media (max-width: $mobile) {
+				margin: 0 0 10px 0;
+				display: inline-block;
+				padding-right: 20px;
+			}
 		}
 
 		ul {
@@ -410,16 +443,42 @@ h1.tagline {
 		display: block;
 		text-indent: -9999px;
 		margin-top: 20px; 
-
+		background-size: cover;
+		background-repeat: no-repeat;
 		&.facebook {
-			background: url('../images/share-facebook.jpg') no-repeat;
+			background-image: url('../images/share-facebook-2x.jpg');
 		}
 
 		&.twitter {
-			background: url('../images/share-twitter.jpg') no-repeat;	
+			background-image: url('../images/share-twitter-2x.jpg');
+		}
+
+		@media (max-width: $mobile) {
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			margin-right: 10px;
+			line-height: 30px;
+		}
+	}
+
+	.share-label {
+		@media (max-width: $mobile) {
+			display: none;
 		}
 	}
 }
+
+/*=================================
+=            User page            =
+=================================*/
+
+.unapproved-actions {
+	margin-bottom: 2em;
+	border-bottom: solid 3px white;
+}
+
+/*=====  End of User page  ======*/
 
 
 /*===================================
