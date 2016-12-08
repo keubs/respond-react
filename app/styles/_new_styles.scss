@@ -179,6 +179,11 @@ ul.dropdown-menu {
         color: #920832;
     }
 }
+
+.help {
+	color: $pop;
+	font-size: 20px;
+}
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -263,6 +268,10 @@ header {
   		font-family: 'Futura', sans-serif;
   	}
 
+  	.help {
+  		float:right;
+  		margin-top: 15px;
+  	}
 }
 
 .container-fluid {
@@ -560,6 +569,12 @@ h1.tagline {
 		border-bottom: 3px solid #FFF;
 		padding-bottom: 45px;
 		margin-bottom: 45px;
+
+		.help {
+			float: right;
+			margin-top: 30px;
+			padding-left: 10px;
+		}
 	}
 
 	.share {

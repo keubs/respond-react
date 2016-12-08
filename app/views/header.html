@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-hide="">
         <ul ng-if="isLoggedIn == true" class="nav navbar-nav navbar-right">
           <li>
-            <a href="/submit" style="" class="btn btn-primary btn-lg btn-submit-topic text-center" ng-if="isLoggedIn == true">Submit a topic</a>  
+            <a href="/submit" style="" class="btn btn-primary btn-lg btn-submit-topic text-center" ng-if="isLoggedIn == true"  tooltip-placement="bottom" uib-tooltip="Topics are any news articles/headlines of events that will have an effect on any number of people">Submit a topic</a>
           </li>
           <li>
             <a href="user/{{user.id}}" style="">

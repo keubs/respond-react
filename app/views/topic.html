@@ -48,7 +48,8 @@
 				<h2>
 					<ng-pluralize count="topic.action_count" when="{'0':'Submit an Action Now', '1':'1 way to get Involved', 'other':'{{topic.action_count}} ways to get Involved'}" />
 				</h2>
-				<a href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline submit-action" style="">Submit an action!</a>
+
+				<a tooltip-placement="left" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline submit-action" style="">Submit an action!</a>
 				<h4 ng-if="filter">Showing results tagged: {{filter}} <a href="" ng-click="reset()">[reset]</a></h4>
 			</div>
 			<div class="col-md-2"></div>
