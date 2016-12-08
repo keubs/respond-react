@@ -419,12 +419,6 @@ h1.tagline {
 			margin:  0 0 33px 0;
 			text-transform: uppercase;
 			font-size: 10px;
-
-			@media (max-width: $mobile) {
-				margin: 0 0 10px 0;
-				display: inline-block;
-				padding-right: 20px;
-			}
 		}
 
 		ul {
@@ -510,13 +504,6 @@ h1.tagline {
 			background-image: url('../images/share-twitter-2x.jpg');
 		}
 
-		@media (max-width: $mobile) {
-			width: 30px;
-			height: 30px;
-			display: inline-block;
-			margin-right: 10px;
-			line-height: 30px;
-		}
 	}
 
 	.share-label {
@@ -573,6 +560,23 @@ h1.tagline {
 		width: 100%;
 	}
 
+	header nav .navbar-header {
+		padding: 17px 0 0 30px;
+
+	}
+
+	header .btn-lg {
+		width: auto;
+	}
+
+	header li.icon a {
+		padding-left: 15px;
+	}
+
+	.navbar-default .navbar-toggle:focus {
+		background: transparent;
+	}
+
 	/*----------  homepage  ----------*/
 	h1.tagline {
 		font-size: 24px;
@@ -612,6 +616,24 @@ h1.tagline {
 
 	.action-list-title h2 {
 		font-size: 22px; 
+	}
+
+	.topic-detail .share {
+		width: 30px;
+		height: 30px;
+		display: inline-block;
+		margin-right: 10px;
+		line-height: 30px;
+	}
+
+	.topic-detail .topic-page aside {
+		margin: 0 0 10px 0;
+		display: inline-block;
+		padding-right: 20px;
+	}
+
+	.topic-detail .topic-page .share {
+		margin: 10px 0;
 	}
 }
 
