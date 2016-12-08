@@ -1,9 +1,9 @@
 <div ng-controller="UserCtrl" id="user-controller" ng-init="init()">
 	<div>
-		<div class="user_banner">
-			<div class="user_banner_inner">
+		<div class="user-banner container-fluid">
+			<div class="user-banner-inner">
 				<div style="display: inline-block; float: left;">
-					<img src="{{user.social_thumb}}" class="user_thumb" />
+					<img src="{{user.social_thumb}}" class="user-thumb" />
 					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="#" ng-click="editUser()">[edit]</a>
 				</div>
 				<ul>
@@ -15,58 +15,56 @@
 			</div>
 		</div>
 	</div>
-	<div ng-if="isCurrentUser == true && unapprovedActionCount > 0">
-		<h1>Unapproved Actions ({{unapprovedActionCount}})</h1>
-		<hr />
-		<div ng-repeat="topic in unapprovedActions">
-			<h3>{{topic.title}}</h3>
-			
-			<div ng-repeat="action in topic.actions" class="row" style="margin: 1em; padding: 1em; background: #EEE">
-				<div class="col-lg-1 col-md-1 col-sm-1">
-					<img src="{{action.image}}" style="width: 100%" />
-				</div>
-				<div class="col-lg-11 col-md-11 col-sm-11">
-					<a href="{{action.url}}" target="_blank">{{action.title}}</a>
-					<p>
-						{{action.created_on | date : fullDate}}
-					</p>
-					<div style="float: right">
-						<a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a>
-						<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-primary"></span></a>
-					<aside class="error" ng-show="action.error">{{action.error}}</aside>
-				</div>
+	<div ng-if="isCurrentUser == true && unapprovedActionCount > 0" class="container-fluid" style="background: none;">
+		<div class="unapproved-actions">
+			<h1>Unapproved Actions ({{unapprovedActionCount}})</h1>
+			<hr />
+			<div ng-repeat="topic in unapprovedActions">
+				<h3>{{topic.title}}</h3>
+				
+				<div ng-repeat="action in topic.actions" class="row" style="margin: 1em; padding: 1em; background: #EEE">
+					<div class="col-lg-1 col-md-1 col-sm-1">
+						<img src="{{action.image}}" style="width: 100%" />
+					</div>
+					<div class="col-lg-11 col-md-11 col-sm-11">
+						<a href="{{action.url}}" target="_blank">{{action.title}}</a>
+						<p>
+							{{action.created_on | date : fullDate}}
+						</p>
+						<div style="float: right">
+							<a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a>
+							<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn"></span></a>
+							<aside class="error" ng-show="action.error">{{action.error}}</aside>
+						</div>
+					</div>
+				</div>	
 			</div>
 		</div>
-	</div>
-</div>
-<br />
-<div class="container-fluid back">
-	<h2 ng-if="topics.length == 0"><span ng-if="isCurrentUser == true">You have</span><span ng-if="isCurrentUser == false">{{user.username}} has</span> not submitted any topics yet.</h2>
-	<h2 ng-if="topics.length > 0">Topics</h2>
-	<div class="inner">
-		<hr />
-		<div ng-if="topics.length > 0" ng-repeat="topic in topics" class="row" style="margin: 1em 0">
-			<div class="col-lg-4 col-md-4 col-sm-4">
-				<a href="/topic/{{topic.id}}"><img src="{{topic.image}}" style="width: 100%" /></a>
-			</div>
-			<div class="col-lg-8 col-md-8 col-sm-8">
-				<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
-				<div style="float: right">
-					<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')" tooltip-placement="left" uib-tooltip="Delete this topic"><span class="glyphicon glyphicon-trash btn btn-danger" style="font-size: 20px;"></span></a>
+		<div class="container-fluid user-topics">
+			<h2 ng-if="topics.length == 0"><span ng-if="isCurrentUser == true">You have</span><span ng-if="isCurrentUser == false">{{user.username}} has</span> not submitted any topics yet.</h2>
+			<h2 ng-if="topics.length > 0">Topics</h2>
+			<div class="inner">
+				<hr />
+				<div ng-if="topics.length > 0" ng-repeat="topic in topics" class="row" style="margin: 1em 0">
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<a href="/topic/{{topic.id}}"><img src="{{topic.image}}" style="width: 100%" /></a>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<a href="topic/{{topic.id}}">{{topic.title}}</a><br />
+						<div style="float: right">
+							<a ng-if="isCurrentUser == true" href="#" ng-click="modalAction(topic.id, 'topic', 'delete')" tooltip-placement="left" uib-tooltip="Delete this topic"><span class="glyphicon glyphicon-trash btn btn-danger" style="font-size: 20px;"></span></a>
+						</div>
+						<aside class="error" ng-show="topic.error">{{topic.error}}</aside>
+						<p>
+							{{topic.created_on | date : fullDate}}
+						</p>
+						<br />
+					</div>
 				</div>
-			<aside class="error" ng-show="topic.error">{{topic.error}}</aside>
-			<p>
-				<!-- Submitted by <a href="#/user/{{topic.created_by}}">{{topic.username}}<a>
-					on {{topic.created_on | date : fullDate}} -->
-					{{topic.created_on | date : fullDate}}
-				</p>
-				<!-- <aside><div ng-repeat="tag in topic.tags" class="tag"><a href="topics/tag/{{tag.slug}}">{{tag.name}}</a></div></aside> -->
-				<br />
-				<!-- <aside class="right"><a href="topic/{{topic.id}}#actions">{{topic.actions}} actions</a></aside> -->
 			</div>
-		</div>
-		<div ng-if="topics.length == 0" class="row" style="margin: 1em 0">
-			<a href="/submit" class="btn btn-primary btn-lg btn-submit-topic text-center">Submit a topic</a>
+			<div ng-if="topics.length == 0" class="row" style="margin: 1em 0">
+				<a href="/submit" class="btn btn-primary btn-lg btn-submit-topic text-center">Submit a topic</a>
+			</div>
 		</div>
 	</div>
 </div>

@@ -1,8 +1,8 @@
 #user-controller {
-	.user_banner { 
+	.user-banner { 
 		border-radius: 5px; 
 		height: 200px; 
-		background-color: #DDD; 
+		background-color: $content-bg; 
 
 
 		h2 {
@@ -10,7 +10,7 @@
 		}
 	}
 
-	.user_banner_inner {
+	.user-banner-inner {
 		padding: 50px 50px;
 
 		ul {
@@ -22,7 +22,7 @@
 		}
 	}
 
-	.user_thumb {
+	.user-thumb {
 		border-radius: 50px; 
 		display: inline-block;
 	}
