@@ -140,6 +140,12 @@ ul.dropdown-menu {
 
   }
 
+  &.modal-x-sm {
+  	width: 400px;
+  	max-width: 80%;
+  	margin: 20% auto;
+  }
+
   .close {
     position: absolute;
     right: 20px;
@@ -183,6 +189,24 @@ ul.dropdown-menu {
 .help {
 	color: $pop;
 	font-size: 20px;
+}
+
+.signin {
+	width: 288px;
+	text-indent: -9999px;
+	height: 62px;
+	
+	display: block;
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-bottom: 20px;
+	&.facebook-signin {
+		background-image: url('../images/login-with-facebook.png');
+	}
+
+	&.google-signin {
+		background-image: url('../images/login-with-google.png');
+	}
 }
 /*=====  End of Global Style Declarations  ======*/
 
@@ -530,6 +554,20 @@ h1.tagline {
 			}
 		}
 
+
+		.topic-action {
+			h3 {
+				margin-top: 0;
+			}
+
+			a {
+				color: $dark;
+			}
+		}
+
+		img {
+			width: 100%;
+		}
 	}
 
 	h2 {
@@ -735,6 +773,10 @@ label.required {
 
 	.topic-detail .topic-page .share {
 		margin: 10px 0;
+	}
+
+	.topic-action h3 {
+		margin-top: .5em;
 	}
 }
 

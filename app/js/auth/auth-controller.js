@@ -4,7 +4,7 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, AuthService, $auth, $http, $window, AppSettings, $uibModal, $cookies) {
+module.exports = function($scope, $rootScope, $location, AuthService, $auth, $http, $window, AppSettings, $uibModal, $cookies) {
   
   $scope.register = function() {
     AuthService.register($scope.user);
@@ -124,6 +124,19 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
     $scope.alerts.splice(index, 1);
   };
 
+  $scope.loginPrompt = function(){
+    $uibModal.open({
+      animation: true,
+      templateUrl: 'login-modal.html',
+      controller: 'ModalContentCtrl',
+      size: 'x-sm',
+      resolve: {
+        items : function(){
+          return {};
+        }
+      }
+    });
+  };
 
   $scope.firstVisitor = function(){
     var send = {
@@ -144,4 +157,13 @@ module.exports = function($scope, $location, AuthService, $auth, $http, $window,
 
     $cookies.put('rr_firstVisitor', true);
   };
+
+  $rootScope.$on('callLogin', function(){
+      $scope.loginPrompt();
+  });
+
+  $rootScope.$on('callAuthenticate', function(event, provider){
+
+    $scope.authenticate(provider.provider)
+  })
 };
