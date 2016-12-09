@@ -51,6 +51,20 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $scope.refresh('worldwide');
     $scope.refresh('local');
     $scope.refresh('national');
+    $scope.refiltered = {
+      worldwide : {
+        status  : false,
+        data    : {}
+      },
+      local     : {
+        status  : false,
+        data    : {}
+      },
+      national  : {
+        status  : false,
+        data    : {}
+      }
+    };
   };
 
   $scope.pageChanged = function() {
@@ -194,5 +208,9 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         });
       break;
     }
+  };
+
+  $scope.refilter = function(scope){
+    $scope.refiltered[scope].status = true;
   }
 };
