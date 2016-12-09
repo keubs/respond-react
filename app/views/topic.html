@@ -51,7 +51,7 @@
 
 				<a ng-if="!isLoggedIn" tooltip-placement="left" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" class="btn btn-primary btn-lg form-inline submit-action" ng-click="loginPrompt()">Log in to Submit an Action</a>
 				<a ng-if="isLoggedIn" tooltip-placement="left" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline submit-action" style="">Submit an action!</a>
-				<h4 ng-if="filter">Showing results tagged: {{filter}} <a href="" ng-click="reset()">[reset]</a></h4>
+				<h4 style="margin:.5em 0" ng-if="filter">Showing results tagged: {{filter}} <a href="" ng-click="reset()">[reset]</a></h4>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

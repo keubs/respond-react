@@ -4,7 +4,6 @@
  * @ngInject
  **/
 module.exports = function($scope, items, TopicService, ActionService, $uibModalInstance) {
-	alert(items.action);
 	$scope.message = "You will not be able to recover this post";
 	switch(items.type) {
 		case 'topic':
