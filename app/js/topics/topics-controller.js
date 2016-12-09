@@ -144,6 +144,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
 
     switch (error.status) {
       case 401:
+        $rootScope.$emit('callLogin', {});
         topic.error = 'You must be logged in to do that.';
         break;
       default:

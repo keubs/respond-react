@@ -16,7 +16,6 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $scope.stashed = [];
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.mapDisplayed = false;
-
     TopicService.topic($stateParams.topic)
       .then(function(data) {
         for (var attr in data) {
@@ -111,6 +110,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
 
       switch (error.status) {
         case 401:
+          $rootScope.$emit('callLogin', {});
           console.log('You must be logged in to do that.');
           break;
         default:
@@ -147,6 +147,9 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
       $scope.mapDisplayed = $scope.mapDisplayed ? false : true;
     };
     
+    $scope.loginPrompt = function() {
+      $rootScope.$emit('callLogin', {});
+    };
     // /*===========================================
     // =            Action Submit Modal            =
     // ===========================================*/
