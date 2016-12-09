@@ -555,18 +555,19 @@ h1.tagline {
 		}
 
 
-		.topic-action {
-			h3 {
-				margin-top: 0;
-			}
-
-			a {
-				color: $dark;
-			}
-		}
 
 		img {
 			width: 100%;
+		}
+	}
+
+	.topic-action {
+		h3 {
+			margin-top: 0;
+		}
+
+		a {
+			color: $dark;
 		}
 	}
 
@@ -629,6 +630,10 @@ h1.tagline {
 
 		&.twitter {
 			background-image: url('../images/share-twitter-2x.jpg');
+		}
+
+		&:hover {
+			background-color: $pop;
 		}
 
 	}
@@ -775,8 +780,12 @@ label.required {
 		margin: 10px 0;
 	}
 
-	.topic-action h3 {
-		margin-top: .5em;
+	.topic-detail .topic-action h3 {
+		margin-top: 1em;
+	}
+
+	.topic-detail img {
+		display: none;
 	}
 }
 
