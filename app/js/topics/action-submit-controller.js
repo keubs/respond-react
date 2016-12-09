@@ -96,11 +96,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
         $scope.action.topic = $stateParams.topic;
-        if(!$scope.action.address) {
-          window.scrollTo(0,0);
-          $scope.alerts.push({ type : 'danger', msg: 'Please select a location from the address dropdown'});          
-          return;
-        }
+
         if($scope.action.address) getAddressComponents($scope.action.locations);
 
         if($scope.action.date_time_display) {

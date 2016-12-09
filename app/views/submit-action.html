@@ -10,7 +10,7 @@
                 <div class="input-group">
                     <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Action" required>
                     <span class="input-group-btn">
-                        <button value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
+                        <button type="button" value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
                     </span>
                 </div>
                 <aside class="error" ng-show="article_link_error" ng-bind-html="article_link_error"></aside>
