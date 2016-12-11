@@ -16,6 +16,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $scope.errors = {};
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.topics = [];
+    $scope.pagination = true;
 
     $scope.backendUrl = AppSettings.backendUrl;
     $scope.mediaUrl = AppSettings.mediaUrl;
@@ -68,8 +69,12 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   };
 
   $scope.pageChanged = function() {
+
     TopicService.get(null, $scope.currentPage).then(function(data) {
       $scope.topics = data;
+      var elem = document.getElementById('topics');
+      var coords = elem.getBoundingClientRect();
+      window.scrollTo(0, coords.bottom-50);
     }, function(err) {
       if(err.status === 500 || err.status === -1) {
         // $location.path('/500');
@@ -211,6 +216,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   };
 
   $scope.refilter = function(scope){
+    $scope.pagination = false;
     Object.keys($scope.refiltered).forEach(function(scope){
       $scope.refiltered[scope].status = false;
     });
