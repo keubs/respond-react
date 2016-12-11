@@ -8,6 +8,11 @@ body {
 a {
 	color: $pop;
 	cursor: pointer;
+
+	&:hover {
+		text-decoration: none;
+		border-bottom: 1px solid $pop;
+	}
 }
 
 #content {
@@ -456,10 +461,6 @@ h1.tagline {
 			margin-top: 0;
 			a {
 				color: $dark;
-
-				&:hover {
-					border-bottom: 1px solid $pop;
-				}
 			}
 		}
 	}
