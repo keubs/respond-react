@@ -16,6 +16,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $scope.stashed = [];
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.mapDisplayed = false;
+    window.scrollTo(0,0);
     TopicService.topic($stateParams.topic)
       .then(function(data) {
         for (var attr in data) {
