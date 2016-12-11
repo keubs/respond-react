@@ -162,6 +162,10 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth, $ht
       $scope.loginPrompt();
   });
 
+  $rootScope.$on('callModal', function(){
+      $scope.firstVisitor();
+  });
+
   $rootScope.$on('callAuthenticate', function(event, provider){
 
     $scope.authenticate(provider.provider)

@@ -29,6 +29,7 @@ a {
 	line-height: 22px;
 	text-transform: uppercase;
 	font-family: 'Futura', sans-serif;
+
 	&:hover {
 		border: solid 1px white;
 		background: $pop;
@@ -53,8 +54,8 @@ h3 {
 		content: "\e080";
 		font-family: 'Glyphicons Halflings';
 		font-weight: 200;
-		font-size: 50%;
-		padding-left: 5px;
+		font-size: 70%;
+		padding-left: 2px;
 	}
 } 
 
@@ -62,14 +63,28 @@ h3 {
   width: 100%;
   background: #FFF;
   padding: 1em .5em;
-  margin-top: 2em;
+  margin-top: 4em;
+  font-size: 8px;
 
   ul {
+  	float: right;
+  	text-transform: uppercase;
     li {
       display: inline-block;
       padding: 10px 20px;
     }
   }
+
+  .slash {
+  	color: $pop;
+  }
+}
+
+footer.container-fluid {
+	background: #FFF;
+	border-top: 1px solid $content-bg;
+	padding: 4em 0;
+
 }
 
 .nopad {
@@ -80,9 +95,11 @@ h3 {
 }
 
 ul.dropdown-menu {
-	width: 100%;
+	text-align: right;
+	width: 240px;
 	border-radius: 0px;
 	margin: 0;
+	border: 0;
 }
 
 .pac-container {
@@ -170,7 +187,7 @@ ul.dropdown-menu {
 
 .upvote,
 .downvote {
-    font-size: 25px;
+    font-size: 15px;
     cursor: pointer;
     color: #222;
 
@@ -213,6 +230,10 @@ ul.dropdown-menu {
 		background-image: url('../images/login-with-google.png');
 	}
 }
+
+.nomargin {
+	margin: 0;
+}
 /*=====  End of Global Style Declarations  ======*/
 
 
@@ -221,13 +242,18 @@ header {
 	// background: radial-gradient(ellipse 70% 100px, #F0F0F0, $pop);
 	background: #f0f0f0;
 
+	.alert {
+		border-radius: 0px;
+	}
+
 	.alert-warning {
 		background: $pop;
 		color: white;
 		text-align: center;
+		border-color: $pop;
 	}
 
-	nav {
+	nav.navbar-default {
 		max-width: $content-width;
 		margin: 0 auto 0 auto;
 		padding: 8px 0;
@@ -245,6 +271,10 @@ header {
 			width: 222px;
 			text-indent: -9999px;
 			height: 16px;
+
+			&:hover {
+				border: none;
+			}
 		}
 
 		.navbar-header {
@@ -269,8 +299,33 @@ header {
   			font-weight: 700;
   			font-weight: bold;
   			color: $dark !important;
+
+  			&:hover {
+  				border: none;
+  				color: $pop !important;
+  			}
   		}
   	}
+
+  	button {
+  			font-size: 19px;
+  			font-family: "Sentinel SSm A", "Sentinel SSm B";
+  			font-style: normal;
+  			font-weight: 700;
+  			font-weight: bold;
+  			color: $dark !important;
+  			background: transparent;
+  			border: none;
+
+  			&:hover {
+  				border: none;
+  				color: $pop !important;
+  			}
+
+  			&.btn-group.open .dropdown-toggle  {
+  				box-shadow: 0;
+  			}
+  		}
 
   	.icon {
   		padding: 0;
@@ -323,6 +378,7 @@ h1.tagline {
 
 	strong {
 		color: $pop;
+		cursor: pointer;
 	}
 }
 
@@ -358,6 +414,8 @@ h1.tagline {
 		background: $content-bg;
 		padding: 0 20px 25px;
 		min-height: 204px;
+		max-height: 204px;
+		overflow: hidden;
 
 		h3 a {
 			color: $dark;
@@ -453,12 +511,14 @@ h1.tagline {
 
 	.topic-right {
 		font-size: 10px;
+		letter-spacing: 1px;
 		text-transform: uppercase;
 
 		h4 {
 			text-transform: none;
 			line-height: 24px;
 			margin-top: 0;
+			letter-spacing: 0px;
 			a {
 				color: $dark;
 			}
@@ -475,6 +535,11 @@ h1.tagline {
 
 	aside {
 		margin: 2em 0;
+	}
+
+	.view-article {
+		font-family: 'Sentinel', serif;
+		font-weight: bold;
 	}
 
 	.pagination {
@@ -570,15 +635,22 @@ h1.tagline {
 	.topic-action {
 		h3 {
 			margin-top: 0;
+
+			a {
+				color: $dark;
+			}
 		}
 
-		a {
-			color: $dark;
-		}
 	}
 
 	h2 {
 		display: inline-block;
+	}
+
+	.participate {
+		a {
+			float: right;
+		}
 	}
 	
 	
@@ -589,6 +661,13 @@ h1.tagline {
 
 		.score {
 			text-align: center;
+			h3, span {
+				color: $pop;
+			}
+
+			h3 {
+				margin-top: 10px;
+			}
 		}
 
 		.action {
@@ -620,6 +699,10 @@ h1.tagline {
 			margin-top: 30px;
 			padding-left: 10px;
 		}
+
+		.way {
+			color: $pop;
+		}
 	}
 
 	.share {
@@ -643,6 +726,8 @@ h1.tagline {
 	a.submit-action {
 		float:right;
 		margin-top: 15px;
+		color: white;
+		background: $pop;
 	}
 
 	.share-label {
@@ -704,6 +789,7 @@ label.required {
 	.btn-lg, .btn-primary {
 		display: block;
 		width: 100%;
+		min-width: 100%;
 	}
 
 	header nav .navbar-header {
@@ -749,6 +835,14 @@ label.required {
 
 	.topic-detail .action-list-title {
 		border: none;
+		text-align: center;
+
+		.btn-lg	{
+			width: 70%;
+			min-width: 75%;
+			float: none;
+			margin: 20px auto 0;
+		}
 	}
 
 	.modal-dialog.modal-sm {
@@ -788,6 +882,16 @@ label.required {
 
 	.topic-detail img {
 		display: none;
+	}
+
+	.participate {
+		float: right;
+		margin-right: 90px;
+	}
+
+	.topic-detail .actions .action {
+		border-bottom: solid 3px #fff;
+		padding-bottom: 2em;
 	}
 }
 

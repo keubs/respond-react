@@ -249,5 +249,9 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         });
         break;
     }
+  };
+
+  $scope.respond = function(){
+    $rootScope.$emit('callModal', {});
   }
 };

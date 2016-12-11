@@ -1,12 +1,12 @@
 <div ng-init="init()">
-  <h1 class="text-center tagline">Don't just react, <strong>respond.</strong></h1>
+  <h1 class="text-center tagline">Don't just react, <strong ng-click="respond()">respond.</strong></h1>
   <div class="container-fluid featured" style="text-align: center;">
     <div class="row banner-wrapper">
       <div class="col-md-4 col-lg-4 col-sm-4 banner local" ng-if="local != null">
         <a class="banner-image" style="background-image: url({{local.image}});" href="/topic/{{local.id}}"></a>
         <div class="banner-copy">
           <a class="banner-label" ng-click="refresh('local')">Local ({{state}})</a>
-          <h3><a href="/topic/{{national.id}}">{{local.title}}</a></h3>
+          <h3><a href="/topic/{{local.id}}">{{local.title}}</a></h3>
           <span class="banner-meta">BY: <a href="/user/{{local.created_by}}">{{local.username}}</a> {{local.created_on | date : fullDate}}</span>
         </div>
         <div class="more"><a ng-class="{'refiltered' : refiltered.local.status}" ng-click="refilter('local')" href="#">View Local</a></div>
@@ -32,16 +32,16 @@
     </div>
   </div>
   <div id="topics" class="container-fluid topics">
-    <div class="row">
+    <div class="row nomargin">
       <div class="col-sm-1 nopad"></div>
       <div class="col-sm-10 nopad">
         <h3 class="trending">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
       </div>
     </div>
-    <div class="inner row">
+    <div class="inner row nomargin">
       <div ng-repeat="topic in topics" class="row topic">
         <div class="col-lg-1 col-md-1 col-sm-1" style="text-align: center">
-          <span ng-click="upVoteTopic($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote">
+          <span ng-click="upVoteTopic($index)" ng-class="" class="glyphicon glyphicon-menu-up upvote">
           </span>
           <h3 class="score">{{topic.score}}</h3>
         </div>
@@ -50,7 +50,7 @@
           <div class="topic-right">
             <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
             <h4><a href="topic/{{topic.id}}">{{topic.title}}</a></h4>
-            <aside>BY: <a href="/user/{{topic.created_by}}">{{topic.username}}</a> on {{topic.created_on | date : fullDate}}</aside>
+            <aside>BY: <a href="/user/{{topic.created_by}}">{{topic.username}}</a>&nbsp;&nbsp;{{topic.created_on | date : fullDate}}</aside>
             <aside class="tags">
             Tags: 
               <div ng-repeat="tag in topic.tags" class="tag" ng-class="{'last':$last}">
@@ -58,6 +58,7 @@
               </div>
             </aside>
             <aside class="right"><a href="topic/{{topic.id}}#actions"><ng-pluralize count="topic.actions" when="{'0' : 'No actions yet', '1' : '1 action', 'other' : '{{ topic.actions }} actions'}"></ng-pluralize></a></aside>
+            <aside><a href="topic/{{topic.id}}" target="_blank" class="go view-article">View Article</a>
           </div>
         </div>
       </div>

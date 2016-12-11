@@ -94,6 +94,31 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
       }
     };
 
+    $scope.upVoteTopic = function() {
+      let topic = $scope.topic;
+
+      if (topic.isUpVoted) {
+        TopicService.clearVote(topic.id, topic.isUpVoted)
+          .then(function() {
+            topic.isUpVoted = false;
+            topic.isDownVoted = false;
+            topic.score--;
+          },
+          function(error) {
+            $scope.voteFailed($topicIndex, error);
+          });
+      } else {
+        TopicService.upVote(topic.id)
+          .then(function() {
+            topic.isUpVoted = true;
+            topic.isDownVoted = false;
+            topic.score++;
+          },
+          function(error) {
+            $scope.voteFailed($topicIndex, error);
+          });
+      }
+    };
 
     $scope.isUpVoted = function($actionIndex) {
       let action = $scope.topic.actions[$actionIndex];

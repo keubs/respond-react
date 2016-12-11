@@ -37,41 +37,49 @@
 				</a>
 			</div>
 			<div class="col-md-2 topic-score score">
+			<span ng-click="upVoteTopic()" ng-class="" class="glyphicon glyphicon-menu-up upvote"></span>
 				<h1>{{topic.score}}</h1>
 			</div>
 		</div>
 	</div>
-	<div class="container-fluid actions">
+	<div class="container-fluid actions" id="actions">
 		<div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-8 action-list-title">
-				<h2>
-					<ng-pluralize count="topic.action_count" when="{'0':'Submit an Action Now', '1':'1 way to get Involved', 'other':'{{topic.action_count}} ways to get Involved'}" />
+			<div class="col-md-8 action-list-title nopad">
+				<h2 ng-if="topic.action_count == 0">Submit an Action Now
+					<!-- <ng-pluralize count="topic.action_count" when="{'0':'', '1':'', 'other':'" /> -->
+				</h2>
+				<h2 ng-if="topic.action_count == 1">
+					1 way to get Involved
+				</h2>
+				<h2 ng-if="topic.action_count > 1">
+					<span class="way">{{topic.action_count}}</span> ways to get Involved
 				</h2>
 
-				<a ng-if="!isLoggedIn" tooltip-placement="left" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" class="btn btn-primary btn-lg form-inline submit-action" ng-click="loginPrompt()">Log in to Submit an Action</a>
-				<a ng-if="isLoggedIn" tooltip-placement="left" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline submit-action" style="">Submit an action!</a>
+				<a ng-if="!isLoggedIn" tooltip-placement="bottom" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" class="btn btn-primary btn-lg form-inline submit-action" ng-click="loginPrompt()">Log in to Submit an Action</a>
+				<a ng-if="isLoggedIn" tooltip-placement="bottom" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" href="/topic/{{topic.id}}/submit-action" class="btn btn-primary btn-lg form-inline submit-action" style="">Submit an action</a>
 				<h4 style="margin:.5em 0" ng-if="filter">Showing results tagged: {{filter}} <a href="" ng-click="reset()">[reset]</a></h4>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 		<div class="action row" ng-repeat="action in topic.actions">
-			<div class="col-md-2 score">
-				<span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-chevron-up upvote"></span>
+			<div class="col-md-2 col-sm-2 col-xs-2 score">
+				<span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-menu-up upvote"></span>
 				<h3>{{action.score}}</h3>
 			</div>
-			<div class="col-md-2">
+			<!-- <div class="col-md-2">
 				<a href="{{action.article_link}}" target="_blank"><img src="{{action.image}}" style="width: 100%" /></a>
-			</div>
-			<div class="col-md-5 topic-action">
+			</div> -->
+			<div class="col-md-5 col-xs-8 col-sm-5 topic-action nopad">
 				<h3><a href="{{action.article_link}}" target="_blank">{{action.title}}</a></h3>
 				<aside>By: {{action.username}} {{action.created_on | date:fullDate}}</aside>
 				<aside ng-if="action.address_raw">Location: {{action.address_raw}}</aside>
+				<aside ng-if="action.start_date_time">WHEN: {{action.start_date_time | date:'LLLL dd, yyyy - HH:mm a'}}</aside>
 				<aside ng-repeat="tag in action.tags" class="tag" ng-class="{'last':$last}">
 				  <a href="#" ng-click="sortActions(tag.slug, tag.name)">{{tag.name}}</a><span ng-class="{'last':$last}">,</span>&nbsp;
 				</aside>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3 col-lg-3 col-sm-3 col-xs-5 nopad participate">
 				<h3><a class="btn btn-primary go" href="{{action.article_link}}" target="_blank">Participate</a></h3>
 			</div>
 		</div>	
