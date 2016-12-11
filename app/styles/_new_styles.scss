@@ -310,7 +310,7 @@ header {
 
 /* homepage */
 h1.tagline {
-	margin: 58px 0 100px 0;
+	margin: 58px 0;
 	font-family: "Sentinel SSm A", "Sentinel SSm B";
 	font-style: normal;
 	font-weight: 700;
@@ -361,7 +361,7 @@ h1.tagline {
 
 	&.local {
 		.more {
-			max-width: 413px;
+			width: calc(100% - 20px);
 		}
 	}
 	
@@ -454,7 +454,10 @@ h1.tagline {
 			margin-top: 0;
 			a {
 				color: $dark;
-				border-bottom: 1px solid $pop;
+
+				&:hover {
+					border-bottom: 1px solid $pop;
+				}
 			}
 		}
 	}
@@ -630,10 +633,6 @@ h1.tagline {
 
 		&.twitter {
 			background-image: url('../images/share-twitter-2x.jpg');
-		}
-
-		&:hover {
-			background-color: $pop;
 		}
 
 	}
