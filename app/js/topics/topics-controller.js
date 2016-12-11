@@ -211,6 +211,37 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   };
 
   $scope.refilter = function(scope){
+    Object.keys($scope.refiltered).forEach(function(scope){
+      $scope.refiltered[scope].status = false;
+    });
+
     $scope.refiltered[scope].status = true;
+    switch(scope) {
+      case 'worldwide':
+        TopicService.worldwide(10)
+          .then(function(data){
+            $scope.topics = data.data;
+            console.log(data.data);
+          }, function(error){
+            console.log(error);
+        });        
+        break;
+      case 'national':
+        TopicService.national(10)
+          .then(function(data){
+            $scope.topics = data.data;
+          }, function(error){
+            console.log(error);
+        });
+        break;
+      case 'local':
+        TopicService.local(10)
+          .then(function(data){
+            $scope.topics = data.data;
+          }, function(error){
+            console.log(error);
+        });
+        break;
+    }
   }
 };

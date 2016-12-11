@@ -108,9 +108,14 @@ function TopicService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
-  service.local = function(){
+  service.local = function(limit){
     var deferred = $q.defer();
-    $http.get(AppSettings.apiUrl + '/topics/scope/local/')
+    var url = AppSettings.apiUrl + '/topics/scope/local/';
+
+    if (limit) {
+      url = url + '?limit=' + limit;
+    }
+    $http.get(url)
       .then(function(data){
         deferred.resolve(data);
       }, function(error){
@@ -120,9 +125,14 @@ function TopicService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
-  service.national = function(){
+  service.national = function(limit){
     var deferred = $q.defer();
-    $http.get(AppSettings.apiUrl + '/topics/scope/national/')
+    var url = AppSettings.apiUrl + '/topics/scope/national/';
+
+    if (limit) {
+      url = url + '?limit=' + limit;
+    }
+    $http.get(url)
       .then(function(data){
         deferred.resolve(data);
       }, function(error){
@@ -132,9 +142,14 @@ function TopicService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
-  service.worldwide = function(){
+  service.worldwide = function(limit){
     var deferred = $q.defer();
-    $http.get(AppSettings.apiUrl + '/topics/scope/worldwide/')
+    var url = AppSettings.apiUrl + '/topics/scope/worldwide/';
+
+    if (limit) {
+      url = url + '?limit=' + limit;
+    }
+    $http.get(url)
       .then(function(data){
         deferred.resolve(data);
       }, function(error){
