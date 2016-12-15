@@ -731,6 +731,11 @@ h1.tagline {
 		margin-top: 15px;
 		color: white;
 		background: $pop;
+
+		&:hover {
+			background: white;
+			color: $pop;
+		}
 	}
 
 	.share-label {
