@@ -822,7 +822,7 @@ label.required {
 		padding: 0;
 	}
 
-	header .navbar-collapse {
+	header .navbar-collapse.in {
 		overflow-y: visible;
 	}
 
@@ -834,6 +834,22 @@ label.required {
 		border: 0;
 	}
 
+	footer.container-fluid, .footer {
+		border: none;
+		border-top: none;
+		margin-top: 0em;
+		padding: 2em 0;
+	}
+
+	.footer ul {
+		float: none;
+		text-align: center;
+	}
+
+	.footer .rr {
+		margin: 1em 0;
+		text-align:center;
+	}
 	/*----------  homepage  ----------*/
 	h1.tagline {
 		font-size: 24px;
