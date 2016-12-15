@@ -479,6 +479,10 @@ h1.tagline {
 		width: 65%;
 	}
 
+	.topic-score {
+		text-align: center;
+	}
+
 	h3.score {
 		margin: 0;
 	}
@@ -624,7 +628,6 @@ h1.tagline {
 				height: 350px;
 			}
 		}
-
 
 
 		img {
@@ -792,7 +795,7 @@ label.required {
 		min-width: 100%;
 	}
 
-	header nav .navbar-header {
+	header nav.navbar-default .navbar-header {
 		padding: 17px 0 0 30px;
 
 	}
@@ -807,6 +810,24 @@ label.required {
 
 	.navbar-default .navbar-toggle:focus {
 		background: transparent;
+	}
+
+	.signin {
+		width: 100%;
+		padding: 0;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	header .navbar-collapse {
+		overflow-y: visible;
+	}
+
+	header .dropdown.open .tooltip {
+		display: none;
 	}
 
 	/*----------  homepage  ----------*/
@@ -825,10 +846,46 @@ label.required {
 
 	.topics .topic {
 		border-bottom: 3px solid white;
+		position: relative;
+		margin: 2em 0;
+	}
+
+	.topics aside {
+		overflow: hidden;
+		margin: 1em 0;
+	}
+
+	.topics .topic-score {
+		position: absolute;
+		left: 20px;
+		top: 195px;
+	}
+
+	.topics .topic-content a {
+		width: 100%;
+	}
+
+	.topics .topic-content .topic-right {
+		float: right;
+		padding-top: 20px;
+		width: 80%;
+	}
+
+	.topics .pagination-wrapper {
+		text-align: center;
+	}
+
+	.topics .pagination {
+		padding-right: 0px;
+		float: none;
+	}
+
+	.topics .view-article {
+		margin: 2em 0;
 	}
 
 	/*----------  detail page  ----------*/
-	.topic-score {
+	.topic-detail .topic-score {
 		display: none;
 	}
 
