@@ -45,7 +45,7 @@
                             <uib-datepicker ng-model="action.end_date_time_value" class="well well-sm" datepicker-options="options" style=""></uib-datepicker>
                             <uib-timepicker ng-model="action.end_date_time_value" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
                         </div>
-                        <a href="" ng-if="action.end_date_time_display == false" ng-click="showEnd()">+End</a>
+                        <a href="" ng-if="!action.end_date_time_display" ng-click="showEnd()">+End</a>
                         <br /><br />
                     </div>
                     <label for="action_tags">Tags</label>

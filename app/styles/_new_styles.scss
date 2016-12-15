@@ -674,7 +674,12 @@ h1.tagline {
 		}
 
 		.action {
-			margin-bottom: 2em;
+			padding: 1em 0;
+
+			&.ended {
+				background: #DDD;
+				opacity: .2;
+			}
 		}
 
 		aside {

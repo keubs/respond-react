@@ -61,9 +61,9 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-		<div class="action row" ng-repeat="action in topic.actions">
+		<div class="action row" ng-repeat="action in topic.actions" ng-class="{'ended' : action.ended}">
 			<div class="col-md-2 col-sm-2 col-xs-2 score">
-				<span ng-click="upVoteAction($index)" ng-class="{upvoted: isUpVoted($index)}" class="glyphicon glyphicon-menu-up upvote"></span>
+				<span ng-click="upVoteAction($index)" ng-class="" class="glyphicon glyphicon-menu-up upvote"></span>
 				<h3>{{action.score}}</h3>
 			</div>
 			<!-- <div class="col-md-2">
@@ -73,7 +73,7 @@
 				<h3><a href="{{action.article_link}}" target="_blank">{{action.title}}</a></h3>
 				<aside>By: <a href="user/{{action.created_by}}">{{action.username}}</a> {{action.created_on | date:fullDate}}</aside>
 				<aside ng-if="action.address_raw">Location: {{action.address_raw}}</aside>
-				<aside ng-if="action.start_date_time">WHEN: {{action.start_date_time | date:'LLLL dd, yyyy - HH:mm a'}}</aside>
+				<aside ng-if="action.start_date_time">WHEN: {{action.start_date_time | date:'LLLL dd, yyyy - HH:mm a'}} <span ng-if="action.end_date_time">to {{action.end_date_time | date:'LLLL dd, yyyy - HH:mm a'}}</span></aside>
 				<aside ng-repeat="tag in action.tags" class="tag" ng-class="{'last':$last}">
 				  <a href="#" ng-click="sortActions(tag.slug, tag.name)">{{tag.name}}</a><span ng-class="{'last':$last}">,</span>&nbsp;
 				</aside>

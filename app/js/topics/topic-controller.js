@@ -16,6 +16,8 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $scope.stashed = [];
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.mapDisplayed = false;
+    $scope.today = new Date();
+
     window.scrollTo(0,0);
     TopicService.topic($stateParams.topic)
       .then(function(data) {
@@ -31,6 +33,15 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
         TopicService.topic_actions($stateParams.topic)
           .then(function(data){
             $scope.topic.actions = data;
+
+            for (var i = 0; i < $scope.topic.actions.length; i++){
+              if($scope.topic.actions[i].end_date_time) {
+                var end = new Date($scope.topic.actions[i].end_date_time);
+                if($scope.today > end) {
+                  $scope.topic.actions[i].ended = true;
+                }
+              }
+            }
           }, function(error){
             console.log(error);
           });
