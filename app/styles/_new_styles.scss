@@ -776,6 +776,17 @@ label.required {
     color:red;
   }
 }
+
+.preview-image {
+	min-height: 350px;
+	width: 100%;
+}
+
+.directions {
+	border-bottom: solid 1px #29b4cf; 
+	display: inline-block;
+}
+
 /*=====  End of Form styles  ======*/
 
 
@@ -802,6 +813,7 @@ label.required {
 
 	header .btn-lg {
 		width: auto;
+		min-width: auto;
 	}
 
 	header li.icon a {
@@ -982,6 +994,17 @@ label.required {
 		border-bottom: solid 3px #fff;
 		padding-bottom: 2em;
 	}
+
+	/*----------  form styles  ----------*/
+	.preview-image {
+		min-height: auto;
+		width: 100%;
+	}
+
+	.directions {
+		border-bottom: none;
+	}
+	
 }
 
 /*=====  End of mobile overrides  ======*/

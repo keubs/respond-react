@@ -66,7 +66,8 @@
                     <marker position="{{pos.lat}},{{pos.lng}}"></marker>
                     </ng-map>
                     <br />
-                    <img src="{{ action.image_preview.src }}" style="min-height: 350px; width: 100%;" ng-show="action.image_preview.visible"/>
+                    <p>This is the image that will be used to accompany your action</p>
+                    <img src="{{ action.image_preview.src }}" class="preview-image" style="" ng-show="action.image_preview.visible"/>
                     <input id="image_url" type="hidden" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
                     <br /><br />
                     <input type="submit" value="Submit" class="btn btn-primary btn-lg" ng-class="{thinking: formLoading}" />
