@@ -830,6 +830,10 @@ label.required {
 		display: none;
 	}
 
+	header .navbar-default .navbar-collapse {
+		border: 0;
+	}
+
 	/*----------  homepage  ----------*/
 	h1.tagline {
 		font-size: 24px;
@@ -911,8 +915,14 @@ label.required {
 		font-size: 24px;
 	}
 
+	.topic-detail .action-list-title {
+		margin-bottom: 0px;
+	}
+
 	.action-list-title h2 {
 		font-size: 22px; 
+		border-bottom: 3px solid #fff;
+		padding-bottom: 30px;
 	}
 
 	.topic-detail .share {
@@ -921,6 +931,12 @@ label.required {
 		display: inline-block;
 		margin-right: 10px;
 		line-height: 30px;
+	}
+
+	.topic-detail .actions {
+		background: #f0f0f0;
+	    margin-top: 40px;
+	    padding-top: 0px;	
 	}
 
 	.topic-detail .topic-page aside {
@@ -934,7 +950,7 @@ label.required {
 	}
 
 	.topic-detail .topic-action h3 {
-		margin-top: 1em;
+		// margin-top: 1em;
 	}
 
 	.topic-detail img {
@@ -943,7 +959,7 @@ label.required {
 
 	.participate {
 		float: right;
-		margin-right: 90px;
+		// margin-right: 90px;
 	}
 
 	.topic-detail .actions .action {
