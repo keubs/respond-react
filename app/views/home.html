@@ -58,7 +58,7 @@
               </div>
             </aside>
             <aside class="right"><a href="topic/{{topic.id}}#actions"><ng-pluralize count="topic.actions" when="{'0' : 'No actions yet', '1' : '1 action', 'other' : '{{ topic.actions }} actions'}"></ng-pluralize></a></aside>
-            <aside class="view-article"><a href="topic/{{topic.id}}" target="_blank" class="go view-article">View Article</a>
+            <aside class="view-article"><a href="{{topic.article_link}}" target="_blank" class="go view-article">View Article</a>
           </div>
         </div>
       </div>
