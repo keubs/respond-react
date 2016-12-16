@@ -4,7 +4,8 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService, items){
+module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService, $uibModalInstance, items){
+	console.log($uibModalInstance);
 	$scope.currentUser = {};
 	$scope.currentUser.address = {};
 	$scope.render = true;
@@ -82,6 +83,10 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 		});	
 	};
 
+	$scope.cancel = function(){
+		$uibModalInstance.close();
+	};
+
 	function getAddressComponents(location) {
 	  	location.address_components.forEach(function(component){
 	    if(component.types.indexOf('street_number') > -1) {
@@ -102,6 +107,6 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	     $scope.currentUser.address.postal_code = component.long_name; 
 	    }
 	  });
-	}
+	};
 };
 
