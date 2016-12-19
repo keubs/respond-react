@@ -716,19 +716,27 @@ h1.tagline {
 	}
 
 	.share {
-		width: 49px;
-		height: 49px;
-		display: block;
-		text-indent: -9999px;
-		margin-top: 20px; 
-		background-size: cover;
-		background-repeat: no-repeat;
+		border: solid 1px #d8dcdd;
+	    border-radius: 50px;
+	    width: 59px;
+	    height: 59px;
+	    display: block;
+	    text-indent: -9999px;
+	    margin-top: 20px;
+	    background-repeat: no-repeat;
+	    background-size: 40px;
+	    background-position: center center;
+
 		&.facebook {
 			background-image: url('../images/share-facebook-2x.jpg');
 		}
 
 		&.twitter {
 			background-image: url('../images/share-twitter-2x.jpg');
+		}
+
+		&:hover {
+			border-color: $pop;
 		}
 
 	}
