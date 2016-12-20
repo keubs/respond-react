@@ -3,12 +3,14 @@
 /**
  * @ngInject
  **/
-module.exports = function($scope, items, TopicService, ActionService, $uibModalInstance) {
+module.exports = function($scope, items, TopicService, ActionService, $uibModalInstance, $sce) {
 	$scope.action = items.action;
 
 	switch(items.action) {
 		case 'delete':
-			$scope.message = "You will not be able to recover this post.";
+			if(items.type === 'topic') {
+				$scope.message = 'You will not be able to recover this post. <br /><span class=\"warn\">All actions under this post will also subsequently be deleted</span>';
+			}
 			break;
 		case 'approve':
 			$scope.message = "You can unapprove it later.";
