@@ -48,10 +48,10 @@
                         <a href="" ng-if="!action.end_date_time_display" ng-click="showEnd()">+End</a>
                         <br /><br />
                     </div>
-                    <label for="action_tags">Tags</label>
+                    <label for="action_tags" class="required">Tags</label>
                     <tags-input id="action_tags" ng-model="action.tags_list" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
                     <br />
-                    <label for="scope">Scope</label>
+                    <label for="scope" class="required">Scope</label>
                     <select id="scope" class="form-control" ng-model="action.scope"
                         ng-init="action.scope = scopes[0].value"
                         ng-options="option.value as option.text for option in scopes">

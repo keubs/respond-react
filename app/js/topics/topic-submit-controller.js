@@ -85,7 +85,13 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
       $scope.formLoading = false;
     }, function(error) {
       $scope.alerts = [];
-      $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting a topic. Please find another one and try again.'});          
+      if(error.status === 409) {
+        window.scrollTo(0,0);
+        $scope.alerts.push({ type : 'danger', msg: 'Your topic has already been submitted.'});
+      } else {
+        $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting a topic. Please find another one and try again.'});
+      }
+
       $scope.validUrl = false;
       $scope.formLoading = false;
     });
