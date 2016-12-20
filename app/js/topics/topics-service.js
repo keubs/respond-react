@@ -60,10 +60,17 @@ function TopicService($q, $http, AppSettings, AddressService) {
     return deferred.promise;
   };
 
-  service.topic_actions = function(id) {
+  service.topic_actions = function(id, page) {
     var deferred = $q.defer();
+    var url = '';
 
-    $http.get(AppSettings.apiUrl + '/topics/' + id + '/actions/')
+    if(page) {
+      url = AppSettings.apiUrl + '/topics/' + id + '/actions/' + '?action_page=' + page;
+    } else {
+      url = AppSettings.apiUrl + '/topics/' + id + '/actions/';
+    }
+
+    $http.get(url)
       .success(function(data) {
         deferred.resolve(data);
       })

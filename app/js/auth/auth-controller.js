@@ -105,7 +105,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth, $ht
 
     if($scope.isLoggedIn) {
       checkUnapproved();
-      window.setInterval(checkUnapproved, 10000);
+      window.setInterval(checkUnapproved, 60000);
     } else {
       if($cookies.get('rr_firstVisitor')) {
       } else {

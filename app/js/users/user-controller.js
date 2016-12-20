@@ -96,7 +96,9 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 		var id = $scope.topics[index].id;
 		TopicService.topic_actions(id)
 			.then(function(data){
-				$scope.topics[index].actions = data;
+				if(data.length > 0)
+					$scope.topics[index].actions = data;
+				else $scope.topics[index].actions = [{'title':'No actions yet'}];
 			})
 	};
 
