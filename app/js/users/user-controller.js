@@ -93,12 +93,9 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 	};
 
 	$scope.getActions = function(index){
-		var id = $scope.topics[index].id
-		console.log(id);
+		var id = $scope.topics[index].id;
 		TopicService.topic_actions(id)
 			.then(function(data){
-				console.log($scope.topics[index]);
-				console.log(data);
 				$scope.topics[index].actions = data;
 			})
 	};
