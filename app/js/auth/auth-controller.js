@@ -104,14 +104,8 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth, $ht
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
 
     if($scope.isLoggedIn) {
-      AuthService.unapprovedActionCount()
-        .then(function(data){
-          if(data.count == 1){
-            $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved action. Approve or delete them in your dashboard.'});
-          } else if(data.count > 1) {
-            $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved actions. Approve or delete them in your dashboard.'});
-          }
-        })
+      checkUnapproved();
+      window.setInterval(checkUnapproved, 10000);
     } else {
       if($cookies.get('rr_firstVisitor')) {
       } else {
@@ -169,5 +163,17 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth, $ht
   $rootScope.$on('callAuthenticate', function(event, provider){
 
     $scope.authenticate(provider.provider)
-  })
+  });
+
+  function checkUnapproved() {
+    AuthService.unapprovedActionCount()
+      .then(function(data){
+        $scope.alerts = [];
+        if(data.count == 1){
+          $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved action. Approve or delete them in your dashboard.'});
+        } else if(data.count > 1) {
+          $scope.alerts.push({msg: 'You currently have ' + data.count + ' unapproved actions. Approve or delete them in your dashboard.'});
+        }
+      })
+    };
 };
