@@ -3,7 +3,7 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, $analytics) {
+module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, $analytics, TopicService) {
 
 	$scope.init = function() {
 		// $scope.currentUser = {};
@@ -90,6 +90,17 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			}, function(err){
 				console.log(err);
 			});
-	}
+	};
+
+	$scope.getActions = function(index){
+		var id = $scope.topics[index].id
+		console.log(id);
+		TopicService.topic_actions(id)
+			.then(function(data){
+				console.log($scope.topics[index]);
+				console.log(data);
+				$scope.topics[index].actions = data;
+			})
+	};
 
 };

@@ -34,7 +34,7 @@
 						</p>
 						<div style="float: right">
 							<a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')"><span class="glyphicon glyphicon-trash btn btn-danger"></span></a>
-							<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn"></span></a>
+							<a tooltip-placement="bottom" uib-tooltip="Approve this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'approve')" style="float: right; margin-right: 10px;"><span class="glyphicon glyphicon-ok btn btn-success"></span></a>
 							<aside class="error" ng-show="action.error">{{action.error}}</aside>
 						</div>
 					</div>
@@ -61,6 +61,14 @@
 						{{topic.created_on | date : fullDate}}
 					</p>
 					<br />
+					<aside ng-if="isCurrentUser"><a class="btn-info btn" ng-click="getActions($index)">Get Actions</a></aside>
+					<br />
+					<aside>
+						<ul>
+							<!-- <li ng-show="!topic.actions.length">No actions submitted</li> -->
+							<li ng-repeat="action in topic.actions">{{action.title}} <a style="margin-right: 10px" tooltip-placement="left" uib-tooltip="Delete this action" ng-if="isCurrentUser == true" href="#" ng-click="modalAction(action.id, 'action', 'delete')" style="color: red"> (delete)</a></li>
+						</ul>
+					</aside>
 				</div>
 			</div>
 		</div>
