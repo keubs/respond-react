@@ -10,6 +10,8 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 		case 'delete':
 			if(items.type === 'topic') {
 				$scope.message = 'You will not be able to recover this post. <br /><span class=\"warn\">All actions under this post will also subsequently be deleted</span>';
+			} else {
+				$scope.message = "You will not be able to recover this post.";
 			}
 			break;
 		case 'approve':
