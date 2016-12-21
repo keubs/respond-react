@@ -4,7 +4,9 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $rootScope, $location, AuthService, $auth, $http, $window, AppSettings, $uibModal, $cookies) {
+module.exports = function($scope, $rootScope, $location, AuthService, $auth, 
+                          $http, $window, AppSettings, $uibModal, $cookies,
+                          TagsService) {
   
   $scope.register = function() {
     AuthService.register($scope.user);
@@ -112,6 +114,8 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth, $ht
         $scope.firstVisitor();
       }
     }
+
+    $scope.popularTags();
   };
 
   $scope.closeAlert = function(index) {
@@ -152,6 +156,17 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth, $ht
     $cookies.put('rr_firstVisitor', true);
   };
 
+  $scope.popularTags = function(){
+    TagsService.get_popular()
+      .then(function(data){
+        // alert(JSON.stringify(data));
+        $scope.popular_tags = data;
+      }, function(error){
+        console.log(error);
+      });
+  };
+
+  // cross-controller events
   $rootScope.$on('callLogin', function(){
       $scope.loginPrompt();
   });

@@ -16,4 +16,5 @@ exports = angular.module('topics', [])
             .service('ActionService', require('./action-service'))
             .service('TopicService', require('./topics-service'))
             .service('LinkFactory', require('./link-factory'))
-            .service('LinkService', require('./link-service'));
+            .service('LinkService', require('./link-service'))
+            .service('TagsService', require('./tags-service'));

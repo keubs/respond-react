@@ -30,7 +30,7 @@
 				<!-- Description -->
 				<p class="description">{{topic.description}}</p>
 				<!-- Image -->
-				<a class="topic-image" target="_blank" href="{{ topic.article_link }}" style="background-image: url('{{topic.image}}')"></a>
+				<a class="topic-image" target="_blank" href="{{ topic.article_link }}" style="background-image: url('{{topic.banner}}')"></a>
 
 				<a target="_blank" ng-class="{'show' : mapDisplayed}" class="map" href="http://google.com/maps/place/{{topic.address.raw}}" ng-if="topic.address !== null">
 					<img class="gmap" src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x350" />
