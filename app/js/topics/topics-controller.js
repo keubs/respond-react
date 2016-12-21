@@ -69,12 +69,16 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   };
 
   $scope.pageChanged = function() {
-
+    $scope.currentPage = $scope.currentPage + 1; 
     TopicService.get(null, $scope.currentPage).then(function(data) {
-      $scope.topics = data;
-      var elem = document.getElementById('topics');
-      var coords = elem.getBoundingClientRect();
-      window.scrollTo(0, coords.bottom-50);
+      // console.log($scope.topics);
+      data.forEach(function(topic){
+        $scope.topics.push(topic);
+      })
+      // console.log($scope.topics);
+      // var elem = document.getElementById('topics');
+      // var coords = elem.getBoundingClientRect();
+      // window.scrollTo(0, coords.bottom-50);
     }, function(err) {
       if(err.status === 500 || err.status === -1) {
         // $location.path('/500');

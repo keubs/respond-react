@@ -36,6 +36,12 @@ a {
 		color: white;
 	}
 
+	&:focus, &:active, &:active:focus {
+		background: transparent;
+		border: solid 1px $pop;
+		color: $pop;
+	}
+
 }
 
 h1, h2, h3, h4, h5 {
@@ -146,6 +152,10 @@ ul.dropdown-menu {
 .pagination > li > a, 
 .pagination > li > span {
 	color: $pop;
+}
+
+.load-more {
+	width: 100%;
 }
 
 .modal-dialog {

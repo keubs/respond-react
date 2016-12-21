@@ -62,8 +62,13 @@
           </div>
         </div>
       </div>
-      <div class="clearfix pagination-wrapper">
-        <ul ng-show="pagination==true" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul>
+      <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-10 col-md-10 col-sm-10 nopad">
+          <a class="btn-primary text-center btn btn-lg load-more" href="" ng-click="pageChanged()">Load More</a><br />
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        <!-- <ul ng-show="pagination==true" uib-pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></ul> -->
       </div>
     </div>
   </div>
