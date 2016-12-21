@@ -1,5 +1,10 @@
 'use strict';
 
+/**
+ * @ngInject
+ **/
+
+ 
 function TagsService($q, $http, AppSettings){
 	var service = {};
 
