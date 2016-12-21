@@ -50,8 +50,10 @@
         </form>
       </div><!-- /.navbar-collapse -->
     </nav>
-    <div>
-      <a class="popular-tag" ng-repeat="tag in popular_tags" href="/topics/tag/{{tag.slug}}">{{tag.name}}</a>
+    <div class="popular-tags">
+      <div class="inner">
+        <a class="popular-tag" ng-repeat="tag in popular_tags" href="/topics/tag/{{tag.slug}}">{{tag.name}}</a>
+      </div>
     </div>
     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 </header>

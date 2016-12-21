@@ -369,26 +369,39 @@ header {
   	}
 
   	.help {
-  		float:right;
+  		float: right;
   		margin-top: 15px;
   	}
 
-	.popular-tag {
-		display: inline-block;
-		padding: 10px;
-		background: $pop;
-		width: 10%;
-		text-align: center;
-		color: white;
-		text-transform: uppercase;
-		font-size: 10px;
-		
-		&:hover {
-			border: none;
-			color: $pop;
-			background: white;
+  	.popular-tags {
+  		background: $pop;
+  		
+  		.inner {
+  			margin: 0 auto;
+  			max-width: $content-width;
+  		}
+
+		.popular-tag {
+			display: inline-block;
+			padding: 10px;
+			background: $pop;
+			width: 10%;
+			text-align: center;
+			color: white;
+			text-transform: uppercase;
+			font-size: 10px;
+
+
+			@media(max-width: $mobile) {
+				width: 20%;
+			}
+			&:hover {
+				border: none;
+				color: $pop;
+				background: white;
+			}
 		}
-	}
+  	}
 }
 
 .container-fluid {
