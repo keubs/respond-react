@@ -394,7 +394,9 @@ header {
 
 			@media(max-width: $mobile) {
 				width: 20%;
+				overflow-wrap: break-word;
 			}
+			
 			&:hover {
 				border: none;
 				color: $pop;

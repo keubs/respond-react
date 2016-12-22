@@ -43,15 +43,8 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
           .then(function(data){
             $scope.topic.actions = data;
 
-            //
-            for (var i = 0; i < $scope.topic.actions.length; i++){
-              if($scope.topic.actions[i].end_date_time) {
-                var end = new Date($scope.topic.actions[i].end_date_time);
-                if($scope.today > end) {
-                  $scope.topic.actions[i].ended = true;
-                }
-              }
-            }
+            // gray out expired events
+            obfuscateExpired();
           }, function(error){
             console.log(error);
           });
@@ -66,6 +59,9 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     // alert($scope.currentPage);
     TopicService.topic_actions($stateParams.topic, $scope.currentPage).then(function(data) {
       $scope.topic.actions = data;
+
+      // gray out expired events
+      obfuscateExpired();
     }, function(error){
         console.log('error');
     });
@@ -204,6 +200,18 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
   $scope.loginPrompt = function() {
     $rootScope.$emit('callLogin', {});
   };
+
+  function obfuscateExpired() {
+    // gray out expired events
+    for (var i = 0; i < $scope.topic.actions.length; i++){
+      if($scope.topic.actions[i].end_date_time) {
+        var end = new Date($scope.topic.actions[i].end_date_time);
+        if($scope.today > end) {
+          $scope.topic.actions[i].ended = true;
+        }
+      }
+    }
+  }
 
     // /*===========================================
     // =            Action Submit Modal            =
