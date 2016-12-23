@@ -866,12 +866,26 @@ label.required {
 	font-size: 30px;
 	color: $dark;
 	cursor: pointer;
+  	background: $pop;
+  	padding: 10px;
+  	text-align: center;
+  	border-radius: 5px;
+  	color: white;
+  	font-weight: bold;
+  	margin-right: 5px;
+
+  	&:active, &:focus, &:active:focus {
+  		background: white;
+  		color: $pop;
+  		border: solid 2px $pop;
+  	}
 }
 
 .step2 {
 	border-left:  solid 2px #bbb;
 	margin-bottom: 2em;
 	padding-left: 1em;
+	min-height: 480px;
 }
 
 .address {

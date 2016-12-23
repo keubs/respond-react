@@ -44,13 +44,13 @@
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
                     <!-- <h3 style="margin-top: 0" class="directions" ng-if="validUrl == true">Step 2: Enter additional information</h3> -->
                     <label class="required" for="tags">Tags</label>
-                    <p>(e.g. #StandingRock, Earthquake, 'Mass Shooting', #brexit)</p>
+                    <p>(e.g. #StandingRock, 'Mass Shooting')</p>
                     <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
                     <br /><br />
-                    <label class="required" for="scope">Scope</label><br />
-                    <a class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
-                    <a class="glyphicon glyphicon-flag scope-icon" ng-click="setScope('national')"></a>
-                    <a class="glyphicon glyphicon-globe scope-icon" ng-click="setScope('worldwide')"></a>
+                    <label class="required" for="scope">Scope</label> <span style="font-weight: bold; text-transform: capitalize;">{{topic.scope}}</span><br />
+                    <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
+                    <a tooltip-placement="bottom" uib-tooltip="National (Affects only this country)"  class="glyphicon glyphicon-flag scope-icon" ng-click="setScope('national')"></a>
+                    <a tooltip-placement="bottom" uib-tooltip="Worldwide (Affects the entire planet)" class="glyphicon glyphicon-globe scope-icon" ng-click="setScope('worldwide')"></a>
                     <select id="scope" class="form-control" ng-model="topic.scope"
                         ng-init="topic.scope = scopes[0].value"
                         ng-options="option.value as option.text for option in scopes"
