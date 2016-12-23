@@ -35,7 +35,17 @@
     <div class="row nomargin">
       <div class="col-sm-1 nopad"></div>
       <div class="col-sm-10 nopad">
+        <div class="top">
         <h3 class="trending">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
+         <div class="filters">
+              Filter Results By: 
+              <select 
+                      ng-init="filter = filters[0].value"
+                      ng-options="option.value as option.text for option in filters"
+                      ng-model="filter" ng-change="sort()">
+              </select>
+          </div>
+        </div>
       </div>
     </div>
     <div class="inner row nomargin">

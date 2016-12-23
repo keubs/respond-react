@@ -535,14 +535,28 @@ h1.tagline {
 		margin: 0;
 	}
 
+
+	.top {
+		margin: 2em 0;
+	    border-bottom: solid 3px #fff;
+	    padding: 0 0 2em 0;
+	    // text-transform: uppercase;
+	    
+	    .filters {
+			display: inline-block;
+			float:right;
+	    }
+	}
+
 	h3.trending {
+		display: inline;
 		font-size: 14px;
 		text-transform: uppercase;
 		padding: 40px 0 20px 0;
 		margin: 0 0 34px 0;
 
-		border-bottom: 3px solid white;
-		width: 100%;
+		// border-bottom: 3px solid white;
+		// width: 100%;
 		color: $dark;
 		font-family: 'Futura', sans-serif;
 		font-weight: bold;

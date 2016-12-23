@@ -6,7 +6,7 @@
 function TopicService($q, $http, AppSettings, AddressService) {
   var service = {};
 
-  service.get = function(tag, page) {
+  service.get = function(tag, page, sort) {
 
     var deferred = $q.defer();
     var url = '';
@@ -17,6 +17,11 @@ function TopicService($q, $http, AppSettings, AddressService) {
     } else {
       url = AppSettings.apiUrl + '/topics/?order_by=score';
     }
+    
+    if(sort){
+     url = AppSettings.apiUrl + '/topics/?order_by=' + sort; 
+    }
+
     $http.get(url)
       .success(function(data) {
         deferred.resolve(data);

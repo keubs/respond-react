@@ -47,6 +47,11 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         AuthService.logout();
       }
     });
+
+    $scope.filters = [
+      {'text': 'Score', 'value': 'score'},
+      {'text': 'Time', 'value': 'time'},
+    ];
     
     /* Banners */
     $scope.refresh('worldwide');
@@ -257,5 +262,20 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
 
   $scope.respond = function(){
     $rootScope.$emit('callModal', {});
+  };
+
+  $scope.sort = function(){
+
+    // alert($scope.filter);
+    TopicService.get(null, null, $scope.filter).then(function(data) {
+      $scope.topics = data;
+    }, function(err) {
+      console.log(err);
+      if(err.status === 500 || err.status === -1) {
+        // $location.path('/500');
+      } else if(err.status === 401) {
+        AuthService.logout();
+      }
+    });
   }
 };
