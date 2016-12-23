@@ -858,6 +858,34 @@ label.required {
 	display: inline-block;
 }
 
+.scope-icon {
+	width: 30%;
+	text-align:center;
+	display: inline-block;
+	height: 50px;
+	font-size: 30px;
+	color: $dark;
+	cursor: pointer;
+}
+
+.step2 {
+	border-left:  solid 2px #bbb;
+	margin-bottom: 2em;
+	padding-left: 1em;
+}
+
+.address {
+	opacity: 0;
+	transition: opacity .5s;
+	visibility: hidden;
+	height: 0px;
+	&.show {
+	  opacity: 1;
+	  visibility: visible;
+	  height: auto;
+	}
+}
+
 /*=====  End of Form styles  ======*/
 
 
@@ -1075,6 +1103,12 @@ label.required {
 
 	.directions {
 		border-bottom: none;
+	}
+
+	.step2 {
+		border-left: none;
+		border-top: solid 2px #bbb;
+		padding-top: 2em;
 	}
 	
 }

@@ -5,12 +5,13 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope, $analytics) {
+module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope, $analytics, $uibModal) {
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
   $scope.alerts = [];
   $scope.validUrl = false;
+  $scope.editing = false;
   $scope.type = 'topic';
   $scope.topic.scope = 'national';
   $analytics.pageTrack('submit');
@@ -49,7 +50,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
       console.log(error);
     });
 
-  }
+  };
 
   $scope.submit = function() {
     $scope.submitted = true;
@@ -97,6 +98,29 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     });
   };
 
+  $scope.editToggle = function(){
+    $scope.editing = !$scope.editing;
+  };
+
+  $scope.setScope = function(scope){
+    $scope.topic.scope = scope;
+  };
+
+  $scope.useMap = function(){
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: 'map-modal.html',
+      controller: 'MapCtrl',
+      size: 'sm',
+    });
+
+    modalInstance.result.then(function(address){
+      console.log(address);
+    }, function (err){
+      console.log(err);
+    });
+  };
+
   function getAddressComponents(location) {
     location.address_components.forEach(function(component){
       if(component.types.indexOf('street_number') > -1) {
@@ -117,5 +141,5 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
        $scope.topic.address.postal_code = component.long_name; 
       }
     });
-  }
+  };
 };
