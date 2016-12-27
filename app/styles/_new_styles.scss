@@ -863,7 +863,7 @@ label.required {
 }
 
 .preview-image {
-	min-height: 350px;
+	// min-height: 350px;
 	width: 100%;
 }
 
@@ -1136,7 +1136,9 @@ label.required {
 	.step2 {
 		border-left: none;
 		border-top: solid 2px #bbb;
-		padding-top: 2em;
+		padding: 2em 0;
+		margin: 2em 0;
+
 	}
 	
 }

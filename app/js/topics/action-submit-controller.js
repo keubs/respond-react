@@ -13,9 +13,11 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
       $scope.topic = {};
       $scope.alerts = [];
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
-      $scope.validUrl = false;
       $scope.type = 'action';
+      $scope.validUrl = false;
       $scope.submitted = false;
+      $scope.editing = false;
+
       $scope.scopes = [
         {"text":"Local (Affects only this state)","value":"local"},
         {"text":"National (Affects only this country)","value":"national"},
@@ -174,6 +176,14 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
   $scope.showEnd = function() {
     $scope.action.end_date_time_display = true;
+  };
+
+  $scope.editToggle = function(){
+    $scope.editing = !$scope.editing;
+  };
+
+  $scope.setScope = function(scope){
+    $scope.action.scope = scope;
   };
 
   function getAddressComponents(location) {
