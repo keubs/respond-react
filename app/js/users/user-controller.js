@@ -36,19 +36,19 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			});
 	};
 	
-	$scope.editUser = function(send) {
-	  $uibModal.open({
-	    animation: true,
-	    templateUrl: 'edit-user.html',
-	    controller: 'EditUserCtrl',
-	    size: 'lg',
-	    resolve: {
-	      items : function(){
-	        return send;
-	      }
-	    }
-	  });
-	};
+	// $scope.editUser = function(send) {
+	//   $uibModal.open({
+	//     animation: true,
+	//     templateUrl: 'edit-user.html',
+	//     controller: 'EditUserCtrl',
+	//     size: 'lg',
+	//     resolve: {
+	//       items : function(){
+	//         return send;
+	//       }
+	//     }
+	//   });
+	// };
 
 	$scope.modalAction = function(id, type, action) {
 		var send = {

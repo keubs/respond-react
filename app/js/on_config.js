@@ -24,6 +24,14 @@ function OnConfig($stateProvider, $locationProvider, $urlRouterProvider) {
         requireLogin: false
       }
     })
+    .state('EditUser', {
+      url: '/user/:userid/edit',
+      controller: 'EditUserCtrl',
+      templateUrl: 'edit-user.html',
+      data: {
+        requireLogin: true
+      }
+    })
     .state('Tag', {
       url: '/topics/tag/:tag',
       controller: 'TopicsCtrl',

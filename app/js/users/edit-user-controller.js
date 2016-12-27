@@ -4,8 +4,8 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService, $uibModalInstance, items){
-	console.log($uibModalInstance);
+module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, AddressService){
+
 	$scope.currentUser = {};
 	$scope.currentUser.address = {};
 	$scope.render = true;
@@ -38,7 +38,6 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 	  }, function(error){
 	    console.log(error);
 	  });
-
 	}
 
 	$scope.submit = function() {
@@ -81,10 +80,6 @@ module.exports = function($scope, $rootScope, UserService, $stateParams, NgMap, 
 		}, function(error){
 			console.log(error);
 		});	
-	};
-
-	$scope.cancel = function(){
-		$uibModalInstance.close();
 	};
 
 	function getAddressComponents(location) {

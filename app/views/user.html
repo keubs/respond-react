@@ -4,7 +4,7 @@
 			<div class="user-banner-inner">
 				<div style="display: inline-block; float: left;">
 					<img src="{{user.social_thumb}}" class="user-thumb" />
-					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="#" ng-click="editUser()">[edit]</a>
+					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="/user/{{user.id}}/edit">[edit]</a>
 				</div>
 				<ul>
 					<li ng-if="unapprovedActionCount > 0" style="color: red" tooltip-placement="bottom" uib-tooltip="You have actions that have been submitted under your topics. They will not be publically viewable until you approve them.">{{unapprovedActionCount}} unapproved actions <span class="glyphicon glyphicon-alert" tooltip-placement="bottom" uib-tooltip="You have actions that have been submitted under your topics. They will not be publically viewable until you approve them."></span> </li>
