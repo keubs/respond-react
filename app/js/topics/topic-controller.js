@@ -21,7 +21,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     /* Pagination Stuff */
     $scope.currentPage = 1;
     $scope.totalItems = 2;
-    $scope.maxSize = 10;
+    $scope.maxSize = 20;
     $scope.bigTotalItems = 175;
     $scope.bigCurrentPage = 1;
 
