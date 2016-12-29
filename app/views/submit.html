@@ -8,7 +8,7 @@
                 <div class="input-group">
                     <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Article" required>
                     <span class="input-group-btn">
-                        <button value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
+                        <button type="button" value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
                     </span>
                     <p ng-show="errors.article_link">{{ errors.article_link }}</p>
                     <br />
