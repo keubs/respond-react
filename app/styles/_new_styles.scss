@@ -394,7 +394,8 @@ header {
 
 			@media(max-width: $mobile) {
 				width: 20%;
-				overflow-wrap: break-word;
+				padding: 3px;
+				// overflow-wrap: break-word;
 			}
 			
 			&:hover {
@@ -541,7 +542,7 @@ h1.tagline {
 	    border-bottom: solid 3px #fff;
 	    padding: 0 0 2em 0;
 	    // text-transform: uppercase;
-	    
+
 	    .filters {
 			display: inline-block;
 			float:right;
@@ -834,6 +835,11 @@ h1.tagline {
 	border-bottom: solid 3px white;
 }
 
+.user-image {
+	display: inline-block; 
+	float: left;
+}
+
 /*=====  End of User page  ======*/
 
 
@@ -912,6 +918,11 @@ label.required {
 	  visibility: visible;
 	  height: auto;
 	}
+}
+
+.scope-label {
+	font-weight: bold; 
+	text-transform: capitalize; text-align: center;
 }
 
 /*=====  End of Form styles  ======*/
@@ -1121,6 +1132,17 @@ label.required {
 	.topic-detail .actions .action {
 		border-bottom: solid 3px #fff;
 		padding-bottom: 2em;
+	}
+
+	/*----------  User page  ----------*/
+	
+	#user-controller div.user-banner-inner {
+		padding: 30px 0;
+	}
+
+	.user-image {
+		float: none;
+		text-align: center;
 	}
 
 	/*----------  form styles  ----------*/

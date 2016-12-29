@@ -2,8 +2,8 @@
 	<div>
 		<div class="user-banner container-fluid">
 			<div class="user-banner-inner">
-				<div style="display: inline-block; float: left;">
-					<img src="{{user.social_thumb}}" class="user-thumb" />
+				<div class="user-image">
+					<img src="{{user.social_thumb}}" class="user-thumb img-thumbnail" />
 					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="/user/{{user.id}}/edit">[edit]</a>
 				</div>
 				<ul>
