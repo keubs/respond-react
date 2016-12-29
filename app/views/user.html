@@ -1,9 +1,9 @@
-<div ng-controller="UserCtrl" id="user-controller" ng-init="init()">
+<div class="container-fluid" ng-controller="UserCtrl" id="user-controller" ng-init="init()">
 	<div>
 		<div class="user-banner container-fluid">
 			<div class="user-banner-inner">
 				<div class="user-image">
-					<img src="{{user.social_thumb}}" class="user-thumb img-thumbnail" />
+					<img src="{{user.social_thumb}}" class="user-thumb img-thumbnail img-circle" />
 					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="/user/{{user.id}}/edit">[edit]</a>
 				</div>
 				<ul>

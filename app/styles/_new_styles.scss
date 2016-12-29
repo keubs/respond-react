@@ -267,10 +267,8 @@ header {
 	}
 
 	.alert-warning {
-		background: $pop;
-		color: white;
+		margin-bottom: 0px;
 		text-align: center;
-		border-color: $pop;
 	}
 
 	nav.navbar-default {
@@ -383,6 +381,10 @@ header {
   		.inner {
   			margin: 0 auto;
   			max-width: $content-width;
+
+  			@media(max-width: $mobile) {
+  				width: 200%;
+  			}
   		}
 
 		.popular-tag {
@@ -407,6 +409,10 @@ header {
 				color: $pop;
 				background: white;
 			}
+		}
+
+		@media(max-width: $mobile) {
+			overflow: scroll;
 		}
   	}
 }
@@ -684,6 +690,10 @@ h1.tagline {
 			background-position: center center;
 			background-size: cover;
 			background-repeat: no-repeat;
+
+			&:hover {
+				border: none;
+			}
 		}
 
 		.map {
@@ -782,7 +792,7 @@ h1.tagline {
 
 	.share {
 		border: solid 1px #d8dcdd;
-	    border-radius: 50px;
+	    border-radius: 60px;
 	    width: 59px;
 	    height: 59px;
 	    display: block;
