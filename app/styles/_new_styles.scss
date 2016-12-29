@@ -412,7 +412,7 @@ header {
 		}
 
 		@media(max-width: $mobile) {
-			overflow: scroll;
+			overflow: auto;
 		}
   	}
 }
@@ -521,15 +521,15 @@ h1.tagline {
 
 .topics {
 	.topic-image {
-		// max-width: 325px;
-		display: inline-block;
+		display: block;
 		float: left;
 		margin-right: 2%;
 		width: 33%;
-
-		img {
-			width: 100%;
-		}
+		height: 200px;
+		max-height: 200px;
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center center;
 	}
 
 	.topic-right {
