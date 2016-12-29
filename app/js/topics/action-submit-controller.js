@@ -51,14 +51,14 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           console.log(error);
         });
 
-        $scope.$on('$locationChangeStart', function( event ) {
-          if($scope.article_link){
-            var answer = confirm("Are you sure you want to leave this page?")
-            if (!answer) {
-                event.preventDefault();
-            }
-          }
-        });
+        // $scope.$on('$locationChangeStart', function( event ) {
+        //   if($scope.article_link){
+        //     var answer = confirm("Are you sure you want to leave this page?")
+        //     if (!answer) {
+        //         event.preventDefault();
+        //     }
+        //   }
+        // });
     };
 
     $scope.update = function() {
