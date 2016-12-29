@@ -1025,6 +1025,16 @@ label.required {
 		margin: 1em 0;
 	}
 
+	.topics .top .filters {
+		float: none;
+		padding-top: .5em;
+	}
+
+	.topics .top {
+		padding: 0;
+		margin-bottom: 0;
+	}
+
 	.topics .topic-score {
 		position: absolute;
 		left: 20px;
