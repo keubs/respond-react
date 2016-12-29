@@ -34,7 +34,7 @@
   <div id="topics" class="container-fluid topics">
     <div class="row nomargin">
       <div class="col-sm-1 nopad"></div>
-      <div class="col-sm-10 nopad">
+      <div class="col-sm-12 nopad">
         <div class="top">
         <h3 class="trending">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
          <div class="filters">
@@ -55,7 +55,7 @@
           </span>
           <h3 class="score">{{topic.score}}</h3>
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-10 nopad topic-content">
+        <div class="col-lg-10 col-md-10 col-sm-12 nopad topic-content">
           <a class="topic-image" href="topic/{{topic.id}}"><img src="{{topic.thumbnail}}" /></a>
           <div class="topic-right">
             <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
@@ -74,7 +74,7 @@
       </div>
       <div class="row">
         <div class="col-lg-1 col-md-1 col-sm-1"></div>
-        <div class="col-lg-10 col-md-10 col-sm-10 nopad">
+        <div class="col-lg-10 col-md-10 col-sm-12 nopad">
           <a class="btn-primary text-center btn btn-lg load-more" href="" ng-click="pageChanged()">Load More</a><br />
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1"></div>

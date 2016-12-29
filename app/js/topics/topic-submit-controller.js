@@ -52,6 +52,15 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
 
   };
 
+  $scope.$on('$locationChangeStart', function( event ) {
+    if($scope.article_link){
+      var answer = confirm("Are you sure you want to leave this page?")
+      if (!answer) {
+          event.preventDefault();
+      }
+    }
+  });
+
   $scope.submit = function() {
     $scope.submitted = true;
     $scope.topic.image_preview = undefined;

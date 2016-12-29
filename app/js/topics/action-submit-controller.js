@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers.js');
  **/
 module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, TopicService, $analytics) {
     var vm = this;
+
     $scope.init = function(){
       window.scrollTo(0,0);
       $scope.action = {};
@@ -48,7 +49,16 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
           $scope.topic = data;
         }, function(error){
           console.log(error);
-        })
+        });
+
+        $scope.$on('$locationChangeStart', function( event ) {
+          if($scope.article_link){
+            var answer = confirm("Are you sure you want to leave this page?")
+            if (!answer) {
+                event.preventDefault();
+            }
+          }
+        });
     };
 
     $scope.update = function() {
