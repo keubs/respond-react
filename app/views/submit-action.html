@@ -3,12 +3,12 @@
     <h1>Submit an action for:</h1>
     <h3><a href="/topic/{{topic.id}}">{{topic.title}}</a></h3>
     <br />
-    <form ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action" ng-show="submitted==false">
+    <form name="submit-action" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-action" ng-show="submitted==false">
         <div class="row">
             <div class="col-md-9 col-sm-9 submit-wrapper" ng-show="isLoggedIn == true">
                 <label for="article_link">Link:</label>
                 <div class="input-group">
-                    <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Action" required>
+                    <input name="article_link" id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Action" required>
                     <span class="input-group-btn">
                         <button type="button" value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
                     </span>
@@ -20,14 +20,14 @@
                         <div class="col-lg-6">
                             <p>This is the image that will be used to accompany your article</p>
                             <img src="{{ action.image_preview.src }}" class="preview-image" ng-show="action.image_preview.visible"/>
-                            <input id="image_url" type="hidden" class="form-control" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
+                            <input name="image_url" id="image_url" type="hidden" class="form-control" ng-model="action.image_url" value="{{ action.image_preview.src }}" />
                         </div>
                         <div class="col-lg-6">
                             <label class="required" for="title">Title</label><br />
                             <div ng-hide="editing" id="title"><strong>{{action.title}}</strong>
                             <a href="" ng-hide="editing" ng-click="editToggle()">[Edit]</a>
                             </div>
-                            <input id="title" type="text" class="form-control"  ng-model="action.title" ng-show="editing" placeholder="Title" required>
+                            <input name="title" id="title" type="text" class="form-control"  ng-model="action.title" ng-show="editing" placeholder="Title" required>
 
                             <p ng-show="errors.title" id="">{{ errors.title }}</p>
                             <br />
@@ -42,7 +42,7 @@
             <div class="col-lg-3 col-md-3 col-sm-12" ng-class="{'step2' : validUrl}">
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
                     <label for="action_tags" class="required">Tags</label>
-                    <tags-input id="action_tags" ng-model="action.tags_list" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
+                    <tags-input name="tags" id="action_tags" ng-model="action.tags_list" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
                     <hr />
                     <label class="required" for="scope">Scope</label><br />
                     <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
@@ -56,7 +56,7 @@
                     <div style="margin: .5em 0 0 0; font-weight: bold; text-transform: capitalize; text-align: center;">{{action.scope}}</div>
                     <hr />
                     <div class="checkbox">
-                        <label><input type="checkbox" value="" ng-model="action.date_time_display">Does this action have and start and/or end date/time?</label>
+                        <label><input name="date_time_display" type="checkbox" value="" ng-model="action.date_time_display">Does this action have and start and/or end date/time?</label>
                     </div>
                     <div ng-if="action.date_time_display == true">
                         <div>
@@ -73,10 +73,10 @@
                     </div>
                     <hr />
                     <div class="checkbox">
-                        <label><input type="checkbox" value="" ng-model="address" />Address?</label>
+                        <label><input name="address_display" type="checkbox" value="" ng-model="address" />Address?</label>
                     </div>
                     <div class="address" ng-class="{'show' : address}">
-                        <input places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()" />
+                        <input name="address" places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()" />
                         <label for="address">{{error.address}}</label>
                         <br/>
                         <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-if="render">
@@ -88,7 +88,7 @@
         </div>
         <div class="row topic-submit" ng-class="{'show' : validUrl}">
             <hr />
-            <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : formLoading}" />
+            <input name="submit_form" type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : formLoading}" />
         </div>
         <div class="loader" ng-class="{loading: formLoading}"></div>
         <p ng-show="errors.general">{{ errors.general }}</p>

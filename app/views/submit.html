@@ -1,12 +1,12 @@
 <div class="submit-wrapper container-fluid">
-  <form ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
+  <form name="submit-topic" ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     <h1>Submit a topic</h1>
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-12">
                 <h3 ng-if="validUrl == false">Step 1: Submit a valid link to a news article</h3>
                 <div class="input-group">
-                    <input id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Article" required>
+                    <input name="article_link" id="article_link" type="text" ng-model="article_link" class="form-inline form-control" placeholder="Link to Article" required>
                     <span class="input-group-btn">
                         <button type="button" value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
                     </span>
@@ -20,14 +20,14 @@
                         <div class="col-lg-7">
                             <p>This is the image that will be used to accompany your article</p>
                             <img src="{{ topic.image_preview.src }}" class="preview-image" ng-show="topic.image_preview.visible"/>
-                            <input id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
+                            <input name="image_url" id="image_url" type="hidden" class="form-control" ng-model="topic.image_url" value="{{ topic.image_preview.src }}" />
                         </div>
                         <div class="col-lg-5">
                             <label class="required" for="title">Title</label><br />
                             <div ng-hide="editing" id="title"><strong>{{topic.title}}</strong>
                             <a href="" ng-hide="editing" ng-click="editToggle()">[Edit]</a>
                             </div>
-                            <input id="title" type="text" class="form-control"  ng-model="topic.title" ng-show="editing" placeholder="Title" required>
+                            <input name="title" id="title" type="text" class="form-control"  ng-model="topic.title" ng-show="editing" placeholder="Title" required>
 
                             <p ng-show="errors.title" id="">{{ errors.title }}</p>
                             <br />
@@ -45,7 +45,7 @@
                     <div style="margin: 0 0 1em; font-size: 16px;" class="directions" ng-if="validUrl == true">Step 2: Enter any additional information</div>
                     <label class="required" for="tags">Tags</label>
                     <p>(e.g. #StandingRock, 'Mass Shooting')</p>
-                    <tags-input id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
+                    <tags-input name="tags" id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
                     <hr />
                     <label class="required" for="scope">Scope</label><br />
                     <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
@@ -61,10 +61,10 @@
                     <div class="scope-label">{{topic.scope}}</div>
                     <hr />
                     <label for="address">Address?</label>
-                    <input type="checkbox" ng-model="address" />
+                    <input name="address_display" type="checkbox" ng-model="address" />
                     <div class="address" ng-class="{'show' : address}">
                         <p>Can be as vague as the country <br /> or as specific as a street-level address</p>
-                        <input places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+                        <input name="address" places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
                         <br/>
                         <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-render="address">
                             <marker position="{{pos.lat}},{{pos.lng}}"></marker>
@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="row topic-submit" ng-class="{'show' : validUrl}">
-            <input type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : formLoading}" />
+            <input name="submit" type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : formLoading}" />
         </div>
         <div class="loader" ng-class="{loading: formLoading}"></div>
     <p ng-show="errors.general">{{ errors.general }}</p>
