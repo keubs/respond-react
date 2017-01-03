@@ -28,12 +28,7 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 				console.log(err);
 			});	
 
-		UserService.topics($stateParams.userid)
-			.then(function(data){
-				$scope.topics = data;
-			}, function(err){
-				console.log(err);
-			});
+			$scope.getTopics();
 	};
 	
 	// $scope.editUser = function(send) {
@@ -70,6 +65,7 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 
 		modalInstance.result.then(function(){
 			$scope.getUnapproved();
+			$scope.getTopics();
 		}, function(){			
 			
 		})
@@ -100,6 +96,15 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 					$scope.topics[index].actions = data;
 				else $scope.topics[index].actions = [{'title':'No actions yet'}];
 			})
+	};
+
+	$scope.getTopics = function(){
+		UserService.topics($stateParams.userid)
+			.then(function(data){
+				$scope.topics = data;
+			}, function(err){
+				console.log(err);
+			});
 	};
 
 };
