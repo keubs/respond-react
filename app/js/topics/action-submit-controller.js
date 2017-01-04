@@ -9,9 +9,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
     $scope.init = function(){
       window.scrollTo(0,0);
-      $scope.action = {};
+      $scope.action = {}, 
+        $scope.errors = {}, 
+        $scope.topic = {};
       $scope.action.scope = 'local';
-      $scope.topic = {};
       $scope.alerts = [];
       $scope.isLoggedIn = AuthService.newIsLoggedIn();
       $scope.type = 'action';
@@ -104,9 +105,20 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     
     $scope.submit = function() {
         $scope.formLoading = true;
-        if($scope.action.tags !== '') {
+        if(!$scope.action.tags_list) {
+          $scope.errors.tags = "Please enter at least one relevant tag";
+          $scope.formLoading = false;
+          return;
+        } else {
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
+
+        if(!$scope.action.scope) {
+          $scope.errors.scope = "Please set this action's scope";
+          $scope.formLoading = false;
+          return;
+        }
+
         $scope.action.topic = $stateParams.topic;
 
         if($scope.action.address) getAddressComponents($scope.action.locations);
@@ -142,8 +154,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
     $scope.alerts = [];
     if(!helpers.validateUrl($scope.article_link)) {
       $scope.formLoading = false;
+      $scope.errors.article_link = 'Please enter a valid URL';
       return;
     }
+    $scope.errors.article_link = '';
 	   LinkFactory.link($scope)
 	    .then(function(data) {
         $scope.action = data;
@@ -155,6 +169,7 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
         if(error.status === 409) {
           window.scrollTo(0,0);
           $scope.alerts.push({ type : 'danger', msg: 'Your action has already been submitted.'});
+          $scope.errors.article_link = 'Your action has already been submitted.';
         } else if (error.status === 300) {
           // $scope.alerts.push({ type : 'warning', msg: 'WARNING: This action has already been submitted under the topic ' + error.err.title});
           $scope.article_link_error = '<p>WARNING: This action has already been submitted under the topic <a href="/topic/' + error.err.id + '" target="_blank">' + error.err.title + "</a></p>";
@@ -163,8 +178,10 @@ module.exports = function($scope, $location, $stateParams, ActionService, LinkFa
 
         } else if (error.code === 104) {
           $scope.alerts.push({ type : 'danger', msg: 'Unfortunately, Facebook doesn\'t allow unregistered users to post events from their site. Please log into Facebook in your browser to post this event.'});
+          $scope.errors.article_link = 'Unfortunately, Facebook doesn\'t allow unregistered users to post events from their site. Please log into Facebook in your browser to post this event.';
         } else {
           $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting an action. Please find another one and try again.'});
+          $scope.errors.article_link = 'Our apologies, but this is an invalid url for submitting an action. Please find another one and try again.';
         }
         $scope.formLoading = false;
 	    });

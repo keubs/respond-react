@@ -13,7 +13,8 @@
                         <button type="button" value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
                     </span>
                 </div>
-                <aside class="error" ng-show="article_link_error" ng-bind-html="article_link_error"></aside>
+                <p class="warn" ng-show="errors.article_link">{{ errors.article_link }}</p>
+                <br />
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
                 <br /><br />
                     <div class="row">
@@ -41,19 +42,32 @@
             </div>
             <div class="col-lg-3 col-md-3 col-sm-12" ng-class="{'step2' : validUrl}">
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
-                    <label for="action_tags" class="required">Tags</label>
-                    <tags-input name="tags" id="action_tags" ng-model="action.tags_list" display-property"text" replace-spaces-with-dashes="false" required></tags-input>
+                    <div class="form-group" ng-class="[{'has-error' : errors.tags}, {'warn' : errors.tags}]">
+                        <label class="required" for="tags">Tags</label>
+                        <p>(e.g. #StandingRock, 'Mass Shooting')</p>
+                        <tags-input name="tags" id="tags" ng-model="action.tags_list" replace-spaces-with-dashes="false"></tags-input>
+                        <p ng-class="{'error' : errors.tags}">{{errors.tags}}</p>
+                    </div>
                     <hr />
                     <label class="required" for="scope">Scope</label><br />
-                    <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
-                    <a tooltip-placement="bottom" uib-tooltip="National (Affects only this country)"  class="glyphicon glyphicon-flag scope-icon" ng-click="setScope('national')"></a>
-                    <a tooltip-placement="bottom" uib-tooltip="Worldwide (Affects the entire planet)" class="glyphicon glyphicon-globe scope-icon" ng-click="setScope('worldwide')"></a>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <a tooltip-placement="bottom" uib-tooltip="National (Affects only this country)"  class="glyphicon glyphicon-flag scope-icon" ng-click="setScope('national')"></a>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <a tooltip-placement="bottom" uib-tooltip="Worldwide (Affects the entire planet)" class="glyphicon glyphicon-globe scope-icon" ng-click="setScope('worldwide')"></a>
+                        </div>
+                    </div>
                     <select id="scope" class="form-control" ng-model="action.scope"
                         ng-init="action.scope = scopes[0].value"
                         ng-options="option.value as option.text for option in scopes" style="display: none">
                         <option value="">-- SELECT A SCOPE --</option>
                     </select>
-                    <div style="margin: .5em 0 0 0; font-weight: bold; text-transform: capitalize; text-align: center;">{{action.scope}}</div>
+                    <div class="scope-label {{action.scope}}">{{action.scope}}</div>
+                    <p ng-class="{'warn' : errors.scope}">{{errors.scope}}</p>
                     <hr />
                     <div class="checkbox">
                         <label><input name="date_time_display" type="checkbox" value="" ng-model="action.date_time_display">Does this action have and start and/or end date/time?</label>

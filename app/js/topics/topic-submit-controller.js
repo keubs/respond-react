@@ -52,20 +52,23 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
 
   };
 
-  // $scope.$on('$locationChangeStart', function( event ) {
-  //   if($scope.article_link){
-  //     var answer = confirm("Are you sure you want to leave this page?")
-  //     if (!answer) {
-  //         event.preventDefault();
-  //     }
-  //   }
-  // });
-
   $scope.submit = function() {
+    if(!$scope.topic.tags) {
+      $scope.errors.tags = "Please enter at least one relevant tag";
+      $scope.formLoading = false;
+      return;
+    } else {
+       $scope.topic.tags = helpers.jsonified($scope.topic.tags);
+    }
+
+    if(!$scope.topic.scope) {
+      $scope.errors.scope = "Please set this topic's scope";
+      return;
+    }
+    
+    if($scope.topic.address) getAddressComponents($scope.topic.locations);
     $scope.submitted = true;
     $scope.topic.image_preview = undefined;
-    if($scope.topic.tags) $scope.topic.tags = helpers.jsonified($scope.topic.tags);
-    if($scope.topic.address) getAddressComponents($scope.topic.locations);
     TopicService.new($scope.topic)
       .then(function(data) {
         $analytics.eventTrack('submission', {  category: 'topic', label: $scope.topic.title });
@@ -85,8 +88,10 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     $scope.formLoading = true;
     if(!helpers.validateUrl($scope.article_link)) {
       $scope.formLoading = false;
+      $scope.errors.article_link = 'Please enter a valid URL';
       return;
     }
+    $scope.errors.article_link = '';
     LinkFactory.link($scope)
     .then(function(data) {
       $scope.topic = data;
@@ -98,8 +103,10 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
       if(error.status === 409) {
         window.scrollTo(0,0);
         $scope.alerts.push({ type : 'danger', msg: 'Your topic has already been submitted.'});
+        $scope.errors.article_link = 'Your topic has already been submitted.';
       } else {
         $scope.alerts.push({ type : 'danger', msg: 'Our apologies, but this is an invalid url for submitting a topic. Please find another one and try again.'});
+        $scope.errors.article_link = 'Our apologies, but this is an invalid url for submitting a topic. Please find another one and try again.';
       }
 
       $scope.validUrl = false;

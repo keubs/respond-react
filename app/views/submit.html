@@ -10,9 +10,9 @@
                     <span class="input-group-btn">
                         <button type="button" value="Look up Url" class="btn btn-default" ng-click="linkEntered()">Look up Url</button>
                     </span>
-                    <p ng-show="errors.article_link">{{ errors.article_link }}</p>
-                    <br />
                 </div>
+                <p class="warn" ng-show="errors.article_link">{{ errors.article_link }}</p>
+                <br />
                 <aside class="error" ng-show="errors.auth">{{ errors.auth }}</aside>
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
                     <hr />
@@ -43,22 +43,36 @@
             <div class="col-lg-3 col-md-3 col-sm-12" ng-class="{'step2' : validUrl}">
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
                     <div style="margin: 0 0 1em; font-size: 16px;" class="directions" ng-if="validUrl == true">Step 2: Enter any additional information</div>
-                    <label class="required" for="tags">Tags</label>
-                    <p>(e.g. #StandingRock, 'Mass Shooting')</p>
-                    <tags-input name="tags" id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
+                    <div class="form-group" ng-class="[{'has-error' : errors.tags}, {'warn' : errors.tags}]">
+                        <label class="required" for="tags">Tags</label>
+                        <p>(e.g. #StandingRock, 'Mass Shooting')</p>
+                        <tags-input name="tags" id="tags" ng-model="topic.tags" replace-spaces-with-dashes="false"></tags-input>
+                        <p ng-class="{'error' : errors.tags}">{{errors.tags}}</p>
+                    </div>
                     <hr />
-                    <label class="required" for="scope">Scope</label><br />
-                    <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
-                    <a tooltip-placement="bottom" uib-tooltip="National (Affects only this country)"  class="glyphicon glyphicon-flag scope-icon" ng-click="setScope('national')"></a>
-                    <a tooltip-placement="bottom" uib-tooltip="Worldwide (Affects the entire planet)" class="glyphicon glyphicon-globe scope-icon" ng-click="setScope('worldwide')"></a>
-                    <select id="scope" class="form-control" ng-model="topic.scope"
-                        ng-init="topic.scope = scopes[0].value"
-                        ng-options="option.value as option.text for option in scopes"
-                        style="display: none;">
-                        <option value="">-- SELECT A SCOPE --</option>
-                    </select>
-                    <br />
-                    <div class="scope-label">{{topic.scope}}</div>
+                    <div class="form-group" ng-class="[{'has-error' : errors.tags}, {'warn' : errors.tags}]">
+                        <label class="required" for="scope">Scope</label><br />
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a tooltip-placement="bottom" uib-tooltip="Local (Affects only this state)" class="glyphicon glyphicon-picture scope-icon" ng-click="setScope('local')"></a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a tooltip-placement="bottom" uib-tooltip="National (Affects only this country)"  class="glyphicon glyphicon-flag scope-icon" ng-click="setScope('national')"></a>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a tooltip-placement="bottom" uib-tooltip="Worldwide (Affects the entire planet)" class="glyphicon glyphicon-globe scope-icon" ng-click="setScope('worldwide')"></a>
+                            </div>
+                        </div>
+                        <select id="scope" class="form-control" ng-model="topic.scope"
+                            ng-init="topic.scope = scopes[0].value"
+                            ng-options="option.value as option.text for option in scopes"
+                            style="display: none;">
+                            <option value="">-- SELECT A SCOPE --</option>
+                        </select>
+                        <div class="scope-label {{topic.scope}}">{{topic.scope}}</div>
+                        <br />
+                        <p ng-class="{'warn' : errors.scope}">{{errors.scope}}</p>
+                    </div>
                     <hr />
                     <label for="address">Address?</label>
                     <input name="address_display" type="checkbox" ng-model="address" />
