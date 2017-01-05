@@ -2,7 +2,7 @@
   <h1 class="text-center tagline">Don't just react, <strong ng-click="respond()">respond.</strong></h1>
   <div class="container-fluid featured" style="text-align: center;">
     <div class="row banner-wrapper">
-      <div class="col-md-4 col-lg-4 col-sm-4 banner local" ng-if="local != null">
+      <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 banner local" ng-if="local != null">
         <a class="banner-image" style="background-image: url({{local.image}});" href="/topic/{{local.id}}"></a>
         <div class="banner-copy">
           <a class="banner-label" ng-click="refresh('local')">Local ({{state}})</a>
@@ -11,7 +11,7 @@
         </div>
         <div class="more"><a ng-class="{'refiltered' : refiltered.local.status}" ng-click="refilter('local')" href="#">View Local</a></div>
       </div>
-      <div class="col-md-4 col-lg-4 col-sm-4 banner national" ng-if="national != null">
+      <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 banner national" ng-if="national != null">
         <a class="banner-image" style="background-image: url({{national.image}})" href="/topic/{{national.id}}"></a>
         <div class="banner-copy">
           <a class="banner-label" ng-click="refresh('national')">National</span></a>
@@ -20,7 +20,7 @@
         </div>
         <div class="more"><a  ng-class="{'refiltered' : refiltered.national.status}" ng-click="refilter('national')" href="#">View National</a></div>
       </div>
-      <div class="col-md-4 col-lg-4 col-sm-4 banner worldwide" ng-if="worldwide != null">
+      <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 banner worldwide" ng-if="worldwide != null">
         <a class="banner-image" style="background-image: url({{worldwide.image}})" href="/topic/{{worldwide.id}}"></a>
         <div class="banner-copy">
           <a class="banner-label" ng-click="refresh('worldwide')">Worldwide</a>

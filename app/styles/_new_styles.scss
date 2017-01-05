@@ -1023,6 +1023,7 @@ label.required {
 	}
 
 	.footer .rr {
+		display: block;
 		margin: 1em 0;
 		text-align:center;
 	}
@@ -1047,7 +1048,7 @@ label.required {
 	}
 
 	.topics .topic-image {
-		background-size: contain;
+		background-size: cover;
 	}
 
 	.topics aside {
@@ -1057,11 +1058,11 @@ label.required {
 
 	.topics .top .filters {
 		float: right;
-		padding: 10px 0;
+		// padding: 10px 0;
 	}
 
 	.topics .top {
-		padding: 0;
+		padding: 0 0 1em 0;
 		margin-bottom: 0;
 	}
 
@@ -1094,6 +1095,13 @@ label.required {
 		margin: 2em 0;
 	}
 
+	.featured {
+		overflow-x: auto;
+		overflow-y: hidden;
+		.banner-wrapper {
+			width: 250%;
+		}
+	}
 	/*----------  detail page  ----------*/
 	.topic-detail .topic-score {
 		display: none;
