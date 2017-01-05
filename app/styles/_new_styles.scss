@@ -190,6 +190,17 @@ ul.dropdown-menu {
     border-bottom: none;
     z-index: 999;
   }
+
+  .like-button {
+  	background: url('../images/facebook-like.jpg') no-repeat;
+  	background-size: contain;
+  	width: 75px;
+  	height: 30.5px;
+  	text-indent: -9999px;
+  	display: block;
+
+  	@include noHover();
+  }
 }
 
 .upvoted {
@@ -334,6 +345,7 @@ header {
   			color: $dark !important;
   			background: transparent;
   			border: none;
+  			padding-top: 7px;
 
   			&:hover {
   				border: none;
@@ -415,6 +427,34 @@ header {
 			overflow: auto;
 		}
   	}
+
+  	.share {
+  		border: solid 1px #d8dcdd;
+  		border-radius: 60px;
+  		width: 39px;
+  		height: 39px;
+  		display: block;
+  		text-indent: -9999px;
+  		margin-right: 7px;
+  		background-repeat: no-repeat;
+  		background-size: 24px;
+  		background-position: center center;
+  		float: left;
+  		background-color: #fff;
+
+  		&.facebook {
+  			background-image: url('../images/share-facebook-2x.jpg');
+  		}
+
+  		&.twitter {
+  			background-image: url('../images/share-twitter-2x.jpg');
+  		}
+
+  		&:hover {
+  			border-color: $pop;
+  		}
+
+  	}
 }
 
 .container-fluid {
@@ -455,6 +495,8 @@ h1.tagline {
 		background-size: cover;
 		background-position: center center;
 		background-repeat: no-repeat;
+
+		@include noHover();
 	}
 
 	.banner-label {
@@ -509,6 +551,8 @@ h1.tagline {
 					margin-bottom: 0px;
 				}
 			}
+
+			@include noHover();
 		}
 	}
 
@@ -530,6 +574,8 @@ h1.tagline {
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-position: center center;
+
+		@include noHover();
 	}
 
 	.topic-right {
@@ -615,7 +661,7 @@ h1.tagline {
 	}
 
 	.view-article {
-		font-family: 'Sentinel', serif;
+		// font-family: 'Sentinel', serif;
 		font-weight: bold;
 	}
 
@@ -691,9 +737,7 @@ h1.tagline {
 			background-size: cover;
 			background-repeat: no-repeat;
 
-			&:hover {
-				border: none;
-			}
+			@include noHover();
 		}
 
 		.map {
@@ -777,7 +821,7 @@ h1.tagline {
 	.action-list-title {
 		border-bottom: 3px solid #FFF;
 		padding-bottom: 45px;
-		margin-bottom: 45px;
+		margin: 5px 0 45px 0;
 
 		.help {
 			float: right;
@@ -817,7 +861,7 @@ h1.tagline {
 	}
 
 	a.submit-action {
-		float:right;
+		float: right;
 		margin-top: 15px;
 		color: white;
 		background: $pop;
@@ -1214,7 +1258,6 @@ label.required {
 }
 
 /*=====  End of mobile overrides  ======*/
-
 
 
 

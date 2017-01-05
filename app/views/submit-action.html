@@ -90,7 +90,7 @@
                         <label><input name="address_display" type="checkbox" value="" ng-model="address" />Address?</label>
                     </div>
                     <div class="address" ng-class="{'show' : address}">
-                        <input name="address" places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()" />
+                        <input name="address" places-auto-complete id="address" type="text" class="form-control"  ng-model="action.address.formatted" placeholder="Address" component-restrictions="" types="['geocode'], ['establishment']" on-place-changed="vm.placeChanged()" />
                         <label for="address">{{error.address}}</label>
                         <br/>
                         <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-if="render">

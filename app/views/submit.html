@@ -78,7 +78,7 @@
                     <input name="address_display" type="checkbox" ng-model="address" />
                     <div class="address" ng-class="{'show' : address}">
                         <p>Can be as vague as the country <br /> or as specific as a street-level address</p>
-                        <input name="address" places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode']" on-place-changed="vm.placeChanged()">
+                        <input name="address" places-auto-complete id="address" type="text" class="form-control"  ng-model="topic.address.formatted" placeholder="Address" component-restrictions="" types="['geocode'], ['establishment']" on-place-changed="vm.placeChanged()">
                         <br/>
                         <ng-map id="map" zoom="8" center="37.774546, -122.433523" map-type-id="" ng-render="address">
                             <marker position="{{pos.lat}},{{pos.lng}}"></marker>
