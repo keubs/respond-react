@@ -4,10 +4,11 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, TopicService, $analytics) {
+module.exports = function($scope, $rootScope, $location, $stateParams, ActionService, LinkFactory, NgMap, AuthService, TopicService, $analytics) {
     var vm = this;
 
     $scope.init = function(){
+      $rootScope.pageTitle = "Submit an action";
       window.scrollTo(0,0);
       $scope.action = {}, 
         $scope.errors = {}, 

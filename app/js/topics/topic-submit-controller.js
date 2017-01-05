@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 module.exports = function($scope, $location, TopicService, $window, LinkFactory, NgMap, $rootScope, $analytics, $uibModal) {
+  $rootScope.pageTitle = "Submit a Topic";
   $scope.title = 'HELLO!';
   $scope.errors = {};
   $scope.topic = {};
