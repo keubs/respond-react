@@ -1146,6 +1146,15 @@ label.required {
 			width: 250%;
 		}
 	}
+
+	.banner {
+		min-height: 427px;
+	}
+	
+	.banner .more {
+		display: none;
+	}
+
 	/*----------  detail page  ----------*/
 	.topic-detail .topic-score {
 		display: none;
