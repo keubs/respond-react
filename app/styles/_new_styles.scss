@@ -400,7 +400,7 @@ header {
   			max-width: $content-width;
 
   			@media(max-width: $mobile) {
-  				width: 200%;
+  				width: 300%;
   			}
   		}
 
@@ -416,7 +416,6 @@ header {
 
 
 			@media(max-width: $mobile) {
-				width: 20%;
 				padding: 8px 3px;
 				// overflow-wrap: break-word;
 			}
@@ -1025,7 +1024,7 @@ label.required {
 	}
 
 	header nav.navbar-default .navbar-header {
-		padding: 17px 0 0 30px;
+		padding: 7px 0 0 30px;
 
 	}
 
@@ -1100,7 +1099,7 @@ label.required {
 	/*----------  homepage  ----------*/
 	h1.tagline {
 		font-size: 22px;
-		margin: 26px 0;
+		margin: 20px 0;
 	}
 
 	.topics .topic-content {
@@ -1174,11 +1173,11 @@ label.required {
 	}
 
 	.banner {
-		min-height: 265px;
+		min-height: 255px;
 	}
 
 	.banner h3 {
-		font-size: 12px;
+		font-size: 10px;
 		line-height: 15px;
 	}
 
@@ -1191,12 +1190,12 @@ label.required {
 	}
 
 	.banner .banner-image {
-		height: 132px;
+		height: 122px;
 	}
 
 	.banner .banner-copy {
-		min-height: 124px;
-		max-height: 124px;
+		min-height: 114px;
+		max-height: 114px;
 	}
 
 	/*----------  detail page  ----------*/
