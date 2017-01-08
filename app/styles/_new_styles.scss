@@ -282,6 +282,10 @@ header {
 		text-align: center;
 	}
 
+	.navbar-collapse {
+		text-align: center;
+	}
+
 	nav.navbar-default {
 		max-width: $content-width;
 		margin: 0 auto 0 auto;
@@ -314,6 +318,7 @@ header {
 	  		padding: 7px 10px;
 	  	}
 	}
+
 
   	img {
   		width: 32px;
@@ -426,6 +431,11 @@ header {
 		@media(max-width: $mobile) {
 			overflow: auto;
 		}
+  	}
+
+  	.social {
+  		display: inline-block;
+  		margin-top: 7px;
   	}
 
   	.share {
@@ -1042,6 +1052,21 @@ label.required {
 		padding: 0;
 	}
 
+	header .navbar-collapse {
+		text-align: left;
+	}
+
+	header form.navbar-form {
+		display: inline-block;
+		border: none;
+
+	}
+
+	header .social {
+		float: right;
+	    margin-top: 20px;
+	}
+
 	header .navbar-collapse.in {
 		overflow-y: visible;
 	}
@@ -1053,6 +1078,7 @@ label.required {
 	header .navbar-default .navbar-collapse {
 		border: 0;
 	}
+
 
 	footer.container-fluid, .footer {
 		border: none;
@@ -1073,8 +1099,8 @@ label.required {
 	}
 	/*----------  homepage  ----------*/
 	h1.tagline {
-		font-size: 24px;
-		margin: 30px 0;
+		font-size: 22px;
+		margin: 26px 0;
 	}
 
 	.topics .topic-content {
@@ -1148,11 +1174,29 @@ label.required {
 	}
 
 	.banner {
-		min-height: 427px;
+		min-height: 265px;
 	}
-	
+
+	.banner h3 {
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.banner .banner-label {
+		margin: 15px 0;
+	}
+
 	.banner .more {
 		display: none;
+	}
+
+	.banner .banner-image {
+		height: 132px;
+	}
+
+	.banner .banner-copy {
+		min-height: 124px;
+		max-height: 124px;
 	}
 
 	/*----------  detail page  ----------*/
