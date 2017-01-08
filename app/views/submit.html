@@ -1,5 +1,5 @@
 <div class="submit-wrapper container-fluid">
-  <form name="submit-topic" ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{loading: formLoading}" class="form-submit-topic">
+  <form name="submit-topic" ng-controller="TopicSubmitCtrl as vm" ng-submit="submit()" ng-class="{'loading': formLoading}" class="form-submit-topic">
     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
     <h1>Submit a topic</h1>
         <div class="row">
@@ -90,7 +90,7 @@
         <div class="row topic-submit" ng-class="{'show' : validUrl}">
             <input name="submit" type="submit" value="Submit" class="btn btn-primary btn-lg btn-block" ng-disabled="submitted" ng-class="{'thinking' : formLoading}" />
         </div>
-        <div class="loader" ng-class="{loading: formLoading}"></div>
+        <div class="loader" ng-class="{'loading': formLoading}"></div>
     <p ng-show="errors.general">{{ errors.general }}</p>
   </form>
 </div>

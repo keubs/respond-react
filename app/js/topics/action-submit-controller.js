@@ -164,6 +164,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
     $scope.errors.article_link = '';
      LinkFactory.link($scope)
       .then(function(data) {
+        $scope.article_link  = data.article_link;
         $scope.action = data;
         $scope.formLoading = false;
         $scope.validUrl = true;

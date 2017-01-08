@@ -55,6 +55,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   };
 
   $scope.submit = function() {
+    $scope.formLoading = true;
     if(!$scope.topic.tags) {
       $scope.errors.tags = "Please enter at least one relevant tag";
       $scope.formLoading = false;
@@ -65,6 +66,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
 
     if(!$scope.topic.scope) {
       $scope.errors.scope = "Please set this topic's scope";
+      $scope.formLoading = false;
       return;
     }
     
@@ -78,6 +80,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
       }, function(error, status) {
         $scope.errors = {};
         $scope.submitted = false;
+        $scope.formLoading = false;
         $scope.errors.general = helpers.errorStringify(error.non_field_errors);
         $scope.errors.title = helpers.errorStringify(error.title);
         $scope.errors.article_link = helpers.errorStringify(error.article_link);
@@ -98,6 +101,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     LinkFactory.link($scope)
     .then(function(data) {
       $analytics.eventTrack('submit', {  category: 'topic', label: 'link_entered' });
+      $scope.article_link  = data.article_link;
       $scope.topic = data;
       $scope.alerts = [];
       $scope.validUrl = true;
