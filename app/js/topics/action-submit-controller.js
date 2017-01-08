@@ -141,6 +141,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
             $scope.validUrl = false;
             $scope.alerts = [];
             $scope.submitted = true;
+            $analytics.eventTrack('submit', {  category: 'action', label: 'complete' });
             $scope.alerts.push({ type : 'success', msg: 'Thank you for your submission! If you are posting this action under someone else\'s topic, then you will see it posted upon appoval of the topic owner.'});
             window.scrollTo(0, 0);
 	        }, function(error) {
@@ -156,17 +157,17 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
     $scope.alerts = [];
     if(!helpers.validateUrl($scope.article_link)) {
       $scope.formLoading = false;
-      $analytics.eventTrack('submit', {  category: 'action', label: 'link_entered' });
       $scope.errors.article_link = 'Please enter a valid URL';
+      $analytics.eventTrack('submit', {  category: 'action', label: 'link_error' });
       return;
     }
     $scope.errors.article_link = '';
-	   LinkFactory.link($scope)
-	    .then(function(data) {
+     LinkFactory.link($scope)
+      .then(function(data) {
         $scope.action = data;
         $scope.formLoading = false;
         $scope.validUrl = true;
-        $analytics.eventTrack('submit', {  category: 'action', label: 'complete' });
+        $analytics.eventTrack('submit', {  category: 'action', label: 'link_entered' });
 	    }, function(error) {
         $scope.validUrl = false;
         if(error.status === 409) {

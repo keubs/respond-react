@@ -90,6 +90,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     $scope.formLoading = true;
     if(!helpers.validateUrl($scope.article_link)) {
       $scope.formLoading = false;
+      $analytics.eventTrack('submit', {  category: 'topic', label: 'link_error' });
       $scope.errors.article_link = 'Please enter a valid URL';
       return;
     }
