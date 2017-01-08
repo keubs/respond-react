@@ -14,6 +14,10 @@
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'" ng-hide="">
+        <div class="social">
+          <a class="facebook share" target="_blank" analytics-on analytics-event="click" analytics-category="social" analytics-label="facebook" href="https://www.facebook.com/respondreact">Like us on Facebook</a>
+          <a class="twitter share" target="_blank" analytics-on analytics-event="click" analytics-category="social" analytics-label="twitter" href="https://twitter.com/respond__react">Follow us on Twitter</a>
+        </div>
         <ul ng-if="isLoggedIn == true" class="nav navbar-nav navbar-right">
           <li>
             <a href="/submit" style="" class="btn btn-primary btn-lg btn-submit-topic text-center" ng-if="isLoggedIn == true"  tooltip-placement="bottom" uib-tooltip="Topics are any news articles or headlines that have an affected any number of people">Submit a topic</a>
@@ -32,8 +36,6 @@
         </ul>
         <form ng-if="isLoggedIn != true" class="navbar-form navbar-right">
           <div class="form-group">
-            <a class="facebook share" target="_blank" analytics-on analytics-event="topic share" analytics-category="social" analytics-label="facebook" href="https://www.facebook.com/respondreact">Like us on Facebook</a>
-            <a class="twitter share" target="_blank" analytics-on analytics-event="topic share" analytics-category="social" analytics-label="twitter" href="https://twitter.com/respond__react">Follow us on Twitter</a>
             <p ng-show="errors.general">{{ errors.general }}</p>
             <div class="btn-group" uib-dropdown is-open="status.isopen">
               <button tooltip-placement="left" uib-tooltip="Sign in or register with one click to submit actions and topics" id="single-button" type="button" class="dd" uib-dropdown-toggle ng-disabled="disabled">

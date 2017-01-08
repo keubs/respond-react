@@ -27,6 +27,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
         {"text":"Worldwide (Affects the world)","value":"worldwide"},
       ];
       $analytics.pageTrack('topic/'+ $stateParams.topic +'/submit-action');
+      $analytics.eventTrack('submit', {  category: 'action', label: 'begin' });
       /*----------  start/end date/time section  ----------*/
       
       $scope.action.date_time_display = false;
@@ -155,6 +156,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
     $scope.alerts = [];
     if(!helpers.validateUrl($scope.article_link)) {
       $scope.formLoading = false;
+      $analytics.eventTrack('submit', {  category: 'action', label: 'link_entered' });
       $scope.errors.article_link = 'Please enter a valid URL';
       return;
     }
@@ -164,7 +166,7 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
         $scope.action = data;
         $scope.formLoading = false;
         $scope.validUrl = true;
-        $analytics.eventTrack('submission', {  category: 'action', label: $scope.action.title });
+        $analytics.eventTrack('submit', {  category: 'action', label: 'complete' });
 	    }, function(error) {
         $scope.validUrl = false;
         if(error.status === 409) {

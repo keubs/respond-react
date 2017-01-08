@@ -16,6 +16,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
   $scope.type = 'topic';
   $scope.topic.scope = 'national';
   $analytics.pageTrack('submit');
+  $analytics.eventTrack('submit', {  category: 'topic', label: 'begin' });
   $scope.topic.locations = [];
   $scope.scopes = [
     {"text":"Local (Affects only this state)","value":"local"},
@@ -72,7 +73,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     $scope.topic.image_preview = undefined;
     TopicService.new($scope.topic)
       .then(function(data) {
-        $analytics.eventTrack('submission', {  category: 'topic', label: $scope.topic.title });
+        $analytics.eventTrack('submit', {  category: 'topic', label: 'complete' });
         $location.path('/topic/' + data.id);
       }, function(error, status) {
         $scope.errors = {};
@@ -95,6 +96,7 @@ module.exports = function($scope, $location, TopicService, $window, LinkFactory,
     $scope.errors.article_link = '';
     LinkFactory.link($scope)
     .then(function(data) {
+      $analytics.eventTrack('submit', {  category: 'topic', label: 'link_entered' });
       $scope.topic = data;
       $scope.alerts = [];
       $scope.validUrl = true;

@@ -44,7 +44,7 @@
                 <div class="topic-submit" ng-class="{'show' : validUrl}">
                     <div class="form-group" ng-class="[{'has-error' : errors.tags}, {'warn' : errors.tags}]">
                         <label class="required" for="tags">Tags</label>
-                        <p>(e.g. #StandingRock, 'Mass Shooting')</p>
+                        <p>(e.g. 'Donation Form', 'Rally', 'Petition', 'Crowdfund')</p>
                         <tags-input name="tags" id="tags" ng-model="action.tags_list" replace-spaces-with-dashes="false"></tags-input>
                         <p ng-class="{'error' : errors.tags}">{{errors.tags}}</p>
                     </div>

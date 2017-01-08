@@ -236,7 +236,6 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         TopicService.worldwide(10)
           .then(function(data){
             $scope.topics = data.data;
-            console.log(data.data);
           }, function(error){
             console.log(error);
         });        
@@ -265,6 +264,9 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   };
 
   $scope.sort = function(){
+
+    // Track that shiz
+    $analytics.eventTrack('change', {  category: 'refining', label: $scope.filter });
 
     // alert($scope.filter);
     TopicService.get(null, null, $scope.filter).then(function(data) {

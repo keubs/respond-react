@@ -20,19 +20,19 @@
 				<!-- Share -->
 				<aside>
 					<span class="share-label">Share</span>
-					<a class="facebook share" target="_blank" analytics-on analytics-event="topic share" analytics-category="social" analytics-label="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{siteUrl}}/topic/{{topic.id}}">Share on Facebook</a>
-					<a class="twitter share" target="_blank" analytics-on analytics-event="topic share" analytics-category="social" analytics-label="twitter" href="https://twitter.com/home?status={{siteUrl}}/topic/{{topic.id}}">Share on Twitter</a>
+					<a class="facebook share" target="_blank" analytics-on analytics-event="click" analytics-category="social" analytics-label="facebook" analytics-value="{{topic.id}}" href="https://www.facebook.com/sharer/sharer.php?u={{siteUrl}}/topic/{{topic.id}}">Share on Facebook</a>
+					<a class="twitter share" target="_blank" analytics-on analytics-event="click" analytics-category="social" analytics-label="twitter" analytics-value="{{topic.id}}" href="https://twitter.com/home?status={{siteUrl}}/topic/{{topic.id}}">Share on Twitter</a>
 				</aside>
 			</div>
 			<div class="col-md-8 col-lg-8 topic-main">
 				<!-- Title -->
-				<h1><a class="go" target="_blank" href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
+				<h1><a class="go" target="_blank" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}"  href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
 				<!-- Description -->
 				<p class="description">{{topic.description}}</p>
 				<!-- Image -->
-				<a class="topic-image" target="_blank" href="{{ topic.article_link }}" style="background-image: url('{{topic.banner}}')"></a>
+				<a class="topic-image" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}" target="_blank" href="{{ topic.article_link }}" style="background-image: url('{{topic.banner}}')"></a>
 
-				<a target="_blank" ng-class="{'show' : mapDisplayed}" class="map" href="http://google.com/maps/place/{{topic.address.raw}}" ng-if="topic.address !== null">
+				<a target="_blank" analytics-on analytics-event="click" analytics-category="external" analytics-label="view_map"  ng-class="{'show' : mapDisplayed}" class="map" href="http://google.com/maps/place/{{topic.address.raw}}" ng-if="topic.address !== null">
 					<img class="gmap" src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x350" />
 				</a>
 			</div>
@@ -70,7 +70,7 @@
 				<a href="{{action.article_link}}" target="_blank"><img src="{{action.image}}" style="width: 100%" /></a>
 			</div> -->
 			<div class="col-md-5 col-xs-8 col-sm-5 topic-action nopad">
-				<h3><a href="{{action.article_link}}" target="_blank">{{action.title}}</a></h3>
+				<h3><a analytics-on analytics-event="click" analytics-category="external" analytics-label="{{action.article_link}}"  href="{{action.article_link}}" target="_blank">{{action.title}}</a></h3>
 				<aside>By: <a href="user/{{action.created_by}}">{{action.username}}</a> {{action.created_on | date:fullDate}}</aside>
 				<aside ng-if="action.address_raw">Location: {{action.address_raw}}</aside>
 				<aside ng-if="action.start_date_time">WHEN: {{action.start_date_time | date:'LLLL dd, yyyy - HH:mm a'}} <span ng-if="action.end_date_time">to {{action.end_date_time | date:'LLLL dd, yyyy - HH:mm a'}}</span></aside>
@@ -79,7 +79,7 @@
 				</aside>
 			</div>
 			<div class="col-md-3 col-lg-3 col-sm-3 col-xs-10 nopad participate">
-				<h3><a class="btn btn-primary go" href="{{action.article_link}}" target="_blank">Participate</a></h3>
+				<h3><a class="btn btn-primary go" href="{{action.article_link}}" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}" target="_blank">Participate</a></h3>
 			</div>
 		</div>	
 		<div class="clearfix pagination-wrapper row">
