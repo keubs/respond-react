@@ -78,7 +78,7 @@
                     var returnData = {};
 
                     returnData.tags_list = data.tags;
-                    returnData.article_link = data.article_link;
+                    returnData.article_link = data.article_link ? data.article_link : $scope.article_link;  
                     returnData.image_preview = {};
                     returnData.image_preview.visible = true;
                     returnData.image_url = data.image;
