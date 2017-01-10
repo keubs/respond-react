@@ -4,7 +4,7 @@ const helpers = require('../helpers/helpers.js');
 /**
  * @ngInject
  **/
-module.exports = function($scope, $rootScope, $location, $stateParams, TopicService, $anchorScroll,
+module.exports = function($scope, $rootScope, $location, $stateParams, TopicService,
                           ActionService, AuthService, AppSettings, $uibModal, $analytics) {
 
   $scope.init = function(){
@@ -25,7 +25,8 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $scope.bigTotalItems = 175;
     $scope.bigCurrentPage = 1;
 
-    // $anchorScroll();    
+
+    window.scrollTo(0,0);
     TopicService.topic($stateParams.topic)
       .then(function(data) {
         for (var attr in data) {
@@ -44,14 +45,6 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
 
             // gray out expired events
             obfuscateExpired();
-
-            window.setTimeout(function(){
-              if($location.hash() !== '') {
-                $scope.setActionClass($location.hash().split('-')[1]);
-              } else {
-                window.scrollTo(0,0);
-              }
-            }, 5000)
           }, function(error){
             console.log(error);
           });
@@ -206,12 +199,6 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
   
   $scope.loginPrompt = function() {
     $rootScope.$emit('callLogin', {});
-  };
-
-  $scope.setActionClass = function(action){
-    // console.log($scope.topic.actions);
-    var selected = helpers.search(action, $scope.topic.actions);
-    selected.selected = true;
   };
 
   function obfuscateExpired() {

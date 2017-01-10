@@ -61,7 +61,7 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-		<div id="action-{{action.id}}" class="action row" ng-repeat="action in topic.actions" ng-class="[{'ended' : action.ended}, {'selected': action.selected}]">
+		<div class="action row" ng-repeat="action in topic.actions" ng-class="{'ended' : action.ended}">
 			<div class="col-md-2 col-sm-2 col-xs-2 score">
 				<span ng-click="upVoteAction($index)" ng-class="" class="glyphicon glyphicon-menu-up upvote"></span>
 				<h3>{{action.score}}</h3>
