@@ -61,6 +61,14 @@ var proto = {
       if (!results) return null;
       if (!results[2]) return '';
       return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+
+  search: function (nameKey, myArray){
+      for (var i=0; i < myArray.length; i++) {
+          if (myArray[i].id === parseInt(nameKey)) {
+              return myArray[i];
+          }
+      }
   }
 };
 
