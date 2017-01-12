@@ -806,9 +806,22 @@ h1.tagline {
 		.action {
 			padding: 1em 0;
 
+			a {
+				// color: $secondary;
+			}
+
 			&.ended {
 				background: #DDD;
 				opacity: .2;
+			}
+
+			&.selected {
+				background-color: #AD310B;
+				        -webkit-transition: background-color 1000ms linear;
+				        -moz-transition: background-color 1000ms linear;
+				        -o-transition: background-color 1000ms linear;
+				        -ms-transition: background-color 1000ms linear;
+				        transition: background-color 1000ms linear;
 			}
 		}
 
@@ -1254,6 +1267,10 @@ label.required {
 		margin: 0 0 10px 0;
 		display: inline-block;
 		padding-right: 20px;
+	}
+
+	.topic-detail .topic-page.container-fluid {
+		margin-top: 12px;
 	}
 
 	.topic-detail .topic-page .share {

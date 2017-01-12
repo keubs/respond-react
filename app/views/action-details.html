@@ -1,0 +1,17 @@
+<div ng-init="init()">
+	<a href="#" ng-click="cancel()" class="close">X</a>
+	<div class="modal-header">
+
+	    <h3 class="modal-title">{{action.title}}</h3>
+	    
+	</div>
+	<div class="modal-body">
+		<img src="{{action.image}}" style="width: 100%; margin-bottom: 1em;" />
+	    <p ng-bind-html="action.description"></p>
+	    
+	</div>
+	<div class="modal-footer">
+	    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+	    <a class="btn btn-success go" href="{{action.article_link}}" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}" target="_blank">Participate</a>
+	</div>
+</div>

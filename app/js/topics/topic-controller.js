@@ -201,6 +201,25 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
     $rootScope.$emit('callLogin', {});
   };
 
+  $scope.more = function(id) {
+    ActionService.action(id)
+      .then(function(data){
+        $uibModal.open({
+          animation: true,
+          templateUrl: 'action-details.html',
+          controller: 'ActionDetailsCtrl',
+          size: 'sm',
+          resolve: {
+            action : function(){
+              return data;
+            }
+          }
+        });
+      }, function(error){
+
+      });
+  };
+
   function obfuscateExpired() {
     // gray out expired events
     for (var i = 0; i < $scope.topic.actions.length; i++){
