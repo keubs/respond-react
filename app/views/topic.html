@@ -4,19 +4,22 @@
 			<div class="col-md-2 col-lg-2">
 				<!-- Scope -->
 				<aside ng-if="topic.address">
-					{{topic.scope}}<br />
-					<a ng-click="showMap()" target="_blank">VIEW MAP</a>
+					<span class="topic-scope">{{topic.scope}}</span>
+					<a analytics-on analytics-event="click" analytics-category="refining" analytics-label="map" ng-click="showMap()" target="_blank">VIEW MAP</a>
 				</aside>
 				<!-- Author -->
 				<aside>	
-					By: <a href="/user/{{topic.created_by}}">{{topic.username}}</a>
+					By: <a href="/user/{{topic.created_by}}">{{topic.username}}</a><br />
+					{{topic.created_on | date:fullDate}}
 				</aside>
 				<!-- Tags -->
 				<aside>
+					Tags:
 					<ul class="tags">
 						<li ng-repeat="tag in topic.tags"><a href="/topics/tag/{{tag.slug}}">{{tag.name}}</a></li>
 					</ul>
 				</aside>
+
 				<!-- Share -->
 				<aside>
 					<span class="share-label">Share</span>
@@ -26,14 +29,13 @@
 			</div>
 			<div class="col-md-8 col-lg-8 topic-main">
 				<!-- Title -->
-				<h1><a class="go" target="_blank" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}"  href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
+				<h1><a class="" target="_blank" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}"  href="{{ topic.article_link }}">{{ topic.title }}</a></h1>
 				<!-- Description -->
 				<p class="description">{{topic.description}}</p>
 				<!-- Image -->
 				<a class="topic-image" analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}" target="_blank" href="{{ topic.article_link }}" style="background-image: url('{{topic.banner}}')"></a>
-
-				<a target="_blank" analytics-on analytics-event="click" analytics-category="external" analytics-label="view_map"  ng-class="{'show' : mapDisplayed}" class="map" href="http://google.com/maps/place/{{topic.address.raw}}" ng-if="topic.address !== null">
-					<img class="gmap" src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x350" />
+				<a id="map" target="_blank" analytics-on analytics-event="click" analytics-category="external" analytics-label="view_map"  ng-class="{'show' : mapDisplayed}" class="map" href="http://google.com/maps/place/{{topic.address.raw}}" ng-if="topic.address !== null">
+					<img class="gmap" src="https://maps.googleapis.com/maps/api/staticmap?center={{topic.address.latitude}},{{topic.address.longitude}}&markers=color:red%7Clabel:%7C{{topic.address.latitude}},{{topic.address.longitude}}&zoom={{mapZoom}}&key={{googleApiKey}}&size=600x175" />
 				</a>
 			</div>
 			<div class="col-md-2 topic-score score">
@@ -49,10 +51,10 @@
 				<h2 ng-if="topic.action_count == 0">Submit an Action Now
 				</h2>
 				<h2 ng-if="topic.action_count == 1">
-					1 way to get Involved
+					1 Way to Get Involved
 				</h2>
 				<h2 ng-if="topic.action_count > 1">
-					<span class="way">{{topic.action_count}}</span> ways to get Involved
+					<span class="way">{{topic.action_count}}</span> Ways to Get Involved
 				</h2>
 
 				<a ng-if="!isLoggedIn" tooltip-placement="bottom" uib-tooltip="Actions are any causes, rallies, funds, or events pertaining to this topic" class="btn btn-primary btn-lg form-inline submit-action" ng-click="loginPrompt()">Log in to Submit an Action</a>
@@ -72,10 +74,11 @@
 			<div class="col-md-5 col-xs-8 col-sm-5 topic-action nopad">
 				<h3><a analytics-on analytics-event="click" analytics-category="external" analytics-label="{{action.article_link}}"  href="{{action.article_link}}" target="_blank">{{action.title}}</a></h3>
 				<aside>By: <a href="user/{{action.created_by}}">{{action.username}}</a> {{action.created_on | date:fullDate}}</aside>
-				<aside ng-if="action.address_raw">Location: {{action.address_raw}}</aside>
-				<aside ng-if="action.start_date_time">WHEN: {{action.start_date_time | date:'LLLL dd, yyyy - HH:mm a'}} <span ng-if="action.end_date_time">to {{action.end_date_time | date:'LLLL dd, yyyy - HH:mm a'}}</span></aside>
-				<aside ng-repeat="tag in action.tags" class="tag" ng-class="{'last':$last}">
-				  <a href="#" ng-click="sortActions(tag.slug, tag.name)">{{tag.name}}</a><span ng-class="{'last':$last}">,</span>&nbsp;
+				<aside ng-if="action.address_raw">Location: <a target="_blank" href="http://google.com/maps/place/{{action.address_raw}}">{{action.address_raw}}</a></aside>
+				<aside ng-if="action.start_date_time">WHEN: <a{{action.start_date_time | date:'LLLL dd, yyyy - HH:mm a'}} <span ng-if="action.end_date_time">to {{action.end_date_time | date:'LLLL dd, yyyy - HH:mm a'}}</span></aside>
+				<aside class="tag" ng-class="{'last':$last}">
+				Tags: 
+				  <a ng-repeat="tag in action.tags" href="#" ng-click="sortActions(tag.slug, tag.name)">{{tag.name}}<span ng-class="{'last':$last}">,&nbsp;</span></a>
 				</aside>
 				<aside>
 					<a class="" ng-click="more(action.id)">More +</a>

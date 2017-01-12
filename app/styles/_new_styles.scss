@@ -2,7 +2,9 @@
 =            Global Style Declarations            =
 =================================================*/
 body {
-	font-family: 'Futura', sans-serif;
+	font-family: futura-pt, sans-serif;
+	font-style: normal;
+	font-weight: 300;
 }
 
 a {
@@ -12,6 +14,7 @@ a {
 	&:hover {
 		text-decoration: none;
 		border-bottom: 1px solid $pop;
+		color: $dark;
 	}
 }
 
@@ -28,6 +31,7 @@ a {
 	min-width: 257px;
 	line-height: 22px;
 	text-transform: uppercase;
+	letter-spacing: 2.1px;
 	font-family: 'Futura', sans-serif;
 
 	&:hover {
@@ -75,6 +79,7 @@ h3 {
   ul {
   	float: right;
   	text-transform: uppercase;
+  	letter-spacing: 2.1px;
     li {
       display: inline-block;
       padding: 10px 20px;
@@ -159,7 +164,8 @@ ul.dropdown-menu {
 }
 
 .load-more {
-	width: 100%;
+	// width: 100%;
+	margin: 0 auto 45px;
 }
 
 .modal-dialog {
@@ -204,7 +210,7 @@ ul.dropdown-menu {
 }
 
 .upvoted {
-  color: orange;
+  color: $pop;
 }
 
 .downvoted {
@@ -215,8 +221,8 @@ ul.dropdown-menu {
 .downvote {
     font-size: 15px;
     cursor: pointer;
-    color: #222;
-    padding-right: 2.5px;
+    color: $pop;
+    padding-right: 3px;
 
     &.action {
         font-size: 15px;
@@ -225,15 +231,15 @@ ul.dropdown-menu {
 
 .upvote {
     &:hover {
-        color: #F3902A;
+        color: $dark;
     }
 }
 
-.downvote {
-    &:hover {
-        color: #920832;
-    }
-}
+// .downvote {
+//     &:hover {
+//         color: #920832;
+//     }
+// }
 
 .help {
 	color: $pop;
@@ -271,7 +277,7 @@ ul.dropdown-menu {
 /* Header */
 header {
 	// background: radial-gradient(ellipse 70% 100px, #F0F0F0, $pop);
-	background: #f0f0f0;
+	background: $grey;
 
 	.alert {
 		border-radius: 0px;
@@ -307,6 +313,7 @@ header {
 
 			&:hover {
 				border: none;
+				opacity: .6;
 			}
 		}
 
@@ -318,6 +325,7 @@ header {
 	  		padding: 7px 10px;
 	  	}
 	}
+
 
 
   	img {
@@ -360,6 +368,11 @@ header {
   			&.btn-group.open .dropdown-toggle  {
   				box-shadow: 0;
   			}
+
+  			& .glyphicon-menu-right {
+  				color: $pop;
+  				font-size: 11px;
+  			}
   		}
 
   	.icon {
@@ -368,6 +381,12 @@ header {
 	    a {
 	    	line-height: 50px;
 	    	padding: 0 20px 0 0;
+
+	    	img {
+	    		&:hover {
+	    			border: solid 1px $pop;
+	    		}
+	    	}
 	    }
   	}
 
@@ -393,8 +412,8 @@ header {
   	}
 
   	.popular-tags {
-  		background: $pop;
-  		
+  		background: white;
+		border: solid 1px $grey;
   		.inner {
   			margin: 0 auto;
   			max-width: $content-width;
@@ -406,14 +425,15 @@ header {
 
 		.popular-tag {
 			display: inline-block;
-			padding: 10px;
-			background: $pop;
+			padding: 12px 10px;
+			// background: $pop;
 			width: 10%;
 			text-align: center;
-			color: white;
+			color: $pop;
 			text-transform: uppercase;
+			letter-spacing: 2.1px;
 			font-size: 10px;
-
+			white-space: nowrap;
 
 			@media(max-width: $mobile) {
 				padding: 8px 3px;
@@ -422,8 +442,10 @@ header {
 			
 			&:hover {
 				border: none;
-				color: $pop;
+				color: $dark;
 				background: white;
+
+				// border-bottom: solid 2px black;
 			}
 		}
 
@@ -511,13 +533,21 @@ h1.tagline {
 	.banner-label {
 		font-size: 10px;
 		text-transform: uppercase;
+		letter-spacing: 2.1px;
 		margin: 24px 0 31px;
 		display: inline-block;
+		font-weight: 700;
+		color: $dark;
 	}
 
 	.banner-meta {
-		font-size: 8px;
+		font-size: 10px;
 		text-transform: uppercase;
+		letter-spacing: 2.1px;
+		position: absolute;
+		bottom: 19px;
+		width: 100%;
+		left: 0;
 	}
 
 	.banner-copy {
@@ -526,6 +556,7 @@ h1.tagline {
 		min-height: 204px;
 		max-height: 204px;
 		overflow: hidden;
+		position: relative;
 
 		h3 a {
 			color: $dark;
@@ -543,15 +574,20 @@ h1.tagline {
 		width: 100%;
 		a {
 			display: block;
-			padding: 18px 0;
+			padding: 18px 0 21px;
 			background: $content-bg;
-			margin: 8px 0 20px;
+			margin: 8px 0;
 			text-transform: uppercase;
+			letter-spacing: 2.1px;
 			font-family: "Sentinel SSm A", "Sentinel SSm B";
 			font-style: normal;
 			font-weight: 700;
 			font-weight: bold;
 			letter-spacing: 1px;
+
+			&:hover {
+				color: $dark;
+			}
 
 			@media (min-width: $mobile) {
 				&.refiltered {
@@ -607,10 +643,18 @@ h1.tagline {
 	    border-bottom: solid 3px #fff;
 	    padding: 0 0 2em 0;
 	    // text-transform: uppercase;
+	    letter-spacing: 2.1px;
 
 	    .filters {
 			display: inline-block;
-			float:right;
+			float: right;
+			text-transform: uppercase;
+			text-spacing: 1px;
+			font-size: 10px;
+
+			.filter {
+				margin-right: 10px;
+			}
 	    }
 	}
 
@@ -618,6 +662,7 @@ h1.tagline {
 		display: inline;
 		font-size: 14px;
 		text-transform: uppercase;
+		letter-spacing: 2.1px;
 		padding: 40px 0 20px 0;
 		margin: 0 0 34px 0;
 
@@ -632,6 +677,10 @@ h1.tagline {
 		padding: 80px 0 0 35px;
 		span, h3 {
 			color: $pop;
+
+			&:hover {
+				color: $dark;
+			}
 		}
 	}
 
@@ -645,6 +694,7 @@ h1.tagline {
 		font-size: 10px;
 		letter-spacing: 1px;
 		text-transform: uppercase;
+		letter-spacing: 2.1px;
 
 		h4 {
 			text-transform: none;
@@ -696,6 +746,7 @@ h1.tagline {
 
 		.scope {
 			text-transform: uppercase;
+			letter-spacing: 2.1px;
 		}
 
 		img {
@@ -708,6 +759,7 @@ h1.tagline {
 
 		.topic-score {
 			text-align: right;
+			color: $pop;
 		}
 
 		.centered {
@@ -718,8 +770,18 @@ h1.tagline {
 		aside {
 			margin:  0 0 33px 0;
 			text-transform: uppercase;
+			letter-spacing: 2.1px;
 			font-size: 10px;
+
 		}
+
+		.topic-scope {
+			font-size: 12px;
+			font-weight: 700;
+			margin-bottom: 5px;
+			display: block;
+		}
+
 
 		ul {
 			margin: 0;
@@ -735,6 +797,7 @@ h1.tagline {
 
 		p.description {
 			margin: 20px 0 40px 0;
+			font-size: 16px;
 		}
 
 		.topic-image {
@@ -754,8 +817,9 @@ h1.tagline {
 			transition: all .5s;
 			overflow: hidden;
 			display: block;
+			margin-top: 10px;
 			&.show {
-				height: 350px;
+				height: 175px;
 			}
 		}
 
@@ -768,7 +832,7 @@ h1.tagline {
 	.topic-action {
 		h3 {
 			margin-top: 0;
-
+			font-weight: 500;
 			a {
 				color: $dark;
 			}
@@ -828,6 +892,7 @@ h1.tagline {
 		aside {
 			font-size: 10px;
 			text-transform: uppercase;
+			letter-spacing: 2.1px;
 			padding-bottom: 1em;
 		}
 
@@ -1042,8 +1107,8 @@ label.required {
 	}
 
 	header .btn-lg {
-		width: auto;
-		min-width: auto;
+		width: 50%;
+		min-width: 50%;
 	}
 
 	header li.icon a {

@@ -263,13 +263,13 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $rootScope.$emit('callModal', {});
   };
 
-  $scope.sort = function(){
+  $scope.sort = function(sort){
 
     // Track that shiz
     $analytics.eventTrack('change', {  category: 'refining', label: $scope.filter });
 
     // alert($scope.filter);
-    TopicService.get(null, null, $scope.filter).then(function(data) {
+    TopicService.get(null, null, sort).then(function(data) {
       $scope.topics = data;
     }, function(err) {
       console.log(err);
