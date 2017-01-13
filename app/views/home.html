@@ -32,8 +32,8 @@
     </div>
   </div>
   <div id="topics" class="container-fluid topics">
-    <div class="row nomargin">
-      <div class="col-sm-1 nopad">&nbsp;</div>
+    <div class="row">
+      <div class="col-sm-1">&nbsp;</div>
       <div class="col-sm-10 nopad">
         <div class="top">
         <h3 class="trending">What's trending today<span ng-if="tag !== null" style="color: #29b4cf"> - Tag: {{tag_title}} <a href="#" ng-click="removeTag()">[Remove]</a></span></h3>
@@ -42,16 +42,16 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-1 nopad">&nbsp;</div>
+      <div class="col-sm-1">&nbsp;</div>
     </div>
-    <div class="inner row nomargin">
-      <div ng-repeat="topic in topics" class="row topic">
+    <div class="inner row">
+      <div ng-repeat="topic in topics" class="row topic nomargin">
         <div class="col-lg-1 col-md-1 col-sm-1 topic-score nopad">
           <span ng-click="upVoteTopic($index)" class="glyphicon glyphicon-menu-up upvote">
           </span>
           <h3 class="score">{{topic.score}}</h3>
         </div>
-        <div class="col-lg-10 col-md-10 col-sm-12 nopad topic-content">
+        <div class="col-lg-10 col-md-10 col-sm-12 topic-content nopad">
           <a class="topic-image" href="topic/{{topic.id}}" style="background-image: url({{topic.thumbnail}})"></a>
           <div class="topic-right">
             <aside class="error" ng-show="topic.error">{{topic.error}}</aside>
@@ -67,10 +67,11 @@
             <aside class="view-article"><a analytics-on analytics-event="click" analytics-category="external" analytics-label="{{topic.article_link}}" href="{{topic.article_link}}" target="_blank" class="go view-article">View Article</a>
           </div>
         </div>
+        <div class="col-sm-1 nopad">&nbsp;</div>
       </div>
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3"></div>
-        <div class="col-lg-6 col-md-6 col-sm-6 nopad" style="text-align: center">
+        <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
           <a ng-if="tag == null" analytics-on analytics-event="click" analytics-category="refining" analytics-label="more" analytics-value="{{currentPage}}" class="btn-primary text-center btn btn-lg load-more" href="" ng-click="pageChanged()">Load More</a>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3"></div>

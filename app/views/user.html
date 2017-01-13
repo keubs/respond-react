@@ -7,7 +7,9 @@
 					<h2>{{user.username}}</h2>  <a ng-if="isCurrentUser == true" href="/user/{{user.id}}/edit">[edit]</a>
 				</div>
 				<ul>
-					<li ng-if="unapprovedActionCount > 0" style="color: red" tooltip-placement="bottom" uib-tooltip="You have actions that have been submitted under your topics. They will not be publically viewable until you approve them.">{{unapprovedActionCount}} unapproved actions <span class="glyphicon glyphicon-alert" tooltip-placement="bottom" uib-tooltip="You have actions that have been submitted under your topics. They will not be publically viewable until you approve them."></span> </li>
+					<li ng-if="unapprovedActionCount > 0" style="color: red" tooltip-placement="bottom" uib-tooltip="You have actions that have been submitted under your topics. They will not be publically viewable until you approve them.">
+						<ng-pluralize count="unapprovedActionCount" when="{'0': 'fart', '1': '1 unapproved action', 'other':'{{unapprovedActionCount}} unapproved actions'}"></ng-pluralize> <span class="glyphicon glyphicon-alert" tooltip-placement="bottom" uib-tooltip="You have actions that have been submitted under your topics. They will not be publically viewable until you approve them."></span> 
+					</li>
 					<li>{{user.topic_count}} topics submitted <span class="glyphicon glyphicon-flag"></span> </li>
 					<li>{{user.action_count}} actions submitted <span class="glyphicon glyphicon-fire"></span> </li>
 					<li>{{user.vote_count}} upvotes received <span class="glyphicon glyphicon-upload"></span> </li>
