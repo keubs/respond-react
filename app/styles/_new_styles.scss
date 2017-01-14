@@ -212,6 +212,10 @@ ul.dropdown-menu {
 .modal[size=xlg] {
 	.modal-dialog {
 		margin: 94px auto;
+
+		@media (max-width: $mobile) {
+			margin: 40px auto;
+		}
 	}
 
 	.modal-content {
@@ -252,7 +256,7 @@ ul.dropdown-menu {
 
 		@media (max-width: $mobile) {
 			.close {
-				top: -50px;	
+				top: -30px;	
 			}
 
 			a {
