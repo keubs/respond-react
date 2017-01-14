@@ -209,6 +209,74 @@ ul.dropdown-menu {
   }
 }
 
+.modal[size=xlg] {
+	.modal-dialog {
+		margin: 94px auto;
+	}
+
+	.modal-content {
+		box-shadow: none;
+		border: none;
+		background: transparent;
+
+		.modal-header,
+		.modal-footer {
+			border: 0;
+		}
+
+		.modal-footer {
+			display: none;
+		}
+
+		h1.tagline {
+			margin-left: -13px;
+		}
+
+		p {
+			text-align: center;
+		}
+
+		.welcome {
+			font-family: "Sentinel SSm A", "Sentinel SSm B";
+			font-size: 20px;
+			font-weight: 700;
+			text-align: center;
+		}
+
+		.close {
+			right: 50%;
+			color: $pop;
+			opacity: 1;
+			top: -20px;
+		}
+
+		@media (max-width: $mobile) {
+			.close {
+				top: -50px;	
+			}
+
+			a {
+				margin-top: 20px;
+
+				&.fb {
+					margin-top: 60px
+				}
+			}
+
+			br {
+				display: none;
+			}
+		}
+	}
+}
+
+.modal-backdrop.in {
+	background: #FFF;
+	opacity: 0.99;
+	filter: alpha(opacity=90);
+}
+
+
 .upvoted {
   color: $pop;
 }
@@ -1245,6 +1313,8 @@ label.required {
 	.featured {
 		overflow-x: auto;
 		overflow-y: hidden;
+		padding: 0;
+
 		.banner-wrapper {
 			width: 250%;
 		}

@@ -6,6 +6,7 @@ var angular = require('angular');
 require('angular-ui-router');
 require('./templates');
 require('./topics/_index');
+require('./directives/_index');
 require('./viewControllers/_index');
 require('./users/_index');
 require('./auth/_index');
@@ -26,6 +27,7 @@ angular.element(document).ready(function() {
     'ui.router',
     'templates',
     'topics',
+    'directives',
     'auth',
     'user',
     'viewControllers',

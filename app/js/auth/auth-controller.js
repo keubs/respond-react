@@ -124,10 +124,10 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
 
   $scope.loginPrompt = function(){
     $uibModal.open({
-      animation: true,
+      animation: false,
       templateUrl: 'login-modal.html',
       controller: 'ModalContentCtrl',
-      size: 'x-sm',
+      size: 'sm',
       resolve: {
         items : function(){
           return {};
@@ -138,20 +138,19 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
 
   $scope.firstVisitor = function(){
     var send = {
-      title: 'Welcome to respond/react!',
-      message  : "<p>Respond React is a link sharing site for anyone who wants to do more than just get depressed by the news. "
-      + "Every day, people all over the world create petitions, marches, rallies, and crowdfunding campaigns to get their communities involved. "
-      + "We aspire to connect you with them - as well as the people affected by those oftentimes harrowing headlines you read on at places like CNN "
-      + "and The New York Times.</p><p>In addition, if you're one of those who have created a change.org petition, kickstarter.com fund, or a "
-      + "facebook event and you want more people to see it, register now and start posting your events under any headlines you see on this site!</p>"
-      + "<p>Don't just <em>react</em>, <strong>respond</strong>!</p>"
-      + "<a target=\"_blank\" href=\"http://facebook.com/respondreact\" class=\"like-button\">Like us on Facebook</a>"
+      title: '<h1 class="text-center tagline">Don\'t just react, <strong ng-click="respond()">respond.</strong></h1>',
+      message  : "<span class=\"welcome\">Getting involved shouldn’t be difficult. <br />Respond React makes it easy. We’re"
+                + " bringing<br /> you the news and connecting it to petitions,<br /> marches, rallies, and" 
+                + " campaigns in your <br />community and around the world."
+                + " <br /><br />Don't see your campaign listed? Register below and drop us a link.</span><br /><br />"
+                + "<a ng-click=\"authenticate(\'facebook\')\" class=\"btn btn-primary btn-lg text-center fb\">Sign in with Facebook</a><br /><br />"
+                + "<a size=\"booya\" ng-click=\"authenticate(\'google\')\" href=\"/submit\" class=\"btn btn-primary btn-lg text-center\">Sign in with Google</a>"
     };
     $uibModal.open({
-      animation: true,
+      animation: false,
       templateUrl: 'modal.html',
       controller: 'ModalContentCtrl',
-      size: 'sm',
+      size: 'xlg',
       resolve: {
         items : function(){
           return send;
@@ -174,7 +173,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
 
   // cross-controller events
   $rootScope.$on('callLogin', function(){
-      $scope.loginPrompt();
+      $scope.firstVisitor();
   });
 
   $rootScope.$on('callModal', function(){
