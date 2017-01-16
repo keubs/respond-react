@@ -111,7 +111,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
     } else {
       if($cookies.get('rr_firstVisitor')) {
       } else {
-        $scope.firstVisitor();
+        // $scope.firstVisitor();
       }
     }
 
