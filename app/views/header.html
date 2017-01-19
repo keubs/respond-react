@@ -47,7 +47,7 @@
       </div><!-- /.navbar-collapse -->
     </nav>
     <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
-    <div class="popular-tags">
+    <div class="popular-tags clearfix">
       <div class="inner">
         <a class="popular-tag" ng-repeat="tag in popular_tags" href="/topics/tag/{{tag.slug}}">{{tag.name}}</a>
       </div>

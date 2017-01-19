@@ -222,7 +222,7 @@ ul.dropdown-menu {
 		box-shadow: none;
 		border: solid 1px #EEE;
 		background: #FFF;
-		padding-top: 40px;
+		padding-top: 39px;
 
 		.modal-header,
 		.modal-footer {
@@ -234,7 +234,7 @@ ul.dropdown-menu {
 		}
 
 		h1.tagline {
-			margin-left: -13px;
+			margin-left: -14px;
 		}
 
 		p {
@@ -500,16 +500,19 @@ header {
   		}
 
 		.popular-tag {
-			display: inline-block;
-			padding: 12px 10px;
-			// background: $pop;
-			width: 10%;
+			display: block;
+			padding: 12px 0;
+			width: 8%;
+			margin: 0 1%;
 			text-align: center;
-			color: $pop;
+			color: #4cc2c4;
 			text-transform: uppercase;
 			letter-spacing: 2.1px;
 			font-size: 10px;
 			white-space: nowrap;
+			overflow: hidden;
+			float: left;
+			text-overflow: ellipsis;
 
 			@media(max-width: $mobile) {
 				padding: 8px 3px;
