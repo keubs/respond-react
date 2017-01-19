@@ -142,7 +142,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
       message  : "<span class=\"welcome\">Getting involved shouldn’t be difficult. <br />Respond React makes it easy. We’re"
                 + " bringing<br /> you the news and connecting it to petitions,<br /> marches, rallies, and" 
                 + " campaigns in your <br />community and around the world."
-                + " <br /><br />Don't see your campaign listed? Register below and drop us a link.</span><br /><br />"
+                + " <br /><br />Don't see your campaign listed? <br/>Register below and drop us a link.</span><br /><br />"
                 + "<a ng-click=\"authenticate(\'facebook\')\" class=\"btn btn-primary btn-lg text-center fb\">Sign in with Facebook</a><br /><br />"
                 + "<a size=\"booya\" ng-click=\"authenticate(\'google\')\" href=\"/submit\" class=\"btn btn-primary btn-lg text-center\">Sign in with Google</a>"
     };

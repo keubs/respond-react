@@ -256,6 +256,9 @@ ul.dropdown-menu {
 		}
 
 		@media (max-width: $mobile) {
+			.welcome {
+				font-size: 16px;
+			}
 			.close {
 				top: 10px;	
 			}
@@ -528,8 +531,9 @@ header {
   	}
 
   	.social {
-  		display: inline-block;
-  		margin-top: 7px;
+		position: absolute;
+		left: 47%;
+		top: 14px;
   	}
 
   	.share {
@@ -1215,6 +1219,9 @@ label.required {
 	header .social {
 		float: right;
 	    margin-top: 20px;
+	    position: relative;
+	    left: 0;
+	    top: 0;
 	}
 
 	header .navbar-collapse.in {
