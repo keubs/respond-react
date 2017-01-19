@@ -59,16 +59,19 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $scope.refresh('national');
     $scope.refiltered = {
       worldwide : {
-        status  : false,
-        data    : {}
+        status     : false,
+        unfiltered : false,
+        data       : {}
       },
       local     : {
-        status  : false,
-        data    : {}
+        status     : false,
+        unfiltered : false,
+        data       : {}
       },
       national  : {
-        status  : false,
-        data    : {}
+        status     :   false,
+        unfiltered : false,
+        data       : {}
       }
     };
   };
@@ -226,9 +229,16 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
 
   $scope.refilter = function(scope){
     $scope.pagination = false;
-    Object.keys($scope.refiltered).forEach(function(scope){
-      $scope.refiltered[scope].status = false;
+    Object.keys($scope.refiltered).forEach(function(new_scope){
+      $scope.refiltered[new_scope].status = false;
+      console.log(scope, new_scope);
+      if(scope !== new_scope) $scope.refiltered[new_scope].unfiltered = true;
+      else {
+        $scope.refiltered[new_scope].unfiltered = false;
+      }
     });
+
+
 
     $scope.refiltered[scope].status = true;
     switch(scope) {
