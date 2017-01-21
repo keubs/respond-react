@@ -194,32 +194,28 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   $scope.refresh = function(scope) {
     switch(scope){
       case 'worldwide':
-        TopicService.worldwide()
+        TopicService.worldwide(1)
           .then(function(data){
-            $scope.worldwide = data.data;
+            $scope.worldwide = data.data[0];
           }, function(error){
             console.log(error);
         });
       break;
 
       case 'local':
-        TopicService.local()
+        TopicService.local(1)
           .then(function(data){
-            $scope.local = data.data;
-
-            AddressService.get(data.data.address)
-              .then(function(data){
-                $scope.state = data.locality.state.name;
-              })
+            $scope.local = data.data[0];
+            $scope.state = data.data[0].state;
           }, function(error){
             console.log(error);
         });
       break;
 
       case 'national':
-        TopicService.national()
+        TopicService.national(1)
           .then(function(data){
-            $scope.national = data.data;
+            $scope.national = data.data[0];
           }, function(error){
             console.log(error);
         });
@@ -238,12 +234,10 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
       }
     });
 
-
-
     $scope.refiltered[scope].status = true;
     switch(scope) {
       case 'worldwide':
-        TopicService.worldwide(10)
+        TopicService.worldwide()
           .then(function(data){
             $scope.topics = data.data;
           }, function(error){
@@ -251,7 +245,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         });        
         break;
       case 'national':
-        TopicService.national(10)
+        TopicService.national()
           .then(function(data){
             $scope.topics = data.data;
           }, function(error){
@@ -259,7 +253,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         });
         break;
       case 'local':
-        TopicService.local(10)
+        TopicService.local()
           .then(function(data){
             $scope.topics = data.data;
           }, function(error){
