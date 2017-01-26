@@ -602,6 +602,10 @@ h1.tagline {
 		cursor: pointer;
 	}
 
+	.react {
+		transition: opacity .25s;
+	}
+
 	&:hover {
 		.react {
 			opacity: .5;
