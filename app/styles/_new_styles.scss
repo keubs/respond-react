@@ -590,12 +590,17 @@ header {
 
 
 /* homepage */
+.tagline-wrapper {
+	text-align: center;
+}
+
 h1.tagline {
-	margin: 58px 0;
+	margin: 58px auto;
 	font-family: "Sentinel SSm A", "Sentinel SSm B";
 	font-style: normal;
 	font-weight: 700;
 	font-weight: bold;
+	display: inline-block;
 
 	strong {
 		color: $pop;
@@ -606,7 +611,7 @@ h1.tagline {
 			position: absolute;
 			width: 100%;
 			height: 2px;
-			bottom: 0;
+			bottom: -2px;
 			left: 0;
 			background-color: $pop;
 			visibility: hidden;
