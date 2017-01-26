@@ -600,6 +600,21 @@ h1.tagline {
 	strong {
 		color: $pop;
 		cursor: pointer;
+		position: relative;
+		&:before {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 2px;
+			bottom: 0;
+			left: 0;
+			background-color: $pop;
+			visibility: hidden;
+			-webkit-transform: scaleX(0);
+			transform: scaleX(0);
+			-webkit-transition: all 0.2s ease-in-out 0s;
+			transition: all 0.2s ease-in-out 0s;
+		}
 	}
 
 	.react {
@@ -612,7 +627,11 @@ h1.tagline {
 		}
 
 		strong {
-			border-bottom: solid 2px $dark;
+			&:before {
+				visibility: visible;
+				-webkit-transform: scaleX(1);
+				transform: scaleX(1);
+			}
 		}
 	}
 }
