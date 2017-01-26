@@ -603,7 +603,7 @@ h1.tagline {
 	}
 
 	.react {
-		transition: opacity .25s;
+		@include transition(opacity .25s);
 	}
 
 	&:hover {
@@ -696,7 +696,7 @@ h1.tagline {
 
 			@media (min-width: $mobile) {
 				&.refiltered {
-					transition: all 5s;
+					@include transition(all 5s);
 					height: 75px;
 					margin-bottom: 0px;
 				}
@@ -715,9 +715,7 @@ h1.tagline {
 
 	&.unfiltered {
 		opacity: .3;
-		  transition: opacity .25s ease-in-out;
-		  -moz-transition: opacity .25s ease-in-out;
-		  -webkit-transition: opacity .25s ease-in-out;
+	  	@include transition(opacity .25s ease-in-out);
 	}
 }
 
@@ -927,7 +925,7 @@ h1.tagline {
 
 		.map {
 			height: 0px;
-			transition: all .5s;
+			@include transition(all .5s);
 			overflow: hidden;
 			display: block;
 			margin-top: 10px;
@@ -994,11 +992,7 @@ h1.tagline {
 
 			&.selected {
 				background-color: #AD310B;
-				        -webkit-transition: background-color 1000ms linear;
-				        -moz-transition: background-color 1000ms linear;
-				        -o-transition: background-color 1000ms linear;
-				        -ms-transition: background-color 1000ms linear;
-				        transition: background-color 1000ms linear;
+	        	@include transition(background-color 1000ms linear);
 			}
 		}
 
@@ -1110,7 +1104,7 @@ h1.tagline {
 
 .topic-submit {
   opacity: 0;
-  transition: opacity .5s;
+  @include transition(opacity .5s);
   visibility: hidden;
   &.show {
     opacity: 1;
@@ -1167,7 +1161,7 @@ label.required {
 
 .address {
 	opacity: 0;
-	transition: opacity .5s;
+	@include transition(opacity .5s);
 	visibility: hidden;
 	height: 0px;
 	&.show {
