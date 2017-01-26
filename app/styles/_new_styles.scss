@@ -48,6 +48,16 @@ a {
 
 }
 
+.btn {
+	&.thinking {
+		background-image: url('../images/ajax-loader.gif');
+		background-repeat: no-repeat;
+		background-position: center;
+
+		// background-color: auto;
+	}
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: "Sentinel SSm A", "Sentinel SSm B";
 	font-style: normal;
@@ -590,6 +600,16 @@ h1.tagline {
 	strong {
 		color: $pop;
 		cursor: pointer;
+	}
+
+	&:hover {
+		.react {
+			opacity: .5;
+		}
+
+		strong {
+			border-bottom: solid 2px $dark;
+		}
 	}
 }
 

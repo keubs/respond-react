@@ -37,6 +37,7 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 	};
 
 	$scope.doAction = function(){
+		$scope.thinking = true;
 		switch(items.type) {
 			case 'topic':
 				switch(items.action) {
@@ -48,6 +49,7 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 									$uibModalInstance.close();
 								}, 1000);	
 							}, function(error){
+								$scope.thinking = false;
 								console.log(error);
 							});
 						break;
@@ -63,6 +65,7 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 									$uibModalInstance.close();
 								}, 1000);
 							}, function(error){
+								$scope.thinking = false;
 								console.log(error);
 							})
 						break;
@@ -75,6 +78,7 @@ module.exports = function($scope, items, TopicService, ActionService, $uibModalI
 									$uibModalInstance.close();
 								}, 1000);	
 							}, function(error){
+								$scope.thinking = false;
 								console.log(error);
 							});
 				}

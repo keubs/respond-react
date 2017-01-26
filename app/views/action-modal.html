@@ -10,5 +10,5 @@
 </div>
 <div class="modal-footer">
     <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
-    <button class="btn btn-success" type="button" ng-click="doAction()">{{action | uppercase}}</button>
+    <button ng-class="{'thinking' : thinking}" class="btn btn-success" type="button" ng-click="doAction()" ng-disabled="thinking">{{action | uppercase}}</button>
 </div>
