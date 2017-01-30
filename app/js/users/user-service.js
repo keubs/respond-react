@@ -22,10 +22,14 @@ function UserService($q, $http, AppSettings, AddressService, AuthService, $windo
   		return deferred.promise;
   };
 
-  service.topics = function(id){
+  service.topics = function(id, page){
     var deferred = $q.defer();
+    var url = AppSettings.apiUrl + '/users/' + id + '/topics/'
+    if(page) {
+          url = AppSettings.apiUrl + '/users/' + id + '/topics/' + '?page=' + page;
+    }
 
-    $http.get(AppSettings.apiUrl + '/users/' + id + '/topics/')
+    $http.get(url)
       .success(function(data){
         deferred.resolve(data);
       })

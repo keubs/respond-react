@@ -39,9 +39,7 @@
 				</a>
 			</div>
 			<div class="col-md-2 topic-score score">
-			<span ng-click="upVoteTopic()" ng-class="" class="glyphicon glyphicon-menu-up upvote"></span>
-				<h1>{{topic.score}}</h1>
-			</div>
+			<up-vote object="topic" type="'topic'"></up-vote>
 		</div>
 	</div>
 	<div class="container-fluid actions" id="actions">
@@ -65,8 +63,7 @@
 		</div>
 		<div class="action row" ng-repeat="action in topic.actions" ng-class="{'ended' : action.ended}">
 			<div class="col-md-2 col-sm-2 col-xs-2 score">
-				<span ng-click="upVoteAction($index)" ng-class="" class="glyphicon glyphicon-menu-up upvote"></span>
-				<h3>{{action.score}}</h3>
+				<up-vote object="action" type="'action'"></up-vote>
 			</div>
 			<!-- <div class="col-md-2">
 				<a href="{{action.article_link}}" target="_blank"><img src="{{action.image}}" style="width: 100%" /></a>

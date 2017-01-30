@@ -24,12 +24,6 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     if($scope.tag) {
       $scope.tag_title = helpers.toTitleCase($scope.tag);
     }
-    /* Pagination Stuff */
-    $scope.currentPage = 1;
-    $scope.totalItems = 2;
-    $scope.maxSize = 10;
-    $scope.bigTotalItems = 175;
-    $scope.bigCurrentPage = 1;
 
     TopicService.count().then(function(data){
       $scope.totalItems = data.count;
@@ -76,6 +70,13 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     };
   };
 
+  /* Pagination Stuff */
+  $scope.currentPage = 1;
+  $scope.totalItems = 2;
+  $scope.maxSize = 10;
+  $scope.bigTotalItems = 175;
+  $scope.bigCurrentPage = 1;
+    
   $scope.pageChanged = function() {
     $scope.currentPage = $scope.currentPage + 1; 
     TopicService.get(null, $scope.currentPage).then(function(data) {
@@ -98,90 +99,6 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
   /* End Pagination */
 
 
-
-  $scope.deleteTopic = function($topicIndex) {
-    let topic = $scope.topics[$topicIndex];
-
-    TopicService.delete(topic.id);
-  };
-
-  $scope.upVoteTopic = function($topicIndex) {
-    let topic = $scope.topics[$topicIndex];
-
-    if (topic.isUpVoted) {
-      TopicService.clearVote(topic.id, topic.isUpVoted)
-        .then(function() {
-          topic.isUpVoted = false;
-          topic.isDownVoted = false;
-          topic.score--;
-        },
-        function(error) {
-          $scope.voteFailed($topicIndex, error);
-        });
-    } else {
-      TopicService.upVote(topic.id)
-        .then(function() {
-          topic.isUpVoted = true;
-          topic.isDownVoted = false;
-          topic.score++;
-        },
-        function(error) {
-          $scope.voteFailed($topicIndex, error);
-        });
-    }
-  };
-
-  $scope.downVoteTopic = function($topicIndex) {
-    let topic = $scope.topics[$topicIndex];
-
-    if (topic.isDownVoted) {
-      TopicService.clearVote(topic.id, !topic.isDownVoted)
-        .then(function() {
-          topic.isDownVoted = false;
-          topic.isUpVoted = false;
-          topic.score++;
-        },
-        function(error) {
-          $scope.voteFailed($topicIndex, error);
-        });
-    } else {
-      TopicService.downVote(topic.id)
-        .then(function() {
-          topic.isDownVoted = true;
-          topic.isUpVoted = false;
-          topic.score--;
-        },
-        function(error) {
-          $scope.voteFailed($topicIndex, error);
-        });
-    }
-  };
-
-  $scope.isUpVoted = function($topicIndex) {
-    let topic = $scope.topics[$topicIndex];
-
-    return $scope.isLoggedIn && topic.isUpVoted;
-    // return AuthService.isLoggedIn() && TopicService.isUpVoted(topic.id);
-  };
-
-  $scope.isDownVoted = function($topicIndex) {
-    let topic = $scope.topics[$topicIndex];
-    return $scope.isLoggedIn && topic.isDownVoted;
-    // return AuthService.isLoggedIn() && TopicService.isDownVoted(topic.id);
-  };
-
-  $scope.voteFailed = function($topicIndex, error) {
-    let topic = $scope.topics[$topicIndex];
-
-    switch (error.status) {
-      case 401:
-        $rootScope.$emit('callModal', {});
-        topic.error = 'You must be logged in to do that.';
-        break;
-      default:
-        topic.error = 'Something bad happened. 😭😭😭';
-    }
-  };
 
   $scope.formatDateTime = function(dateTime){
     return helpers.formatDateTime(dateTime);

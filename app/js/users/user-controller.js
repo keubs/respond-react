@@ -4,6 +4,12 @@ const helpers = require('../helpers/helpers.js');
  * @ngInject
  **/
 module.exports = function($scope, $location, UserService, $auth, $http, AppSettings, $stateParams, AuthService, $uibModal, $rootScope, $analytics, TopicService) {
+	/* Pagination Stuff */
+	$scope.currentPage = 1;
+	$scope.totalItems = 2;
+	$scope.maxSize = 10;
+	$scope.bigTotalItems = 175;
+	$scope.bigCurrentPage = 1;
 
 	$scope.init = function() {
 		// $scope.currentUser = {};
@@ -31,19 +37,26 @@ module.exports = function($scope, $location, UserService, $auth, $http, AppSetti
 			$scope.getTopics();
 	};
 	
-	// $scope.editUser = function(send) {
-	//   $uibModal.open({
-	//     animation: true,
-	//     templateUrl: 'edit-user.html',
-	//     controller: 'EditUserCtrl',
-	//     size: 'lg',
-	//     resolve: {
-	//       items : function(){
-	//         return send;
-	//       }
-	//     }
-	//   });
-	// };
+	$scope.pageChanged = function() {
+	  $scope.currentPage = $scope.currentPage + 1; 
+	  UserService.topics($stateParams.userid, $scope.currentPage)
+	  	.then(function(data){
+	  		$scope.topics.push(topic);
+	  	}, function(err){
+	  		console.log(err);
+	  	});
+
+	  TopicService.get(null, $scope.currentPage).then(function(data) {
+	    data.forEach(function(topic){
+	      $scope.topics.push(topic);
+	    });
+	  }, function(err) {
+	    if(err.status === 500 || err.status === -1) {
+	    } else if(err.status === 401) {
+	      AuthService.logout();
+	    }
+	  });
+	};
 
 	$scope.modalAction = function(id, type, action) {
 		var send = {

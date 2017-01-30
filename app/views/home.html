@@ -47,9 +47,7 @@
     <div class="inner row">
       <div ng-repeat="topic in topics" class="row topic nomargin">
         <div class="col-lg-1 col-md-1 col-sm-1 topic-score nopad">
-          <span ng-click="upVoteTopic($index)" class="glyphicon glyphicon-menu-up upvote">
-          </span>
-          <h3 class="score">{{topic.score}}</h3>
+          <up-vote object="topic" type="'topic'"></up-vote>
         </div>
         <div class="col-lg-10 col-md-10 col-sm-12 topic-content nopad">
           <a class="topic-image" href="topic/{{topic.id}}" style="background-image: url({{topic.thumbnail}})"></a>

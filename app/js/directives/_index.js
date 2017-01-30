@@ -3,4 +3,5 @@
 const angular = require('angular');
 
 exports = angular.module('directives', [])
-            .directive('compile', require('./compile'));
+            .directive('compile', require('./compile'))
+            .directive('upVote', require('./upvote'));
