@@ -28,7 +28,7 @@ module.exports = function($compile){
 			        object.score--;
 			      },
 			      function(error) {
-			        $scope.voteFailed($objectIndex, error);
+			        $scope.voteFailed(error);
 			      });
 			  } else {
 			    VoteService.upVote(type, object.id)
@@ -38,12 +38,12 @@ module.exports = function($compile){
 			        object.score++;
 			      },
 			      function(error) {
-			        $scope.voteFailed($objectIndex, error);
+			        $scope.voteFailed(error);
 			      });
 			  }
 			};
 
-			$scope.voteFailed = function($objectIndex, error) {
+			$scope.voteFailed = function(error) {
 			  let object = $scope.object;
 			  switch (error.status) {
 			    case 401:
@@ -55,7 +55,7 @@ module.exports = function($compile){
 			  }
 			};
 
-			$scope.isUpVoted = function($objectIndex) {
+			$scope.isUpVoted = function() {
 			  let object = $scope.object
 
 			  return $scope.isLoggedIn && object.isUpVoted;
