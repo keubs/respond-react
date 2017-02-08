@@ -17,10 +17,16 @@
                 var eventId = $scope.article_link.replace(/https:\/\/www.facebook.com\/events/, '');
 
                 Facebook.getLoginStatus(function(){
-                  Facebook.api(eventId.replace(/\//g,'') + "?fields=cover,name,description", function(response) {
+                  Facebook.api(eventId.replace(/\//g,'') + "?fields=cover,name,description,end_time,start_time", function(response) {
                     if(!response.error) {
                       var returnData = {};
                       returnData.article_link = $scope.article_link;
+                      if(response.start_time) {
+                        returnData.date_time_display = true;
+                        returnData.end_date_time_display = true;
+                        returnData.start_date_time_value = response.start_time;
+                      }
+                      if(response.end_time) returnData.end_date_time_value = response.end_time;
                       returnData.image_preview = {};
                       returnData.title = response.name || "";
                       returnData.description = response.description || "";
