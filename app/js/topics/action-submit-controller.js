@@ -107,6 +107,12 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
     
     $scope.submit = function() {
         $scope.formLoading = true;
+        if(!$scope.action.scope) {
+          $scope.errors.scope = "Please set this action's scope";
+          $scope.formLoading = false;
+          return;
+        }
+        
         if(!$scope.action.tags_list) {
           $scope.errors.tags = "Please enter at least one relevant tag";
           $scope.formLoading = false;
@@ -115,11 +121,6 @@ module.exports = function($scope, $rootScope, $location, $stateParams, ActionSer
           $scope.action.tags = helpers.jsonified($scope.action.tags_list);
         }
 
-        if(!$scope.action.scope) {
-          $scope.errors.scope = "Please set this action's scope";
-          $scope.formLoading = false;
-          return;
-        }
 
         $scope.action.topic = $stateParams.topic;
 
