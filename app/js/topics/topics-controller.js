@@ -33,6 +33,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
 
     TopicService.get($scope.tag, $scope.currentPage).then(function(data) {
       $scope.topics = data;
+      helpers.generateTags($scope.topics);
     }, function(err) {
       console.log(err);
       if(err.status === 500 || err.status === -1) {

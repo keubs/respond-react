@@ -61,6 +61,23 @@ var proto = {
       if (!results) return null;
       if (!results[2]) return '';
       return decodeURIComponent(results[2].replace(/\+/g, " "));
+  },
+
+  generateTags: function(obj) {
+   obj.forEach(function(action){
+     var tags = [];
+     action.tags.forEach(function(tag){
+       var newTag = {
+         name: tag,
+         slug: tag.replace(/ /g, '-')
+       }
+       tags.push(newTag);
+     });
+
+     action.tags = tags;
+   });
+   
+   return obj; 
   }
 };
 

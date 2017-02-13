@@ -43,6 +43,10 @@ module.exports = function($scope, $rootScope, $location, $stateParams, TopicServ
           .then(function(data){
             $scope.topic.actions = data;
 
+            
+            helpers.generateTags($scope.topic.actions);
+
+            // $scope.topic.actions.tags = tags;
             // gray out expired events
             obfuscateExpired();
           }, function(error){
