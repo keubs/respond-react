@@ -632,6 +632,7 @@ header {
   				input[type=text] {
   					font-size: 25px;
   					height: 50px;
+  					transition: font .5s;
   				}
   			}
 
@@ -647,6 +648,12 @@ header {
 	  		button {
 	  			display: none;
 	  		}
+  		}
+
+  		.search-results {
+  			margin-top: 50px;
+  			max-height: 75vh;
+  			overflow: auto;
   		}
 
   		a {
