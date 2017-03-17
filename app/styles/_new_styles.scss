@@ -80,6 +80,10 @@ h3 {
 	}
 } 
 
+.error {
+	color: red;
+}
+
 .footer {
   width: 100%;
   background: #FFF;
@@ -601,6 +605,10 @@ header {
   		z-index: 9997;
 
 
+  		p {
+  			margin: .5em 0;
+  		}
+
   		&.active {
   			display: block;
   		}
@@ -651,9 +659,13 @@ header {
   		}
 
   		.search-results {
-  			margin-top: 50px;
+  			margin-top: 25px;
   			max-height: 75vh;
   			overflow: auto;
+
+  			li {
+  				margin: 1em 0 0 0;
+  			}
   		}
 
   		a {

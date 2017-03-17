@@ -132,9 +132,16 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
   $scope.submitSearch = function() {
     SearchService.search(this.param)
       .then(function(data){
+        if(data.length == 0) {
+          $scope.errors.results = 'No results found';
+        } else {
+          $scope.errors.results = data.length + ' results found';
+        }
         $scope.results = data;
+
       }, function(error){
-        console.log(error)
+        console.log(error);
+        $scope.errors.results = 'There was an error performing your search';
       });
   };
 
