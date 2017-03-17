@@ -19,6 +19,9 @@
       </div>
       <ul ng-if="isLoggedIn == true" class="nav navbar-nav navbar-right">
         <li>
+          <a href="#" class="search glyphicon glyphicon-search" ng-click="toggleSearch()"></a>
+        </li>
+        <li>
           <a href="/submit" style="" class="btn btn-primary btn-lg btn-submit-topic text-center" ng-if="isLoggedIn == true"  tooltip-placement="bottom" uib-tooltip="Topics are any news articles or headlines that have an affected any number of people">Submit a topic</a>
         </li>
         <li>
@@ -53,7 +56,7 @@
       </div>
     </div>
     <div class="search-overlay" ng-class="{'active' : searching}">
-      <form class="navbar-form navbar-left" ng-submit="submitSearch()">
+      <form class="navbar-form navbar-left" ng-submit="submitSearch()" ng-class="{'results': results.length > 0}">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="param">
         </div>

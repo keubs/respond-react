@@ -126,6 +126,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
 
   $scope.closeSearch = function() {
     $scope.searching = false;
+    $scope.param = '';
   };
 
   $scope.submitSearch = function() {
@@ -135,6 +136,11 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
       }, function(error){
         console.log(error)
       });
+  };
+
+  $scope.goToTopic = function(id) {
+    $location.path('topic/' + id);
+    $scope.searching = false;
   };
 
   $scope.closeAlert = function(index) {

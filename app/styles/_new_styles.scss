@@ -609,18 +609,6 @@ header {
   			width: 100%;
   		}
 
-  		input[type=text] {
-  			height: 100px;
-  			border: none;
-  			font-size: 50px;
-  			border-radius: 0px;
-
-  		}
-
-  		input[type=submit],
-  		button {
-  			display: none;
-  		}
 
   		form {
   			position: absolute;
@@ -631,10 +619,34 @@ header {
   			display: inline-block;
   			z-index: 9998;
   			width: 85%;
+  			transition: top .5s linear;
 
   			.form-control {
   				width: 100%;
   			}
+
+
+  			&.results {
+  				top: 5%;
+
+  				input[type=text] {
+  					font-size: 25px;
+  					height: 50px;
+  				}
+  			}
+
+	  		input[type=text] {
+	  			height: 100px;
+	  			border: none;
+	  			font-size: 50px;
+	  			border-radius: 0px;
+	  			transition: height .5s;
+	  		}
+
+	  		input[type=submit],
+	  		button {
+	  			display: none;
+	  		}
   		}
 
   		a {
