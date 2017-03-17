@@ -6,7 +6,7 @@ const helpers = require('../helpers/helpers.js');
  **/
 module.exports = function($scope, $rootScope, $location, AuthService, $auth, 
                           $http, $window, AppSettings, $uibModal, $cookies,
-                          TagsService) {
+                          TagsService, SearchService) {
   
   $scope.register = function() {
     AuthService.register($scope.user);
@@ -104,6 +104,8 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
     $scope.alerts = [];
     $scope.userid = $window.sessionStorage.id;
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
+    $scope.searching = false;
+    $scope.results = [];
 
     if($scope.isLoggedIn) {
       checkUnapproved();
@@ -116,6 +118,23 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
     }
 
     $scope.popularTags();
+  };
+
+  $scope.toggleSearch = function() {
+    $scope.searching = !$scope.searching;
+  };
+
+  $scope.closeSearch = function() {
+    $scope.searching = false;
+  };
+
+  $scope.submitSearch = function() {
+    SearchService.search(this.param)
+      .then(function(data){
+        $scope.results = data;
+      }, function(error){
+        console.log(error)
+      });
   };
 
   $scope.closeAlert = function(index) {
