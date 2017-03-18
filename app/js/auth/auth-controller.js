@@ -145,12 +145,10 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
           console.log(error);
           $scope.errors.results = 'There was an error performing your search';
         });
+    } else if(this.param.length == 0) {
+      $scope.results = [];
     }
   };
-
-  $scope.test = function(){
-    console.log($scope.param);
-  }; 
 
   $scope.goToTopic = function(id) {
     $location.path('topic/' + id);
