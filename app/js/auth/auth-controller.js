@@ -147,6 +147,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
         });
     } else if(this.param.length == 0) {
       $scope.results = [];
+      $scope.errors.results = 'No results found';
     }
   };
 
