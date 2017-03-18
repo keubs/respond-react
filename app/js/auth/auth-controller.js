@@ -122,6 +122,7 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
 
   $scope.toggleSearch = function() {
     $scope.searching = !$scope.searching;
+    $scope.navCollapsed = true;
   };
 
   $scope.closeSearch = function() {
