@@ -35,10 +35,14 @@ module.exports = function($timeout) {
 		$scope.errors = {};
 
 		$scope.$watch('param', function(i){
+			console.log('hi', i);
 			if(i && i.length > 2) {
 		  		SearchService.search(i)
 				    .then(function(data){
-				      if(data.length == 0) {
+			    	  if(i.length === 0) {
+			    	  	$scope.errors.results = '';
+			    	  }
+				      else if(data.length == 0) {
 				        $scope.errors.results = 'No results found';
 				      } else {
 				        $scope.errors.results = data.length + ' results found';
@@ -50,7 +54,7 @@ module.exports = function($timeout) {
 				    });
 				} else if(!i || i.length == 0) {
 				  $scope.results = [];
-				  $scope.errors.results = 'No results found';
+				  $scope.errors.results = '';
 				}
 		});	
 
