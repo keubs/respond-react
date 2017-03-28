@@ -55,19 +55,5 @@
         <a class="popular-tag" ng-repeat="tag in popular_tags" href="/topics/tag/{{tag.slug}}">{{tag.name}}</a>
       </div>
     </div>
-    <div class="search-overlay" ng-class="{'active' : searching}">
-      <form class="navbar-form navbar-left" ng-submit="submitSearch()" ng-class="{'results': results.length > 0}">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Topics" ng-model="param" ng-keyup="submitSearch()">
-          <p class="error">{{errors.results}}</p>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-        <div class="search-results">
-          <ul>
-            <li ng-repeat="result in results"><a ng-click="goToTopic(result.id)">{{result.title}}</a></li>
-          </ul>
-        </div>
-      </form>
-      <div class="search-overlay-bg" ng-click="closeSearch()"></div>
-    </div>
+    <search-overlay searching="searching" param="param"></search-overlay>
   </header>

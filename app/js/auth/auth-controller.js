@@ -125,31 +125,6 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
     $scope.navCollapsed = true;
   };
 
-  $scope.closeSearch = function() {
-    $scope.searching = false;
-    $scope.param = '';
-  };
-
-  $scope.submitSearch = function() {
-    if(this.param.length > 2){
-      SearchService.search(this.param)
-        .then(function(data){
-          if(data.length == 0) {
-            $scope.errors.results = 'No results found';
-          } else {
-            $scope.errors.results = data.length + ' results found';
-          }
-          $scope.results = data;
-
-        }, function(error){
-          console.log(error);
-          $scope.errors.results = 'There was an error performing your search';
-        });
-    } else if(this.param.length == 0) {
-      $scope.results = [];
-      $scope.errors.results = 'No results found';
-    }
-  };
 
   $scope.goToTopic = function(id) {
     $location.path('topic/' + id);
