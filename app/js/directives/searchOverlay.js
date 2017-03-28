@@ -5,7 +5,7 @@
  **/
 
 
-module.exports = function($timeout) {
+module.exports = function($timeout, $location) {
 
 	var directive = {
 		restrict : 'E',
@@ -67,6 +67,11 @@ module.exports = function($timeout) {
 		$scope.closeSearch = function() {
 		  $scope.searching = false;
 		  $scope.param = '';
+		};
+
+		$scope.goToTopic = function(id) {
+		  $location.path('topic/' + id);
+		  $scope.searching = false;
 		};
 	}
 

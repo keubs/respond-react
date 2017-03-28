@@ -125,12 +125,6 @@ module.exports = function($scope, $rootScope, $location, AuthService, $auth,
     $scope.navCollapsed = true;
   };
 
-
-  $scope.goToTopic = function(id) {
-    $location.path('topic/' + id);
-    $scope.searching = false;
-  };
-
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
   };
