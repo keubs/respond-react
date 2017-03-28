@@ -25,6 +25,13 @@ module.exports = function($timeout) {
 					
 				}
 			});
+
+			element.bind('keydown keypress', function(event){
+				if(event.which === 27) {
+					scope.searching = false;
+					scope.param = '';
+				}
+			});
 		},
 		controller : searchController,
 	};
@@ -35,7 +42,6 @@ module.exports = function($timeout) {
 		$scope.errors = {};
 
 		$scope.$watch('param', function(i){
-			console.log('hi', i);
 			if(i && i.length > 2) {
 		  		SearchService.search(i)
 				    .then(function(data){
