@@ -5,7 +5,7 @@
  **/
 
 
-module.exports = function($timeout, $location) {
+module.exports = function($timeout, $location, $rootScope) {
 
 	var directive = {
 		restrict : 'E',
@@ -17,12 +17,15 @@ module.exports = function($timeout, $location) {
 		link: function(scope, element) {
 			scope.$watch('searching', function(value){
 				if(value) {
+					$rootScope.bodyClass = 'searching';
 					var textbox = element[0].querySelector('input[type=text]');
 					$timeout(function(){
 						textbox.focus();
 						
 					}, 500);
 					
+				} else {
+					$rootScope.bodyClass = false;
 				}
 			});
 
