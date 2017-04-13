@@ -17,7 +17,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $scope.isLoggedIn = AuthService.newIsLoggedIn();
     $scope.topics = [];
     $scope.pagination = true;
-
+    $scope.sortMethod = 'time';
     $scope.backendUrl = AppSettings.backendUrl;
     $scope.mediaUrl = AppSettings.mediaUrl;
     $scope.tag = $stateParams.tag || null;
@@ -31,7 +31,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
         console.log(err);
     });
 
-    TopicService.get($scope.tag, $scope.currentPage).then(function(data) {
+    TopicService.get($scope.tag, $scope.currentPage, $scope.sortMethod).then(function(data) {
       $scope.topics = data;
       helpers.generateTags($scope.topics);
     }, function(err) {
@@ -80,7 +80,7 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     
   $scope.pageChanged = function() {
     $scope.currentPage = $scope.currentPage + 1; 
-    TopicService.get(null, $scope.currentPage).then(function(data) {
+    TopicService.get(null, $scope.currentPage, $scope.sortMethod).then(function(data) {
       // console.log($scope.topics);
       data.forEach(function(topic){
         $scope.topics.push(topic);
@@ -185,13 +185,18 @@ module.exports = function($scope, $rootScope, $location, TopicService, AuthServi
     $rootScope.$emit('callModal', {});
   };
 
+  $scope.setSort = function(sort){
+    $scope.sortMethod = sort;
+  }
+
   $scope.sort = function(sort){
 
+    $scope.setSort(sort);
     // Track that shiz
     $analytics.eventTrack('change', {  category: 'refining', label: $scope.filter });
 
     // alert($scope.filter);
-    TopicService.get(null, null, sort).then(function(data) {
+    TopicService.get(null, null, $scope.sortMethod).then(function(data) {
       $scope.topics = data;
     }, function(err) {
       console.log(err);

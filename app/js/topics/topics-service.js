@@ -19,7 +19,11 @@ function TopicService($q, $http, AppSettings, AddressService) {
     }
     
     if(sort){
+
      url = AppSettings.apiUrl + '/topics/?order_by=' + sort; 
+     if(page) {
+      url +=  '&page=' + page;
+     }
     }
 
     $http.get(url)
